@@ -459,109 +459,6 @@
     }
 
     /* ============================================
-       NOTRE MÉTHODE
-       ============================================ */
-    .method-section {
-      padding-block: 80px;
-      background: var(--white);
-    }
-    .method-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      margin-top: 48px;
-    }
-    @media (min-width: 640px) {
-      .method-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 960px) {
-      .method-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .method-step {
-      padding: 28px;
-      border: 2px solid var(--sand);
-      border-radius: var(--radius);
-      transition: border-color 0.3s, box-shadow 0.3s;
-      position: relative;
-    }
-    .method-step:hover {
-      border-color: var(--coral);
-      box-shadow: 0 8px 24px rgba(242, 107, 91, 0.08);
-    }
-    .step-num {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--coral);
-      line-height: 1;
-      margin-bottom: 14px;
-      opacity: 0.85;
-    }
-    .method-step h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .method-step p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-
-    /* ============================================
-       NOS SERVICES
-       ============================================ */
-    .services-section {
-      padding-block: 80px;
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-top: 48px;
-    }
-    @media (min-width: 640px) {
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 960px) {
-      .services-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .service-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 28px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      box-shadow: 0 2px 8px rgba(15, 76, 76, 0.04);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .service-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(15, 76, 76, 0.08);
-    }
-    .service-icon {
-      width: 44px;
-      height: 44px;
-      min-width: 44px;
-      border-radius: 12px;
-      background: var(--sand);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--green);
-    }
-    .service-card h3 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .service-card p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* ============================================
        SIMULATEUR DE REVENUS
        ============================================ */
     .sim-section {
@@ -803,46 +700,52 @@
     }
 
     /* ============================================
-       AUDIT GRATUIT (formulaire)
+       NOTRE MÉTHODE
        ============================================ */
-    .audit-section {
+    .method-section {
       padding-block: 80px;
-      background: var(--coral);
-      color: var(--white);
-    }
-    .audit-section h2 {
-      color: var(--white);
-      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-      max-width: 700px;
-      text-wrap: balance;
-    }
-    .audit-section .section-intro {
-      color: rgba(255,255,255,0.85);
-      max-width: 600px;
-      margin-top: 12px;
-    }
-    .audit-card {
       background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 40px;
-      margin-top: 32px;
-      max-width: 560px;
-      color: var(--text);
     }
-    @media (max-width: 640px) {
-      .audit-card { padding: 28px 20px; }
+    .method-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 48px;
     }
-    .audit-success {
-      display: none;
-      text-align: center;
-      padding: 20px 0;
+    @media (min-width: 640px) {
+      .method-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    .audit-success.active { display: block; }
-    .audit-success h3 { font-size: 1.2rem; margin-bottom: 8px; }
-    .audit-success p {
-      font-size: 0.95rem;
+    @media (min-width: 960px) {
+      .method-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .method-step {
+      padding: 28px;
+      border: 2px solid var(--sand);
+      border-radius: var(--radius);
+      transition: border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .method-step:hover {
+      border-color: var(--coral);
+      box-shadow: 0 8px 24px rgba(242, 107, 91, 0.08);
+    }
+    .step-num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--coral);
+      line-height: 1;
+      margin-bottom: 14px;
+      opacity: 0.85;
+    }
+    .method-step h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .method-step p {
+      font-size: 0.9rem;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     /* ============================================
@@ -922,6 +825,104 @@
       flex-shrink: 0;
     }
     .pricing-check svg { width: 12px; height: 12px; color: var(--green); }
+
+    /* ============================================
+       NOS SERVICES
+       ============================================ */
+    .services-section {
+      padding-block: 80px;
+      background: var(--white);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 48px;
+    }
+    @media (min-width: 640px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 960px) {
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .service-card {
+      background: var(--sand);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      box-shadow: 0 2px 8px rgba(15, 76, 76, 0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(15, 76, 76, 0.08);
+    }
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: 12px;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green);
+    }
+    .service-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .service-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ============================================
+       AUDIT GRATUIT (formulaire)
+       ============================================ */
+    .audit-section {
+      padding-block: 80px;
+      background: var(--coral);
+      color: var(--white);
+    }
+    .audit-section h2 {
+      color: var(--white);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      max-width: 700px;
+      text-wrap: balance;
+    }
+    .audit-section .section-intro {
+      color: rgba(255,255,255,0.85);
+      max-width: 600px;
+      margin-top: 12px;
+    }
+    .audit-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      margin-top: 32px;
+      max-width: 560px;
+      color: var(--text);
+    }
+    @media (max-width: 640px) {
+      .audit-card { padding: 28px 20px; }
+    }
+    .audit-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .audit-success.active { display: block; }
+    .audit-success h3 { font-size: 1.2rem; margin-bottom: 8px; }
+    .audit-success p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
 
     /* ============================================
        FOOTER
@@ -1037,12 +1038,12 @@
     <div class="container nav-inner">
       <a href="#" class="logo">haveo<span>.</span></a>
       <ul class="nav-links">
-        <li><a href="#services">Nos services</a></li>
-        <li><a href="#methode">Méthode</a></li>
         <li><a href="#villes">Villes</a></li>
+        <li><a href="#pourquoi">Pourquoi Haveo</a></li>
         <li><a href="#simulateur">Simulateur</a></li>
+        <li><a href="#methode">Méthode</a></li>
         <li><a href="#tarifs">Tarifs</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#services">Services</a></li>
       </ul>
       <a href="#audit" class="btn btn-coral nav-cta">Audit gratuit</a>
       <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">
@@ -1050,12 +1051,12 @@
       </button>
     </div>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="#services">Nos services</a>
-      <a href="#methode">Méthode</a>
       <a href="#villes">Villes</a>
+      <a href="#pourquoi">Pourquoi Haveo</a>
       <a href="#simulateur">Simulateur</a>
+      <a href="#methode">Méthode</a>
       <a href="#tarifs">Tarifs</a>
-      <a href="#contact">Contact</a>
+      <a href="#services">Services</a>
       <a href="#audit" class="btn btn-coral" style="margin-top:12px;">Audit gratuit</a>
     </div>
   </nav>
@@ -1133,60 +1134,6 @@
           <p>Un tableau de bord clair, des rapports réguliers et un interlocuteur dédié. Vous savez tout, tout le temps.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       NOTRE MÉTHODE
-       ============================================ -->
-  <section class="method-section" id="methode">
-    <div class="container">
-      <span class="section-label reveal">Notre méthode</span>
-      <h2 class="reveal">Un accompagnement en 6 étapes</h2>
-
-      <div class="method-grid">
-        <div class="method-step reveal">
-          <div class="step-num">01</div>
-          <h3>Audit gratuit et offre personnalisée</h3>
-          <p>Nous évaluons le potentiel de votre logement et vous proposons une offre sur mesure, sans engagement.</p>
-        </div>
-        <div class="method-step reveal reveal-delay-1">
-          <div class="step-num">02</div>
-          <h3>Photos professionnelles et décoration</h3>
-          <p>Shooting photo par un professionnel et optimisation de la décoration pour rendre votre logement plus attractif.</p>
-        </div>
-        <div class="method-step reveal reveal-delay-2">
-          <div class="step-num">03</div>
-          <h3>Annonce optimisée</h3>
-          <p>Rédaction et diffusion de votre annonce sur Airbnb et Booking pour un meilleur classement et plus de visibilité.</p>
-        </div>
-        <div class="method-step reveal">
-          <div class="step-num">04</div>
-          <h3>Tarification dynamique</h3>
-          <p>Nos algorithmes ajustent le prix chaque nuit pour maximiser votre taux d'occupation et vos revenus.</p>
-        </div>
-        <div class="method-step reveal reveal-delay-1">
-          <div class="step-num">05</div>
-          <h3>Accueil, ménage et linge</h3>
-          <p>Accueil personnalisé des voyageurs, ménage professionnel entre chaque séjour et linge hôtelier fourni.</p>
-        </div>
-        <div class="method-step reveal reveal-delay-2">
-          <div class="step-num">06</div>
-          <h3>Entretien et maintenance</h3>
-          <p>Petites réparations, suivi technique et rapport photo avant / après chaque séjour pour garder votre bien en parfait état.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       NOS SERVICES
-       ============================================ -->
-  <section class="services-section" id="services">
-    <div class="container">
-      <span class="section-label reveal">Nos services</span>
-      <h2 class="reveal">Tout ce qu'il faut pour réussir sur Airbnb</h2>
-      <div class="services-grid" id="servicesGrid"></div>
     </div>
   </section>
 
@@ -1416,6 +1363,95 @@
   </section>
 
   <!-- ============================================
+       NOTRE MÉTHODE
+       ============================================ -->
+  <section class="method-section" id="methode">
+    <div class="container">
+      <span class="section-label reveal">Notre méthode</span>
+      <h2 class="reveal">Un accompagnement en 6 étapes</h2>
+
+      <div class="method-grid">
+        <div class="method-step reveal">
+          <div class="step-num">01</div>
+          <h3>Audit gratuit et offre personnalisée</h3>
+          <p>Nous évaluons le potentiel de votre logement et vous proposons une offre sur mesure, sans engagement.</p>
+        </div>
+        <div class="method-step reveal reveal-delay-1">
+          <div class="step-num">02</div>
+          <h3>Photos professionnelles et décoration</h3>
+          <p>Shooting photo par un professionnel et optimisation de la décoration pour rendre votre logement plus attractif.</p>
+        </div>
+        <div class="method-step reveal reveal-delay-2">
+          <div class="step-num">03</div>
+          <h3>Annonce optimisée</h3>
+          <p>Rédaction et diffusion de votre annonce sur Airbnb et Booking pour un meilleur classement et plus de visibilité.</p>
+        </div>
+        <div class="method-step reveal">
+          <div class="step-num">04</div>
+          <h3>Tarification dynamique</h3>
+          <p>Nos algorithmes ajustent le prix chaque nuit pour maximiser votre taux d'occupation et vos revenus.</p>
+        </div>
+        <div class="method-step reveal reveal-delay-1">
+          <div class="step-num">05</div>
+          <h3>Accueil, ménage et linge</h3>
+          <p>Accueil personnalisé des voyageurs, ménage professionnel entre chaque séjour et linge hôtelier fourni.</p>
+        </div>
+        <div class="method-step reveal reveal-delay-2">
+          <div class="step-num">06</div>
+          <h3>Entretien et maintenance</h3>
+          <p>Petites réparations, suivi technique et rapport photo avant / après chaque séjour pour garder votre bien en parfait état.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TARIFS
+       ============================================ -->
+  <section class="pricing-section" id="tarifs">
+    <div class="container">
+      <span class="section-label reveal">Tarifs</span>
+      <h2 class="reveal">Un tarif simple et transparent</h2>
+
+      <div class="pricing-card reveal">
+        <div class="pricing-badge">1er mois offert</div>
+        <div class="pricing-price">À partir de <span>14 %</span> TTC</div>
+        <p class="pricing-subtitle">des revenus locatifs générés</p>
+        <ul class="pricing-features">
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg></span>
+            Sans engagement
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg></span>
+            Contrat résiliable à tout moment
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg></span>
+            Aucun frais caché
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg></span>
+            Accompagnement complet inclus
+          </li>
+        </ul>
+        <a href="#audit" class="btn btn-coral" style="width:100%;">Profiter du mois offert</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       NOS SERVICES
+       ============================================ -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <span class="section-label reveal">Nos services</span>
+      <h2 class="reveal">Tout ce qu'il faut pour réussir sur Airbnb</h2>
+      <div class="services-grid" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================================
        AUDIT GRATUIT (formulaire)
        ============================================ -->
   <section class="audit-section" id="audit">
@@ -1471,41 +1507,6 @@
   </section>
 
   <!-- ============================================
-       TARIFS
-       ============================================ -->
-  <section class="pricing-section" id="tarifs">
-    <div class="container">
-      <span class="section-label reveal">Tarifs</span>
-      <h2 class="reveal">Un tarif simple et transparent</h2>
-
-      <div class="pricing-card reveal">
-        <div class="pricing-badge">1er mois offert</div>
-        <div class="pricing-price">À partir de <span>14 %</span> TTC</div>
-        <p class="pricing-subtitle">des revenus locatifs générés</p>
-        <ul class="pricing-features">
-          <li>
-            <span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg></span>
-            Sans engagement
-          </li>
-          <li>
-            <span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg></span>
-            Contrat résiliable à tout moment
-          </li>
-          <li>
-            <span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg></span>
-            Aucun frais caché
-          </li>
-          <li>
-            <span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg></span>
-            Accompagnement complet inclus
-          </li>
-        </ul>
-        <a href="#simulateur" class="btn btn-coral" style="width:100%;">Profiter du mois offert</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
        FOOTER
        ============================================ -->
   <footer class="footer" id="contact">
@@ -1531,10 +1532,12 @@
         <div>
           <h4>Navigation</h4>
           <ul class="footer-links">
-            <li><a href="#services">Nos services</a></li>
-            <li><a href="#methode">Notre méthode</a></li>
+            <li><a href="#villes">Villes</a></li>
+            <li><a href="#pourquoi">Pourquoi Haveo</a></li>
             <li><a href="#simulateur">Simulateur</a></li>
+            <li><a href="#methode">Méthode</a></li>
             <li><a href="#tarifs">Tarifs</a></li>
+            <li><a href="#services">Services</a></li>
             <li><a href="#audit">Audit gratuit</a></li>
           </ul>
         </div>
