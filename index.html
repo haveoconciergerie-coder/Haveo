@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Haveo Conciergerie – Conciergerie Airbnb en Île-de-France</title>
   <meta name="description" content="Conciergerie Airbnb en Île-de-France. Haveo s'occupe de tout : photos, annonce, accueil, ménage, entretien. Estimez vos revenus locatifs gratuitement.">
-  <meta name="keywords" content="conciergerie Airbnb Paris, conciergerie L'Isle-Adam, conciergerie Deauville, conciergerie Airbnb Île-de-France, location courte durée, conciergerie Airbnb">
+  <meta name="keywords" content="conciergerie Airbnb Paris, conciergerie Airbnb Île-de-France, conciergerie Boulogne-Billancourt, conciergerie Versailles, conciergerie Neuilly-sur-Seine, conciergerie L'Isle-Adam, location courte durée">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
   <style>
     /* ============================================
@@ -371,7 +371,7 @@
     .marquee-track {
       display: flex;
       width: max-content;
-      animation: marquee 35s linear infinite;
+      animation: marquee 120s linear infinite;
     }
     .marquee:hover .marquee-track {
       animation-play-state: paused;
@@ -648,7 +648,7 @@
       gap: 16px;
     }
 
-    /* Checkboxes extérieur */
+    /* Checkboxes pill */
     .checkbox-group {
       display: flex;
       flex-wrap: wrap;
@@ -683,6 +683,55 @@
       color: var(--white);
     }
     .checkbox-pill input:focus-visible + label {
+      outline: 2px solid var(--coral);
+      outline-offset: 2px;
+    }
+
+    /* Cartes de décoration (radio) */
+    .deco-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 8px;
+    }
+    @media (max-width: 520px) {
+      .deco-cards { grid-template-columns: 1fr; }
+    }
+    .deco-card { position: relative; }
+    .deco-card input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .deco-card label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 18px 12px;
+      border: 2px solid var(--sand-dark);
+      border-radius: var(--radius);
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .deco-card label .deco-stars {
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      margin-bottom: 2px;
+    }
+    .deco-card label .deco-label { font-size: 0.85rem; }
+    .deco-card input:checked + label {
+      border-color: var(--green);
+      background: var(--sand);
+      color: var(--text);
+      box-shadow: 0 4px 12px rgba(15, 76, 76, 0.08);
+    }
+    .deco-card input:focus-visible + label {
       outline: 2px solid var(--coral);
       outline-offset: 2px;
     }
@@ -754,20 +803,46 @@
     }
 
     /* ============================================
-       AUDIT GRATUIT
+       AUDIT GRATUIT (formulaire)
        ============================================ */
     .audit-section {
-      padding-block: 60px;
+      padding-block: 80px;
       background: var(--coral);
       color: var(--white);
-      text-align: center;
     }
     .audit-section h2 {
       color: var(--white);
-      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
       max-width: 700px;
-      margin: 0 auto 24px;
       text-wrap: balance;
+    }
+    .audit-section .section-intro {
+      color: rgba(255,255,255,0.85);
+      max-width: 600px;
+      margin-top: 12px;
+    }
+    .audit-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      margin-top: 32px;
+      max-width: 560px;
+      color: var(--text);
+    }
+    @media (max-width: 640px) {
+      .audit-card { padding: 28px 20px; }
+    }
+    .audit-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .audit-success.active { display: block; }
+    .audit-success h3 { font-size: 1.2rem; margin-bottom: 8px; }
+    .audit-success p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
     }
 
     /* ============================================
@@ -1006,13 +1081,11 @@
        ============================================ -->
   <section class="marquee-section" id="villes">
     <div class="container">
-      <p class="marquee-title reveal">Haveo est présent à :</p>
+      <p class="marquee-title reveal">Haveo est présent dans toute l'Île-de-France :</p>
     </div>
     <div class="container">
       <div class="marquee">
-        <div class="marquee-track" id="marqueeTrack">
-          <!-- Doublé en JS pour boucle infinie -->
-        </div>
+        <div class="marquee-track" id="marqueeTrack"></div>
       </div>
       <p class="marquee-footer reveal">Votre ville n'y est pas ? <a href="#contact">Contactez-nous.</a></p>
     </div>
@@ -1113,15 +1186,12 @@
     <div class="container">
       <span class="section-label reveal">Nos services</span>
       <h2 class="reveal">Tout ce qu'il faut pour réussir sur Airbnb</h2>
-
-      <div class="services-grid" id="servicesGrid">
-        <!-- Rempli en JS pour garder le HTML léger -->
-      </div>
+      <div class="services-grid" id="servicesGrid"></div>
     </div>
   </section>
 
   <!-- ============================================
-       SIMULATEUR DE REVENUS
+       SIMULATEUR DE REVENUS (5 étapes)
        ============================================ -->
   <section class="sim-section" id="simulateur">
     <div class="container">
@@ -1135,6 +1205,7 @@
           <div class="sim-progress-bar" data-step="2"></div>
           <div class="sim-progress-bar" data-step="3"></div>
           <div class="sim-progress-bar" data-step="4"></div>
+          <div class="sim-progress-bar" data-step="5"></div>
         </div>
 
         <form id="simForm" novalidate>
@@ -1225,8 +1296,76 @@
             </div>
           </div>
 
-          <!-- Étape 4 : Coordonnées -->
+          <!-- Étape 4 : Équipements et standing -->
           <div class="sim-step" data-step="4">
+            <h3>Équipements et standing</h3>
+            <div class="form-group">
+              <label>Niveau de décoration</label>
+              <div class="deco-cards">
+                <div class="deco-card">
+                  <input type="radio" name="decoration" id="deco-haut" value="haut_de_gamme">
+                  <label for="deco-haut">
+                    <span class="deco-stars">★★★</span>
+                    <span class="deco-label">Haut de gamme</span>
+                  </label>
+                </div>
+                <div class="deco-card">
+                  <input type="radio" name="decoration" id="deco-milieu" value="milieu_de_gamme" checked>
+                  <label for="deco-milieu">
+                    <span class="deco-stars">★★</span>
+                    <span class="deco-label">Milieu de gamme</span>
+                  </label>
+                </div>
+                <div class="deco-card">
+                  <input type="radio" name="decoration" id="deco-rafraichir" value="a_rafraichir">
+                  <label for="deco-rafraichir">
+                    <span class="deco-stars">★</span>
+                    <span class="deco-label">À rafraîchir</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Équipements disponibles</label>
+              <div class="checkbox-group">
+                <div class="checkbox-pill">
+                  <input type="checkbox" id="eq-parking" value="parking">
+                  <label for="eq-parking">Parking</label>
+                </div>
+                <div class="checkbox-pill">
+                  <input type="checkbox" id="eq-clim" value="climatisation">
+                  <label for="eq-clim">Climatisation</label>
+                </div>
+                <div class="checkbox-pill">
+                  <input type="checkbox" id="eq-jacuzzi" value="jacuzzi_spa">
+                  <label for="eq-jacuzzi">Jacuzzi / Spa</label>
+                </div>
+                <div class="checkbox-pill">
+                  <input type="checkbox" id="eq-piscine" value="piscine">
+                  <label for="eq-piscine">Piscine</label>
+                </div>
+                <div class="checkbox-pill">
+                  <input type="checkbox" id="eq-cheminee" value="cheminee">
+                  <label for="eq-cheminee">Cheminée</label>
+                </div>
+                <div class="checkbox-pill">
+                  <input type="checkbox" id="eq-vue" value="vue_degagee">
+                  <label for="eq-vue">Vue dégagée</label>
+                </div>
+                <div class="checkbox-pill">
+                  <input type="checkbox" id="eq-transports" value="proche_transports">
+                  <label for="eq-transports">Proche transports</label>
+                </div>
+              </div>
+            </div>
+            <div class="sim-nav">
+              <button type="button" class="btn btn-prev sim-prev">Retour</button>
+              <button type="button" class="btn btn-coral sim-next">Suivant</button>
+            </div>
+          </div>
+
+          <!-- Étape 5 : Coordonnées -->
+          <div class="sim-step" data-step="5">
             <h3>Vos coordonnées</h3>
             <div class="form-row">
               <div class="form-group">
@@ -1277,12 +1416,57 @@
   </section>
 
   <!-- ============================================
-       AUDIT GRATUIT
+       AUDIT GRATUIT (formulaire)
        ============================================ -->
   <section class="audit-section" id="audit">
     <div class="container">
-      <h2 class="reveal">Audit gratuit de votre logement : potentiel, prix, décoration, annonce. Sans engagement.</h2>
-      <a href="#contact" class="btn btn-white reveal">Réserver mon audit</a>
+      <span class="section-label reveal" style="color: var(--gold);">Audit gratuit</span>
+      <h2 class="reveal">Audit gratuit de votre logement</h2>
+      <p class="section-intro reveal">Potentiel de revenus, prix, décoration, annonce : on analyse tout, gratuitement et sans engagement.</p>
+
+      <div class="audit-card reveal">
+        <form id="auditForm" novalidate>
+          <div id="auditFields">
+            <div class="form-group">
+              <label for="audit-address">Adresse du bien</label>
+              <input type="text" id="audit-address" required placeholder="12 rue de la Paix, 75002 Paris">
+              <div class="form-error" id="err-audit-address">Veuillez entrer l'adresse du bien.</div>
+            </div>
+            <div class="form-group">
+              <label for="audit-bedrooms">Nombre de chambres</label>
+              <input type="number" id="audit-bedrooms" min="0" max="20" required placeholder="ex : 2">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="audit-email">Email</label>
+                <input type="email" id="audit-email" required placeholder="jean@exemple.fr">
+                <div class="form-error" id="err-audit-email">Veuillez entrer une adresse email valide.</div>
+              </div>
+              <div class="form-group">
+                <label for="audit-phone">Téléphone</label>
+                <input type="tel" id="audit-phone" required placeholder="06 12 34 56 78">
+              </div>
+            </div>
+            <div class="consent-group">
+              <input type="checkbox" id="audit-consent" required>
+              <label for="audit-consent">J'accepte que mes données soient utilisées par Haveo pour me recontacter. <a href="#confidentialite">Politique de confidentialité</a></label>
+            </div>
+            <div class="form-error" id="err-audit-consent" style="margin-top:4px;">Veuillez accepter la politique de confidentialité.</div>
+            <div style="margin-top:28px;">
+              <button type="submit" class="btn btn-coral" style="width:100%;">Recevoir mon audit</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="audit-success" id="auditSuccess">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" style="margin:0 auto 12px;">
+            <circle cx="28" cy="28" r="28" fill="#F4EBDD"/>
+            <path d="M17 28l6 6 16-16" stroke="#0F4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>Merci !</h3>
+          <p>Un expert Haveo vous contacte sous 24 h pour analyser le potentiel de votre logement.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1357,9 +1541,7 @@
 
         <div>
           <h4>Villes couvertes</h4>
-          <ul class="footer-links" id="footerCities">
-            <!-- Rempli en JS -->
-          </ul>
+          <ul class="footer-links" id="footerCities"></ul>
         </div>
       </div>
 
@@ -1377,33 +1559,106 @@
        JAVASCRIPT
        ============================================ -->
   <script>
-    /* ---- Configuration ---- */
+    /* ============================================
+       CONFIGURATION (modifier ici)
+       ============================================ */
+
     const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
 
     const CITIES = [
-      'Paris', "L'Isle-Adam", 'Auvers-sur-Oise', 'Chantilly',
+      'Paris',
+      'Boulogne-Billancourt', 'Neuilly-sur-Seine', 'Levallois-Perret', 'Issy-les-Moulineaux',
+      'Saint-Cloud', 'Vincennes', 'Saint-Mandé', 'Courbevoie', 'Puteaux', 'Suresnes',
+      'Rueil-Malmaison', 'Montrouge', 'Clichy', 'Asnières-sur-Seine', 'Montreuil', 'Pantin',
+      'Les Lilas', 'Le Pré-Saint-Gervais', 'Saint-Ouen', 'Malakoff', 'Vanves',
+      'Charenton-le-Pont', 'Fontenay-sous-Bois', 'Nogent-sur-Marne',
+      'Gentilly', 'Arcueil', 'Le Kremlin-Bicêtre', 'Ivry-sur-Seine', 'Villejuif',
+      'Bagnolet', 'Aubervilliers', 'Saint-Denis',
+      'Versailles', 'Saint-Germain-en-Laye', 'Maisons-Laffitte', 'Le Vésinet', 'Chatou',
+      'Enghien-les-Bains', 'Montmorency', 'Saint-Leu-la-Forêt',
+      "L'Isle-Adam", 'Auvers-sur-Oise', 'Pontoise', 'Cergy',
       'Fontainebleau', 'Barbizon', 'Rambouillet', 'Provins',
-      'Giverny', 'Deauville', 'Trouville-sur-Mer', 'Honfleur', 'Cabourg'
+      'Marne-la-Vallée', 'Chessy', 'Serris', 'Meaux',
+      'Milly-la-Forêt', 'Étampes', 'Dourdan'
     ];
 
     const BASE_PRICES = {
       'Paris': 110,
+      'Neuilly-sur-Seine': 105,
+      'Boulogne-Billancourt': 100,
+      'Levallois-Perret': 95,
+      'Saint-Cloud': 95,
+      'Vincennes': 95,
+      'Saint-Mandé': 90,
+      'Issy-les-Moulineaux': 90,
+      'Courbevoie': 90,
+      'Puteaux': 90,
+      'Suresnes': 85,
+      'Rueil-Malmaison': 85,
+      'Nogent-sur-Marne': 85,
+      'Charenton-le-Pont': 85,
+      'Montrouge': 85,
+      'Fontenay-sous-Bois': 80,
+      'Clichy': 80,
+      'Asnières-sur-Seine': 80,
+      'Montreuil': 80,
+      'Pantin': 80,
+      'Les Lilas': 80,
+      'Le Pré-Saint-Gervais': 80,
+      'Saint-Ouen': 80,
+      'Malakoff': 80,
+      'Vanves': 80,
+      'Gentilly': 75,
+      'Arcueil': 75,
+      'Le Kremlin-Bicêtre': 75,
+      'Ivry-sur-Seine': 75,
+      'Villejuif': 75,
+      'Bagnolet': 75,
+      'Aubervilliers': 70,
+      'Saint-Denis': 70,
+      'Versailles': 95,
+      'Saint-Germain-en-Laye': 90,
+      'Maisons-Laffitte': 85,
+      'Le Vésinet': 85,
+      'Chatou': 80,
+      'Enghien-les-Bains': 85,
+      'Montmorency': 75,
+      'Saint-Leu-la-Forêt': 70,
       "L'Isle-Adam": 75,
       'Auvers-sur-Oise': 70,
-      'Chantilly': 90,
+      'Pontoise': 70,
+      'Cergy': 65,
       'Fontainebleau': 85,
       'Barbizon': 80,
       'Rambouillet': 75,
       'Provins': 70,
-      'Giverny': 75,
-      'Deauville': 105,
-      'Trouville-sur-Mer': 95,
-      'Honfleur': 90,
-      'Cabourg': 85,
-      'Autre': 75
+      'Marne-la-Vallée': 75,
+      'Chessy': 80,
+      'Serris': 75,
+      'Meaux': 65,
+      'Milly-la-Forêt': 70,
+      'Étampes': 65,
+      'Dourdan': 65,
+      'Autre': 70
     };
 
     const OCCUPANCY_RATE = 0.70;
+
+    const DECORATION_COEFF = {
+      'haut_de_gamme': 1.20,
+      'milieu_de_gamme': 1.00,
+      'a_rafraichir': 0.85
+    };
+
+    const EQUIPMENT_COEFF = {
+      'parking': 0.05,
+      'climatisation': 0.05,
+      'jacuzzi_spa': 0.10,
+      'piscine': 0.10,
+      'cheminee': 0.04,
+      'vue_degagee': 0.06,
+      'proche_transports': 0.03
+    };
 
     const SERVICES = [
       { title: 'Photos professionnelles', desc: 'Shooting photo par un professionnel pour mettre en valeur votre logement.', icon: 'camera' },
@@ -1431,7 +1686,9 @@
       clock: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>'
     };
 
-    /* ---- Initialisation ---- */
+    /* ============================================
+       INITIALISATION
+       ============================================ */
     document.addEventListener('DOMContentLoaded', () => {
       initMarquee();
       initCitySelect();
@@ -1439,6 +1696,7 @@
       initFooterCities();
       initNav();
       initSimulator();
+      initAuditForm();
       initScrollReveal();
       initOutdoorCheckboxes();
     });
@@ -1514,10 +1772,15 @@
       });
     }
 
-    /* ---- Footer villes ---- */
+    /* ---- Footer villes (sélection représentative) ---- */
     function initFooterCities() {
       const list = document.getElementById('footerCities');
-      CITIES.slice(0, 8).forEach(city => {
+      const selection = [
+        'Paris', 'Boulogne-Billancourt', 'Neuilly-sur-Seine', 'Versailles',
+        'Vincennes', 'Saint-Germain-en-Laye', 'Fontainebleau', "L'Isle-Adam",
+        'Montreuil', 'Rueil-Malmaison'
+      ];
+      selection.forEach(city => {
         const li = document.createElement('li');
         li.innerHTML = '<a href="#villes">' + city + '</a>';
         list.appendChild(li);
@@ -1539,11 +1802,13 @@
       });
     }
 
-    /* ---- Simulateur multi-étapes ---- */
+    /* ============================================
+       SIMULATEUR MULTI-ÉTAPES (5 étapes)
+       ============================================ */
     function initSimulator() {
       const form = document.getElementById('simForm');
       let currentStep = 1;
-      const totalSteps = 4;
+      const totalSteps = 5;
 
       function showStep(n) {
         currentStep = n;
@@ -1569,14 +1834,13 @@
           else document.getElementById('err-type').style.display = 'none';
         }
         if (n === 2) {
-          const fields = ['sim-surface', 'sim-guests', 'sim-bedrooms', 'sim-bathrooms'];
-          fields.forEach(id => {
+          ['sim-surface', 'sim-guests', 'sim-bedrooms', 'sim-bathrooms'].forEach(id => {
             const el = document.getElementById(id);
             if (!el.value || parseInt(el.value) < parseInt(el.min)) { el.style.borderColor = 'var(--coral)'; valid = false; }
             else el.style.borderColor = '';
           });
         }
-        if (n === 4) {
+        if (n === 5) {
           const email = document.getElementById('sim-email');
           const consent = document.getElementById('sim-consent');
           const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -1606,7 +1870,7 @@
 
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        if (!validateStep(4)) return;
+        if (!validateStep(5)) return;
 
         const data = collectFormData();
         const revenue = calculateRevenue(data);
@@ -1618,11 +1882,12 @@
         document.querySelector('.sim-progress').style.display = 'none';
         document.getElementById('simResult').classList.add('active');
 
-        submitForm(data);
+        submitForm(data, 'simulateur');
       });
     }
 
     function collectFormData() {
+      const equipmentIds = ['eq-parking', 'eq-clim', 'eq-jacuzzi', 'eq-piscine', 'eq-cheminee', 'eq-vue', 'eq-transports'];
       return {
         city: document.getElementById('sim-city').value,
         type: document.getElementById('sim-type').value,
@@ -1631,6 +1896,10 @@
         bedrooms: parseInt(document.getElementById('sim-bedrooms').value) || 1,
         bathrooms: parseInt(document.getElementById('sim-bathrooms').value) || 1,
         outdoor: ['ext-jardin', 'ext-terrasse', 'ext-balcon']
+          .filter(id => document.getElementById(id).checked)
+          .map(id => document.getElementById(id).value),
+        decoration: document.querySelector('input[name="decoration"]:checked')?.value || 'milieu_de_gamme',
+        equipment: equipmentIds
           .filter(id => document.getElementById(id).checked)
           .map(id => document.getElementById(id).value),
         firstname: document.getElementById('sim-firstname').value,
@@ -1653,6 +1922,12 @@
       if (data.outdoor.includes('terrasse')) nightly += 10;
       if (data.outdoor.includes('balcon')) nightly += 5;
 
+      nightly *= DECORATION_COEFF[data.decoration] || 1;
+
+      let equipBonus = 0;
+      data.equipment.forEach(eq => { equipBonus += EQUIPMENT_COEFF[eq] || 0; });
+      nightly *= 1 + equipBonus;
+
       const monthly = nightly * 30 * OCCUPANCY_RATE;
 
       return {
@@ -1665,17 +1940,71 @@
       return n.toLocaleString('fr-FR');
     }
 
-    async function submitForm(data) {
+    async function submitForm(data, type) {
       if (FORM_ENDPOINT.includes('YOUR_FORM_ID')) return;
       try {
         await fetch(FORM_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(data)
+          body: JSON.stringify({ ...data, type: type })
         });
       } catch (e) {
-        /* Silencieux — l'estimation est déjà affichée */
+        /* Silencieux */
       }
+    }
+
+    /* ============================================
+       FORMULAIRE AUDIT
+       ============================================ */
+    function initAuditForm() {
+      const form = document.getElementById('auditForm');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let valid = true;
+
+        const address = document.getElementById('audit-address');
+        const email = document.getElementById('audit-email');
+        const consent = document.getElementById('audit-consent');
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!address.value.trim()) {
+          document.getElementById('err-audit-address').style.display = 'block'; valid = false;
+        } else {
+          document.getElementById('err-audit-address').style.display = 'none';
+        }
+        if (!emailRe.test(email.value)) {
+          document.getElementById('err-audit-email').style.display = 'block'; valid = false;
+        } else {
+          document.getElementById('err-audit-email').style.display = 'none';
+        }
+        if (!consent.checked) {
+          document.getElementById('err-audit-consent').style.display = 'block'; valid = false;
+        } else {
+          document.getElementById('err-audit-consent').style.display = 'none';
+        }
+
+        ['audit-bedrooms', 'audit-phone'].forEach(id => {
+          const el = document.getElementById(id);
+          if (!el.value.trim()) { el.style.borderColor = 'var(--coral)'; valid = false; }
+          else el.style.borderColor = '';
+        });
+
+        if (!valid) return;
+
+        const data = {
+          type: 'audit',
+          address: address.value,
+          bedrooms: document.getElementById('audit-bedrooms').value,
+          email: email.value,
+          phone: document.getElementById('audit-phone').value
+        };
+
+        document.getElementById('auditFields').style.display = 'none';
+        document.getElementById('auditSuccess').classList.add('active');
+
+        submitForm(data, 'audit');
+      });
     }
 
     /* ---- Animations au scroll ---- */
