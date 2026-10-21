@@ -714,48 +714,51 @@
     }
 
     /* ============================================
-       NOTRE MÉTHODE — Carrousel 3D
+       NOTRE MÉTHODE — Expérience immersive scroll-driven
        ============================================ */
     .method-section {
-      padding-block: 80px;
+      padding: 0;
       background: var(--white);
-      overflow: hidden;
-    }
-    .method-carousel {
       position: relative;
-      margin-top: 48px;
     }
-    .method-track {
+    .method-scroll-spacer {
+      height: 450vh;
       position: relative;
+    }
+    .method-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      min-height: 620px;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+    }
+    .method-sticky > .container { width: 100%; }
+    .method-track {
+      position: relative;
       perspective: 1200px;
-      height: 460px;
-      touch-action: pan-y;
-      user-select: none;
-      -webkit-user-select: none;
+      perspective-origin: 50% 50%;
+      height: 420px;
+      margin-top: 40px;
+      margin-bottom: 32px;
     }
     .mc-card {
       position: absolute;
       width: 380px;
       max-width: calc(100vw - 64px);
+      left: 50%;
+      top: 50%;
       background: var(--sand);
       border-radius: var(--radius-lg);
       padding: 36px 32px 32px;
       border: 2px solid transparent;
-      transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-                  opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-                  border-color 0.4s ease,
-                  box-shadow 0.65s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: transform, opacity;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
-    .mc-card.mc-active {
-      border-color: rgba(242, 107, 91, 0.25);
-      box-shadow: 0 20px 60px rgba(15, 76, 76, 0.12);
-      cursor: default;
-    }
-    .mc-card:not(.mc-active) { cursor: pointer; }
     .mc-card-header {
       display: flex;
       align-items: flex-start;
@@ -767,9 +770,7 @@
       font-weight: 800;
       color: var(--coral);
       line-height: 1;
-      opacity: 0.25;
     }
-    .mc-active .mc-step { opacity: 0.4; }
     .mc-icon {
       width: 48px;
       height: 48px;
@@ -816,65 +817,83 @@
       border-radius: 50%;
       background: var(--coral);
     }
-    .mc-nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      margin-top: 32px;
+    .mc-progress {
+      position: relative;
+      max-width: 480px;
+      margin: 0 auto;
     }
-    .mc-nav-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: 2px solid var(--sand-dark);
-      background: var(--white);
-      color: var(--green);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.2s;
-    }
-    .mc-nav-btn:hover {
-      border-color: var(--coral);
-      background: var(--coral);
-      color: var(--white);
-      transform: scale(1.05);
-    }
-    .mc-nav-btn:focus-visible {
-      outline: 2px solid var(--coral);
-      outline-offset: 2px;
-    }
-    .mc-nav-btn svg { width: 20px; height: 20px; }
-    .mc-dots {
-      display: flex;
-      gap: 8px;
-    }
-    .mc-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      border: none;
+    .mc-progress-track {
+      height: 2px;
       background: var(--sand-dark);
-      cursor: pointer;
-      padding: 0;
-      transition: background 0.3s, transform 0.3s;
+      border-radius: 1px;
+      position: relative;
+      overflow: hidden;
     }
-    .mc-dot:hover { background: var(--text-muted); }
-    .mc-dot.mc-dot-active {
+    .mc-progress-fill {
+      position: absolute;
+      left: 0; top: 0;
+      height: 100%;
       background: var(--coral);
-      transform: scale(1.2);
+      border-radius: 1px;
+      width: 0%;
+      will-change: width;
     }
-    .mc-dot:focus-visible {
-      outline: 2px solid var(--coral);
-      outline-offset: 2px;
+    .mc-progress-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+    }
+    .mc-progress-step {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--sand-dark);
+      letter-spacing: 0.02em;
+    }
+    .mc-progress-step.mc-step-active { color: var(--coral); }
+    .mc-progress-step.mc-step-past { color: var(--green); }
+    .method-section.mc-reduced { padding-block: 80px; }
+    .method-section.mc-reduced .method-scroll-spacer { height: auto; }
+    .method-section.mc-reduced .method-sticky {
+      position: relative;
+      height: auto;
+      min-height: auto;
+    }
+    .method-section.mc-reduced .method-track {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      height: auto;
+      perspective: none;
+    }
+    .method-section.mc-reduced .mc-card {
+      position: relative;
+      left: auto;
+      top: auto;
+      width: auto;
+      max-width: none;
+      opacity: 1 !important;
+      transform: none !important;
+      border-color: transparent;
+    }
+    .method-section.mc-reduced .mc-progress { display: none; }
+    @media (min-width: 640px) {
+      .method-section.mc-reduced .method-track {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 960px) {
+      .method-section.mc-reduced .method-track {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
     @media (max-width: 639px) {
-      .method-track { height: 440px; }
+      .method-scroll-spacer { height: 350vh; }
+      .method-sticky { min-height: 520px; }
+      .method-track { height: 380px; margin-top: 28px; }
       .mc-card { padding: 28px 24px 24px; }
       .mc-step { font-size: 2.2rem; }
       .mc-title { font-size: 1.1rem; }
+      .mc-progress { max-width: 300px; }
     }
 
     /* ============================================
@@ -1515,12 +1534,13 @@
        NOTRE MÉTHODE
        ============================================ -->
   <section class="method-section" id="methode">
+    <div class="method-scroll-spacer">
+    <div class="method-sticky">
     <div class="container">
       <span class="section-label reveal">Notre méthode</span>
       <h2 class="reveal">Un accompagnement en 6 étapes</h2>
 
-      <div class="method-carousel reveal">
-        <div class="method-track" role="region" aria-label="Carrousel des 6 étapes de notre méthode" aria-roledescription="carrousel">
+      <div class="method-track">
 
           <div class="mc-card" data-index="0" role="group" aria-roledescription="diapositive" aria-label="Étape 1 sur 6">
             <div class="mc-card-header">
@@ -1620,23 +1640,19 @@
 
         </div>
 
-        <div class="mc-nav" role="navigation" aria-label="Navigation du carrousel">
-          <button class="mc-nav-btn mc-prev" aria-label="Étape précédente">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <div class="mc-dots" role="tablist" aria-label="Sélection d'étape">
-            <button class="mc-dot" role="tab" aria-label="Étape 1"></button>
-            <button class="mc-dot" role="tab" aria-label="Étape 2"></button>
-            <button class="mc-dot" role="tab" aria-label="Étape 3"></button>
-            <button class="mc-dot" role="tab" aria-label="Étape 4"></button>
-            <button class="mc-dot" role="tab" aria-label="Étape 5"></button>
-            <button class="mc-dot" role="tab" aria-label="Étape 6"></button>
+        <div class="mc-progress">
+          <div class="mc-progress-track"><div class="mc-progress-fill"></div></div>
+          <div class="mc-progress-steps">
+            <span class="mc-progress-step">01</span>
+            <span class="mc-progress-step">02</span>
+            <span class="mc-progress-step">03</span>
+            <span class="mc-progress-step">04</span>
+            <span class="mc-progress-step">05</span>
+            <span class="mc-progress-step">06</span>
           </div>
-          <button class="mc-nav-btn mc-next" aria-label="Étape suivante">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
         </div>
-      </div>
+    </div>
+    </div>
     </div>
   </section>
 
@@ -2017,97 +2033,100 @@
     }
 
     function initMethodCards() {
-      const track = document.querySelector('.method-track');
-      if (!track) return;
-      const cards = Array.from(track.querySelectorAll('.mc-card'));
-      const dots = Array.from(document.querySelectorAll('.mc-dot'));
-      const prevBtn = document.querySelector('.mc-prev');
-      const nextBtn = document.querySelector('.mc-next');
-      const total = cards.length;
-      let active = 0;
-      let startX = 0;
-      let isDragging = false;
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var section = document.querySelector('.method-section');
+      if (!section) return;
+      var spacer = section.querySelector('.method-scroll-spacer');
+      var track = section.querySelector('.method-track');
+      if (!spacer || !track) return;
+      var cards = Array.from(track.querySelectorAll('.mc-card'));
+      var progressFill = section.querySelector('.mc-progress-fill');
+      var stepLabels = Array.from(section.querySelectorAll('.mc-progress-step'));
+      var total = cards.length;
+      if (total === 0) return;
 
-      function update() {
-        const isMobile = window.innerWidth < 640;
-        cards.forEach(function(card, i) {
-          var diff = i - active;
-          if (diff > total / 2) diff -= total;
-          if (diff < -total / 2) diff += total;
-          var absDiff = Math.abs(diff);
-          card.classList.toggle('mc-active', diff === 0);
-          if (diff === 0) {
-            card.style.transform = 'translateX(0) rotateY(0deg) scale(1)';
-            card.style.opacity = '1';
-            card.style.zIndex = '5';
-            card.style.pointerEvents = 'auto';
-          } else if (absDiff === 1) {
-            var tx = isMobile ? diff * 78 : diff * 55;
-            var ry = isMobile ? diff * -8 : diff * -15;
-            var sc = isMobile ? 0.82 : 0.85;
-            card.style.transform = 'translateX(' + tx + '%) rotateY(' + ry + 'deg) scale(' + sc + ')';
-            card.style.opacity = isMobile ? '0.4' : '0.55';
-            card.style.zIndex = '3';
-            card.style.pointerEvents = 'auto';
-          } else if (absDiff === 2 && !isMobile) {
-            var tx2 = diff * 95;
-            var ry2 = diff * -22;
-            card.style.transform = 'translateX(' + tx2 + '%) rotateY(' + ry2 + 'deg) scale(0.7)';
-            card.style.opacity = '0.25';
-            card.style.zIndex = '1';
-            card.style.pointerEvents = 'none';
-          } else {
-            card.style.transform = 'translateX(' + (diff > 0 ? 120 : -120) + '%) scale(0.5)';
-            card.style.opacity = '0';
-            card.style.zIndex = '0';
-            card.style.pointerEvents = 'none';
-          }
-        });
-        dots.forEach(function(dot, i) {
-          dot.classList.toggle('mc-dot-active', i === active);
-          dot.setAttribute('aria-selected', i === active ? 'true' : 'false');
-        });
-      }
-
-      function goTo(index) {
-        active = ((index % total) + total) % total;
-        update();
-      }
-
-      prevBtn.addEventListener('click', function() { goTo(active - 1); });
-      nextBtn.addEventListener('click', function() { goTo(active + 1); });
-      dots.forEach(function(dot, i) {
-        dot.addEventListener('click', function() { goTo(i); });
-      });
-      cards.forEach(function(card, i) {
-        card.addEventListener('click', function() { if (i !== active) goTo(i); });
-      });
-
-      document.addEventListener('keydown', function(e) {
-        var rect = track.getBoundingClientRect();
-        var inView = rect.top < window.innerHeight && rect.bottom > 0;
-        if (!inView) return;
-        if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(active - 1); }
-        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(active + 1); }
-      });
-
-      track.addEventListener('touchstart', function(e) {
-        startX = e.touches[0].clientX;
-        isDragging = true;
-      }, { passive: true });
-      track.addEventListener('touchend', function(e) {
-        if (!isDragging) return;
-        isDragging = false;
-        var dx = e.changedTouches[0].clientX - startX;
-        if (Math.abs(dx) > 40) goTo(active + (dx < 0 ? 1 : -1));
-      }, { passive: true });
-
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (prefersReduced) {
-        cards.forEach(function(c) { c.style.transition = 'none'; });
+        section.classList.add('mc-reduced');
+        return;
       }
 
-      update();
+      var currentProgress = 0;
+      var targetProgress = 0;
+      var rafId = null;
+      var isMobile = window.innerWidth < 640;
+
+      function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+
+      function computeTransforms(progress) {
+        var ci = progress * (total - 1);
+        var spacing = isMobile ? 260 : 400;
+
+        cards.forEach(function(card, i) {
+          var offset = i - ci;
+          var absOff = Math.abs(offset);
+
+          var tx = offset * spacing;
+          var ry = clamp(offset * (isMobile ? -6 : -12), -35, 35);
+          var sc = clamp(1 - absOff * 0.1, 0.6, 1);
+          var tz = -absOff * (isMobile ? 30 : 60);
+          var op = clamp(1 - absOff * 0.32, 0.05, 1);
+          var z = Math.max(0, Math.round(10 - absOff * 2));
+
+          var borderOp = clamp(1 - absOff * 2.5, 0, 0.25);
+          var shStr = clamp(1 - absOff * 2, 0, 1);
+          var stepOp = clamp(0.15 + (1 - absOff) * 0.25, 0.15, 0.4);
+
+          card.style.transform = 'translate(-50%,-50%) translateX(' + tx + 'px) translateZ(' + tz + 'px) rotateY(' + ry + 'deg) scale(' + sc + ')';
+          card.style.opacity = op;
+          card.style.zIndex = z;
+          card.style.borderColor = 'rgba(242,107,91,' + borderOp.toFixed(3) + ')';
+          card.style.boxShadow = shStr > 0.01
+            ? '0 ' + (20 * shStr | 0) + 'px ' + (60 * shStr | 0) + 'px rgba(15,76,76,' + (0.12 * shStr).toFixed(3) + ')'
+            : 'none';
+
+          var stepEl = card.querySelector('.mc-step');
+          if (stepEl) stepEl.style.opacity = stepOp;
+        });
+
+        if (progressFill) progressFill.style.width = (progress * 100).toFixed(2) + '%';
+
+        var activeStep = Math.round(ci);
+        stepLabels.forEach(function(label, i) {
+          label.classList.toggle('mc-step-active', i === activeStep);
+          label.classList.toggle('mc-step-past', i < activeStep);
+        });
+      }
+
+      function tick() {
+        var diff = targetProgress - currentProgress;
+        if (Math.abs(diff) < 0.0003) {
+          currentProgress = targetProgress;
+          computeTransforms(currentProgress);
+          rafId = null;
+          return;
+        }
+        currentProgress += diff * 0.92;
+        computeTransforms(currentProgress);
+        rafId = requestAnimationFrame(tick);
+      }
+
+      function onScroll() {
+        var rect = spacer.getBoundingClientRect();
+        var viewH = window.innerHeight;
+        var scrolled = -rect.top;
+        var range = spacer.offsetHeight - viewH;
+        targetProgress = clamp(scrolled / range, 0, 1);
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      }
+
+      function onResize() {
+        isMobile = window.innerWidth < 640;
+        computeTransforms(currentProgress);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onResize, { passive: true });
+      onScroll();
     }
 
     /* ---- Footer villes (sélection représentative) ---- */
