@@ -163,10 +163,7 @@
     @media (prefers-reduced-motion: reduce) {
       .reveal, .reveal-scale { opacity: 1; transform: none; transition: none; }
       .marquee-track { animation: none !important; }
-      .method-card-inner { transition: none !important; }
-      .method-card .method-card-front,
-      .method-card .method-card-back { position: relative; backface-visibility: visible; -webkit-backface-visibility: visible; transform: none; }
-      .method-card .method-card-back { display: block; margin-top: 12px; }
+      .mc-card { transition: none !important; }
     }
 
     /* ---- Icônes ---- */
@@ -717,130 +714,167 @@
     }
 
     /* ============================================
-       NOTRE MÉTHODE — Cartes 3D
+       NOTRE MÉTHODE — Carrousel 3D
        ============================================ */
     .method-section {
       padding-block: 80px;
       background: var(--white);
+      overflow: hidden;
     }
-    .method-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
+    .method-carousel {
+      position: relative;
       margin-top: 48px;
     }
-    @media (min-width: 640px) {
-      .method-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 960px) {
-      .method-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    .method-card {
-      perspective: 900px;
-      height: 310px;
-      cursor: pointer;
-    }
-    @media (max-width: 639px) {
-      .method-card { height: 280px; }
-    }
-    .method-card-inner {
+    .method-track {
       position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-      transform-style: preserve-3d;
-    }
-    .method-card:hover .method-card-inner,
-    .method-card.flipped .method-card-inner {
-      transform: rotateY(180deg);
-    }
-    .method-card-front,
-    .method-card-back {
-      position: absolute;
-      inset: 0;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      border-radius: var(--radius);
-      padding: 32px 28px;
       display: flex;
-      flex-direction: column;
-    }
-    .method-card-front {
-      background: var(--sand);
-      border: 2px solid transparent;
-      justify-content: space-between;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    .method-card:hover .method-card-front,
-    .method-card:focus-visible .method-card-front {
-      border-color: var(--coral);
-      box-shadow: 0 12px 32px rgba(15, 76, 76, 0.08);
-    }
-    .method-card-back {
-      background: var(--green);
-      color: var(--sand);
-      transform: rotateY(180deg);
+      align-items: center;
       justify-content: center;
+      perspective: 1200px;
+      height: 460px;
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
     }
-
-    .step-num {
+    .mc-card {
+      position: absolute;
+      width: 380px;
+      max-width: calc(100vw - 64px);
+      background: var(--sand);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px 32px;
+      border: 2px solid transparent;
+      transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.4s ease,
+                  box-shadow 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform, opacity;
+    }
+    .mc-card.mc-active {
+      border-color: rgba(242, 107, 91, 0.25);
+      box-shadow: 0 20px 60px rgba(15, 76, 76, 0.12);
+      cursor: default;
+    }
+    .mc-card:not(.mc-active) { cursor: pointer; }
+    .mc-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .mc-step {
       font-size: 2.8rem;
       font-weight: 800;
       color: var(--coral);
       line-height: 1;
-      opacity: 0.3;
+      opacity: 0.25;
     }
-    .method-card-icon {
-      width: 52px;
-      height: 52px;
+    .mc-active .mc-step { opacity: 0.4; }
+    .mc-icon {
+      width: 48px;
+      height: 48px;
       border-radius: 14px;
       background: var(--white);
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--green);
+      flex-shrink: 0;
+    }
+    .mc-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
       margin-bottom: 12px;
     }
-    .method-card-front h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-top: auto;
-    }
-    .method-card-hint {
-      font-size: 0.78rem;
+    .mc-desc {
+      font-size: 0.92rem;
       color: var(--text-muted);
-      margin-top: 6px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .mc-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .mc-points li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .mc-points li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--coral);
+    }
+    .mc-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-top: 32px;
+    }
+    .mc-nav-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--sand-dark);
+      background: var(--white);
+      color: var(--green);
       display: flex;
       align-items: center;
-      gap: 4px;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.2s;
     }
-    .method-card-hint::after {
-      content: '→';
-      transition: transform 0.3s;
-    }
-    .method-card:hover .method-card-hint::after {
-      transform: translateX(3px);
-    }
-
-    .method-card-back h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
+    .mc-nav-btn:hover {
+      border-color: var(--coral);
+      background: var(--coral);
       color: var(--white);
-      margin-bottom: 12px;
+      transform: scale(1.05);
     }
-    .method-card-back p {
-      font-size: 0.92rem;
-      line-height: 1.65;
-      color: rgba(244, 235, 221, 0.85);
+    .mc-nav-btn:focus-visible {
+      outline: 2px solid var(--coral);
+      outline-offset: 2px;
     }
-    .method-card-back .step-num {
-      position: absolute;
-      top: 24px;
-      right: 24px;
-      font-size: 1.8rem;
-      opacity: 0.15;
-      color: var(--sand);
+    .mc-nav-btn svg { width: 20px; height: 20px; }
+    .mc-dots {
+      display: flex;
+      gap: 8px;
+    }
+    .mc-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background: var(--sand-dark);
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .mc-dot:hover { background: var(--text-muted); }
+    .mc-dot.mc-dot-active {
+      background: var(--coral);
+      transform: scale(1.2);
+    }
+    .mc-dot:focus-visible {
+      outline: 2px solid var(--coral);
+      outline-offset: 2px;
+    }
+    @media (max-width: 639px) {
+      .method-track { height: 440px; }
+      .mc-card { padding: 28px 24px 24px; }
+      .mc-step { font-size: 2.2rem; }
+      .mc-title { font-size: 1.1rem; }
     }
 
     /* ============================================
@@ -1485,137 +1519,122 @@
       <span class="section-label reveal">Notre méthode</span>
       <h2 class="reveal">Un accompagnement en 6 étapes</h2>
 
-      <div class="method-grid">
-        <div class="method-card reveal" tabindex="0" aria-label="Étape 1 : Audit gratuit — cliquez pour en savoir plus">
-          <div class="method-card-inner">
-            <div class="method-card-front">
-              <div>
-                <div class="step-num">01</div>
-                <div class="method-card-icon">
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                </div>
-              </div>
-              <div>
-                <h3>Audit gratuit</h3>
-                <span class="method-card-hint">En savoir plus</span>
+      <div class="method-carousel reveal">
+        <div class="method-track" role="region" aria-label="Carrousel des 6 étapes de notre méthode" aria-roledescription="carrousel">
+
+          <div class="mc-card" data-index="0" role="group" aria-roledescription="diapositive" aria-label="Étape 1 sur 6">
+            <div class="mc-card-header">
+              <span class="mc-step">01</span>
+              <div class="mc-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
               </div>
             </div>
-            <div class="method-card-back">
-              <div class="step-num">01</div>
-              <h3>Audit gratuit</h3>
-              <p>Analyse du logement, de ses caractéristiques et de son potentiel locatif.</p>
-            </div>
+            <h3 class="mc-title">Audit gratuit</h3>
+            <p class="mc-desc">Nous analysons votre logement, son potentiel locatif et son emplacement pour identifier les meilleures opportunités de rentabilité.</p>
+            <ul class="mc-points">
+              <li>Analyse du logement et de son environnement</li>
+              <li>Évaluation du potentiel locatif</li>
+              <li>Premières recommandations personnalisées</li>
+            </ul>
           </div>
+
+          <div class="mc-card" data-index="1" role="group" aria-roledescription="diapositive" aria-label="Étape 2 sur 6">
+            <div class="mc-card-header">
+              <span class="mc-step">02</span>
+              <div class="mc-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 01-2 2H7a2 2 0 01-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 010-5C9 3 12 8 12 8s3-5 4.5-5a2.5 2.5 0 010 5"/></svg>
+              </div>
+            </div>
+            <h3 class="mc-title">Offre personnalisée</h3>
+            <p class="mc-desc">Nous construisons une stratégie sur mesure adaptée à votre bien, à vos objectifs et à vos attentes.</p>
+            <ul class="mc-points">
+              <li>Proposition d'accompagnement adaptée</li>
+              <li>Définition des services nécessaires</li>
+              <li>Stratégie de mise en location</li>
+            </ul>
+          </div>
+
+          <div class="mc-card" data-index="2" role="group" aria-roledescription="diapositive" aria-label="Étape 3 sur 6">
+            <div class="mc-card-header">
+              <span class="mc-step">03</span>
+              <div class="mc-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              </div>
+            </div>
+            <h3 class="mc-title">Photos professionnelles</h3>
+            <p class="mc-desc">Nous valorisons votre logement grâce à des visuels professionnels conçus pour attirer l'attention des voyageurs.</p>
+            <ul class="mc-points">
+              <li>Mise en valeur des espaces</li>
+              <li>Photographies de qualité professionnelle</li>
+              <li>Présentation attractive du logement</li>
+            </ul>
+          </div>
+
+          <div class="mc-card" data-index="3" role="group" aria-roledescription="diapositive" aria-label="Étape 4 sur 6">
+            <div class="mc-card-header">
+              <span class="mc-step">04</span>
+              <div class="mc-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
+              </div>
+            </div>
+            <h3 class="mc-title">Annonce optimisée</h3>
+            <p class="mc-desc">Nous créons une annonce claire et attractive pour améliorer la visibilité de votre logement et donner envie de réserver.</p>
+            <ul class="mc-points">
+              <li>Rédaction persuasive</li>
+              <li>Sélection des meilleures photos</li>
+              <li>Optimisation de la présentation du bien</li>
+            </ul>
+          </div>
+
+          <div class="mc-card" data-index="4" role="group" aria-roledescription="diapositive" aria-label="Étape 5 sur 6">
+            <div class="mc-card-header">
+              <span class="mc-step">05</span>
+              <div class="mc-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+              </div>
+            </div>
+            <h3 class="mc-title">Tarification dynamique</h3>
+            <p class="mc-desc">Nous adaptons les prix en fonction de la demande, de la saisonnalité et des événements locaux afin d'optimiser les revenus locatifs.</p>
+            <ul class="mc-points">
+              <li>Ajustement des tarifs</li>
+              <li>Prise en compte de la saisonnalité</li>
+              <li>Recherche du meilleur équilibre entre prix et occupation</li>
+            </ul>
+          </div>
+
+          <div class="mc-card" data-index="5" role="group" aria-roledescription="diapositive" aria-label="Étape 6 sur 6">
+            <div class="mc-card-header">
+              <span class="mc-step">06</span>
+              <div class="mc-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+              </div>
+            </div>
+            <h3 class="mc-title">Accompagnement opérationnel</h3>
+            <p class="mc-desc">Nous assurons le suivi opérationnel de votre location pour offrir une expérience fluide aux voyageurs et simplifier votre quotidien.</p>
+            <ul class="mc-points">
+              <li>Coordination des arrivées et des départs</li>
+              <li>Organisation du ménage et du linge</li>
+              <li>Suivi du logement et assistance opérationnelle</li>
+            </ul>
+          </div>
+
         </div>
 
-        <div class="method-card reveal reveal-delay-1" tabindex="0" aria-label="Étape 2 : Offre personnalisée — cliquez pour en savoir plus">
-          <div class="method-card-inner">
-            <div class="method-card-front">
-              <div>
-                <div class="step-num">02</div>
-                <div class="method-card-icon">
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 01-2 2H7a2 2 0 01-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 010-5C9 3 12 8 12 8s3-5 4.5-5a2.5 2.5 0 010 5"/></svg>
-                </div>
-              </div>
-              <div>
-                <h3>Offre personnalisée</h3>
-                <span class="method-card-hint">En savoir plus</span>
-              </div>
-            </div>
-            <div class="method-card-back">
-              <div class="step-num">02</div>
-              <h3>Offre personnalisée</h3>
-              <p>Proposition adaptée au bien, aux équipements et aux objectifs du propriétaire.</p>
-            </div>
+        <div class="mc-nav" role="navigation" aria-label="Navigation du carrousel">
+          <button class="mc-nav-btn mc-prev" aria-label="Étape précédente">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="mc-dots" role="tablist" aria-label="Sélection d'étape">
+            <button class="mc-dot" role="tab" aria-label="Étape 1"></button>
+            <button class="mc-dot" role="tab" aria-label="Étape 2"></button>
+            <button class="mc-dot" role="tab" aria-label="Étape 3"></button>
+            <button class="mc-dot" role="tab" aria-label="Étape 4"></button>
+            <button class="mc-dot" role="tab" aria-label="Étape 5"></button>
+            <button class="mc-dot" role="tab" aria-label="Étape 6"></button>
           </div>
-        </div>
-
-        <div class="method-card reveal reveal-delay-2" tabindex="0" aria-label="Étape 3 : Photos professionnelles et valorisation — cliquez pour en savoir plus">
-          <div class="method-card-inner">
-            <div class="method-card-front">
-              <div>
-                <div class="step-num">03</div>
-                <div class="method-card-icon">
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                </div>
-              </div>
-              <div>
-                <h3>Photos professionnelles et valorisation</h3>
-                <span class="method-card-hint">En savoir plus</span>
-              </div>
-            </div>
-            <div class="method-card-back">
-              <div class="step-num">03</div>
-              <h3>Photos et valorisation</h3>
-              <p>Mise en valeur du logement, photos professionnelles et conseils de décoration.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="method-card reveal" tabindex="0" aria-label="Étape 4 : Annonce optimisée — cliquez pour en savoir plus">
-          <div class="method-card-inner">
-            <div class="method-card-front">
-              <div>
-                <div class="step-num">04</div>
-                <div class="method-card-icon">
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
-                </div>
-              </div>
-              <div>
-                <h3>Annonce optimisée</h3>
-                <span class="method-card-hint">En savoir plus</span>
-              </div>
-            </div>
-            <div class="method-card-back">
-              <div class="step-num">04</div>
-              <h3>Annonce optimisée</h3>
-              <p>Création ou amélioration de l'annonce, titre, description, présentation.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="method-card reveal reveal-delay-1" tabindex="0" aria-label="Étape 5 : Tarification dynamique — cliquez pour en savoir plus">
-          <div class="method-card-inner">
-            <div class="method-card-front">
-              <div>
-                <div class="step-num">05</div>
-                <div class="method-card-icon">
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-                </div>
-              </div>
-              <div>
-                <h3>Tarification dynamique</h3>
-                <span class="method-card-hint">En savoir plus</span>
-              </div>
-            </div>
-            <div class="method-card-back">
-              <div class="step-num">05</div>
-              <h3>Tarification dynamique</h3>
-              <p>Ajustement des tarifs en fonction de la demande, saisonnalité, événements locaux, périodes de réservation.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="method-card reveal reveal-delay-2" tabindex="0" aria-label="Étape 6 : Accompagnement opérationnel — cliquez pour en savoir plus">
-          <div class="method-card-inner">
-            <div class="method-card-front">
-              <div>
-                <div class="step-num">06</div>
-                <div class="method-card-icon">
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-                </div>
-              </div>
-              <div>
-                <h3>Accompagnement opérationnel</h3>
-                <span class="method-card-hint">En savoir plus</span>
-              </div>
-            </div>
-            <div class="method-card-back">
-              <div class="step-num">06</div>
-              <h3>Accompagnement opérationnel</h3>
-              <p>Communication voyageurs, arrivées, départs, ménage, linge, entretien et maintenance.</p>
-            </div>
-          </div>
+          <button class="mc-nav-btn mc-next" aria-label="Étape suivante">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -1998,15 +2017,97 @@
     }
 
     function initMethodCards() {
-      document.querySelectorAll('.method-card').forEach(card => {
-        card.addEventListener('click', () => card.classList.toggle('flipped'));
-        card.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            card.classList.toggle('flipped');
+      const track = document.querySelector('.method-track');
+      if (!track) return;
+      const cards = Array.from(track.querySelectorAll('.mc-card'));
+      const dots = Array.from(document.querySelectorAll('.mc-dot'));
+      const prevBtn = document.querySelector('.mc-prev');
+      const nextBtn = document.querySelector('.mc-next');
+      const total = cards.length;
+      let active = 0;
+      let startX = 0;
+      let isDragging = false;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function update() {
+        const isMobile = window.innerWidth < 640;
+        cards.forEach(function(card, i) {
+          var diff = i - active;
+          if (diff > total / 2) diff -= total;
+          if (diff < -total / 2) diff += total;
+          var absDiff = Math.abs(diff);
+          card.classList.toggle('mc-active', diff === 0);
+          if (diff === 0) {
+            card.style.transform = 'translateX(0) rotateY(0deg) scale(1)';
+            card.style.opacity = '1';
+            card.style.zIndex = '5';
+            card.style.pointerEvents = 'auto';
+          } else if (absDiff === 1) {
+            var tx = isMobile ? diff * 78 : diff * 55;
+            var ry = isMobile ? diff * -8 : diff * -15;
+            var sc = isMobile ? 0.82 : 0.85;
+            card.style.transform = 'translateX(' + tx + '%) rotateY(' + ry + 'deg) scale(' + sc + ')';
+            card.style.opacity = isMobile ? '0.4' : '0.55';
+            card.style.zIndex = '3';
+            card.style.pointerEvents = 'auto';
+          } else if (absDiff === 2 && !isMobile) {
+            var tx2 = diff * 95;
+            var ry2 = diff * -22;
+            card.style.transform = 'translateX(' + tx2 + '%) rotateY(' + ry2 + 'deg) scale(0.7)';
+            card.style.opacity = '0.25';
+            card.style.zIndex = '1';
+            card.style.pointerEvents = 'none';
+          } else {
+            card.style.transform = 'translateX(' + (diff > 0 ? 120 : -120) + '%) scale(0.5)';
+            card.style.opacity = '0';
+            card.style.zIndex = '0';
+            card.style.pointerEvents = 'none';
           }
         });
+        dots.forEach(function(dot, i) {
+          dot.classList.toggle('mc-dot-active', i === active);
+          dot.setAttribute('aria-selected', i === active ? 'true' : 'false');
+        });
+      }
+
+      function goTo(index) {
+        active = ((index % total) + total) % total;
+        update();
+      }
+
+      prevBtn.addEventListener('click', function() { goTo(active - 1); });
+      nextBtn.addEventListener('click', function() { goTo(active + 1); });
+      dots.forEach(function(dot, i) {
+        dot.addEventListener('click', function() { goTo(i); });
       });
+      cards.forEach(function(card, i) {
+        card.addEventListener('click', function() { if (i !== active) goTo(i); });
+      });
+
+      document.addEventListener('keydown', function(e) {
+        var rect = track.getBoundingClientRect();
+        var inView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (!inView) return;
+        if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(active - 1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(active + 1); }
+      });
+
+      track.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+      }, { passive: true });
+      track.addEventListener('touchend', function(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        var dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) goTo(active + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+
+      if (prefersReduced) {
+        cards.forEach(function(c) { c.style.transition = 'none'; });
+      }
+
+      update();
     }
 
     /* ---- Footer villes (sélection représentative) ---- */
