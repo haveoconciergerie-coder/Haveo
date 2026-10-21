@@ -384,26 +384,6 @@
       align-items: center;
       justify-content: center;
     }
-    .svc-photo {
-      width: 100%;
-      max-width: 480px;
-      aspect-ratio: 4 / 3;
-      border-radius: var(--radius-lg);
-      object-fit: cover;
-      box-shadow: 0 12px 40px rgba(15, 76, 76, 0.12);
-      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
-    }
-    .svc-photo:hover {
-      transform: translateY(-4px) scale(1.01);
-      box-shadow: 0 20px 50px rgba(15, 76, 76, 0.18);
-    }
-    .svc-section--green .svc-photo {
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-    }
-    .svc-section--green .svc-photo:hover {
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-    }
-
     .svc-illus {
       width: 100%;
       max-width: 400px;
@@ -842,7 +822,7 @@
     <div class="container">
       <span class="section-label reveal">Communication</span>
       <h2 class="reveal">Communication avec les voyageurs</h2>
-      <p class="section-intro reveal">Nous gérons les échanges avec vos voyageurs avant, pendant et après leur séjour, répondons à leurs questions et assurons un suivi réactif pour vous libérer des contraintes du quotidien.</p>
+      <p class="section-intro reveal">Un seul interlocuteur pour vos voyageurs, disponible 7j/7. Vous n'avez plus à gérer les messages, les questions ou les imprévus.</p>
 
       <div class="svc-layout">
         <div class="reveal">
@@ -859,7 +839,16 @@
           </div>
         </div>
         <div class="svc-visual reveal reveal-delay-1">
-          <img class="svc-photo" src="images/communication-voyageurs.jpg" alt="Communication avec les voyageurs — écran de messagerie avec un voyageur" loading="lazy" width="478" height="539">
+          <div class="svc-illus svc-illus--sand">
+            <svg class="illus-icon" viewBox="0 0 80 80" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="8" y="16" width="48" height="36" rx="6"/>
+              <path d="M8 24l24 16 24-16"/>
+              <rect x="40" y="38" width="32" height="28" rx="5" fill="var(--sand)" stroke="var(--coral)"/>
+              <path d="M48 50h16M48 56h10" stroke="var(--coral)" stroke-width="2"/>
+              <circle cx="72" cy="38" r="8" fill="var(--coral)" stroke="none"/>
+              <text x="72" y="42" font-size="10" fill="white" text-anchor="middle" font-weight="700" font-family="Plus Jakarta Sans, sans-serif">3</text>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -872,7 +861,7 @@
     <div class="container">
       <span class="section-label reveal">Accueil</span>
       <h2 class="reveal">Arrivées et départs simplifiés</h2>
-      <p class="section-intro reveal">Nous organisons l'arrivée et le départ de vos voyageurs grâce à des instructions claires et à des solutions d'accès adaptées à votre logement, pour une expérience fluide et sans stress.</p>
+      <p class="section-intro reveal">Une expérience d'arrivée fluide pour vos voyageurs, sans que vous ayez à vous déplacer.</p>
 
       <div class="svc-layout svc-layout--reverse">
         <div class="reveal">
@@ -888,7 +877,16 @@
           </div>
         </div>
         <div class="svc-visual reveal reveal-delay-1">
-          <img class="svc-photo" src="images/arrivees-departs.jpg" alt="Serrure connectée sur la porte d'entrée d'un logement" loading="lazy" width="474" height="539">
+          <div class="svc-illus svc-illus--white">
+            <svg class="illus-icon" viewBox="0 0 80 80" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="24" y="8" width="32" height="56" rx="4"/>
+              <circle cx="40" cy="36" r="8"/>
+              <path d="M40 32v8"/>
+              <path d="M36 36h8"/>
+              <rect x="34" y="52" width="12" height="4" rx="1"/>
+              <path d="M12 64h56" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -901,7 +899,7 @@
     <div class="container">
       <span class="section-label reveal">Propreté</span>
       <h2 class="reveal">Ménage professionnel et linge hôtelier</h2>
-      <p class="section-intro reveal">Entre chaque séjour, nous coordonnons la préparation du logement, le nettoyage et la fourniture du linge afin d'offrir à vos voyageurs un espace propre, accueillant et prêt à les recevoir.</p>
+      <p class="section-intro reveal">Un logement impeccable à chaque arrivée, avec un niveau de propreté et de confort digne de l'hôtellerie.</p>
 
       <div class="svc-layout">
         <div class="reveal">
@@ -915,7 +913,13 @@
           </ul>
         </div>
         <div class="svc-visual reveal reveal-delay-1">
-          <img class="svc-photo" src="images/menage-linge.jpg" alt="Préparation du linge hôtelier dans une chambre" loading="lazy" width="480" height="539">
+          <div class="svc-illus svc-illus--sand">
+            <svg class="illus-icon" viewBox="0 0 80 80" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M40 8l4.8 14.4L60 28l-15.2 5.6L40 48l-4.8-14.4L20 28l15.2-5.6z"/>
+              <path d="M20 56l2.4 7.2L30 66l-7.6 2.8L20 76l-2.4-7.2L10 66l7.6-2.8z" stroke="var(--coral)" stroke-width="2"/>
+              <path d="M60 52l2 6L68 60l-6 2.2L60 68l-2-5.8L52 60l6-2.2z" stroke="var(--gold)" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -928,7 +932,7 @@
     <div class="container">
       <span class="section-label reveal">Entretien</span>
       <h2 class="reveal">Entretien et maintenance du logement</h2>
-      <p class="section-intro reveal">Nous assurons le suivi des besoins d'entretien, signalons les éventuels problèmes et coordonnons les interventions nécessaires pour préserver la qualité de votre logement.</p>
+      <p class="section-intro reveal">Votre bien est surveillé et entretenu en continu pour préserver sa qualité et sa valeur.</p>
 
       <div class="svc-layout svc-layout--reverse">
         <div class="reveal">
@@ -944,7 +948,13 @@
           </div>
         </div>
         <div class="svc-visual reveal reveal-delay-1">
-          <img class="svc-photo" src="images/maintenance.jpg" alt="Technicien effectuant une réparation sous un évier de cuisine" loading="lazy" width="478" height="539">
+          <div class="svc-illus svc-illus--white">
+            <svg class="illus-icon" viewBox="0 0 80 80" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M50.7 22.3a4 4 0 000 5.4l1.6 1.6a4 4 0 005.4 0l12-12a18 18 0 01-24 24L18 69a6.4 6.4 0 01-9-9l27.7-27.7a18 18 0 0124-24l-12 12z"/>
+              <circle cx="62" cy="62" r="10" stroke="var(--gold)" stroke-width="2" fill="none"/>
+              <path d="M62 58v8M58 62h8" stroke="var(--gold)" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -957,7 +967,7 @@
     <div class="container">
       <span class="section-label reveal">Annonces</span>
       <h2 class="reveal">Création et optimisation de vos annonces</h2>
-      <p class="section-intro reveal">Nous valorisons votre logement grâce à une annonce attractive, une présentation soignée et des informations pertinentes pour améliorer sa visibilité et donner envie aux voyageurs de réserver.</p>
+      <p class="section-intro reveal">Une annonce bien construite fait la différence. Nous optimisons chaque détail pour maximiser votre visibilité et vos réservations.</p>
 
       <div class="svc-layout">
         <div class="reveal">
@@ -972,7 +982,23 @@
           </ul>
         </div>
         <div class="svc-visual reveal reveal-delay-1">
-          <img class="svc-photo" src="images/optimisation-annonces.jpg" alt="Intérieur d'un appartement haussmannien lumineux avec salon et salle à manger" loading="lazy" width="474" height="539">
+          <div>
+            <div class="mock-listing">
+              <div class="mock-listing-img"></div>
+              <div class="mock-listing-body">
+                <div class="mock-listing-rating">★ 4.92 (127 avis)</div>
+                <div class="mock-listing-title">Appartement lumineux — Paris 11e</div>
+                <div class="mock-listing-price">À partir de 145 € / nuit</div>
+                <div class="mock-listing-amenities">
+                  <span class="mock-amenity">Wi-Fi</span>
+                  <span class="mock-amenity">Climatisation</span>
+                  <span class="mock-amenity">2 chambres</span>
+                  <span class="mock-amenity">Balcon</span>
+                </div>
+              </div>
+            </div>
+            <p class="mock-listing-label">Exemple illustratif — ne représente pas une annonce réelle</p>
+          </div>
         </div>
       </div>
     </div>
@@ -985,7 +1011,7 @@
     <div class="container">
       <span class="section-label reveal">Visuels</span>
       <h2 class="reveal">Photographie professionnelle et décoration</h2>
-      <p class="section-intro reveal">Nous mettons en valeur les atouts de votre logement grâce à des visuels de qualité et à des conseils de présentation et de décoration adaptés à son potentiel locatif.</p>
+      <p class="section-intro reveal">Des visuels de qualité qui captent l'attention et donnent envie de réserver. La première impression est souvent décisive.</p>
 
       <div class="svc-layout svc-layout--reverse">
         <div class="reveal">
@@ -999,7 +1025,11 @@
           </ul>
         </div>
         <div class="svc-visual reveal reveal-delay-1">
-          <img class="svc-photo" src="images/photographie-decoration.jpg" alt="Photographie professionnelle d'un appartement sur un smartphone" loading="lazy" width="480" height="539">
+          <div class="photo-grid-mock">
+            <div class="photo-cell"></div>
+            <div class="photo-cell"></div>
+            <div class="photo-cell"></div>
+          </div>
         </div>
       </div>
     </div>
