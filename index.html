@@ -147,9 +147,26 @@
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
 
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: translateY(24px) scale(0.97);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
+      .reveal, .reveal-scale { opacity: 1; transform: none; transition: none; }
       .marquee-track { animation: none !important; }
+      .method-card-inner { transition: none !important; }
+      .method-card .method-card-front,
+      .method-card .method-card-back { position: relative; backface-visibility: visible; -webkit-backface-visibility: visible; transform: none; }
+      .method-card .method-card-back { display: block; margin-top: 12px; }
     }
 
     /* ---- Icônes ---- */
@@ -700,7 +717,7 @@
     }
 
     /* ============================================
-       NOTRE MÉTHODE
+       NOTRE MÉTHODE — Cartes 3D
        ============================================ */
     .method-section {
       padding-block: 80px;
@@ -718,34 +735,112 @@
     @media (min-width: 960px) {
       .method-grid { grid-template-columns: repeat(3, 1fr); }
     }
-    .method-step {
-      padding: 28px;
-      border: 2px solid var(--sand);
-      border-radius: var(--radius);
-      transition: border-color 0.3s, box-shadow 0.3s;
+
+    .method-card {
+      perspective: 900px;
+      height: 310px;
+      cursor: pointer;
+    }
+    @media (max-width: 639px) {
+      .method-card { height: 280px; }
+    }
+    .method-card-inner {
       position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      transform-style: preserve-3d;
     }
-    .method-step:hover {
+    .method-card:hover .method-card-inner,
+    .method-card.flipped .method-card-inner {
+      transform: rotateY(180deg);
+    }
+    .method-card-front,
+    .method-card-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+    }
+    .method-card-front {
+      background: var(--sand);
+      border: 2px solid transparent;
+      justify-content: space-between;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .method-card:hover .method-card-front,
+    .method-card:focus-visible .method-card-front {
       border-color: var(--coral);
-      box-shadow: 0 8px 24px rgba(242, 107, 91, 0.08);
+      box-shadow: 0 12px 32px rgba(15, 76, 76, 0.08);
     }
+    .method-card-back {
+      background: var(--green);
+      color: var(--sand);
+      transform: rotateY(180deg);
+      justify-content: center;
+    }
+
     .step-num {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-weight: 800;
       color: var(--coral);
       line-height: 1;
-      margin-bottom: 14px;
-      opacity: 0.85;
+      opacity: 0.3;
     }
-    .method-step h3 {
+    .method-card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    .method-card-front h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-top: auto;
+    }
+    .method-card-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .method-card-hint::after {
+      content: '→';
+      transition: transform 0.3s;
+    }
+    .method-card:hover .method-card-hint::after {
+      transform: translateX(3px);
+    }
+
+    .method-card-back h3 {
       font-size: 1.05rem;
       font-weight: 700;
-      margin-bottom: 8px;
+      color: var(--white);
+      margin-bottom: 12px;
     }
-    .method-step p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.55;
+    .method-card-back p {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: rgba(244, 235, 221, 0.85);
+    }
+    .method-card-back .step-num {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 1.8rem;
+      opacity: 0.15;
+      color: var(--sand);
     }
 
     /* ============================================
@@ -853,11 +948,31 @@
       gap: 16px;
       align-items: flex-start;
       box-shadow: 0 2px 8px rgba(15, 76, 76, 0.04);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
     }
     .service-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(15, 76, 76, 0.08);
+      transform: translateY(-6px) rotate3d(1, 0, 0, 2deg);
+      box-shadow: 0 16px 40px rgba(15, 76, 76, 0.12);
+    }
+    .service-card:focus-visible {
+      outline: 2px solid var(--coral);
+      outline-offset: 2px;
+    }
+    .service-card .service-arrow {
+      margin-left: auto;
+      align-self: center;
+      color: var(--coral);
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.3s, transform 0.3s;
+      flex-shrink: 0;
+    }
+    .service-card:hover .service-arrow {
+      opacity: 1;
+      transform: translateX(0);
     }
     .service-icon {
       width: 44px;
@@ -1043,7 +1158,7 @@
         <li><a href="#simulateur">Simulateur</a></li>
         <li><a href="#methode">Méthode</a></li>
         <li><a href="#tarifs">Tarifs</a></li>
-        <li><a href="#services">Services</a></li>
+        <li><a href="nos-services.html">Nos services</a></li>
       </ul>
       <a href="#audit" class="btn btn-coral nav-cta">Audit gratuit</a>
       <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">
@@ -1056,7 +1171,7 @@
       <a href="#simulateur">Simulateur</a>
       <a href="#methode">Méthode</a>
       <a href="#tarifs">Tarifs</a>
-      <a href="#services">Services</a>
+      <a href="nos-services.html">Nos services</a>
       <a href="#audit" class="btn btn-coral" style="margin-top:12px;">Audit gratuit</a>
     </div>
   </nav>
@@ -1371,35 +1486,136 @@
       <h2 class="reveal">Un accompagnement en 6 étapes</h2>
 
       <div class="method-grid">
-        <div class="method-step reveal">
-          <div class="step-num">01</div>
-          <h3>Audit gratuit et offre personnalisée</h3>
-          <p>Nous évaluons le potentiel de votre logement et vous proposons une offre sur mesure, sans engagement.</p>
+        <div class="method-card reveal" tabindex="0" aria-label="Étape 1 : Audit gratuit — cliquez pour en savoir plus">
+          <div class="method-card-inner">
+            <div class="method-card-front">
+              <div>
+                <div class="step-num">01</div>
+                <div class="method-card-icon">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                </div>
+              </div>
+              <div>
+                <h3>Audit gratuit</h3>
+                <span class="method-card-hint">En savoir plus</span>
+              </div>
+            </div>
+            <div class="method-card-back">
+              <div class="step-num">01</div>
+              <h3>Audit gratuit</h3>
+              <p>Analyse du logement, de ses caractéristiques et de son potentiel locatif.</p>
+            </div>
+          </div>
         </div>
-        <div class="method-step reveal reveal-delay-1">
-          <div class="step-num">02</div>
-          <h3>Photos professionnelles et décoration</h3>
-          <p>Shooting photo par un professionnel et optimisation de la décoration pour rendre votre logement plus attractif.</p>
+
+        <div class="method-card reveal reveal-delay-1" tabindex="0" aria-label="Étape 2 : Offre personnalisée — cliquez pour en savoir plus">
+          <div class="method-card-inner">
+            <div class="method-card-front">
+              <div>
+                <div class="step-num">02</div>
+                <div class="method-card-icon">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 01-2 2H7a2 2 0 01-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 010-5C9 3 12 8 12 8s3-5 4.5-5a2.5 2.5 0 010 5"/></svg>
+                </div>
+              </div>
+              <div>
+                <h3>Offre personnalisée</h3>
+                <span class="method-card-hint">En savoir plus</span>
+              </div>
+            </div>
+            <div class="method-card-back">
+              <div class="step-num">02</div>
+              <h3>Offre personnalisée</h3>
+              <p>Proposition adaptée au bien, aux équipements et aux objectifs du propriétaire.</p>
+            </div>
+          </div>
         </div>
-        <div class="method-step reveal reveal-delay-2">
-          <div class="step-num">03</div>
-          <h3>Annonce optimisée</h3>
-          <p>Rédaction et diffusion de votre annonce sur Airbnb et Booking pour un meilleur classement et plus de visibilité.</p>
+
+        <div class="method-card reveal reveal-delay-2" tabindex="0" aria-label="Étape 3 : Photos professionnelles et valorisation — cliquez pour en savoir plus">
+          <div class="method-card-inner">
+            <div class="method-card-front">
+              <div>
+                <div class="step-num">03</div>
+                <div class="method-card-icon">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </div>
+              </div>
+              <div>
+                <h3>Photos professionnelles et valorisation</h3>
+                <span class="method-card-hint">En savoir plus</span>
+              </div>
+            </div>
+            <div class="method-card-back">
+              <div class="step-num">03</div>
+              <h3>Photos et valorisation</h3>
+              <p>Mise en valeur du logement, photos professionnelles et conseils de décoration.</p>
+            </div>
+          </div>
         </div>
-        <div class="method-step reveal">
-          <div class="step-num">04</div>
-          <h3>Tarification dynamique</h3>
-          <p>Nos algorithmes ajustent le prix chaque nuit pour maximiser votre taux d'occupation et vos revenus.</p>
+
+        <div class="method-card reveal" tabindex="0" aria-label="Étape 4 : Annonce optimisée — cliquez pour en savoir plus">
+          <div class="method-card-inner">
+            <div class="method-card-front">
+              <div>
+                <div class="step-num">04</div>
+                <div class="method-card-icon">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
+                </div>
+              </div>
+              <div>
+                <h3>Annonce optimisée</h3>
+                <span class="method-card-hint">En savoir plus</span>
+              </div>
+            </div>
+            <div class="method-card-back">
+              <div class="step-num">04</div>
+              <h3>Annonce optimisée</h3>
+              <p>Création ou amélioration de l'annonce, titre, description, présentation.</p>
+            </div>
+          </div>
         </div>
-        <div class="method-step reveal reveal-delay-1">
-          <div class="step-num">05</div>
-          <h3>Accueil, ménage et linge</h3>
-          <p>Accueil personnalisé des voyageurs, ménage professionnel entre chaque séjour et linge hôtelier fourni.</p>
+
+        <div class="method-card reveal reveal-delay-1" tabindex="0" aria-label="Étape 5 : Tarification dynamique — cliquez pour en savoir plus">
+          <div class="method-card-inner">
+            <div class="method-card-front">
+              <div>
+                <div class="step-num">05</div>
+                <div class="method-card-icon">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+                </div>
+              </div>
+              <div>
+                <h3>Tarification dynamique</h3>
+                <span class="method-card-hint">En savoir plus</span>
+              </div>
+            </div>
+            <div class="method-card-back">
+              <div class="step-num">05</div>
+              <h3>Tarification dynamique</h3>
+              <p>Ajustement des tarifs en fonction de la demande, saisonnalité, événements locaux, périodes de réservation.</p>
+            </div>
+          </div>
         </div>
-        <div class="method-step reveal reveal-delay-2">
-          <div class="step-num">06</div>
-          <h3>Entretien et maintenance</h3>
-          <p>Petites réparations, suivi technique et rapport photo avant / après chaque séjour pour garder votre bien en parfait état.</p>
+
+        <div class="method-card reveal reveal-delay-2" tabindex="0" aria-label="Étape 6 : Gestion opérationnelle — cliquez pour en savoir plus">
+          <div class="method-card-inner">
+            <div class="method-card-front">
+              <div>
+                <div class="step-num">06</div>
+                <div class="method-card-icon">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+              </div>
+              <div>
+                <h3>Gestion opérationnelle</h3>
+                <span class="method-card-hint">En savoir plus</span>
+              </div>
+            </div>
+            <div class="method-card-back">
+              <div class="step-num">06</div>
+              <h3>Gestion opérationnelle</h3>
+              <p>Communication voyageurs, arrivées, départs, ménage, linge, entretien et maintenance.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1415,7 +1631,7 @@
 
       <div class="pricing-card reveal">
         <div class="pricing-badge">1er mois offert</div>
-        <div class="pricing-price">À partir de <span>14 %</span> TTC</div>
+        <div class="pricing-price">À partir de <span>16 %</span> TTC</div>
         <p class="pricing-subtitle">des revenus locatifs générés</p>
         <ul class="pricing-features">
           <li>
@@ -1448,6 +1664,9 @@
       <span class="section-label reveal">Nos services</span>
       <h2 class="reveal">Tout ce qu'il faut pour réussir sur Airbnb</h2>
       <div class="services-grid" id="servicesGrid"></div>
+      <div style="text-align:center;margin-top:40px;" class="reveal">
+        <a href="nos-services.html" class="btn btn-coral">Découvrir tous nos services →</a>
+      </div>
     </div>
   </section>
 
@@ -1537,7 +1756,7 @@
             <li><a href="#simulateur">Simulateur</a></li>
             <li><a href="#methode">Méthode</a></li>
             <li><a href="#tarifs">Tarifs</a></li>
-            <li><a href="#services">Services</a></li>
+            <li><a href="nos-services.html">Nos services</a></li>
             <li><a href="#audit">Audit gratuit</a></li>
           </ul>
         </div>
@@ -1664,16 +1883,16 @@
     };
 
     const SERVICES = [
-      { title: 'Photos professionnelles', desc: 'Shooting photo par un professionnel pour mettre en valeur votre logement.', icon: 'camera' },
-      { title: 'Annonce optimisée', desc: 'Rédaction soignée et diffusion multi-plateformes pour maximiser la visibilité.', icon: 'doc' },
-      { title: 'Tarification dynamique', desc: 'Prix ajustés chaque nuit par nos algorithmes pour optimiser vos revenus.', icon: 'chart' },
-      { title: "Taux d'occupation maximisé", desc: 'Stratégie de pricing et visibilité pour remplir votre calendrier.', icon: 'calendar' },
-      { title: 'Ménage professionnel', desc: 'Nettoyage hôtelier entre chaque séjour, linge et produits d\'accueil fournis.', icon: 'sparkle' },
-      { title: 'Entretien et maintenance', desc: 'Petites réparations, suivi technique et rapport photo avant / après.', icon: 'wrench' },
-      { title: 'Optimisation de la décoration', desc: 'Conseils et aménagements pour rendre votre logement plus attractif.', icon: 'palette' },
-      { title: 'Offre personnalisée', desc: 'Un accompagnement sur mesure, adapté à votre bien et vos objectifs.', icon: 'gift' },
-      { title: 'Vos voyageurs nous appellent, pas vous', desc: 'Nous sommes le point de contact unique de vos voyageurs, 7j/7.', icon: 'phone' },
-      { title: 'Réponse en moins de 30 minutes', desc: 'Réactivité garantie en journée pour toutes les demandes voyageurs.', icon: 'clock' }
+      { title: 'Photos professionnelles', desc: 'Shooting photo par un professionnel pour mettre en valeur votre logement.', icon: 'camera', href: 'nos-services.html#photographie-decoration' },
+      { title: 'Annonce optimisée', desc: 'Rédaction soignée et diffusion multi-plateformes pour maximiser la visibilité.', icon: 'doc', href: 'nos-services.html#optimisation-annonces' },
+      { title: 'Tarification dynamique', desc: 'Prix ajustés chaque nuit par nos algorithmes pour optimiser vos revenus.', icon: 'chart', href: 'nos-services.html#tarification-dynamique' },
+      { title: "Taux d'occupation maximisé", desc: 'Stratégie de pricing et visibilité pour remplir votre calendrier.', icon: 'calendar', href: 'nos-services.html#tarification-dynamique' },
+      { title: 'Ménage professionnel', desc: 'Nettoyage hôtelier entre chaque séjour, linge et produits d\'accueil fournis.', icon: 'sparkle', href: 'nos-services.html#menage-linge' },
+      { title: 'Entretien et maintenance', desc: 'Petites réparations, suivi technique et rapport photo avant / après.', icon: 'wrench', href: 'nos-services.html#maintenance' },
+      { title: 'Optimisation de la décoration', desc: 'Conseils et aménagements pour rendre votre logement plus attractif.', icon: 'palette', href: 'nos-services.html#photographie-decoration' },
+      { title: 'Offre personnalisée', desc: 'Un accompagnement sur mesure, adapté à votre bien et vos objectifs.', icon: 'gift', href: 'nos-services.html#communication-voyageurs' },
+      { title: 'Vos voyageurs nous appellent, pas vous', desc: 'Nous sommes le point de contact unique de vos voyageurs, 7j/7.', icon: 'phone', href: 'nos-services.html#communication-voyageurs' },
+      { title: 'Réponse en moins de 30 minutes', desc: 'Réactivité garantie en journée pour toutes les demandes voyageurs.', icon: 'clock', href: 'nos-services.html#communication-voyageurs' }
     ];
 
     const ICONS = {
@@ -1696,6 +1915,7 @@
       initMarquee();
       initCitySelect();
       initServices();
+      initMethodCards();
       initFooterCities();
       initNav();
       initSimulator();
@@ -1762,7 +1982,8 @@
     function initServices() {
       const grid = document.getElementById('servicesGrid');
       SERVICES.forEach((s, i) => {
-        const card = document.createElement('div');
+        const card = document.createElement('a');
+        card.href = s.href;
         card.className = 'service-card reveal' + (i % 3 === 1 ? ' reveal-delay-1' : i % 3 === 2 ? ' reveal-delay-2' : '');
         card.innerHTML = `
           <div class="service-icon">${ICONS[s.icon]}</div>
@@ -1770,8 +1991,21 @@
             <h3>${s.title}</h3>
             <p>${s.desc}</p>
           </div>
+          <span class="service-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         `;
         grid.appendChild(card);
+      });
+    }
+
+    function initMethodCards() {
+      document.querySelectorAll('.method-card').forEach(card => {
+        card.addEventListener('click', () => card.classList.toggle('flipped'));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.classList.toggle('flipped');
+          }
+        });
       });
     }
 
@@ -2014,7 +2248,7 @@
     function initScrollReveal() {
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (prefersReduced) {
-        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+        document.querySelectorAll('.reveal, .reveal-scale').forEach(el => el.classList.add('visible'));
         return;
       }
       const observer = new IntersectionObserver((entries) => {
@@ -2026,7 +2260,7 @@
         });
       }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      document.querySelectorAll('.reveal, .reveal-scale').forEach(el => observer.observe(el));
     }
   </script>
 </body>
