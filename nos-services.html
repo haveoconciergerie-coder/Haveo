@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Nos Services — Haveo Conciergerie</title>
+  <meta name="description" content="Découvrez les services de conciergerie Haveo : communication voyageurs, accueil, ménage, entretien, optimisation d'annonce, photos professionnelles et tarification dynamique.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
+  <style>
+    :root {
+      --green: #0F4C4C;
+      --green-light: #14605f;
+      --coral: #F26B5B;
+      --coral-hover: #e05545;
+      --sand: #F4EBDD;
+      --sand-dark: #e9dece;
+      --gold: #E8B04A;
+      --white: #FFFFFF;
+      --text: #0F4C4C;
+      --text-muted: #3d7272;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-lg: 24px;
+      color-scheme: light;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--sand);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-left: max(20px, env(safe-area-inset-left, 0px));
+      padding-right: max(20px, env(safe-area-inset-right, 0px));
+    }
+
+    h1, h2, h3, h4 { line-height: 1.15; font-weight: 800; color: var(--text); }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); text-wrap: balance; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 12px;
+    }
+    .section-intro {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 640px;
+      margin-top: 16px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 30px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+    .btn-coral {
+      background: var(--coral);
+      color: var(--white);
+      border-color: var(--coral);
+    }
+    .btn-coral:hover {
+      background: var(--coral-hover);
+      border-color: var(--coral-hover);
+      box-shadow: 0 8px 24px rgba(242, 107, 91, 0.35);
+    }
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border-color: var(--white);
+    }
+    .btn-outline-white:hover {
+      background: var(--white);
+      color: var(--green);
+    }
+    .btn-outline-green {
+      background: transparent;
+      color: var(--green);
+      border-color: var(--green);
+    }
+    .btn-outline-green:hover {
+      background: var(--green);
+      color: var(--sand);
+      box-shadow: 0 8px 24px rgba(15, 76, 76, 0.2);
+    }
+    .btn-white {
+      background: var(--white);
+      color: var(--green);
+    }
+    .btn-white:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    .icon {
+      width: 28px;
+      height: 28px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       NAVIGATION
+       ============================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding-block: 16px;
+      transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+    }
+    .nav.scrolled {
+      background: rgba(244, 235, 221, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 2px 24px rgba(15, 76, 76, 0.07);
+      padding-block: 10px;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-decoration: none;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      transition: color 0.3s;
+    }
+    .logo span { color: var(--coral); }
+    .nav.scrolled .logo { color: var(--green); }
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--white); border-bottom: 2px solid var(--coral); padding-bottom: 2px; }
+    .nav.scrolled .nav-links a { color: var(--text-muted); }
+    .nav.scrolled .nav-links a:hover { color: var(--text); }
+    .nav.scrolled .nav-links a.active { color: var(--text); border-bottom-color: var(--coral); }
+    .nav-cta {
+      display: none;
+      padding: 10px 22px !important;
+      font-size: 0.9rem !important;
+    }
+    .nav-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .nav.scrolled .nav-toggle span { background: var(--green); }
+    .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--sand);
+      padding: 20px;
+      box-shadow: 0 12px 32px rgba(15, 76, 76, 0.1);
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      display: block;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text);
+      border-radius: var(--radius-sm);
+      transition: background 0.2s;
+    }
+    .mobile-menu a:hover { background: var(--sand-dark); }
+    .mobile-menu .btn { margin-top: 8px; text-align: center; }
+    @media (min-width: 900px) {
+      .nav-links { display: flex; }
+      .nav-cta { display: inline-flex; }
+      .nav-toggle { display: none; }
+    }
+
+    /* ============================================
+       PAGE HERO (shorter)
+       ============================================ */
+    .page-hero {
+      padding-block: 140px 80px;
+      background: var(--green);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 20%, rgba(20, 96, 95, 0.6) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 80%, rgba(242, 107, 91, 0.08) 0%, transparent 50%);
+    }
+    .page-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4.5vw, 3rem);
+      color: var(--white);
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+    .page-hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(244, 235, 221, 0.8);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 600px;
+    }
+    .page-hero .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    /* ============================================
+       SERVICE DETAIL SECTIONS
+       ============================================ */
+    .svc-section {
+      padding-block: 80px;
+    }
+    .svc-section--white { background: var(--white); }
+    .svc-section--green {
+      background: var(--green);
+      color: var(--sand);
+    }
+    .svc-section--green h2 { color: var(--white); }
+    .svc-section--green .section-label { color: var(--gold); }
+    .svc-section--green .section-intro { color: rgba(244, 235, 221, 0.7); }
+    .svc-section--green .svc-feature-item { color: rgba(244, 235, 221, 0.85); }
+    .svc-section--green .svc-feature-item::before { color: var(--gold); }
+
+    .svc-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-top: 40px;
+    }
+    @media (min-width: 768px) {
+      .svc-layout { grid-template-columns: 1fr 1fr; }
+      .svc-layout--reverse .svc-visual { order: -1; }
+    }
+
+    .svc-feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .svc-feature-item {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      padding-left: 28px;
+      position: relative;
+      color: var(--text-muted);
+    }
+    .svc-feature-item::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--coral);
+      font-weight: 700;
+    }
+
+    .svc-note {
+      margin-top: 20px;
+      padding: 16px 20px;
+      background: var(--sand);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .svc-section--green .svc-note {
+      background: rgba(244, 235, 221, 0.08);
+    }
+
+    .svc-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--sand);
+      color: var(--green);
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-top: 20px;
+    }
+    .svc-highlight svg { width: 18px; height: 18px; }
+
+    /* ---- Visual illustrations ---- */
+    .svc-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .svc-illus {
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .svc-illus--sand {
+      background: linear-gradient(135deg, var(--white) 0%, var(--sand-dark) 100%);
+      border: 2px solid var(--sand-dark);
+    }
+    .svc-illus--white {
+      background: linear-gradient(135deg, var(--sand) 0%, var(--sand-dark) 100%);
+    }
+    .svc-illus--green {
+      background: linear-gradient(135deg, rgba(20,96,95,0.5) 0%, rgba(15,76,76,0.8) 100%);
+      border: 2px solid rgba(244, 235, 221, 0.12);
+    }
+    .svc-illus svg.illus-icon {
+      width: 80px;
+      height: 80px;
+      opacity: 0.7;
+    }
+
+    /* ============================================
+       MOCK LISTING CARD
+       ============================================ */
+    .mock-listing {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(15, 76, 76, 0.1);
+      max-width: 380px;
+      width: 100%;
+    }
+    .mock-listing-img {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mock-listing-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .mock-listing-body {
+      padding: 20px;
+    }
+    .mock-listing-rating {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .mock-listing-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .mock-listing-price {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--coral);
+      margin-bottom: 14px;
+    }
+    .mock-listing-amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .mock-amenity {
+      padding: 5px 12px;
+      border-radius: 100px;
+      background: var(--sand);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .mock-listing-label {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 12px;
+    }
+
+    /* ============================================
+       PHOTO / DECO VISUAL
+       ============================================ */
+    .photo-grid-mock {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 8px;
+      max-width: 400px;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .photo-cell {
+      border-radius: var(--radius-sm);
+      position: relative;
+    }
+    /* TYPE A images inside svc-illus */
+    .svc-illus img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ============================================
+       INTERACTIVE CALENDAR
+       ============================================ */
+    .cal-wrapper {
+      margin-top: 40px;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      color: var(--text);
+      overflow-x: auto;
+    }
+    @media (max-width: 640px) {
+      .cal-wrapper { padding: 20px 16px; }
+    }
+    .cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .cal-month {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .cal-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .cal-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cal-legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .cal-legend-dot--low { background: var(--green-light); }
+    .cal-legend-dot--mid { background: var(--gold); }
+    .cal-legend-dot--high { background: var(--coral); }
+
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      min-width: 420px;
+    }
+    .cal-day-name {
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      padding-bottom: 8px;
+    }
+    .cal-day {
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: default;
+      min-height: 56px;
+    }
+    .cal-day:not(.cal-day--empty):hover {
+      transform: scale(1.08);
+      box-shadow: 0 4px 16px rgba(15, 76, 76, 0.12);
+    }
+    .cal-day--empty {
+      background: transparent;
+    }
+    .cal-day--low {
+      background: rgba(20, 96, 95, 0.1);
+      color: var(--green);
+    }
+    .cal-day--mid {
+      background: rgba(232, 176, 74, 0.15);
+      color: #9a7020;
+    }
+    .cal-day--high {
+      background: rgba(242, 107, 91, 0.12);
+      color: var(--coral);
+    }
+    .cal-day-num {
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+    .cal-day-price {
+      font-size: 0.72rem;
+      font-weight: 600;
+      opacity: 0.8;
+    }
+    .cal-label {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 16px;
+    }
+    .svc-section--green .cal-label { color: rgba(244, 235, 221, 0.6); }
+
+    /* ============================================
+       CTA SECTION
+       ============================================ */
+    .cta-section {
+      padding-block: 80px;
+      background: var(--coral);
+      color: var(--white);
+      text-align: center;
+    }
+    .cta-section h2 {
+      color: var(--white);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      max-width: 600px;
+      margin: 0 auto 12px;
+      text-wrap: balance;
+    }
+    .cta-section p {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: rgba(255,255,255,0.85);
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer {
+      background: var(--green);
+      color: var(--sand);
+      padding-block: 64px 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    @media (min-width: 768px) {
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+    }
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .footer-logo span { color: var(--coral); }
+    .footer-desc {
+      font-size: 0.9rem;
+      color: rgba(244, 235, 221, 0.65);
+      max-width: 300px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .footer-contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+    .footer-contact-info a {
+      color: var(--sand);
+      text-decoration: none;
+    }
+    .footer-contact-info a:hover { color: var(--coral); }
+    .footer h4 {
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      font-size: 0.9rem;
+      color: rgba(244, 235, 221, 0.65);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--sand); }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(244, 235, 221, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sand);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .footer-social a:hover { background: rgba(244, 235, 221, 0.2); }
+    .footer-social svg { width: 18px; height: 18px; }
+    .footer-bottom {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(244, 235, 221, 0.12);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.82rem;
+      color: rgba(244, 235, 221, 0.45);
+    }
+    .footer-bottom a {
+      color: rgba(244, 235, 221, 0.45);
+      text-decoration: none;
+    }
+    .footer-bottom a:hover { color: var(--sand); }
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+       NAVIGATION
+       ============================================ -->
+  <nav class="nav" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">haveo<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html#pourquoi">Pourquoi Haveo</a></li>
+        <li><a href="index.html#simulateur">Simulateur</a></li>
+        <li><a href="index.html#methode">Méthode</a></li>
+        <li><a href="index.html#tarifs">Tarifs</a></li>
+        <li><a href="#" class="active">Services</a></li>
+        <li><a href="index.html#villes">Zones d'intervention</a></li>
+      </ul>
+      <a href="index.html#audit" class="btn btn-coral nav-cta">Audit gratuit</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html#pourquoi">Pourquoi Haveo</a>
+      <a href="index.html#simulateur">Simulateur</a>
+      <a href="index.html#methode">Méthode</a>
+      <a href="index.html#tarifs">Tarifs</a>
+      <a href="#" style="font-weight:800;">Services</a>
+      <a href="index.html#villes">Zones d'intervention</a>
+      <a href="index.html#audit" class="btn btn-coral" style="margin-top:12px;">Audit gratuit</a>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       PAGE HERO
+       ============================================ -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <span class="section-label reveal" style="color: var(--gold);">Nos services</span>
+      <h1 class="reveal">Vous louez, Haveo s'occupe du reste.</h1>
+      <p class="reveal">De la création de votre annonce à l'accueil de vos voyageurs, Haveo prend en charge chaque étape pour simplifier la location de votre bien et en révéler tout le potentiel.</p>
+      <div class="hero-buttons reveal">
+        <a href="index.html#audit" class="btn btn-coral">Demander un audit gratuit</a>
+        <a href="index.html#simulateur" class="btn btn-outline-white">Estimer mes revenus</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       COMMUNICATION VOYAGEURS
+       ============================================ -->
+  <section class="svc-section" id="communication-voyageurs">
+    <div class="container">
+      <span class="section-label reveal">Communication</span>
+      <h2 class="reveal">Communication avec les voyageurs</h2>
+      <p class="section-intro reveal">Un seul interlocuteur pour vos voyageurs, disponible 7j/7. Vous n'avez plus à gérer les messages, les questions ou les imprévus.</p>
+
+      <div class="svc-layout">
+        <div class="reveal">
+          <ul class="svc-feature-list">
+            <li class="svc-feature-item">Prise en charge des messages avant, pendant et après chaque séjour</li>
+            <li class="svc-feature-item">Réponses aux questions des voyageurs et transmission des informations pratiques</li>
+            <li class="svc-feature-item">Suivi des demandes et coordination des éventuelles interventions</li>
+            <li class="svc-feature-item">Assistance pendant le séjour et résolution des incidents</li>
+            <li class="svc-feature-item">Communication proactive pour anticiper les besoins</li>
+          </ul>
+          <div class="svc-highlight">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Réponse en moins de 30 minutes en journée
+          </div>
+        </div>
+        <div class="svc-visual reveal reveal-delay-1">
+          <div class="svc-illus svc-illus--sand">
+            <img src="images/communication-voyageurs.jpg" alt="Communication voyageurs — messagerie sur smartphone" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       ARRIVÉES ET DÉPARTS
+       ============================================ -->
+  <section class="svc-section svc-section--white" id="arrivees-departs">
+    <div class="container">
+      <span class="section-label reveal">Accueil</span>
+      <h2 class="reveal">Arrivées et départs simplifiés</h2>
+      <p class="section-intro reveal">Une expérience d'arrivée fluide pour vos voyageurs, sans que vous ayez à vous déplacer.</p>
+
+      <div class="svc-layout svc-layout--reverse">
+        <div class="reveal">
+          <ul class="svc-feature-list">
+            <li class="svc-feature-item">Instructions d'arrivée envoyées automatiquement en amont du séjour</li>
+            <li class="svc-feature-item">Informations d'accès claires et détaillées</li>
+            <li class="svc-feature-item">Serrures connectées ou boîtes à clés selon la configuration du logement</li>
+            <li class="svc-feature-item">Procédures de départ simples communiquées aux voyageurs</li>
+            <li class="svc-feature-item">Coordination avec les prestataires pour chaque rotation</li>
+          </ul>
+          <div class="svc-note">
+            Chaque logement est différent : les solutions d'accès sont adaptées à la configuration et aux souhaits du propriétaire.
+          </div>
+        </div>
+        <div class="svc-visual reveal reveal-delay-1">
+          <div class="svc-illus svc-illus--white">
+            <img src="images/arrivees-departs.jpg" alt="Arrivées et départs — serrure connectée sur porte" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       MÉNAGE ET LINGE
+       ============================================ -->
+  <section class="svc-section" id="menage-linge">
+    <div class="container">
+      <span class="section-label reveal">Propreté</span>
+      <h2 class="reveal">Ménage professionnel et linge hôtelier</h2>
+      <p class="section-intro reveal">Un logement impeccable à chaque arrivée, avec un niveau de propreté et de confort digne de l'hôtellerie.</p>
+
+      <div class="svc-layout">
+        <div class="reveal">
+          <ul class="svc-feature-list">
+            <li class="svc-feature-item">Nettoyage professionnel entre chaque séjour</li>
+            <li class="svc-feature-item">Préparation soignée des pièces et des espaces communs</li>
+            <li class="svc-feature-item">Fourniture et changement du linge de lit et de bain</li>
+            <li class="svc-feature-item">Contrôle qualité et vérification visuelle avant chaque arrivée</li>
+            <li class="svc-feature-item">Coordination immédiate en cas de problème détecté</li>
+            <li class="svc-feature-item">Produits d'accueil fournis pour une expérience premium</li>
+          </ul>
+        </div>
+        <div class="svc-visual reveal reveal-delay-1">
+          <div class="svc-illus svc-illus--sand">
+            <img src="images/menage-linge.jpg" alt="Ménage et linge — préparation du linge de maison" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       ENTRETIEN ET MAINTENANCE
+       ============================================ -->
+  <section class="svc-section svc-section--white" id="maintenance">
+    <div class="container">
+      <span class="section-label reveal">Entretien</span>
+      <h2 class="reveal">Entretien et maintenance du logement</h2>
+      <p class="section-intro reveal">Votre bien est surveillé et entretenu en continu pour préserver sa qualité et sa valeur.</p>
+
+      <div class="svc-layout svc-layout--reverse">
+        <div class="reveal">
+          <ul class="svc-feature-list">
+            <li class="svc-feature-item">Signalement systématique des anomalies et de l'usure</li>
+            <li class="svc-feature-item">Suivi régulier de l'état du logement et des équipements</li>
+            <li class="svc-feature-item">Coordination des réparations avec des prestataires qualifiés</li>
+            <li class="svc-feature-item">Communication transparente avec le propriétaire en cas de problème</li>
+            <li class="svc-feature-item">Rapport photo avant et après chaque séjour</li>
+          </ul>
+          <div class="svc-note">
+            Les réparations et interventions de prestataires externes peuvent faire l'objet d'une facturation distincte, selon la nature et l'ampleur des travaux.
+          </div>
+        </div>
+        <div class="svc-visual reveal reveal-delay-1">
+          <div class="svc-illus svc-illus--white">
+            <img src="images/maintenance.jpg" alt="Entretien et maintenance — intervention plomberie" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       OPTIMISATION DES ANNONCES
+       ============================================ -->
+  <section class="svc-section" id="optimisation-annonces">
+    <div class="container">
+      <span class="section-label reveal">Annonces</span>
+      <h2 class="reveal">Création et optimisation de vos annonces</h2>
+      <p class="section-intro reveal">Une annonce bien construite fait la différence. Nous optimisons chaque détail pour maximiser votre visibilité et vos réservations.</p>
+
+      <div class="svc-layout">
+        <div class="reveal">
+          <ul class="svc-feature-list">
+            <li class="svc-feature-item">Titre clair, pertinent et optimisé pour la recherche</li>
+            <li class="svc-feature-item">Description structurée mettant en valeur les atouts du logement</li>
+            <li class="svc-feature-item">Présentation détaillée des équipements et des commodités</li>
+            <li class="svc-feature-item">Organisation des informations pratiques pour les voyageurs</li>
+            <li class="svc-feature-item">Sélection et ordonnancement des photos pour un impact maximal</li>
+            <li class="svc-feature-item">Conseils d'amélioration pour rendre le logement encore plus attractif</li>
+            <li class="svc-feature-item">Diffusion sur les principales plateformes de réservation</li>
+          </ul>
+        </div>
+        <div class="svc-visual reveal reveal-delay-1">
+          <div>
+            <div class="mock-listing">
+              <div class="mock-listing-img"><img src="images/optimisation-annonces.jpg" alt="Exemple illustratif — appartement haussmannien lumineux"></div>
+              <div class="mock-listing-body">
+                <div class="mock-listing-rating">★ 4.92 (127 avis)</div>
+                <div class="mock-listing-title">Appartement lumineux — Paris 11e</div>
+                <div class="mock-listing-price">À partir de 145 € / nuit</div>
+                <div class="mock-listing-amenities">
+                  <span class="mock-amenity">Wi-Fi</span>
+                  <span class="mock-amenity">Climatisation</span>
+                  <span class="mock-amenity">2 chambres</span>
+                  <span class="mock-amenity">Balcon</span>
+                </div>
+              </div>
+            </div>
+            <p class="mock-listing-label">Exemple illustratif — ne représente pas une annonce réelle</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PHOTOGRAPHIE ET DÉCORATION
+       ============================================ -->
+  <section class="svc-section svc-section--white" id="photographie-decoration">
+    <div class="container">
+      <span class="section-label reveal">Visuels</span>
+      <h2 class="reveal">Photographie professionnelle et décoration</h2>
+      <p class="section-intro reveal">Des visuels de qualité qui captent l'attention et donnent envie de réserver. La première impression est souvent décisive.</p>
+
+      <div class="svc-layout svc-layout--reverse">
+        <div class="reveal">
+          <ul class="svc-feature-list">
+            <li class="svc-feature-item">Photos lumineuses et soignées, de qualité professionnelle</li>
+            <li class="svc-feature-item">Mise en valeur des volumes, de la lumière et de chaque pièce</li>
+            <li class="svc-feature-item">Cohérence visuelle entre toutes les photos de l'annonce</li>
+            <li class="svc-feature-item">Conseils de décoration et d'aménagement pour optimiser l'attractivité</li>
+            <li class="svc-feature-item">Valorisation des équipements et des points forts du logement</li>
+            <li class="svc-feature-item">Visuels optimisés pour le web et les plateformes de réservation</li>
+          </ul>
+        </div>
+        <div class="svc-visual reveal reveal-delay-1">
+          <div class="svc-illus svc-illus--sand">
+            <img src="images/photographie-decoration.jpg" alt="Photographie professionnelle — prise de vue immobilière sur smartphone" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TARIFICATION DYNAMIQUE
+       ============================================ -->
+  <section class="svc-section svc-section--green" id="tarification-dynamique">
+    <div class="container">
+      <span class="section-label reveal">Tarification</span>
+      <h2 class="reveal">Tarification dynamique et optimisation des revenus</h2>
+      <p class="section-intro reveal">Nos algorithmes ajustent automatiquement le prix de votre logement chaque nuit pour maximiser vos revenus tout en maintenant un taux d'occupation élevé.</p>
+
+      <div class="reveal" style="margin-top:32px;">
+        <ul class="svc-feature-list" style="max-width:640px;">
+          <li class="svc-feature-item">Ajustement selon la saisonnalité et les périodes de vacances</li>
+          <li class="svc-feature-item">Prise en compte des événements locaux et des pics de demande</li>
+          <li class="svc-feature-item">Différenciation week-end / semaine pour capter la meilleure valeur</li>
+          <li class="svc-feature-item">Adaptation au délai de réservation et aux disponibilités restantes</li>
+          <li class="svc-feature-item">Analyse concurrentielle de votre zone géographique</li>
+        </ul>
+      </div>
+
+      <div class="cal-wrapper reveal">
+        <div class="cal-header">
+          <div class="cal-month">Novembre 2026</div>
+          <div class="cal-legend">
+            <div class="cal-legend-item"><span class="cal-legend-dot cal-legend-dot--low"></span> Basse</div>
+            <div class="cal-legend-item"><span class="cal-legend-dot cal-legend-dot--mid"></span> Moyenne</div>
+            <div class="cal-legend-item"><span class="cal-legend-dot cal-legend-dot--high"></span> Forte</div>
+          </div>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+        <p class="cal-label">Exemple illustratif — les tarifs varient selon le logement, sa localisation et la période</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA FINAL
+       ============================================ -->
+  <section class="cta-section">
+    <div class="container">
+      <span class="section-label reveal" style="color: var(--gold);">Prêt à commencer ?</span>
+      <h2 class="reveal">Votre logement a du potentiel. Découvrons-le ensemble.</h2>
+      <p class="reveal">Échangeons sur votre projet et découvrons comment Haveo peut vous accompagner.</p>
+      <div class="cta-buttons reveal">
+        <a href="index.html#audit" class="btn btn-white">Demander mon audit gratuit</a>
+        <a href="index.html#simulateur" class="btn btn-outline-white">Estimer mes revenus</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">haveo<span>.</span></div>
+          <p class="footer-desc">Conciergerie Airbnb en Île-de-France. Nous nous occupons de tout pour que votre logement génère des revenus, sans stress.</p>
+          <div class="footer-contact-info">
+            <a href="mailto:contact@haveo.fr">contact@haveo.fr</a>
+            <a href="tel:+33612345678">06 12 34 56 78</a>
+          </div>
+          <div class="footer-social">
+            <a href="https://instagram.com/haveo" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://linkedin.com/company/haveo" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#villes">Villes</a></li>
+            <li><a href="index.html#pourquoi">Pourquoi Haveo</a></li>
+            <li><a href="index.html#simulateur">Simulateur</a></li>
+            <li><a href="index.html#methode">Méthode</a></li>
+            <li><a href="index.html#tarifs">Tarifs</a></li>
+            <li><a href="#">Nos services</a></li>
+            <li><a href="index.html#audit">Audit gratuit</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Nos prestations</h4>
+          <ul class="footer-links">
+            <li><a href="#communication-voyageurs">Communication voyageurs</a></li>
+            <li><a href="#arrivees-departs">Arrivées et départs</a></li>
+            <li><a href="#menage-linge">Ménage et linge</a></li>
+            <li><a href="#maintenance">Entretien</a></li>
+            <li><a href="#optimisation-annonces">Annonces</a></li>
+            <li><a href="#tarification-dynamique">Tarification dynamique</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Haveo Conciergerie. Tous droits réservés.</span>
+        <div class="footer-legal">
+          <a href="index.html#mentions-legales">Mentions légales</a>
+          <a href="index.html#confidentialite">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+       JAVASCRIPT
+       ============================================ -->
+  <script>
+    if (history.scrollRestoration) history.scrollRestoration = 'manual';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!window.location.hash) window.scrollTo(0, 0);
+      initNav();
+      initScrollReveal();
+      initCalendar();
+    });
+
+    function initNav() {
+      const nav = document.getElementById('navbar');
+      const toggle = document.getElementById('navToggle');
+      const menu = document.getElementById('mobileMenu');
+
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+      }, { passive: true });
+
+      toggle.addEventListener('click', () => {
+        toggle.classList.toggle('open');
+        menu.classList.toggle('open');
+      });
+
+      menu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          toggle.classList.remove('open');
+          menu.classList.remove('open');
+        });
+      });
+    }
+
+    function initScrollReveal() {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+        return;
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
+
+    function initCalendar() {
+      const grid = document.getElementById('calGrid');
+      if (!grid) return;
+
+      const dayNames = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+      dayNames.forEach(name => {
+        const el = document.createElement('div');
+        el.className = 'cal-day-name';
+        el.textContent = name;
+        grid.appendChild(el);
+      });
+
+      // November 2026 starts on Sunday (day 7 in Mon-first grid → 6 empty cells)
+      const startDay = 6; // 0=Mon ... 6=Sun; Nov 1, 2026 is a Sunday
+      const daysInMonth = 30;
+
+      const prices = {
+        weekday_low: [95, 98, 100, 102, 105],
+        weekday_mid: [110, 115, 118, 120],
+        weekend: [135, 140, 145, 150, 155],
+        event: [180, 195, 210, 220]
+      };
+
+      // Special event days (Toussaint tail, Beaujolais Nouveau, etc.)
+      const eventDays = [1, 11, 19, 20, 21];
+
+      for (let i = 0; i < startDay; i++) {
+        const empty = document.createElement('div');
+        empty.className = 'cal-day cal-day--empty';
+        grid.appendChild(empty);
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayOfWeek = (startDay + day - 1) % 7; // 0=Mon ... 6=Sun
+        const isWeekend = dayOfWeek >= 5;
+        const isEvent = eventDays.includes(day);
+
+        let level, price;
+        if (isEvent) {
+          level = 'high';
+          price = prices.event[day % prices.event.length];
+        } else if (isWeekend) {
+          level = 'mid';
+          price = prices.weekend[day % prices.weekend.length];
+        } else if (day > 15) {
+          level = 'mid';
+          price = prices.weekday_mid[day % prices.weekday_mid.length];
+        } else {
+          level = 'low';
+          price = prices.weekday_low[day % prices.weekday_low.length];
+        }
+
+        const el = document.createElement('div');
+        el.className = `cal-day cal-day--${level}`;
+        el.innerHTML = `<span class="cal-day-num">${day}</span><span class="cal-day-price">${price} €</span>`;
+        grid.appendChild(el);
+      }
+    }
+  </script>
+</body>
+</html>
