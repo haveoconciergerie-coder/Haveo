@@ -1942,16 +1942,14 @@
     };
 
     const SERVICES = [
-      { title: 'Photos de qualité', desc: 'Photos lumineuses et soignées, de qualité professionnelle, pour mettre en valeur votre logement.', icon: 'camera', href: 'nos-services.html#photographie-decoration' },
-      { title: 'Annonce optimisée', desc: 'Rédaction soignée et diffusion multi-plateformes pour maximiser la visibilité.', icon: 'doc', href: 'nos-services.html#optimisation-annonces' },
-      { title: 'Tarification dynamique', desc: 'Prix ajustés chaque nuit par nos algorithmes pour optimiser vos revenus.', icon: 'chart', href: 'nos-services.html#tarification-dynamique' },
-      { title: "Taux d'occupation maximisé", desc: 'Stratégie de pricing et visibilité pour remplir votre calendrier.', icon: 'calendar', href: 'nos-services.html#tarification-dynamique' },
+      { title: 'Communication voyageurs', desc: 'Un interlocuteur unique pour vos voyageurs, disponible 7j/7. Réponse en moins de 30 minutes.', icon: 'phone', href: 'nos-services.html#communication-voyageurs' },
+      { title: 'Arrivées et départs', desc: 'Instructions d\'accès, serrures connectées et coordination des rotations pour un accueil fluide.', icon: 'key', href: 'nos-services.html#arrivees-departs' },
       { title: 'Ménage professionnel', desc: 'Nettoyage hôtelier entre chaque séjour, linge et produits d\'accueil fournis.', icon: 'sparkle', href: 'nos-services.html#menage-linge' },
       { title: 'Entretien et maintenance', desc: 'Petites réparations, suivi technique et rapport photo avant / après.', icon: 'wrench', href: 'nos-services.html#maintenance' },
+      { title: 'Annonce optimisée', desc: 'Rédaction soignée et diffusion multi-plateformes pour maximiser la visibilité.', icon: 'doc', href: 'nos-services.html#optimisation-annonces' },
+      { title: 'Photos de qualité', desc: 'Photos lumineuses et soignées, de qualité professionnelle, pour mettre en valeur votre logement.', icon: 'camera', href: 'nos-services.html#photographie-decoration' },
       { title: 'Optimisation de la décoration', desc: 'Conseils et aménagements pour rendre votre logement plus attractif.', icon: 'palette', href: 'nos-services.html#photographie-decoration' },
-      { title: 'Offre personnalisée', desc: 'Un accompagnement sur mesure, adapté à votre bien et vos objectifs.', icon: 'gift', href: 'nos-services.html#communication-voyageurs' },
-      { title: 'Vos voyageurs nous appellent, pas vous', desc: 'Nous sommes le point de contact unique de vos voyageurs, 7j/7.', icon: 'phone', href: 'nos-services.html#communication-voyageurs' },
-      { title: 'Réponse en moins de 30 minutes', desc: 'Réactivité garantie en journée pour toutes les demandes voyageurs.', icon: 'clock', href: 'nos-services.html#communication-voyageurs' }
+      { title: 'Tarification dynamique', desc: 'Prix ajustés chaque nuit pour maximiser vos revenus et votre taux d\'occupation.', icon: 'chart', href: 'nos-services.html#tarification-dynamique' }
     ];
 
     const ICONS = {
@@ -1964,7 +1962,8 @@
       palette: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.5-.67 1.5-1.5 0-.4-.14-.73-.4-1-.26-.28-.4-.6-.4-1 0-.83.67-1.5 1.5-1.5H16a6 6 0 006-6c0-5.5-4.5-10-10-10z"/></svg>',
       gift: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 01-2 2H7a2 2 0 01-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 010-5C9 3 12 8 12 8s3-5 4.5-5a2.5 2.5 0 010 5"/></svg>',
       phone: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.05 12.05 0 00.65 2.36 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.05 12.05 0 002.36.65A2 2 0 0122 16.92z"/></svg>',
-      clock: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>'
+      clock: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
+      key: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.78 7.78 5.5 5.5 0 017.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>'
     };
 
     /* ============================================
