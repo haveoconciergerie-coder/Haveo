@@ -508,35 +508,11 @@
     }
     @media (min-width: 960px) {
       .why-grid {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
-      .why-grid > * { grid-column: span 2; }
-      .why-grid > :nth-child(4) { grid-column: 2 / span 2; }
-      .why-grid > :nth-child(5) { grid-column: 4 / span 2; }
+      .why-grid > * { grid-column: span 3; }
     }
-    .why-card--featured {
-      border-top: 3px solid var(--coral);
-    }
-    .why-checks {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 16px;
-    }
-    .why-checks li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text);
-    }
-    .why-checks svg {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-    }
+
 
     /* ============================================
        SIMULATEUR DE REVENUS
@@ -1339,18 +1315,6 @@
           <p>Bénéficiez d'un suivi clair de votre activité locative, d'informations régulières et d'un interlocuteur dédié pour accompagner votre logement en toute confiance.</p>
         </div>
 
-        <div class="why-card why-card--featured reveal reveal-delay-4">
-          <div class="why-card-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M17 11l2 2 4-4"/></svg>
-          </div>
-          <h3>Sélection des voyageurs</h3>
-          <p>Nous accordons une attention particulière aux profils des voyageurs afin de favoriser des séjours respectueux de votre logement.</p>
-          <ul class="why-checks">
-            <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0F4C4C"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Analyse du profil des voyageurs</li>
-            <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0F4C4C"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Prise en compte de vos préférences d'accueil</li>
-            <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0F4C4C"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Communication des consignes et du règlement</li>
-          </ul>
-        </div>
       </div>
     </div>
   </section>
