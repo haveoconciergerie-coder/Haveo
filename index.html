@@ -97,14 +97,14 @@
     .btn:active { transform: translateY(0); }
 
     .btn-coral {
-      background: var(--coral);
+      background: #E05A4A;
       color: var(--white);
-      border-color: var(--coral);
+      border-color: #E05A4A;
     }
     .btn-coral:hover {
-      background: var(--coral-hover);
-      border-color: var(--coral-hover);
-      box-shadow: 0 8px 24px rgba(242, 107, 91, 0.35);
+      background: #C94D3F;
+      border-color: #C94D3F;
+      box-shadow: 0 8px 24px rgba(224, 90, 74, 0.35);
     }
     .btn-outline-white {
       background: transparent;
@@ -352,7 +352,28 @@
       font-size: 1.05rem;
       color: rgba(255, 255, 255, 0.7);
       font-weight: 500;
-      margin-bottom: 36px;
+      margin-bottom: 16px;
+    }
+    .hero-proof {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 32px;
+      letter-spacing: 0.01em;
+    }
+    .hero-proof::before {
+      content: '✓';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      font-size: 0.7rem;
     }
     .hero-buttons {
       display: flex;
@@ -1236,11 +1257,12 @@
     <div class="container hero-content">
       <div class="hero-badge">1er mois offert</div>
       <h1>Votre logement mérite mieux qu'une simple location.</h1>
-      <p class="hero-subtitle">Haveo s'occupe de tout, vous encaissez.</p>
+      <p class="hero-subtitle">Conciergerie Airbnb clé en main en Île-de-France. Haveo s'occupe de tout, vous encaissez.</p>
       <p class="hero-tagline">Simple. Rentable. Sans engagement.</p>
+      <p class="hero-proof">Déjà + de 150 logements accompagnés en Île-de-France</p>
       <div class="hero-buttons">
-        <a href="#simulateur" class="btn btn-coral">Estimer mes revenus</a>
-        <a href="#audit" class="btn btn-outline-white">Demander un audit gratuit</a>
+        <a href="#audit" class="btn btn-coral">Demander un audit gratuit</a>
+        <a href="#simulateur" class="btn btn-outline-white">Estimer mes revenus</a>
       </div>
     </div>
   </section>
@@ -2371,6 +2393,10 @@
         document.querySelectorAll('.reveal, .reveal-scale').forEach(el => el.classList.add('visible'));
         return;
       }
+
+      // Hero elements visible immediately — no scroll required
+      document.querySelectorAll('.hero .reveal, .hero .reveal-scale, .hero-content .reveal, .hero-content .reveal-scale').forEach(el => el.classList.add('visible'));
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -2380,7 +2406,9 @@
         });
       }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-      document.querySelectorAll('.reveal, .reveal-scale').forEach(el => observer.observe(el));
+      document.querySelectorAll('.reveal, .reveal-scale').forEach(el => {
+        if (!el.classList.contains('visible')) observer.observe(el);
+      });
     }
   </script>
 </body>
