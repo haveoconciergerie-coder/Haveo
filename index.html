@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Haveo Conciergerie – Conciergerie Airbnb sur la Côte d'Azur</title>
-  <meta name="description" content="Conciergerie Airbnb sur toute la Côte d'Azur. Haveo s'occupe de tout : photos, annonce, accueil, ménage, entretien. Estimez vos revenus locatifs gratuitement.">
-  <meta name="keywords" content="conciergerie Airbnb Côte d'Azur, conciergerie Airbnb Nice, conciergerie Cannes, conciergerie Saint-Tropez, conciergerie Toulon, conciergerie Hyères, location courte durée Côte d'Azur">
+  <title>Haveo Conciergerie – Conciergerie Airbnb en Île-de-France et Côte d'Azur</title>
+  <meta name="description" content="Conciergerie Airbnb en Île-de-France et sur la Côte d'Azur. Haveo s'occupe de tout : photos, annonce, accueil, ménage, entretien. Estimez vos revenus locatifs gratuitement.">
+  <meta name="keywords" content="conciergerie Airbnb Île-de-France, conciergerie Airbnb Côte d'Azur, conciergerie Airbnb Paris, conciergerie Airbnb Nice, conciergerie Cannes, conciergerie Saint-Tropez, conciergerie Versailles, location courte durée">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
   <style>
     /* ============================================
@@ -494,34 +494,8 @@
     }
     @media (min-width: 960px) {
       .why-grid {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
-      .why-grid > * { grid-column: span 2; }
-      .why-grid > :nth-child(4) { grid-column: 2 / span 2; }
-      .why-grid > :nth-child(5) { grid-column: 4 / span 2; }
-    }
-    .why-card--featured {
-      border-top: 3px solid var(--coral);
-    }
-    .why-checks {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 16px;
-    }
-    .why-checks li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text);
-    }
-    .why-checks svg {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
     }
 
     /* ============================================
@@ -766,51 +740,42 @@
     }
 
     /* ============================================
-       NOTRE MÉTHODE — Expérience immersive scroll-driven
+       NOTRE MÉTHODE — Bande horizontale défilante
        ============================================ */
     .method-section {
-      padding: 0;
+      padding-block: 80px;
       background: var(--white);
       position: relative;
-    }
-    .method-scroll-spacer {
-      height: 450vh;
-      position: relative;
-    }
-    .method-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      min-height: 620px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
     }
-    .method-sticky > .container { width: 100%; }
-    .method-track {
-      position: relative;
-      perspective: 1200px;
-      perspective-origin: 50% 50%;
-      height: 420px;
+    .method-track-wrapper {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
       margin-top: 40px;
-      margin-bottom: 32px;
+      padding-bottom: 16px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--sand-dark) transparent;
+      scroll-snap-type: x mandatory;
+      cursor: grab;
+    }
+    .method-track-wrapper:active { cursor: grabbing; }
+    .method-track-wrapper::-webkit-scrollbar { height: 6px; }
+    .method-track-wrapper::-webkit-scrollbar-track { background: transparent; }
+    .method-track-wrapper::-webkit-scrollbar-thumb { background: var(--sand-dark); border-radius: 3px; }
+    .method-track {
+      display: flex;
+      width: max-content;
     }
     .mc-card {
-      position: absolute;
-      width: 380px;
-      max-width: calc(100vw - 64px);
-      left: 50%;
-      top: 50%;
+      flex: 0 0 320px;
       background: var(--sand);
-      border-radius: var(--radius-lg);
-      padding: 36px 32px 32px;
-      border: 2px solid transparent;
-      will-change: transform, opacity;
-      transform-style: preserve-3d;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
+      padding: 36px 28px 32px;
+      border-right: 2px solid var(--white);
+      scroll-snap-align: start;
     }
+    .mc-card:first-child { border-radius: var(--radius-lg) 0 0 var(--radius-lg); }
+    .mc-card:last-child { border-radius: 0 var(--radius-lg) var(--radius-lg) 0; border-right: none; }
     .mc-card-header {
       display: flex;
       align-items: flex-start;
@@ -872,7 +837,7 @@
     .mc-progress {
       position: relative;
       max-width: 480px;
-      margin: 0 auto;
+      margin: 24px auto 0;
     }
     .mc-progress-track {
       height: 2px;
@@ -903,40 +868,11 @@
     }
     .mc-progress-step.mc-step-active { color: var(--coral); }
     .mc-progress-step.mc-step-past { color: var(--green); }
-    .method-section.mc-reduced { padding-block: 80px; }
-    .method-section.mc-reduced .method-scroll-spacer { height: auto; }
-    .method-section.mc-reduced .method-sticky {
-      position: relative;
-      height: auto;
-      min-height: auto;
-    }
-    .method-section.mc-reduced .method-track {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      height: auto;
-      perspective: none;
-    }
-    .method-section.mc-reduced .mc-card {
-      position: relative;
-      left: auto;
-      top: auto;
-      width: auto;
-      max-width: none;
-      opacity: 1 !important;
-      transform: none !important;
-      border-color: transparent;
-    }
-    .method-section.mc-reduced .mc-progress { display: none; }
-    @media (min-width: 640px) {
-      .method-section.mc-reduced .method-track {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    @media (max-width: 639px) {
+      .mc-card { flex: 0 0 280px; padding: 28px 22px 24px; }
     }
     @media (min-width: 960px) {
-      .method-section.mc-reduced .method-track {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .mc-card { flex: 0 0 calc((min(1180px, 100vw - 32px)) / 3); }
     }
     @media (max-width: 639px) {
       .method-scroll-spacer { height: 350vh; }
@@ -1070,14 +1006,21 @@
       margin-left: auto;
       align-self: center;
       color: var(--coral);
-      opacity: 0;
-      transform: translateX(-8px);
+      opacity: 0.5;
       transition: opacity 0.3s, transform 0.3s;
       flex-shrink: 0;
     }
     .service-card:hover .service-arrow {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateX(4px);
+    }
+    .service-card .service-cta {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--coral);
+      letter-spacing: 0.01em;
     }
     .service-icon {
       width: 44px;
@@ -1288,7 +1231,7 @@
     <div class="container hero-content">
       <div class="hero-badge">1er mois offert</div>
       <h1>Votre logement mérite mieux qu'une simple location.</h1>
-      <p class="hero-subtitle">Conciergerie Airbnb clé en main sur toute la Côte d'Azur. Haveo prend en charge votre location de A à Z pour optimiser vos revenus et vous permettre de louer en toute sérénité.</p>
+      <p class="hero-subtitle">Conciergerie Airbnb en Île-de-France et sur la Côte d'Azur. Haveo prend en charge votre location saisonnière pour optimiser vos revenus et vous permettre de louer en toute sérénité.</p>
       <p class="hero-tagline">Simple. Rentable. Sans engagement. L'esprit tranquille.</p>
       <div class="hero-buttons">
         <a href="#audit" class="btn btn-coral">Demander un audit gratuit</a>
@@ -1302,7 +1245,7 @@
        ============================================ -->
   <section class="marquee-section" id="villes">
     <div class="container">
-      <p class="marquee-title reveal">Haveo intervient sur toute la Côte d'Azur :</p>
+      <p class="marquee-title reveal">Haveo intervient en Île-de-France et sur la Côte d'Azur :</p>
     </div>
     <div class="container">
       <div class="marquee">
@@ -1327,7 +1270,7 @@
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
           </div>
           <h3>Plus de revenus</h3>
-          <p>Grâce à une stratégie tarifaire adaptée, à l'optimisation de votre annonce et au suivi des performances, nous cherchons à maximiser le potentiel de revenus de votre logement.</p>
+          <p>Grâce à une stratégie tarifaire adaptée, à l'optimisation de votre annonce et au suivi régulier des performances, nous cherchons à maximiser le potentiel de revenus de votre logement tout au long de l'année.</p>
         </div>
 
         <div class="why-card reveal reveal-delay-1">
@@ -1335,15 +1278,15 @@
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
           </div>
           <h3>Zéro contrainte</h3>
-          <p>De la création de votre annonce à la gestion des réservations, des arrivées et des départs, nous prenons en charge votre location pour vous simplifier la vie.</p>
+          <p>De la création de votre annonce aux réservations, en passant par l'accueil des voyageurs et la coordination des départs, nous prenons en charge chaque étape de votre location pour vous simplifier la vie.</p>
         </div>
 
         <div class="why-card reveal reveal-delay-2">
           <div class="why-card-icon">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0v-4a1 1 0 011-1h2a1 1 0 011 1v4"/></svg>
           </div>
-          <h3>Logement entretenu</h3>
-          <p>Ménage professionnel, linge de qualité hôtelière et suivi des petites interventions : nous veillons à préserver la qualité et la propreté de votre logement.</p>
+          <h3>Logement entretenu et protégé</h3>
+          <p>Ménage professionnel, linge de qualité hôtelière, suivi des petites interventions et sélection attentive des voyageurs : nous veillons à préserver la qualité de votre logement et à garantir des séjours respectueux.</p>
         </div>
 
         <div class="why-card reveal reveal-delay-3">
@@ -1351,20 +1294,7 @@
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           </div>
           <h3>Transparence totale</h3>
-          <p>Bénéficiez d'un suivi clair de votre activité locative, d'informations régulières et d'un interlocuteur dédié pour accompagner votre logement en toute confiance.</p>
-        </div>
-
-        <div class="why-card why-card--featured reveal reveal-delay-4">
-          <div class="why-card-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M17 11l2 2 4-4"/></svg>
-          </div>
-          <h3>Sélection des voyageurs</h3>
-          <p>Nous accordons une attention particulière aux profils des voyageurs et à vos préférences d'accueil afin de favoriser des séjours respectueux de votre logement et de vos règles.</p>
-          <ul class="why-checks">
-            <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0F4C4C"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Analyse du profil des voyageurs</li>
-            <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0F4C4C"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Prise en compte de vos préférences d'accueil</li>
-            <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0F4C4C"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Communication des consignes et du règlement intérieur</li>
-          </ul>
+          <p>Bénéficiez d'un suivi clair et détaillé de votre activité locative, d'informations régulières sur chaque réservation et d'un interlocuteur dédié pour accompagner votre logement en toute confiance.</p>
         </div>
       </div>
     </div>
@@ -1599,125 +1529,125 @@
        NOTRE MÉTHODE
        ============================================ -->
   <section class="method-section" id="methode">
-    <div class="method-scroll-spacer">
-    <div class="method-sticky">
     <div class="container">
       <span class="section-label reveal">Notre méthode</span>
       <h2 class="reveal">Un accompagnement en 6 étapes</h2>
+    </div>
 
+    <div class="method-track-wrapper" id="methodTrack">
       <div class="method-track">
 
-          <div class="mc-card" data-index="0" role="group" aria-roledescription="diapositive" aria-label="Étape 1 sur 6">
-            <div class="mc-card-header">
-              <span class="mc-step">01</span>
-              <div class="mc-icon">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-              </div>
+        <div class="mc-card" role="group" aria-label="Étape 1 sur 6">
+          <div class="mc-card-header">
+            <span class="mc-step">01</span>
+            <div class="mc-icon">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
             </div>
-            <h3 class="mc-title">Audit gratuit</h3>
-            <p class="mc-desc">Nous analysons votre logement, son potentiel locatif et son emplacement pour identifier les meilleures opportunités de rentabilité.</p>
-            <ul class="mc-points">
-              <li>Analyse du logement et de son environnement</li>
-              <li>Évaluation du potentiel locatif</li>
-              <li>Premières recommandations personnalisées</li>
-            </ul>
           </div>
-
-          <div class="mc-card" data-index="1" role="group" aria-roledescription="diapositive" aria-label="Étape 2 sur 6">
-            <div class="mc-card-header">
-              <span class="mc-step">02</span>
-              <div class="mc-icon">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 01-2 2H7a2 2 0 01-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 010-5C9 3 12 8 12 8s3-5 4.5-5a2.5 2.5 0 010 5"/></svg>
-              </div>
-            </div>
-            <h3 class="mc-title">Offre personnalisée</h3>
-            <p class="mc-desc">Nous construisons une stratégie sur mesure adaptée à votre bien, à vos objectifs et à vos attentes.</p>
-            <ul class="mc-points">
-              <li>Proposition d'accompagnement adaptée</li>
-              <li>Définition des services nécessaires</li>
-              <li>Stratégie de mise en location</li>
-            </ul>
-          </div>
-
-          <div class="mc-card" data-index="2" role="group" aria-roledescription="diapositive" aria-label="Étape 3 sur 6">
-            <div class="mc-card-header">
-              <span class="mc-step">03</span>
-              <div class="mc-icon">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
-              </div>
-            </div>
-            <h3 class="mc-title">Photos professionnelles</h3>
-            <p class="mc-desc">Nous valorisons votre logement grâce à des visuels professionnels conçus pour attirer l'attention des voyageurs.</p>
-            <ul class="mc-points">
-              <li>Mise en valeur des espaces</li>
-              <li>Photographies de qualité professionnelle</li>
-              <li>Présentation attractive du logement</li>
-            </ul>
-          </div>
-
-          <div class="mc-card" data-index="3" role="group" aria-roledescription="diapositive" aria-label="Étape 4 sur 6">
-            <div class="mc-card-header">
-              <span class="mc-step">04</span>
-              <div class="mc-icon">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
-              </div>
-            </div>
-            <h3 class="mc-title">Annonce optimisée</h3>
-            <p class="mc-desc">Nous créons une annonce claire et attractive pour améliorer la visibilité de votre logement et donner envie de réserver.</p>
-            <ul class="mc-points">
-              <li>Rédaction persuasive</li>
-              <li>Sélection des meilleures photos</li>
-              <li>Optimisation de la présentation du bien</li>
-            </ul>
-          </div>
-
-          <div class="mc-card" data-index="4" role="group" aria-roledescription="diapositive" aria-label="Étape 5 sur 6">
-            <div class="mc-card-header">
-              <span class="mc-step">05</span>
-              <div class="mc-icon">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-              </div>
-            </div>
-            <h3 class="mc-title">Tarification dynamique</h3>
-            <p class="mc-desc">Nous adaptons les prix en fonction de la demande, de la saisonnalité et des événements locaux afin d'optimiser les revenus locatifs.</p>
-            <ul class="mc-points">
-              <li>Ajustement des tarifs</li>
-              <li>Prise en compte de la saisonnalité</li>
-              <li>Recherche du meilleur équilibre entre prix et occupation</li>
-            </ul>
-          </div>
-
-          <div class="mc-card" data-index="5" role="group" aria-roledescription="diapositive" aria-label="Étape 6 sur 6">
-            <div class="mc-card-header">
-              <span class="mc-step">06</span>
-              <div class="mc-icon">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-              </div>
-            </div>
-            <h3 class="mc-title">Accompagnement opérationnel</h3>
-            <p class="mc-desc">Nous assurons le suivi opérationnel de votre location pour offrir une expérience fluide aux voyageurs et simplifier votre quotidien.</p>
-            <ul class="mc-points">
-              <li>Coordination des arrivées et des départs</li>
-              <li>Organisation du ménage et du linge</li>
-              <li>Suivi du logement et assistance opérationnelle</li>
-            </ul>
-          </div>
-
+          <h3 class="mc-title">Audit gratuit</h3>
+          <p class="mc-desc">Nous analysons votre logement, son potentiel locatif et son emplacement pour identifier les meilleures opportunités de rentabilité.</p>
+          <ul class="mc-points">
+            <li>Analyse du logement et de son environnement</li>
+            <li>Évaluation du potentiel locatif</li>
+            <li>Premières recommandations personnalisées</li>
+          </ul>
         </div>
 
-        <div class="mc-progress">
-          <div class="mc-progress-track"><div class="mc-progress-fill"></div></div>
-          <div class="mc-progress-steps">
-            <span class="mc-progress-step">01</span>
-            <span class="mc-progress-step">02</span>
-            <span class="mc-progress-step">03</span>
-            <span class="mc-progress-step">04</span>
-            <span class="mc-progress-step">05</span>
-            <span class="mc-progress-step">06</span>
+        <div class="mc-card" role="group" aria-label="Étape 2 sur 6">
+          <div class="mc-card-header">
+            <span class="mc-step">02</span>
+            <div class="mc-icon">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 01-2 2H7a2 2 0 01-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 010-5C9 3 12 8 12 8s3-5 4.5-5a2.5 2.5 0 010 5"/></svg>
+            </div>
           </div>
+          <h3 class="mc-title">Offre personnalisée</h3>
+          <p class="mc-desc">Nous construisons une stratégie sur mesure adaptée à votre bien, à vos objectifs et à vos attentes.</p>
+          <ul class="mc-points">
+            <li>Proposition d'accompagnement adaptée</li>
+            <li>Définition des services nécessaires</li>
+            <li>Stratégie de mise en location</li>
+          </ul>
         </div>
+
+        <div class="mc-card" role="group" aria-label="Étape 3 sur 6">
+          <div class="mc-card-header">
+            <span class="mc-step">03</span>
+            <div class="mc-icon">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </div>
+          </div>
+          <h3 class="mc-title">Photos professionnelles</h3>
+          <p class="mc-desc">Nous valorisons votre logement grâce à des visuels professionnels conçus pour attirer l'attention des voyageurs.</p>
+          <ul class="mc-points">
+            <li>Mise en valeur des espaces</li>
+            <li>Photographies de qualité professionnelle</li>
+            <li>Présentation attractive du logement</li>
+          </ul>
+        </div>
+
+        <div class="mc-card" role="group" aria-label="Étape 4 sur 6">
+          <div class="mc-card-header">
+            <span class="mc-step">04</span>
+            <div class="mc-icon">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
+            </div>
+          </div>
+          <h3 class="mc-title">Annonce optimisée</h3>
+          <p class="mc-desc">Nous créons une annonce claire et attractive pour améliorer la visibilité de votre logement et donner envie de réserver.</p>
+          <ul class="mc-points">
+            <li>Rédaction persuasive</li>
+            <li>Sélection des meilleures photos</li>
+            <li>Optimisation de la présentation du bien</li>
+          </ul>
+        </div>
+
+        <div class="mc-card" role="group" aria-label="Étape 5 sur 6">
+          <div class="mc-card-header">
+            <span class="mc-step">05</span>
+            <div class="mc-icon">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+            </div>
+          </div>
+          <h3 class="mc-title">Tarification dynamique</h3>
+          <p class="mc-desc">Nous adaptons les prix en fonction de la demande, de la saisonnalité et des événements locaux afin d'optimiser les revenus locatifs.</p>
+          <ul class="mc-points">
+            <li>Ajustement des tarifs</li>
+            <li>Prise en compte de la saisonnalité</li>
+            <li>Recherche du meilleur équilibre entre prix et occupation</li>
+          </ul>
+        </div>
+
+        <div class="mc-card" role="group" aria-label="Étape 6 sur 6">
+          <div class="mc-card-header">
+            <span class="mc-step">06</span>
+            <div class="mc-icon">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+          </div>
+          <h3 class="mc-title">Accompagnement opérationnel</h3>
+          <p class="mc-desc">Nous assurons le suivi opérationnel de votre location pour offrir une expérience fluide aux voyageurs et simplifier votre quotidien.</p>
+          <ul class="mc-points">
+            <li>Coordination des arrivées et des départs</li>
+            <li>Organisation du ménage et du linge</li>
+            <li>Suivi du logement et assistance opérationnelle</li>
+          </ul>
+        </div>
+
+      </div>
     </div>
-    </div>
+
+    <div class="container">
+      <div class="mc-progress">
+        <div class="mc-progress-track"><div class="mc-progress-fill"></div></div>
+        <div class="mc-progress-steps">
+          <span class="mc-progress-step">01</span>
+          <span class="mc-progress-step">02</span>
+          <span class="mc-progress-step">03</span>
+          <span class="mc-progress-step">04</span>
+          <span class="mc-progress-step">05</span>
+          <span class="mc-progress-step">06</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1833,7 +1763,7 @@
       <div class="footer-grid">
         <div>
           <div class="footer-logo">haveo<span>.</span></div>
-          <p class="footer-desc">Conciergerie Airbnb sur toute la Côte d'Azur. Nous nous occupons de tout pour que votre logement génère des revenus en toute sérénité.</p>
+          <p class="footer-desc">Conciergerie Airbnb en Île-de-France et sur la Côte d'Azur. Nous nous occupons de tout pour que votre logement génère des revenus en toute sérénité.</p>
           <div class="footer-contact-info">
             <a href="mailto:haveo.conciergerie@gmail.com">haveo.conciergerie@gmail.com</a>
             <a href="tel:+33763888136">07 63 88 81 36</a>
@@ -2096,6 +2026,7 @@
           <div>
             <h3>${s.title}</h3>
             <p>${s.desc}</p>
+            <span class="service-cta">En savoir plus →</span>
           </div>
           <span class="service-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         `;
@@ -2104,100 +2035,37 @@
     }
 
     function initMethodCards() {
-      var section = document.querySelector('.method-section');
-      if (!section) return;
-      var spacer = section.querySelector('.method-scroll-spacer');
-      var track = section.querySelector('.method-track');
-      if (!spacer || !track) return;
-      var cards = Array.from(track.querySelectorAll('.mc-card'));
+      var wrapper = document.getElementById('methodTrack');
+      if (!wrapper) return;
+      var section = wrapper.closest('.method-section');
       var progressFill = section.querySelector('.mc-progress-fill');
       var stepLabels = Array.from(section.querySelectorAll('.mc-progress-step'));
-      var total = cards.length;
-      if (total === 0) return;
 
-      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReduced) {
-        section.classList.add('mc-reduced');
-        return;
-      }
-
-      var currentProgress = 0;
-      var targetProgress = 0;
-      var rafId = null;
-      var isMobile = window.innerWidth < 640;
-
-      function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
-
-      function computeTransforms(progress) {
-        var ci = progress * (total - 1);
-        var spacing = isMobile ? 260 : 400;
-
-        cards.forEach(function(card, i) {
-          var offset = i - ci;
-          var absOff = Math.abs(offset);
-
-          var tx = offset * spacing;
-          var ry = clamp(offset * (isMobile ? -6 : -12), -35, 35);
-          var sc = clamp(1 - absOff * 0.1, 0.6, 1);
-          var tz = -absOff * (isMobile ? 30 : 60);
-          var op = clamp(1 - absOff * 0.32, 0.05, 1);
-          var z = Math.max(0, Math.round(10 - absOff * 2));
-
-          var borderOp = clamp(1 - absOff * 2.5, 0, 0.25);
-          var shStr = clamp(1 - absOff * 2, 0, 1);
-          var stepOp = clamp(0.15 + (1 - absOff) * 0.25, 0.15, 0.4);
-
-          card.style.transform = 'translate(-50%,-50%) translateX(' + tx + 'px) translateZ(' + tz + 'px) rotateY(' + ry + 'deg) scale(' + sc + ')';
-          card.style.opacity = op;
-          card.style.zIndex = z;
-          card.style.borderColor = 'rgba(242,107,91,' + borderOp.toFixed(3) + ')';
-          card.style.boxShadow = shStr > 0.01
-            ? '0 ' + (20 * shStr | 0) + 'px ' + (60 * shStr | 0) + 'px rgba(15,76,76,' + (0.12 * shStr).toFixed(3) + ')'
-            : 'none';
-
-          var stepEl = card.querySelector('.mc-step');
-          if (stepEl) stepEl.style.opacity = stepOp;
-        });
-
-        if (progressFill) progressFill.style.width = (progress * 100).toFixed(2) + '%';
-
-        var activeStep = Math.round(ci);
+      function updateProgress() {
+        var maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+        if (maxScroll <= 0) return;
+        var ratio = wrapper.scrollLeft / maxScroll;
+        if (progressFill) progressFill.style.width = (ratio * 100).toFixed(1) + '%';
+        var activeIdx = Math.round(ratio * 5);
         stepLabels.forEach(function(label, i) {
-          label.classList.toggle('mc-step-active', i === activeStep);
-          label.classList.toggle('mc-step-past', i < activeStep);
+          label.classList.toggle('mc-step-active', i === activeIdx);
+          label.classList.toggle('mc-step-past', i < activeIdx);
         });
       }
 
-      function tick() {
-        var diff = targetProgress - currentProgress;
-        if (Math.abs(diff) < 0.0003) {
-          currentProgress = targetProgress;
-          computeTransforms(currentProgress);
-          rafId = null;
-          return;
-        }
-        currentProgress += diff * 0.92;
-        computeTransforms(currentProgress);
-        rafId = requestAnimationFrame(tick);
-      }
+      wrapper.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
 
-      function onScroll() {
-        var rect = spacer.getBoundingClientRect();
-        var viewH = window.innerHeight;
-        var scrolled = -rect.top;
-        var range = spacer.offsetHeight - viewH;
-        targetProgress = clamp(scrolled / range, 0, 1);
-        if (!rafId) rafId = requestAnimationFrame(tick);
-      }
-
-      function onResize() {
-        isMobile = window.innerWidth < 640;
-        computeTransforms(currentProgress);
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onResize, { passive: true });
-      onScroll();
+      var isDown = false, startX, scrollLeft;
+      wrapper.addEventListener('mousedown', function(e) {
+        isDown = true; startX = e.pageX - wrapper.offsetLeft; scrollLeft = wrapper.scrollLeft;
+      });
+      wrapper.addEventListener('mouseleave', function() { isDown = false; });
+      wrapper.addEventListener('mouseup', function() { isDown = false; });
+      wrapper.addEventListener('mousemove', function(e) {
+        if (!isDown) return; e.preventDefault();
+        wrapper.scrollLeft = scrollLeft - (e.pageX - wrapper.offsetLeft - startX) * 1.5;
+      });
     }
 
     /* ---- Footer villes (sélection représentative) ---- */
