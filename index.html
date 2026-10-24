@@ -337,22 +337,36 @@
       font-size: 0.75rem;
     }
     .hero h1 {
-      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
       color: var(--white);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       text-wrap: balance;
+      letter-spacing: -0.02em;
+    }
+    .hero-gold {
+      color: var(--gold);
     }
     .hero-subtitle {
-      font-size: clamp(1.15rem, 2.5vw, 1.5rem);
-      color: rgba(255, 255, 255, 0.9);
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      color: rgba(255, 255, 255, 0.92);
       font-weight: 600;
       margin-bottom: 8px;
     }
+    .hero-subtitle-soft {
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 400;
+      margin-bottom: 12px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
     .hero-tagline {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: rgba(255, 255, 255, 0.7);
-      font-weight: 500;
-      margin-bottom: 16px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: 0.04em;
     }
     .hero-proof {
       display: inline-flex;
@@ -494,8 +508,34 @@
     }
     @media (min-width: 960px) {
       .why-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(6, 1fr);
       }
+      .why-grid > * { grid-column: span 2; }
+      .why-grid > :nth-child(4) { grid-column: 2 / span 2; }
+      .why-grid > :nth-child(5) { grid-column: 4 / span 2; }
+    }
+    .why-card--featured {
+      border-top: 3px solid var(--coral);
+    }
+    .why-checks {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .why-checks li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .why-checks svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
     }
 
     /* ============================================
@@ -740,39 +780,42 @@
     }
 
     /* ============================================
-       NOTRE MÉTHODE — Bande horizontale défilante
+       NOTRE MÉTHODE — Scroll-driven horizontal strip
        ============================================ */
     .method-section {
-      padding-block: 80px;
+      padding: 0;
       background: var(--white);
       position: relative;
+    }
+    .method-scroll-spacer {
+      height: 400vh;
+      position: relative;
+    }
+    .method-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      min-height: 620px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       overflow: hidden;
     }
     .method-track-wrapper {
-      overflow-x: auto;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
+      overflow: hidden;
       margin-top: 40px;
       padding-bottom: 16px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--sand-dark) transparent;
-      scroll-snap-type: x mandatory;
-      cursor: grab;
     }
-    .method-track-wrapper:active { cursor: grabbing; }
-    .method-track-wrapper::-webkit-scrollbar { height: 6px; }
-    .method-track-wrapper::-webkit-scrollbar-track { background: transparent; }
-    .method-track-wrapper::-webkit-scrollbar-thumb { background: var(--sand-dark); border-radius: 3px; }
     .method-track {
       display: flex;
       width: max-content;
+      will-change: transform;
     }
     .mc-card {
-      flex: 0 0 320px;
+      flex: 0 0 340px;
       background: var(--sand);
       padding: 36px 28px 32px;
       border-right: 2px solid var(--white);
-      scroll-snap-align: start;
     }
     .mc-card:first-child { border-radius: var(--radius-lg) 0 0 var(--radius-lg); }
     .mc-card:last-child { border-radius: 0 var(--radius-lg) var(--radius-lg) 0; border-right: none; }
@@ -870,19 +913,24 @@
     .mc-progress-step.mc-step-past { color: var(--green); }
     @media (max-width: 639px) {
       .mc-card { flex: 0 0 280px; padding: 28px 22px 24px; }
-    }
-    @media (min-width: 960px) {
-      .mc-card { flex: 0 0 calc((min(1180px, 100vw - 32px)) / 3); }
-    }
-    @media (max-width: 639px) {
       .method-scroll-spacer { height: 350vh; }
       .method-sticky { min-height: 520px; }
-      .method-track { height: 380px; margin-top: 28px; }
-      .mc-card { padding: 28px 24px 24px; }
       .mc-step { font-size: 2.2rem; }
       .mc-title { font-size: 1.1rem; }
       .mc-progress { max-width: 300px; }
     }
+    @media (min-width: 960px) {
+      .mc-card { flex: 0 0 360px; }
+    }
+    .method-section.mc-reduced { padding-block: 80px; }
+    .method-section.mc-reduced .method-scroll-spacer { height: auto; }
+    .method-section.mc-reduced .method-sticky {
+      position: relative;
+      height: auto;
+      min-height: auto;
+    }
+    .method-section.mc-reduced .method-track-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--sand-dark) transparent; }
+    .method-section.mc-reduced .method-track { will-change: auto; }
 
     /* ============================================
        TARIFS
@@ -1230,9 +1278,10 @@
   <section class="hero">
     <div class="container hero-content">
       <div class="hero-badge">1er mois offert</div>
-      <h1>Votre logement mérite mieux qu'une simple location.</h1>
-      <p class="hero-subtitle">Conciergerie Airbnb en Île-de-France et sur la Côte d'Azur. Haveo prend en charge votre location saisonnière pour optimiser vos revenus et vous permettre de louer en toute sérénité.</p>
-      <p class="hero-tagline">Simple. Rentable. Sans engagement. L'esprit tranquille.</p>
+      <h1>Votre logement. <span class="hero-gold">Nos soins.</span> Votre tranquillité.</h1>
+      <p class="hero-subtitle">Conciergerie Airbnb clé en main en Île-de-France et sur toute la Côte d'Azur.</p>
+      <p class="hero-subtitle-soft">Nous prenons soin de votre logement et optimisons son potentiel locatif, en toute sérénité.</p>
+      <p class="hero-tagline">Simple. Rentable. Sans engagement.</p>
       <div class="hero-buttons">
         <a href="#audit" class="btn btn-coral">Demander un audit gratuit</a>
         <a href="#simulateur" class="btn btn-outline-white">Estimer mes revenus</a>
@@ -1285,8 +1334,8 @@
           <div class="why-card-icon">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0v-4a1 1 0 011-1h2a1 1 0 011 1v4"/></svg>
           </div>
-          <h3>Logement entretenu et protégé</h3>
-          <p>Ménage professionnel, linge de qualité hôtelière, suivi des petites interventions et sélection attentive des voyageurs : nous veillons à préserver la qualité de votre logement et à garantir des séjours respectueux.</p>
+          <h3>Logement entretenu</h3>
+          <p>Ménage professionnel, linge de qualité hôtelière et suivi des petites interventions : nous veillons à préserver la qualité et la propreté de votre logement.</p>
         </div>
 
         <div class="why-card reveal reveal-delay-3">
@@ -1294,7 +1343,20 @@
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           </div>
           <h3>Transparence totale</h3>
-          <p>Bénéficiez d'un suivi clair et détaillé de votre activité locative, d'informations régulières sur chaque réservation et d'un interlocuteur dédié pour accompagner votre logement en toute confiance.</p>
+          <p>Bénéficiez d'un suivi clair de votre activité locative, d'informations régulières et d'un interlocuteur dédié pour accompagner votre logement en toute confiance.</p>
+        </div>
+
+        <div class="why-card why-card--featured reveal reveal-delay-4">
+          <div class="why-card-icon">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M17 11l2 2 4-4"/></svg>
+          </div>
+          <h3>Sélection des voyageurs</h3>
+          <p>Nous accordons une attention particulière aux profils des voyageurs afin de favoriser des séjours respectueux de votre logement.</p>
+          <ul class="why-checks">
+            <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0F4C4C"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Analyse du profil des voyageurs</li>
+            <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0F4C4C"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Prise en compte de vos préférences d'accueil</li>
+            <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0F4C4C"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Communication des consignes et du règlement</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1529,6 +1591,8 @@
        NOTRE MÉTHODE
        ============================================ -->
   <section class="method-section" id="methode">
+    <div class="method-scroll-spacer">
+    <div class="method-sticky">
     <div class="container">
       <span class="section-label reveal">Notre méthode</span>
       <h2 class="reveal">Un accompagnement en 6 étapes</h2>
@@ -1648,6 +1712,8 @@
           <span class="mc-progress-step">06</span>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   </section>
 
@@ -2035,37 +2101,66 @@
     }
 
     function initMethodCards() {
+      var section = document.querySelector('.method-section');
+      if (!section) return;
+      var spacer = section.querySelector('.method-scroll-spacer');
       var wrapper = document.getElementById('methodTrack');
-      if (!wrapper) return;
-      var section = wrapper.closest('.method-section');
+      var track = wrapper ? wrapper.querySelector('.method-track') : null;
+      if (!spacer || !wrapper || !track) return;
       var progressFill = section.querySelector('.mc-progress-fill');
       var stepLabels = Array.from(section.querySelectorAll('.mc-progress-step'));
 
-      function updateProgress() {
-        var maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
-        if (maxScroll <= 0) return;
-        var ratio = wrapper.scrollLeft / maxScroll;
-        if (progressFill) progressFill.style.width = (ratio * 100).toFixed(1) + '%';
-        var activeIdx = Math.round(ratio * 5);
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        section.classList.add('mc-reduced');
+        return;
+      }
+
+      var currentProgress = 0;
+      var targetProgress = 0;
+      var rafId = null;
+
+      function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+
+      function applyTransform(progress) {
+        var maxShift = track.scrollWidth - wrapper.clientWidth;
+        if (maxShift <= 0) maxShift = 0;
+        var tx = -progress * maxShift;
+        track.style.transform = 'translateX(' + tx.toFixed(1) + 'px)';
+
+        if (progressFill) progressFill.style.width = (progress * 100).toFixed(1) + '%';
+        var activeIdx = Math.round(progress * 5);
         stepLabels.forEach(function(label, i) {
           label.classList.toggle('mc-step-active', i === activeIdx);
           label.classList.toggle('mc-step-past', i < activeIdx);
         });
       }
 
-      wrapper.addEventListener('scroll', updateProgress, { passive: true });
-      updateProgress();
+      function tick() {
+        var diff = targetProgress - currentProgress;
+        if (Math.abs(diff) < 0.0003) {
+          currentProgress = targetProgress;
+          applyTransform(currentProgress);
+          rafId = null;
+          return;
+        }
+        currentProgress += diff * 0.12;
+        applyTransform(currentProgress);
+        rafId = requestAnimationFrame(tick);
+      }
 
-      var isDown = false, startX, scrollLeft;
-      wrapper.addEventListener('mousedown', function(e) {
-        isDown = true; startX = e.pageX - wrapper.offsetLeft; scrollLeft = wrapper.scrollLeft;
-      });
-      wrapper.addEventListener('mouseleave', function() { isDown = false; });
-      wrapper.addEventListener('mouseup', function() { isDown = false; });
-      wrapper.addEventListener('mousemove', function(e) {
-        if (!isDown) return; e.preventDefault();
-        wrapper.scrollLeft = scrollLeft - (e.pageX - wrapper.offsetLeft - startX) * 1.5;
-      });
+      function onScroll() {
+        var rect = spacer.getBoundingClientRect();
+        var viewH = window.innerHeight;
+        var scrolled = -rect.top;
+        var range = spacer.offsetHeight - viewH;
+        targetProgress = clamp(scrolled / range, 0, 1);
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function() { applyTransform(currentProgress); }, { passive: true });
+      onScroll();
     }
 
     /* ---- Footer villes (sélection représentative) ---- */
