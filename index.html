@@ -293,7 +293,7 @@
        HERO
        ============================================ */
     :root {
-      --hero-overlay: 0.65;
+      --hero-overlay: 0.40;
     }
     .hero {
       min-height: 100vh;
@@ -317,13 +317,17 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
+    }
+    @media (max-width: 768px) {
+      .hero-bg img {
+        object-position: 60% center;
+      }
       display: block;
     }
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: var(--green);
-      opacity: var(--hero-overlay);
+      background: linear-gradient(to right, rgba(15, 76, 76, 0.7) 0%, rgba(15, 76, 76, var(--hero-overlay)) 50%, rgba(15, 76, 76, 0.15) 100%);
       z-index: 1;
     }
     .hero-content {
