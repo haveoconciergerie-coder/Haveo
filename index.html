@@ -1145,6 +1145,107 @@
     }
 
     /* ============================================
+       FAQ
+       ============================================ */
+    .faq-section {
+      padding-block: 80px;
+      background: var(--white);
+    }
+    .faq-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .faq-header .section-intro {
+      margin-inline: auto;
+    }
+    .faq-list {
+      max-width: 780px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .faq-item {
+      background: var(--sand);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+    }
+    .faq-item:hover {
+      box-shadow: 0 4px 20px rgba(15, 76, 76, 0.06);
+    }
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      width: 100%;
+      padding: 22px 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      text-align: left;
+      line-height: 1.4;
+      transition: color 0.2s ease;
+    }
+    .faq-question:hover {
+      color: var(--green-light);
+    }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
+    }
+    .faq-icon svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--white);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: var(--coral);
+    }
+    .faq-answer {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .faq-item.open .faq-answer {
+      grid-template-rows: 1fr;
+    }
+    .faq-answer-inner {
+      overflow: hidden;
+    }
+    .faq-answer-text {
+      padding: 0 28px 24px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    @media (max-width: 640px) {
+      .faq-question {
+        padding: 18px 20px;
+        font-size: 0.98rem;
+      }
+      .faq-answer-text {
+        padding: 0 20px 20px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* ============================================
        FOOTER
        ============================================ */
     .footer {
@@ -1827,6 +1928,119 @@
   </section>
 
   <!-- ============================================
+       FAQ
+       ============================================ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="faq-header">
+        <span class="section-label reveal">Questions fréquentes</span>
+        <h2 class="reveal">Tout ce que vous devez savoir</h2>
+        <p class="section-intro reveal">Vous hésitez encore ? Voici les réponses aux questions que nos futurs propriétaires nous posent le plus souvent.</p>
+      </div>
+
+      <div class="faq-list" id="faqList">
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span>Puis-je continuer à utiliser mon logement quand je le souhaite ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p class="faq-answer-text">Bien sûr. Vous restez maître de votre calendrier. Il vous suffit de bloquer les dates de votre choix et nous nous adaptons. Votre logement, vos règles.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span>Comment êtes-vous sûrs de maximiser mes revenus ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p class="faq-answer-text">Nos algorithmes ajustent les tarifs chaque nuit en fonction de la demande, de la saisonnalité et des événements locaux. Combiné à des annonces optimisées et une diffusion multi-plateformes, nous maximisons votre taux de remplissage et vos revenus.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span>Comment puis-je suivre les performances de mon logement ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p class="faq-answer-text">Chaque mois, nous vous envoyons un rapport complet : nuits réservées, taux d'occupation, revenus générés et tous les indicateurs clés pour suivre l'évolution de votre activité en toute transparence.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span>Mon logement est-il vraiment bien entretenu entre chaque séjour ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p class="faq-answer-text">Absolument. Après chaque départ, un ménage de qualité hôtelière est effectué avec un contrôle photo systématique. Linge, produits d'accueil, petites réparations : tout est vérifié avant l'arrivée du prochain voyageur.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span>Que se passe-t-il en cas de dégradation dans mon logement ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p class="faq-answer-text">Nous documentons l'état du logement avant et après chaque séjour grâce à nos contrôles photo. En cas de dommage, nous prenons en charge la déclaration auprès de la plateforme et vous accompagnons dans les démarches d'indemnisation.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span>Puis-je vérifier mon annonce avant sa mise en ligne ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p class="faq-answer-text">Évidemment. Nous rédigeons et optimisons votre annonce, puis nous vous la soumettons pour validation avant toute publication. Rien ne part en ligne sans votre accord.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span>Que se passe-t-il si je ne suis pas satisfait du service ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p class="faq-answer-text">Notre accompagnement est sans engagement. Si vous souhaitez arrêter, il suffit de nous prévenir. Pas de durée minimum, pas de frais de résiliation. Nous misons sur la qualité de notre service pour vous garder.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            <span>Que se passe-t-il en cas d'urgence ou de problème technique ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p class="faq-answer-text">Notre équipe est joignable 7j/7. En cas de problème technique (fuite, panne, serrure bloquée), nous intervenons rapidement ou dépêchons un prestataire de confiance. Vous n'avez pas à vous en soucier.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
        FOOTER
        ============================================ -->
   <footer class="footer" id="contact">
@@ -1859,6 +2073,7 @@
             <li><a href="#tarifs">Tarifs</a></li>
             <li><a href="nos-services.html">Nos services</a></li>
             <li><a href="#audit">Audit gratuit</a></li>
+            <li><a href="#faq">FAQ</a></li>
           </ul>
         </div>
 
@@ -2031,6 +2246,7 @@
       initScrollReveal();
       initOutdoorCheckboxes();
       initHeroParallax();
+      initFaq();
     });
 
     /* ---- Hero Parallax (JS fallback) ---- */
@@ -2059,6 +2275,24 @@
       }
       window.addEventListener('scroll', onScroll, { passive: true });
       update();
+    }
+
+    /* ---- FAQ Accordion ---- */
+    function initFaq() {
+      document.querySelectorAll('.faq-question').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var item = btn.closest('.faq-item');
+          var isOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
+            openItem.classList.remove('open');
+            openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            item.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
     }
 
     /* ---- Navigation ---- */
