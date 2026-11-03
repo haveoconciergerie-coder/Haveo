@@ -518,42 +518,104 @@
       .why-grid { grid-template-columns: repeat(2, 1fr); }
     }
     .why-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      box-shadow: 0 2px 12px rgba(15, 76, 76, 0.05);
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      border: 1px solid rgba(15, 76, 76, 0.04);
+      perspective: 1000px;
+      cursor: pointer;
     }
-    .why-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(15, 76, 76, 0.1);
+    .why-card-inner {
+      position: relative;
+      transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      transform-style: preserve-3d;
+    }
+    .why-card.flipped .why-card-inner {
+      transform: rotateY(180deg);
+    }
+    .why-card-front,
+    .why-card-back {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: var(--radius);
+    }
+    .why-card-front {
+      background: var(--white);
+      padding: 32px 24px;
+      box-shadow: 0 2px 12px rgba(15, 76, 76, 0.05);
+      border: 1px solid rgba(15, 76, 76, 0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-height: 200px;
+      justify-content: center;
+      transition: box-shadow 0.35s ease;
+    }
+    .why-card:hover .why-card-front {
+      box-shadow: 0 12px 36px rgba(15, 76, 76, 0.1);
+    }
+    .why-card-back {
+      position: absolute;
+      inset: 0;
+      transform: rotateY(180deg);
+      background: var(--green);
+      color: var(--white);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(15, 76, 76, 0.18);
+      overflow: hidden;
+    }
+    .why-card-back h3 {
+      color: var(--gold);
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .why-card-back p {
+      color: rgba(255,255,255,0.88);
+      font-size: 0.88rem;
+      line-height: 1.65;
     }
     .why-card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
       background: linear-gradient(135deg, var(--sand) 0%, rgba(15, 76, 76, 0.06) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       color: var(--green);
+    }
+    .why-card-back .why-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.12);
+      color: var(--gold);
+      margin-bottom: 14px;
     }
     .why-card-icon .icon {
       width: 24px;
       height: 24px;
     }
+    .why-card-back .why-card-icon .icon {
+      width: 20px;
+      height: 20px;
+    }
     .why-card h3 {
       font-size: 1.1rem;
       font-weight: 800;
-      margin-bottom: 8px;
+      margin-bottom: 0;
       letter-spacing: -0.01em;
     }
-    .why-card p {
-      font-size: 0.88rem;
+    .flip-hint {
+      display: block;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      line-height: 1.6;
+      margin-top: 12px;
+      opacity: 0.6;
+      letter-spacing: 0.02em;
     }
 
 
@@ -1049,37 +1111,68 @@
       .services-grid { grid-template-columns: repeat(3, 1fr); }
     }
     .service-card {
+      perspective: 1000px;
+      cursor: pointer;
+    }
+    .service-card-inner {
+      position: relative;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      transform-style: preserve-3d;
+    }
+    .service-card.flipped .service-card-inner {
+      transform: rotateY(180deg);
+    }
+    .service-card-front,
+    .service-card-back {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: var(--radius);
+    }
+    .service-card-front {
       background: var(--sand);
       border-radius: var(--radius);
       padding: 28px;
       display: flex;
       gap: 16px;
-      align-items: flex-start;
+      align-items: center;
       box-shadow: 0 2px 8px rgba(15, 76, 76, 0.04);
-      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+      transition: box-shadow 0.35s ease;
+      min-height: 100px;
+    }
+    .service-card:hover .service-card-front {
+      box-shadow: 0 12px 32px rgba(15, 76, 76, 0.1);
+    }
+    .service-card-back {
+      position: absolute;
+      inset: 0;
+      transform: rotateY(180deg);
+      background: var(--green);
+      color: var(--white);
+      padding: 24px;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(15, 76, 76, 0.18);
+    }
+    .service-card-back p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .service-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--gold);
       text-decoration: none;
-      color: inherit;
-      cursor: pointer;
+      transition: gap 0.3s ease;
     }
-    .service-card:hover {
-      transform: translateY(-6px) rotate3d(1, 0, 0, 2deg);
-      box-shadow: 0 16px 40px rgba(15, 76, 76, 0.12);
-    }
-    .service-card:focus-visible {
-      outline: 2px solid var(--coral);
-      outline-offset: 2px;
-    }
-    .service-card .service-arrow {
-      margin-left: auto;
-      align-self: center;
-      color: var(--coral);
-      opacity: 0.5;
-      transition: opacity 0.3s, transform 0.3s;
-      flex-shrink: 0;
-    }
-    .service-card:hover .service-arrow {
-      opacity: 1;
-      transform: translateX(4px);
+    .service-back-link:hover {
+      gap: 10px;
     }
 
     .service-icon {
@@ -1093,15 +1186,9 @@
       justify-content: center;
       color: var(--green);
     }
-    .service-card h3 {
+    .service-card-front h3 {
       font-size: 0.95rem;
       font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .service-card p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.5;
     }
 
     /* ============================================
@@ -1438,35 +1525,79 @@
 
       <div class="why-grid">
         <div class="why-card reveal">
-          <div class="why-card-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 5a7.5 7.5 0 10 0 14"/><line x1="4" y1="10" x2="16" y2="10"/><line x1="4" y1="14" x2="14" y2="14"/></svg>
+          <div class="why-card-inner">
+            <div class="why-card-front">
+              <div class="why-card-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 5a7.5 7.5 0 10 0 14"/><line x1="4" y1="10" x2="16" y2="10"/><line x1="4" y1="14" x2="14" y2="14"/></svg>
+              </div>
+              <h3>Plus de revenus</h3>
+              <span class="flip-hint">Cliquer pour en savoir plus</span>
+            </div>
+            <div class="why-card-back">
+              <div class="why-card-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 5a7.5 7.5 0 10 0 14"/><line x1="4" y1="10" x2="16" y2="10"/><line x1="4" y1="14" x2="14" y2="14"/></svg>
+              </div>
+              <h3>Plus de revenus</h3>
+              <p>Grâce à une stratégie tarifaire adaptée, à l'optimisation de votre annonce, à l'amélioration de votre logement et au suivi régulier des performances, nous cherchons à maximiser le potentiel de revenus de votre bien tout au long de l'année.</p>
+            </div>
           </div>
-          <h3>Plus de revenus</h3>
-          <p>Grâce à une stratégie tarifaire adaptée, à l'optimisation de votre annonce, à l'amélioration de votre logement et au suivi régulier des performances, nous cherchons à maximiser le potentiel de revenus de votre bien tout au long de l'année.</p>
         </div>
 
         <div class="why-card reveal reveal-delay-1">
-          <div class="why-card-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          <div class="why-card-inner">
+            <div class="why-card-front">
+              <div class="why-card-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+              </div>
+              <h3>Zéro contrainte</h3>
+              <span class="flip-hint">Cliquer pour en savoir plus</span>
+            </div>
+            <div class="why-card-back">
+              <div class="why-card-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+              </div>
+              <h3>Zéro contrainte</h3>
+              <p>De la création de votre annonce aux réservations, en passant par l'accueil des voyageurs et la coordination des départs, nous prenons en charge chaque étape de votre location pour vous simplifier la vie.</p>
+            </div>
           </div>
-          <h3>Zéro contrainte</h3>
-          <p>De la création de votre annonce aux réservations, en passant par l'accueil des voyageurs et la coordination des départs, nous prenons en charge chaque étape de votre location pour vous simplifier la vie.</p>
         </div>
 
         <div class="why-card reveal reveal-delay-2">
-          <div class="why-card-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <div class="why-card-inner">
+            <div class="why-card-front">
+              <div class="why-card-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <h3>Logement entretenu</h3>
+              <span class="flip-hint">Cliquer pour en savoir plus</span>
+            </div>
+            <div class="why-card-back">
+              <div class="why-card-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <h3>Logement entretenu</h3>
+              <p>Ménage professionnel, linge de qualité hôtelière et suivi des petites interventions. Nous sélectionnons aussi les voyageurs pour garantir des séjours respectueux de votre bien.</p>
+            </div>
           </div>
-          <h3>Logement entretenu</h3>
-          <p>Ménage professionnel, linge de qualité hôtelière et suivi des petites interventions. Nous sélectionnons aussi les voyageurs pour garantir des séjours respectueux de votre bien.</p>
         </div>
 
         <div class="why-card reveal reveal-delay-3">
-          <div class="why-card-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          <div class="why-card-inner">
+            <div class="why-card-front">
+              <div class="why-card-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+              </div>
+              <h3>Transparence totale</h3>
+              <span class="flip-hint">Cliquer pour en savoir plus</span>
+            </div>
+            <div class="why-card-back">
+              <div class="why-card-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+              </div>
+              <h3>Transparence totale</h3>
+              <p>Bénéficiez d'un suivi clair de votre activité locative, d'une connaissance pointue du marché et d'un interlocuteur 100 % humain, disponible à chaque étape.</p>
+            </div>
           </div>
-          <h3>Transparence totale</h3>
-          <p>Bénéficiez d'un suivi clair de votre activité locative, d'une connaissance pointue du marché et d'un interlocuteur 100 % humain, disponible à chaque étape.</p>
         </div>
 
       </div>
@@ -2252,6 +2383,7 @@
       initOutdoorCheckboxes();
       initHeroParallax();
       initFaq();
+      initFlipCards();
     });
 
     /* ---- Hero Parallax (JS fallback) ---- */
@@ -2296,6 +2428,20 @@
             item.classList.add('open');
             btn.setAttribute('aria-expanded', 'true');
           }
+        });
+      });
+    }
+
+    function initFlipCards() {
+      document.querySelectorAll('.why-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          card.classList.toggle('flipped');
+        });
+      });
+      document.querySelectorAll('.service-card').forEach(function(card) {
+        card.addEventListener('click', function(e) {
+          if (e.target.closest('.service-back-link')) return;
+          card.classList.toggle('flipped');
         });
       });
     }
@@ -2358,16 +2504,19 @@
     function initServices() {
       const grid = document.getElementById('servicesGrid');
       SERVICES.forEach((s, i) => {
-        const card = document.createElement('a');
-        card.href = s.href;
+        const card = document.createElement('div');
         card.className = 'service-card reveal' + (i % 3 === 1 ? ' reveal-delay-1' : i % 3 === 2 ? ' reveal-delay-2' : '');
         card.innerHTML = `
-          <div class="service-icon">${ICONS[s.icon]}</div>
-          <div>
-            <h3>${s.title}</h3>
-            <p>${s.desc}</p>
+          <div class="service-card-inner">
+            <div class="service-card-front">
+              <div class="service-icon">${ICONS[s.icon]}</div>
+              <div><h3>${s.title}</h3></div>
+            </div>
+            <div class="service-card-back">
+              <p>${s.desc}</p>
+              <a href="${s.href}" class="service-back-link">En savoir plus <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
           </div>
-          <span class="service-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         `;
         grid.appendChild(card);
       });
