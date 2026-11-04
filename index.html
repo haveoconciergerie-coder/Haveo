@@ -1105,6 +1105,61 @@
     }
 
     /* ============================================
+       PLATEFORMES (Airbnb & Booking)
+       ============================================ */
+    .platforms-section {
+      padding-block: 80px;
+      background: var(--white);
+    }
+    .platforms-section .section-label { color: var(--coral); }
+    .platforms-section h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      max-width: 700px;
+      text-wrap: balance;
+    }
+    .platforms-section .section-intro {
+      max-width: 560px;
+      margin: 0 auto 48px;
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .platforms-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 64px;
+      flex-wrap: wrap;
+    }
+    .platform-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.85;
+      transition: opacity 0.3s ease;
+    }
+    .platform-logo:hover { opacity: 1; }
+    .platform-logo svg { height: 36px; width: auto; }
+    .platform-logo-text {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      letter-spacing: -0.5px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .platform-logo-text.airbnb { color: #FF5A5F; }
+    .platform-logo-text.airbnb svg { height: 36px; width: 36px; }
+    .platform-logo-text.booking { color: #003580; letter-spacing: -0.5px; }
+    @media (max-width: 600px) {
+      .platforms-logos { gap: 40px; }
+      .platform-logo-text { font-size: 1.6rem; }
+      .platform-logo-text.airbnb svg { height: 28px; width: 28px; }
+    }
+
+    /* ============================================
        AUDIT GRATUIT (formulaire)
        ============================================ */
     .audit-section {
@@ -1873,6 +1928,28 @@
       <div class="services-grid" id="servicesGrid"></div>
       <div style="text-align:center;margin-top:40px;" class="reveal">
         <a href="nos-services.html" class="btn btn-coral">Découvrir tous nos services →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PLATEFORMES (Airbnb & Booking.com)
+       ============================================ -->
+  <section class="platforms-section" id="plateformes">
+    <div class="container" style="text-align:center;">
+      <span class="section-label reveal">Airbnb & Booking.com</span>
+      <h2 class="reveal" style="margin-left:auto;margin-right:auto;">Un seul interlocuteur, toutes les plateformes</h2>
+      <p class="section-intro reveal">Nous pilotons vos annonces sur Airbnb et Booking.com pour maximiser votre visibilité et votre taux d'occupation, avec un seul point de contact.</p>
+      <div class="platforms-logos reveal">
+        <div class="platform-logo">
+          <span class="platform-logo-text airbnb">
+            <svg viewBox="0 0 64 70" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M32 56.47L18.76 42.07C17.08 39.69 16 36.79 16 33.74C16 26.24 22.16 20.08 29.66 20.08C32.58 20.08 35.34 21.04 37.58 22.78L32 28.52L26.42 22.78C24.18 21.04 21.42 20.08 18.5 20.08C11 20.08 4.84 26.24 4.84 33.74C4.84 36.79 5.92 39.69 7.6 42.07L32 68.6L56.4 42.07C58.08 39.69 59.16 36.79 59.16 33.74C59.16 26.24 53 20.08 45.5 20.08C42.58 20.08 39.82 21.04 37.58 22.78L32 28.52L26.42 22.78M32 0C25.28 0 19.38 3.24 15.78 8.28C12.18 3.24 6.28 0 0 0V6.68C6.28 6.68 11.84 10.52 14.42 16.08C11.02 19.72 8.84 24.6 8.84 30.08C8.84 34.6 10.34 38.74 12.86 42.07L32 63.02L51.14 42.07C53.66 38.74 55.16 34.6 55.16 30.08C55.16 24.6 52.98 19.72 49.58 16.08C52.16 10.52 57.72 6.68 64 6.68V0C57.72 0 51.82 3.24 48.22 8.28C44.62 3.24 38.72 0 32 0Z"/></svg>
+            airbnb
+          </span>
+        </div>
+        <div class="platform-logo">
+          <span class="platform-logo-text booking">Booking.com</span>
+        </div>
       </div>
     </div>
   </section>
