@@ -500,35 +500,50 @@
     .marquee-footer a:hover { text-decoration: underline; }
 
     /* ============================================
-       POURQUOI HAVEO
+       POURQUOI HAVEO — Scroll-driven horizontal strip
        ============================================ */
     .why-section {
-      padding-block: 80px;
+      padding: 0;
+      background: var(--sand);
+      position: relative;
     }
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
+    .why-scroll-spacer {
+      height: 300vh;
+      position: relative;
+    }
+    .why-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      min-height: 580px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .why-track-wrapper {
+      overflow: hidden;
       margin-top: 40px;
+      padding-bottom: 16px;
     }
-    @media (min-width: 640px) {
-      .why-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 960px) {
-      .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-track {
+      display: flex;
+      width: max-content;
+      will-change: transform;
     }
     .why-card {
+      flex: 0 0 360px;
       background: var(--white);
       border-radius: var(--radius);
-      padding: 28px 24px;
+      padding: 36px 28px 32px;
+      border-right: 2px solid var(--sand);
       box-shadow: 0 2px 12px rgba(15, 76, 76, 0.05);
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      border: 1px solid rgba(15, 76, 76, 0.04);
+      border-top: 1px solid rgba(15, 76, 76, 0.04);
+      border-bottom: 1px solid rgba(15, 76, 76, 0.04);
+      border-left: 1px solid rgba(15, 76, 76, 0.04);
     }
-    .why-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(15, 76, 76, 0.1);
-    }
+    .why-card:first-child { border-radius: var(--radius-lg) 0 0 var(--radius-lg); }
+    .why-card:last-child { border-radius: 0 var(--radius-lg) var(--radius-lg) 0; border-right: none; }
     .why-card-icon {
       width: 48px;
       height: 48px;
@@ -555,6 +570,58 @@
       color: var(--text-muted);
       line-height: 1.6;
     }
+    .why-progress {
+      position: relative;
+      max-width: 320px;
+      margin: 24px auto 0;
+    }
+    .why-progress-track {
+      height: 2px;
+      background: var(--sand-dark);
+      border-radius: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-progress-fill {
+      position: absolute;
+      left: 0; top: 0;
+      height: 100%;
+      background: var(--coral);
+      border-radius: 1px;
+      width: 0%;
+      will-change: width;
+    }
+    .why-progress-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+    }
+    .why-progress-step {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--sand-dark);
+      letter-spacing: 0.02em;
+    }
+    .why-progress-step.why-step-active { color: var(--coral); }
+    .why-progress-step.why-step-past { color: var(--green); }
+    @media (max-width: 639px) {
+      .why-card { flex: 0 0 280px; padding: 28px 22px 24px; }
+      .why-scroll-spacer { height: 250vh; }
+      .why-sticky { min-height: 480px; }
+      .why-progress { max-width: 240px; }
+    }
+    @media (min-width: 960px) {
+      .why-card { flex: 0 0 380px; }
+    }
+    .why-section.why-reduced { padding-block: 80px; }
+    .why-section.why-reduced .why-scroll-spacer { height: auto; }
+    .why-section.why-reduced .why-sticky {
+      position: relative;
+      height: auto;
+      min-height: auto;
+    }
+    .why-section.why-reduced .why-track-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--sand-dark) transparent; }
+    .why-section.why-reduced .why-track { will-change: auto; }
 
 
     /* ============================================
@@ -799,157 +866,162 @@
     }
 
     /* ============================================
-       NOTRE MÉTHODE — Scroll-driven horizontal strip
+       NOTRE MÉTHODE — Pinned cards zigzag
        ============================================ */
     .method-section {
-      padding: 0;
+      padding-block: 80px 100px;
       background: var(--white);
       position: relative;
+      overflow: hidden;
     }
-    .method-scroll-spacer {
-      height: 400vh;
+    .method-lines-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image: linear-gradient(var(--text) 1px, transparent 1px);
+      background-size: 100% 32px;
+      margin-top: 4px;
+    }
+    .method-fade-left,
+    .method-fade-right {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 50%;
+      pointer-events: none;
+    }
+    .method-fade-left {
+      left: 0;
+      background: linear-gradient(to right, var(--white), transparent);
+    }
+    .method-fade-right {
+      right: 0;
+      background: linear-gradient(to left, var(--white), transparent);
+    }
+    .method-cards-container {
       position: relative;
-    }
-    .method-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      min-height: 620px;
+      max-width: 1000px;
+      margin: 48px auto 0;
+      padding: 0 16px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      overflow: hidden;
     }
-    .method-track-wrapper {
-      overflow: hidden;
-      margin-top: 40px;
-      padding-bottom: 16px;
+    .method-connect-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
     }
-    .method-track {
-      display: flex;
-      width: max-content;
-      will-change: transform;
+    @keyframes dashFlow {
+      to { stroke-dashoffset: -140; }
     }
-    .mc-card {
-      flex: 0 0 340px;
-      background: var(--sand);
-      padding: 36px 28px 32px;
-      border-right: 2px solid var(--white);
+    .method-connect-line path {
+      animation: dashFlow 3s linear infinite;
     }
-    .mc-card:first-child { border-radius: var(--radius-lg) 0 0 var(--radius-lg); }
-    .mc-card:last-child { border-radius: 0 var(--radius-lg) var(--radius-lg) 0; border-right: none; }
-    .mc-card-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 20px;
+    .method-pin-card {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      z-index: 2;
+      margin-bottom: -10px;
     }
-    .mc-step {
-      font-size: 2.8rem;
-      font-weight: 800;
-      color: var(--coral);
-      line-height: 1;
-    }
-    .mc-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
+    .method-pin-card:last-child { margin-bottom: 0; }
+    .mpc-inner {
       background: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--green);
-      flex-shrink: 0;
+      padding: 8px;
+      border-radius: 25px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      border: 1px solid rgba(15, 76, 76, 0.06);
+      transition: transform 0.3s ease;
     }
-    .mc-title {
-      font-size: 1.2rem;
+    .method-pin-card:hover .mpc-inner {
+      transform: scale(1.04);
+    }
+    .mpc-card-left { margin-left: 12%; }
+    .mpc-card-right { margin-left: auto; margin-right: 12%; }
+    .mpc-rotate-pos .mpc-inner { transform: rotate(6deg); }
+    .mpc-rotate-neg .mpc-inner { transform: rotate(-6deg); }
+    .mpc-rotate-pos:hover .mpc-inner { transform: rotate(6deg) scale(1.04); }
+    .mpc-rotate-neg:hover .mpc-inner { transform: rotate(-6deg) scale(1.04); }
+    .mpc-pin {
+      width: 32px;
+      height: 32px;
+      margin: 0 auto 12px;
+      display: block;
+    }
+    .mpc-body {
+      border-radius: 15px;
+      padding: 20px;
+    }
+    .mpc-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1;
+      font-style: italic;
+    }
+    .mpc-body h3 {
+      font-size: 1.15rem;
       font-weight: 700;
       color: var(--text);
+      margin-bottom: 8px;
+    }
+    .mpc-body p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
       margin-bottom: 12px;
     }
-    .mc-desc {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-    .mc-points {
+    .mpc-body ul {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
-    .mc-points li {
-      font-size: 0.88rem;
+    .mpc-body ul li {
+      font-size: 0.82rem;
       color: var(--text-muted);
-      padding-left: 18px;
+      padding-left: 16px;
       position: relative;
-      line-height: 1.5;
+      line-height: 1.4;
     }
-    .mc-points li::before {
+    .mpc-body ul li::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 7px;
-      width: 6px;
-      height: 6px;
+      top: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      background: var(--coral);
     }
-    .mc-progress {
-      position: relative;
-      max-width: 480px;
-      margin: 24px auto 0;
-    }
-    .mc-progress-track {
-      height: 2px;
-      background: var(--sand-dark);
-      border-radius: 1px;
-      position: relative;
-      overflow: hidden;
-    }
-    .mc-progress-fill {
-      position: absolute;
-      left: 0; top: 0;
-      height: 100%;
-      background: var(--coral);
-      border-radius: 1px;
-      width: 0%;
-      will-change: width;
-    }
-    .mc-progress-steps {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 12px;
-    }
-    .mc-progress-step {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--sand-dark);
-      letter-spacing: 0.02em;
-    }
-    .mc-progress-step.mc-step-active { color: var(--coral); }
-    .mc-progress-step.mc-step-past { color: var(--green); }
+    .mpc-theme-coral .mpc-number { color: var(--coral); }
+    .mpc-theme-coral .mpc-pin { color: var(--coral); }
+    .mpc-theme-coral .mpc-body { background: rgba(244, 235, 221, 0.5); border: 1px solid rgba(242, 107, 91, 0.15); }
+    .mpc-theme-coral .mpc-body ul li::before { background: var(--coral); }
+    .mpc-theme-green .mpc-number { color: var(--green); }
+    .mpc-theme-green .mpc-pin { color: var(--green); }
+    .mpc-theme-green .mpc-body { background: rgba(15, 76, 76, 0.05); border: 1px solid rgba(15, 76, 76, 0.1); }
+    .mpc-theme-green .mpc-body ul li::before { background: var(--green); }
+    .mpc-theme-gold .mpc-number { color: var(--gold); }
+    .mpc-theme-gold .mpc-pin { color: var(--gold); }
+    .mpc-theme-gold .mpc-body { background: rgba(232, 176, 74, 0.08); border: 1px solid rgba(232, 176, 74, 0.15); }
+    .mpc-theme-gold .mpc-body ul li::before { background: var(--gold); }
     @media (max-width: 639px) {
-      .mc-card { flex: 0 0 280px; padding: 28px 22px 24px; }
-      .method-scroll-spacer { height: 350vh; }
-      .method-sticky { min-height: 520px; }
-      .mc-step { font-size: 2.2rem; }
-      .mc-title { font-size: 1.1rem; }
-      .mc-progress { max-width: 300px; }
+      .method-pin-card {
+        max-width: 280px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-bottom: 24px;
+      }
+      .method-pin-card:last-child { margin-bottom: 0; }
+      .method-pin-card .mpc-inner { transform: none !important; }
+      .method-pin-card:hover .mpc-inner { transform: scale(1.03) !important; }
+      .method-connect-line { display: none; }
+      .mpc-number { font-size: 1.8rem; }
     }
-    @media (min-width: 960px) {
-      .mc-card { flex: 0 0 360px; }
-    }
-    .method-section.mc-reduced { padding-block: 80px; }
-    .method-section.mc-reduced .method-scroll-spacer { height: auto; }
-    .method-section.mc-reduced .method-sticky {
-      position: relative;
-      height: auto;
-      min-height: auto;
-    }
-    .method-section.mc-reduced .method-track-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--sand-dark) transparent; }
-    .method-section.mc-reduced .method-track { will-change: auto; }
 
     /* ============================================
        TARIFS
@@ -1485,13 +1557,18 @@
        POURQUOI HAVEO
        ============================================ -->
   <section class="why-section" id="pourquoi">
+    <div class="why-scroll-spacer">
+    <div class="why-sticky">
     <div class="container">
       <span class="section-label reveal">Conciergerie</span>
       <h2 class="reveal">Pourquoi confier votre logement à Haveo ?</h2>
       <p class="section-intro reveal">Louer sur Airbnb est un véritable métier. De l'accueil des voyageurs à l'entretien du logement, nous optimisons chaque détail pour valoriser votre bien, améliorer son potentiel locatif et vous libérer des contraintes du quotidien.</p>
+    </div>
 
-      <div class="why-grid">
-        <div class="why-card reveal">
+    <div class="why-track-wrapper" id="whyTrack">
+      <div class="why-track">
+
+        <div class="why-card">
           <div class="why-card-icon">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 5a7.5 7.5 0 10 0 14"/><line x1="4" y1="10" x2="16" y2="10"/><line x1="4" y1="14" x2="14" y2="14"/></svg>
           </div>
@@ -1499,7 +1576,7 @@
           <p>Grâce à une stratégie tarifaire adaptée, à l'optimisation de votre annonce, à l'amélioration de votre logement et au suivi régulier des performances, nous cherchons à maximiser le potentiel de revenus de votre bien tout au long de l'année.</p>
         </div>
 
-        <div class="why-card reveal reveal-delay-1">
+        <div class="why-card">
           <div class="why-card-icon">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
           </div>
@@ -1507,7 +1584,7 @@
           <p>De la création de votre annonce aux réservations, en passant par l'accueil des voyageurs et la coordination des départs, nous prenons en charge chaque étape de votre location pour vous simplifier la vie.</p>
         </div>
 
-        <div class="why-card reveal reveal-delay-2">
+        <div class="why-card">
           <div class="why-card-icon">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           </div>
@@ -1515,7 +1592,7 @@
           <p>Ménage professionnel, linge de qualité hôtelière et suivi des petites interventions. Nous sélectionnons aussi les voyageurs pour garantir des séjours respectueux de votre bien.</p>
         </div>
 
-        <div class="why-card reveal reveal-delay-3">
+        <div class="why-card">
           <div class="why-card-icon">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
           </div>
@@ -1524,6 +1601,20 @@
         </div>
 
       </div>
+    </div>
+
+    <div class="container">
+      <div class="why-progress">
+        <div class="why-progress-track"><div class="why-progress-fill"></div></div>
+        <div class="why-progress-steps">
+          <span class="why-progress-step">01</span>
+          <span class="why-progress-step">02</span>
+          <span class="why-progress-step">03</span>
+          <span class="why-progress-step">04</span>
+        </div>
+      </div>
+    </div>
+    </div>
     </div>
   </section>
 
@@ -1756,129 +1847,115 @@
        NOTRE MÉTHODE
        ============================================ -->
   <section class="method-section" id="methode">
-    <div class="method-scroll-spacer">
-    <div class="method-sticky">
-    <div class="container">
+    <div class="method-lines-bg"></div>
+    <div class="method-fade-left"></div>
+    <div class="method-fade-right"></div>
+    <div class="container" style="position:relative;z-index:1;">
       <span class="section-label reveal">Notre méthode</span>
       <h2 class="reveal">Un accompagnement en 6 étapes</h2>
     </div>
 
-    <div class="method-track-wrapper" id="methodTrack">
-      <div class="method-track">
+    <div class="method-cards-container">
+      <svg class="method-connect-line" viewBox="0 0 1000 1800" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M 290 130 C 500 130, 550 300, 720 300 C 880 300, 500 470, 280 470 C 100 470, 500 640, 720 640 C 900 640, 500 810, 280 810 C 100 810, 500 980, 720 980 C 900 980, 500 1150, 280 1150" stroke="var(--sand-dark)" stroke-width="2" stroke-dasharray="8 6" fill="none" stroke-linecap="round"/>
+      </svg>
 
-        <div class="mc-card" role="group" aria-label="Étape 1 sur 6">
-          <div class="mc-card-header">
-            <span class="mc-step">01</span>
-            <div class="mc-icon">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-            </div>
+      <div class="method-pin-card mpc-card-left mpc-rotate-pos mpc-theme-coral reveal" role="group" aria-label="Étape 1 sur 6">
+        <div class="mpc-inner">
+          <svg class="mpc-pin" viewBox="0 0 24 24" fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"/></svg>
+          <div class="mpc-body">
+            <div class="mpc-number">01</div>
+            <h3>Audit gratuit</h3>
+            <p>Nous analysons votre logement, son potentiel locatif et son emplacement pour identifier les meilleures opportunités de rentabilité.</p>
+            <ul>
+              <li>Analyse du logement et de son environnement</li>
+              <li>Évaluation du potentiel locatif</li>
+              <li>Premières recommandations personnalisées</li>
+            </ul>
           </div>
-          <h3 class="mc-title">Audit gratuit</h3>
-          <p class="mc-desc">Nous analysons votre logement, son potentiel locatif et son emplacement pour identifier les meilleures opportunités de rentabilité.</p>
-          <ul class="mc-points">
-            <li>Analyse du logement et de son environnement</li>
-            <li>Évaluation du potentiel locatif</li>
-            <li>Premières recommandations personnalisées</li>
-          </ul>
-        </div>
-
-        <div class="mc-card" role="group" aria-label="Étape 2 sur 6">
-          <div class="mc-card-header">
-            <span class="mc-step">02</span>
-            <div class="mc-icon">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 01-2 2H7a2 2 0 01-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 010-5C9 3 12 8 12 8s3-5 4.5-5a2.5 2.5 0 010 5"/></svg>
-            </div>
-          </div>
-          <h3 class="mc-title">Offre personnalisée</h3>
-          <p class="mc-desc">Nous construisons une stratégie sur mesure adaptée à votre bien, à vos objectifs et à vos attentes.</p>
-          <ul class="mc-points">
-            <li>Proposition d'accompagnement adaptée</li>
-            <li>Définition des services nécessaires</li>
-            <li>Stratégie de mise en location</li>
-          </ul>
-        </div>
-
-        <div class="mc-card" role="group" aria-label="Étape 3 sur 6">
-          <div class="mc-card-header">
-            <span class="mc-step">03</span>
-            <div class="mc-icon">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
-            </div>
-          </div>
-          <h3 class="mc-title">Photos professionnelles</h3>
-          <p class="mc-desc">Nous valorisons votre logement grâce à des visuels professionnels conçus pour attirer l'attention des voyageurs.</p>
-          <ul class="mc-points">
-            <li>Mise en valeur des espaces</li>
-            <li>Photographies de qualité professionnelle</li>
-            <li>Présentation attractive du logement</li>
-          </ul>
-        </div>
-
-        <div class="mc-card" role="group" aria-label="Étape 4 sur 6">
-          <div class="mc-card-header">
-            <span class="mc-step">04</span>
-            <div class="mc-icon">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
-            </div>
-          </div>
-          <h3 class="mc-title">Annonce optimisée</h3>
-          <p class="mc-desc">Nous créons une annonce claire et attractive pour améliorer la visibilité de votre logement et donner envie de réserver.</p>
-          <ul class="mc-points">
-            <li>Rédaction persuasive</li>
-            <li>Sélection des meilleures photos</li>
-            <li>Optimisation de la présentation du bien</li>
-          </ul>
-        </div>
-
-        <div class="mc-card" role="group" aria-label="Étape 5 sur 6">
-          <div class="mc-card-header">
-            <span class="mc-step">05</span>
-            <div class="mc-icon">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-            </div>
-          </div>
-          <h3 class="mc-title">Tarification dynamique</h3>
-          <p class="mc-desc">Nous adaptons les prix en fonction de la demande, de la saisonnalité et des événements locaux afin d'optimiser les revenus locatifs.</p>
-          <ul class="mc-points">
-            <li>Ajustement des tarifs</li>
-            <li>Prise en compte de la saisonnalité</li>
-            <li>Recherche du meilleur équilibre entre prix et occupation</li>
-          </ul>
-        </div>
-
-        <div class="mc-card" role="group" aria-label="Étape 6 sur 6">
-          <div class="mc-card-header">
-            <span class="mc-step">06</span>
-            <div class="mc-icon">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-            </div>
-          </div>
-          <h3 class="mc-title">Accompagnement opérationnel</h3>
-          <p class="mc-desc">Nous assurons le suivi opérationnel de votre location pour offrir une expérience fluide aux voyageurs et simplifier votre quotidien.</p>
-          <ul class="mc-points">
-            <li>Coordination des arrivées et des départs</li>
-            <li>Organisation du ménage et du linge</li>
-            <li>Suivi du logement et assistance opérationnelle</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="mc-progress">
-        <div class="mc-progress-track"><div class="mc-progress-fill"></div></div>
-        <div class="mc-progress-steps">
-          <span class="mc-progress-step">01</span>
-          <span class="mc-progress-step">02</span>
-          <span class="mc-progress-step">03</span>
-          <span class="mc-progress-step">04</span>
-          <span class="mc-progress-step">05</span>
-          <span class="mc-progress-step">06</span>
         </div>
       </div>
-    </div>
-    </div>
+
+      <div class="method-pin-card mpc-card-right mpc-rotate-neg mpc-theme-green reveal reveal-delay-1" role="group" aria-label="Étape 2 sur 6">
+        <div class="mpc-inner">
+          <svg class="mpc-pin" viewBox="0 0 24 24" fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"/></svg>
+          <div class="mpc-body">
+            <div class="mpc-number">02</div>
+            <h3>Offre personnalisée</h3>
+            <p>Nous construisons une stratégie sur mesure adaptée à votre bien, à vos objectifs et à vos attentes.</p>
+            <ul>
+              <li>Proposition d'accompagnement adaptée</li>
+              <li>Définition des services nécessaires</li>
+              <li>Stratégie de mise en location</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-pin-card mpc-card-left mpc-rotate-pos mpc-theme-gold reveal reveal-delay-2" role="group" aria-label="Étape 3 sur 6">
+        <div class="mpc-inner">
+          <svg class="mpc-pin" viewBox="0 0 24 24" fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"/></svg>
+          <div class="mpc-body">
+            <div class="mpc-number">03</div>
+            <h3>Photos professionnelles</h3>
+            <p>Nous valorisons votre logement grâce à des visuels professionnels conçus pour attirer l'attention des voyageurs.</p>
+            <ul>
+              <li>Mise en valeur des espaces</li>
+              <li>Photographies de qualité professionnelle</li>
+              <li>Présentation attractive du logement</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-pin-card mpc-card-right mpc-rotate-neg mpc-theme-coral reveal reveal-delay-1" role="group" aria-label="Étape 4 sur 6">
+        <div class="mpc-inner">
+          <svg class="mpc-pin" viewBox="0 0 24 24" fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"/></svg>
+          <div class="mpc-body">
+            <div class="mpc-number">04</div>
+            <h3>Annonce optimisée</h3>
+            <p>Nous créons une annonce claire et attractive pour améliorer la visibilité de votre logement et donner envie de réserver.</p>
+            <ul>
+              <li>Rédaction persuasive</li>
+              <li>Sélection des meilleures photos</li>
+              <li>Optimisation de la présentation du bien</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-pin-card mpc-card-left mpc-rotate-pos mpc-theme-green reveal reveal-delay-2" role="group" aria-label="Étape 5 sur 6">
+        <div class="mpc-inner">
+          <svg class="mpc-pin" viewBox="0 0 24 24" fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"/></svg>
+          <div class="mpc-body">
+            <div class="mpc-number">05</div>
+            <h3>Tarification dynamique</h3>
+            <p>Nous adaptons les prix en fonction de la demande, de la saisonnalité et des événements locaux afin d'optimiser les revenus locatifs.</p>
+            <ul>
+              <li>Ajustement des tarifs</li>
+              <li>Prise en compte de la saisonnalité</li>
+              <li>Recherche du meilleur équilibre entre prix et occupation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-pin-card mpc-card-right mpc-rotate-neg mpc-theme-gold reveal reveal-delay-1" role="group" aria-label="Étape 6 sur 6">
+        <div class="mpc-inner">
+          <svg class="mpc-pin" viewBox="0 0 24 24" fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"/></svg>
+          <div class="mpc-body">
+            <div class="mpc-number">06</div>
+            <h3>Accompagnement opérationnel</h3>
+            <p>Nous assurons le suivi opérationnel de votre location pour offrir une expérience fluide aux voyageurs et simplifier votre quotidien.</p>
+            <ul>
+              <li>Coordination des arrivées et des départs</li>
+              <li>Organisation du ménage et du linge</li>
+              <li>Suivi du logement et assistance opérationnelle</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -2317,7 +2394,7 @@
       initMarquee();
       initCitySelect();
       initServices();
-      initMethodCards();
+      initWhyCards();
       initFooterCities();
       initNav();
       initSimulator();
@@ -2447,19 +2524,19 @@
       });
     }
 
-    function initMethodCards() {
-      var section = document.querySelector('.method-section');
+    function initWhyCards() {
+      var section = document.querySelector('.why-section');
       if (!section) return;
-      var spacer = section.querySelector('.method-scroll-spacer');
-      var wrapper = document.getElementById('methodTrack');
-      var track = wrapper ? wrapper.querySelector('.method-track') : null;
+      var spacer = section.querySelector('.why-scroll-spacer');
+      var wrapper = document.getElementById('whyTrack');
+      var track = wrapper ? wrapper.querySelector('.why-track') : null;
       if (!spacer || !wrapper || !track) return;
-      var progressFill = section.querySelector('.mc-progress-fill');
-      var stepLabels = Array.from(section.querySelectorAll('.mc-progress-step'));
+      var progressFill = section.querySelector('.why-progress-fill');
+      var stepLabels = Array.from(section.querySelectorAll('.why-progress-step'));
 
       var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (prefersReduced) {
-        section.classList.add('mc-reduced');
+        section.classList.add('why-reduced');
         return;
       }
 
@@ -2476,10 +2553,10 @@
         track.style.transform = 'translateX(' + tx.toFixed(1) + 'px)';
 
         if (progressFill) progressFill.style.width = (progress * 100).toFixed(1) + '%';
-        var activeIdx = Math.round(progress * 5);
+        var activeIdx = Math.round(progress * 3);
         stepLabels.forEach(function(label, i) {
-          label.classList.toggle('mc-step-active', i === activeIdx);
-          label.classList.toggle('mc-step-past', i < activeIdx);
+          label.classList.toggle('why-step-active', i === activeIdx);
+          label.classList.toggle('why-step-past', i < activeIdx);
         });
       }
 
