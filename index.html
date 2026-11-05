@@ -2411,6 +2411,7 @@
       initCitySelect();
       initServices();
       initWhyCards();
+      initMethodTapToCenter();
       initFooterCities();
       initNav();
       initSimulator();
@@ -2601,6 +2602,19 @@
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', function() { applyTransform(currentProgress); }, { passive: true });
       onScroll();
+    }
+
+    /* ---- Méthode : tap-to-center on mobile ---- */
+    function initMethodTapToCenter() {
+      if (window.innerWidth > 639) return;
+      var container = document.querySelector('.method-cards-container');
+      if (!container) return;
+      container.querySelectorAll('.method-pin-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          var scrollLeft = card.offsetLeft - (container.clientWidth - card.offsetWidth) / 2;
+          container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        });
+      });
     }
 
     /* ---- Footer villes (sélection représentative) ---- */
