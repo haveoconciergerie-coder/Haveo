@@ -67,3 +67,16 @@ files = {
 for n, s in files.items():
     open(os.path.join(OUT, n), 'w').write(s)
 print('ok', list(files))
+
+# --- wordmark on a coral background, like the original file
+def wordmark_on(bg, ink, dot, ratio):
+    w0, h0 = W_MAX - W_MIN, BOT - TOP
+    W = w0 / 0.78                     # text spans 78% of the width
+    H = W / ratio
+    x = W_MIN - (W - w0) / 2
+    y = TOP + h0 / 2 - H / 2 + 20     # optical centre (x-height sits a touch low)
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{x:.0f} {y:.0f} {W:.0f} {H:.0f}" role="img" aria-label="haveo">'
+            f'<rect x="{x:.0f}" y="{y:.0f}" width="{W:.0f}" height="{H:.0f}" fill="{bg}"/>'
+            f'<path fill="{ink}" d="{WORD}"/><circle cx="{dot_cx:.1f}" cy="{dot_cy:.1f}" r="{D/2}" fill="{dot}"/></svg>')
+open(os.path.join(OUT, 'haveo-logo-fond-corail-carre.svg'), 'w').write(wordmark_on(CORAL, GREEN, CREAM, 1))
+open(os.path.join(OUT, 'haveo-logo-fond-corail-large.svg'), 'w').write(wordmark_on(CORAL, GREEN, CREAM, 16/9))
