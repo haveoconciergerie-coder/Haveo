@@ -50,15 +50,15 @@
       padding-right: max(20px, env(safe-area-inset-right, 0px));
     }
 
-    h1, h2, h3, h4 { line-height: 1.15; font-weight: 800; color: var(--text); }
+    h1, h2, h3, h4 { line-height: 1.15; font-weight: 600; color: var(--text); }
     h2 { font-size: clamp(2rem, 4vw, 3rem); text-wrap: balance; }
 
     .section-label {
       display: inline-block;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: none;
       color: var(--coral);
       margin-bottom: 12px;
     }
@@ -77,15 +77,15 @@
       padding: 15px 30px;
       border-radius: 12px;
       font-family: inherit;
-      font-weight: 700;
+      font-weight: 600;
       font-size: 1rem;
       text-decoration: none;
       cursor: pointer;
       border: 2px solid transparent;
       transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.2s ease, color 0.2s ease;
     }
-    .btn:hover { transform: translateY(-2px); }
-    .btn:active { transform: translateY(0); }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: scale(0.98); }
     .btn-coral {
       background: var(--coral);
       color: var(--white);
@@ -176,7 +176,7 @@
     }
     .logo {
       font-size: 1.5rem;
-      font-weight: 800;
+      font-weight: 600;
       text-decoration: none;
       color: var(--white);
       letter-spacing: -0.02em;
@@ -363,7 +363,7 @@
       position: absolute;
       left: 0;
       color: var(--coral);
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .svc-note {
@@ -389,7 +389,7 @@
       padding: 10px 20px;
       border-radius: 100px;
       font-size: 0.9rem;
-      font-weight: 700;
+      font-weight: 600;
       margin-top: 20px;
     }
     .svc-highlight svg { width: 18px; height: 18px; }
@@ -461,13 +461,13 @@
     }
     .mock-listing-title {
       font-size: 1.05rem;
-      font-weight: 700;
+      font-weight: 600;
       margin-bottom: 8px;
       color: var(--text);
     }
     .mock-listing-price {
       font-size: 1rem;
-      font-weight: 800;
+      font-weight: 600;
       color: var(--coral);
       margin-bottom: 14px;
     }
@@ -540,7 +540,7 @@
     }
     .cal-month {
       font-size: 1.15rem;
-      font-weight: 800;
+      font-weight: 600;
       color: var(--text);
     }
     .cal-legend {
@@ -575,9 +575,9 @@
     .cal-day-name {
       text-align: center;
       font-size: 0.78rem;
-      font-weight: 700;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.04em;
       color: var(--text-muted);
       padding-bottom: 8px;
     }
@@ -590,7 +590,7 @@
       justify-content: center;
       gap: 2px;
       font-size: 0.85rem;
-      font-weight: 700;
+      font-weight: 600;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       cursor: default;
       min-height: 56px;
@@ -616,7 +616,7 @@
     }
     .cal-day-num {
       font-size: 0.95rem;
-      font-weight: 800;
+      font-weight: 600;
     }
     .cal-day-price {
       font-size: 0.72rem;
@@ -679,7 +679,7 @@
     }
     .footer-logo {
       font-size: 1.5rem;
-      font-weight: 800;
+      font-weight: 600;
       margin-bottom: 12px;
     }
     .footer-logo span { color: var(--coral); }
@@ -703,10 +703,10 @@
     .footer-contact-info a:hover { color: var(--coral); }
     .footer h4 {
       color: var(--white);
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: 0;
       margin-bottom: 16px;
     }
     .footer-links {

@@ -59,15 +59,15 @@
     }
 
     /* ---- Typographie ---- */
-    h1, h2, h3, h4 { line-height: 1.15; font-weight: 800; color: var(--text); }
+    h1, h2, h3, h4 { line-height: 1.15; font-weight: 600; color: var(--text); }
     h2 { font-size: clamp(2rem, 4vw, 3rem); text-wrap: balance; }
 
     .section-label {
       display: inline-block;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: none;
       color: var(--coral);
       margin-bottom: 12px;
     }
@@ -86,15 +86,15 @@
       padding: 15px 30px;
       border-radius: 12px;
       font-family: inherit;
-      font-weight: 700;
+      font-weight: 500;
       font-size: 1rem;
       text-decoration: none;
       cursor: pointer;
       border: 2px solid transparent;
       transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.2s ease, color 0.2s ease;
     }
-    .btn:hover { transform: translateY(-2px); }
-    .btn:active { transform: translateY(0); }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: scale(0.98); }
 
     .btn-coral {
       background: #E05A4A;
@@ -202,7 +202,7 @@
     }
     .logo {
       font-size: 1.5rem;
-      font-weight: 800;
+      font-weight: 600;
       text-decoration: none;
       color: var(--white);
       letter-spacing: -0.02em;
@@ -363,21 +363,21 @@
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: var(--gold);
-      color: var(--green);
-      padding: 7px 18px;
+      gap: 0;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: var(--white);
+      padding: 8px 20px;
       border-radius: 100px;
       font-size: 0.85rem;
-      font-weight: 700;
+      font-weight: 500;
       margin-bottom: 28px;
-    }
-    .hero-badge::before {
-      content: '★';
-      font-size: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
     .hero h1 {
       font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 500;
       color: var(--white);
       margin-bottom: 24px;
       text-wrap: balance;
@@ -387,10 +387,13 @@
       color: var(--gold);
     }
     .hero-subtitle {
-      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
-      color: rgba(255, 255, 255, 0.92);
-      font-weight: 600;
-      margin-bottom: 8px;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 400;
+      margin-bottom: 12px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .hero-subtitle-soft {
       font-size: clamp(0.95rem, 1.8vw, 1.1rem);
@@ -560,7 +563,7 @@
     }
     .why-card h3 {
       font-size: 1.1rem;
-      font-weight: 800;
+      font-weight: 600;
       margin-bottom: 8px;
       letter-spacing: -0.01em;
     }
@@ -597,7 +600,7 @@
     }
     .why-progress-step {
       font-size: 0.78rem;
-      font-weight: 700;
+      font-weight: 600;
       color: var(--sand-dark);
       letter-spacing: 0.02em;
     }
@@ -666,7 +669,7 @@
     .sim-step.active { display: block; }
     .sim-step h3 {
       font-size: 1.15rem;
-      font-weight: 700;
+      font-weight: 600;
       margin-bottom: 24px;
     }
 
@@ -844,7 +847,7 @@
     .sim-result.active { display: block; }
     .sim-result-amount {
       font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 800;
+      font-weight: 600;
       color: var(--green);
       margin: 20px 0 12px;
     }
@@ -946,10 +949,11 @@
     .mpc-rotate-pos:hover .mpc-inner { transform: rotate(6deg) scale(1.04); }
     .mpc-rotate-neg:hover .mpc-inner { transform: rotate(-6deg) scale(1.04); }
     .mpc-pin {
-      width: 32px;
-      height: 32px;
-      margin: 0 auto 12px;
+      width: 8px;
+      height: 8px;
+      margin: 0 auto 16px;
       display: block;
+      border-radius: 50%;
     }
     .mpc-body {
       border-radius: 15px;
@@ -957,14 +961,14 @@
     }
     .mpc-number {
       font-size: 2.2rem;
-      font-weight: 800;
+      font-weight: 500;
       margin-bottom: 12px;
       line-height: 1;
-      font-style: italic;
+      font-style: normal;
     }
     .mpc-body h3 {
       font-size: 1.15rem;
-      font-weight: 700;
+      font-weight: 600;
       color: var(--text);
       margin-bottom: 8px;
     }
@@ -997,15 +1001,15 @@
       border-radius: 50%;
     }
     .mpc-theme-coral .mpc-number { color: var(--coral); }
-    .mpc-theme-coral .mpc-pin { color: var(--coral); }
+    .mpc-theme-coral .mpc-pin { background: var(--coral); }
     .mpc-theme-coral .mpc-body { background: rgba(244, 235, 221, 0.5); border: 1px solid rgba(242, 107, 91, 0.15); }
     .mpc-theme-coral .mpc-body ul li::before { background: var(--coral); }
     .mpc-theme-green .mpc-number { color: var(--green); }
-    .mpc-theme-green .mpc-pin { color: var(--green); }
+    .mpc-theme-green .mpc-pin { background: var(--green); }
     .mpc-theme-green .mpc-body { background: rgba(15, 76, 76, 0.05); border: 1px solid rgba(15, 76, 76, 0.1); }
     .mpc-theme-green .mpc-body ul li::before { background: var(--green); }
     .mpc-theme-gold .mpc-number { color: var(--gold); }
-    .mpc-theme-gold .mpc-pin { color: var(--gold); }
+    .mpc-theme-gold .mpc-pin { background: var(--gold); }
     .mpc-theme-gold .mpc-body { background: rgba(232, 176, 74, 0.08); border: 1px solid rgba(232, 176, 74, 0.15); }
     .mpc-theme-gold .mpc-body ul li::before { background: var(--gold); }
     @media (max-width: 639px) {
@@ -1068,19 +1072,18 @@
     .pricing-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: var(--gold);
-      color: var(--green);
+      gap: 0;
+      background: var(--green);
+      color: var(--white);
       padding: 6px 16px;
       border-radius: 100px;
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 500;
       margin-bottom: 20px;
     }
-    .pricing-badge::before { content: '★'; font-size: 0.7rem; }
     .pricing-price {
       font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 800;
+      font-weight: 600;
       color: var(--text);
       margin-bottom: 8px;
     }
@@ -1197,7 +1200,7 @@
     }
     .service-card h3 {
       font-size: 0.95rem;
-      font-weight: 700;
+      font-weight: 600;
       margin-bottom: 4px;
     }
     .service-card p {
@@ -1331,7 +1334,7 @@
       cursor: pointer;
       font-family: inherit;
       font-size: 1.05rem;
-      font-weight: 700;
+      font-weight: 600;
       color: var(--text);
       text-align: left;
       line-height: 1.4;
@@ -1408,7 +1411,7 @@
     }
     .footer-logo {
       font-size: 1.5rem;
-      font-weight: 800;
+      font-weight: 600;
       margin-bottom: 12px;
     }
     .footer-logo span { color: var(--coral); }
@@ -1433,10 +1436,10 @@
 
     .footer h4 {
       color: var(--white);
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: 0;
       margin-bottom: 16px;
     }
     .footer-links {
@@ -1544,9 +1547,7 @@
     <div class="container hero-content">
       <div class="hero-badge">1er mois d'honoraires offert*</div>
       <h1>Votre logement. <span class="hero-gold">Nos soins.</span> Votre tranquillité.</h1>
-      <p class="hero-subtitle">Conciergerie Airbnb clé en main en Île-de-France et sur toute la Côte d'Azur.</p>
-      <p class="hero-subtitle-soft">Nous prenons soin de votre logement et optimisons son potentiel locatif, en toute sérénité.</p>
-      <p class="hero-tagline">Simple. Rentable. Sans engagement.</p>
+      <p class="hero-subtitle">Conciergerie Airbnb clé en main en Île-de-France et sur toute la Côte d'Azur. Nous prenons soin de votre logement et optimisons son potentiel locatif, en toute sérénité.</p>
       <div class="hero-buttons">
         <a href="#audit" class="btn btn-coral">Demander un audit gratuit</a>
         <a href="#simulateur" class="btn btn-outline-white">Estimer mes revenus</a>
@@ -1878,7 +1879,7 @@
 
       <div class="method-pin-card mpc-card-left mpc-rotate-pos mpc-theme-coral reveal" role="group" aria-label="Étape 1 sur 6">
         <div class="mpc-inner">
-          <svg class="mpc-pin" viewBox="0 0 24 24" fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"/></svg>
+          <div class="mpc-pin"></div>
           <div class="mpc-body">
             <div class="mpc-number">01</div>
             <h3>Audit gratuit</h3>
@@ -1894,7 +1895,7 @@
 
       <div class="method-pin-card mpc-card-right mpc-rotate-neg mpc-theme-green reveal reveal-delay-1" role="group" aria-label="Étape 2 sur 6">
         <div class="mpc-inner">
-          <svg class="mpc-pin" viewBox="0 0 24 24" fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"/></svg>
+          <div class="mpc-pin"></div>
           <div class="mpc-body">
             <div class="mpc-number">02</div>
             <h3>Offre personnalisée</h3>
@@ -1910,7 +1911,7 @@
 
       <div class="method-pin-card mpc-card-left mpc-rotate-pos mpc-theme-gold reveal reveal-delay-2" role="group" aria-label="Étape 3 sur 6">
         <div class="mpc-inner">
-          <svg class="mpc-pin" viewBox="0 0 24 24" fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"/></svg>
+          <div class="mpc-pin"></div>
           <div class="mpc-body">
             <div class="mpc-number">03</div>
             <h3>Photos professionnelles</h3>
@@ -1926,7 +1927,7 @@
 
       <div class="method-pin-card mpc-card-right mpc-rotate-neg mpc-theme-coral reveal reveal-delay-1" role="group" aria-label="Étape 4 sur 6">
         <div class="mpc-inner">
-          <svg class="mpc-pin" viewBox="0 0 24 24" fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"/></svg>
+          <div class="mpc-pin"></div>
           <div class="mpc-body">
             <div class="mpc-number">04</div>
             <h3>Annonce optimisée</h3>
@@ -1942,7 +1943,7 @@
 
       <div class="method-pin-card mpc-card-left mpc-rotate-pos mpc-theme-green reveal reveal-delay-2" role="group" aria-label="Étape 5 sur 6">
         <div class="mpc-inner">
-          <svg class="mpc-pin" viewBox="0 0 24 24" fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"/></svg>
+          <div class="mpc-pin"></div>
           <div class="mpc-body">
             <div class="mpc-number">05</div>
             <h3>Tarification dynamique</h3>
@@ -1958,7 +1959,7 @@
 
       <div class="method-pin-card mpc-card-right mpc-rotate-neg mpc-theme-gold reveal reveal-delay-1" role="group" aria-label="Étape 6 sur 6">
         <div class="mpc-inner">
-          <svg class="mpc-pin" viewBox="0 0 24 24" fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z"/></svg>
+          <div class="mpc-pin"></div>
           <div class="mpc-body">
             <div class="mpc-number">06</div>
             <h3>Accompagnement opérationnel</h3>
