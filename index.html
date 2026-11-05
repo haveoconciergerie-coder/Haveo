@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Haveo Conciergerie – Conciergerie Airbnb en Île-de-France et Côte d'Azur</title>
-  <meta name="description" content="Conciergerie Airbnb en Île-de-France et sur la Côte d'Azur. Haveo s'occupe de tout : photos, annonce, accueil, ménage, entretien. Estimez vos revenus locatifs gratuitement.">
-  <meta name="keywords" content="conciergerie Airbnb Île-de-France, conciergerie Airbnb Côte d'Azur, conciergerie Airbnb Paris, conciergerie Airbnb Nice, conciergerie Cannes, conciergerie Saint-Tropez, conciergerie Versailles, location courte durée">
+  <title>Haveo Conciergerie – Conciergerie Airbnb à Paris et en Île-de-France</title>
+  <meta name="description" content="Conciergerie Airbnb à Paris et dans toute l'Île-de-France. Haveo s'occupe de tout : photos, annonce, accueil, ménage, entretien. Estimez vos revenus locatifs gratuitement.">
+  <meta name="keywords" content="conciergerie Airbnb Paris, conciergerie Airbnb Île-de-France, conciergerie Boulogne-Billancourt, conciergerie Neuilly-sur-Seine, conciergerie Versailles, location courte durée">
+  <link rel="icon" type="image/svg+xml" href="brand/logo/favicon.svg">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
   <style>
     /* ============================================
@@ -202,7 +203,7 @@
     }
     .logo {
       font-size: 1.5rem;
-      font-weight: 800;
+      font-weight: 700;
       text-decoration: none;
       color: var(--white);
       letter-spacing: -0.02em;
@@ -1266,7 +1267,8 @@
     }
     .footer-logo {
       font-size: 1.5rem;
-      font-weight: 800;
+      font-weight: 700;
+      letter-spacing: -0.02em;
       margin-bottom: 12px;
     }
     .footer-logo span { color: var(--coral); }
@@ -1402,7 +1404,7 @@
     <div class="container hero-content">
       <div class="hero-badge">1er mois offert</div>
       <h1>Votre logement. <span class="hero-gold">Nos soins.</span> Votre tranquillité.</h1>
-      <p class="hero-subtitle">Conciergerie Airbnb clé en main en Île-de-France et sur toute la Côte d'Azur.</p>
+      <p class="hero-subtitle">Conciergerie Airbnb clé en main à Paris et dans toute l'Île-de-France.</p>
       <p class="hero-subtitle-soft">Nous prenons soin de votre logement et optimisons son potentiel locatif, en toute sérénité.</p>
       <p class="hero-tagline">Simple. Rentable. Sans engagement.</p>
       <div class="hero-buttons">
@@ -1417,7 +1419,7 @@
        ============================================ -->
   <section class="marquee-section" id="villes">
     <div class="container">
-      <p class="marquee-title reveal">Haveo intervient en Île-de-France et sur la Côte d'Azur :</p>
+      <p class="marquee-title reveal">Haveo intervient à Paris et dans toute l'Île-de-France :</p>
     </div>
     <div class="container">
       <div class="marquee">
@@ -2053,7 +2055,7 @@
       <div class="footer-grid">
         <div>
           <div class="footer-logo">haveo<span>.</span></div>
-          <p class="footer-desc">Conciergerie Airbnb en Île-de-France et sur la Côte d'Azur. Nous nous occupons de tout pour que votre logement génère des revenus en toute sérénité.</p>
+          <p class="footer-desc">Conciergerie Airbnb à Paris et dans toute l'Île-de-France. Nous nous occupons de tout pour que votre logement génère des revenus en toute sérénité.</p>
           <div class="footer-contact-info">
             <a href="mailto:haveo.conciergerie@gmail.com">haveo.conciergerie@gmail.com</a>
             <a href="tel:+33763888136">07 63 88 81 36</a>
@@ -2122,8 +2124,7 @@
       "L'Isle-Adam", 'Auvers-sur-Oise', 'Pontoise', 'Cergy',
       'Fontainebleau', 'Barbizon', 'Rambouillet', 'Provins',
       'Marne-la-Vallée', 'Chessy', 'Serris', 'Meaux',
-      'Milly-la-Forêt', 'Étampes', 'Dourdan',
-      'Nice', 'Cannes', 'Saint-Tropez', 'Toulon', 'Hyères'
+      'Milly-la-Forêt', 'Étampes', 'Dourdan'
     ];
 
     const BASE_PRICES = {
@@ -2183,11 +2184,6 @@
       'Milly-la-Forêt': 70,
       'Étampes': 65,
       'Dourdan': 65,
-      'Nice': 110,
-      'Cannes': 120,
-      'Saint-Tropez': 140,
-      'Toulon': 80,
-      'Hyères': 85,
       'Autre': 70
     };
 
@@ -2440,9 +2436,9 @@
     function initFooterCities() {
       const list = document.getElementById('footerCities');
       const selection = [
-        'Nice', 'Cannes', 'Saint-Tropez', 'Toulon', 'Hyères',
-        'Paris', 'Boulogne-Billancourt', 'Neuilly-sur-Seine', 'Versailles',
-        'Fontainebleau'
+        'Paris', 'Boulogne-Billancourt', 'Neuilly-sur-Seine', 'Levallois-Perret',
+        'Vincennes', 'Saint-Cloud', 'Versailles', 'Saint-Germain-en-Laye',
+        'Fontainebleau', 'Marne-la-Vallée'
       ];
       selection.forEach(city => {
         const li = document.createElement('li');
