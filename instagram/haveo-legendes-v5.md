@@ -2,7 +2,7 @@
 
 Base de référence : **le contrat de prestations de services de conciergerie**. Chaque phrase des visuels et des légendes correspond à un article du contrat (indiqué entre crochets ci-dessous, à ne pas publier).
 Style : aligné sur le site (crème, vert profond, corail, touche dorée, mêmes boutons « Demander un audit gratuit », « Estimer mes revenus », « Profiter du mois offert »).
-Zone affichée : **Paris · Île-de-France** sur les visuels, « à Paris et dans toute l'Île-de-France » dans les phrases, comme sur le site.
+Zone affichée : **Paris · Île-de-France** sur les visuels, « à Paris et dans toute l'Île-de-France » dans les phrases.
 Vocabulaire : conciergerie, prestations, conseils, « vous validez ». Jamais « gestion locative », « gestion immobilière », « mandat », ni « piloter ».
 
 ---
@@ -181,7 +181,7 @@ Estimation indicative et non contractuelle, sans garantie de revenus. Le calendr
 
 ---
 ## Ce qui a changé par rapport à la v4
-- **Zone : Paris et Île-de-France.** La Côte d'Azur est retirée partout (visuels, bio, légendes, hashtags) et aussi sur le site (titre, description Google, accroche, bande des villes, simulateur, pied de page). Paris est nommée à part : c'est ce que les propriétaires tapent dans leur recherche, même si Paris fait partie de l'Île-de-France.
+- **Zone : Paris et Île-de-France.** La Côte d'Azur est retirée des visuels, de la bio, des légendes et des hashtags. Le site, lui, la garde. Paris est nommée à part : c'est ce que les propriétaires tapent dans leur recherche, même si Paris fait partie de l'Île-de-France.
 - **Nouveau logo** (dossier `brand/logo`) : le mot « haveo » est redessiné dans la police du site (Plus Jakarta Sans), le point est un rond posé sur la ligne de base, et le symbole « h-maison » est retracé en vectoriel avec un trait régulier. Photo de profil Instagram : `haveo-avatar-corail.png` (1080 × 1080).
 - **Passe « unslop » sur les 8 visuels** : une seule police (celle du site) au lieu de deux, étiquettes en minuscules au lieu des petites capitales espacées, titres moins gras, mêmes icônes à la même taille et de la même couleur partout (fini les pastilles verte, corail et dorée du post 6), l'icône « étincelles » du ménage remplacée par un lit, plus d'italique ni de majuscules dans le calendrier du post 8, pied de page en « Paris · Île-de-France ».
 - **Un seul détail signature** : le point final des titres reprend le point du logo (corail, ou crème sur fond corail).
