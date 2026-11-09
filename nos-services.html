@@ -822,9 +822,76 @@
       .cookie-buttons { justify-content: stretch; }
       .cookie-btn { flex: 1; text-align: center; }
     }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 90;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--sand);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s, background 0.2s;
+      box-shadow: 0 2px 12px rgba(15, 76, 76, 0.25);
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .back-to-top:hover { background: var(--green-light); }
+
+    .floating-contact {
+      position: fixed;
+      bottom: 80px;
+      right: 24px;
+      z-index: 90;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--coral);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(242, 107, 91, 0.35);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .floating-contact:hover {
+      background: var(--coral-hover);
+      transform: scale(1.05);
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      z-index: 200;
+      background: var(--green);
+      color: var(--white);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: 12px; }
   </style>
 </head>
 <body>
+  <a href="#communication-voyageurs" class="skip-link">Aller au contenu principal</a>
 
   <!-- ============================================
        NAVIGATION
@@ -1317,6 +1384,25 @@
         grid.appendChild(el);
       }
     }
+  </script>
+
+  <!-- Bouton contact flottant + Retour en haut -->
+  <a href="mailto:haveo.conciergerie@gmail.com" class="floating-contact" aria-label="Nous contacter par email" title="Nous contacter">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+  </a>
+  <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+  <script>
+    (function() {
+      var btn = document.getElementById('backToTop');
+      window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 600);
+      }, { passive: true });
+      btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
   </script>
 
   <!-- Bandeau cookies RGPD + Google Analytics -->
