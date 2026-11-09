@@ -22,3 +22,12 @@ A faire une fois le site en ligne sur un hebergeur (GitHub Pages, Netlify, etc.)
 - Si tu achetes un domaine (ex: haveo.fr), configurer le DNS pour pointer vers l'hebergeur
 - Mettre a jour l'URL dans Google Analytics (etape 1)
 - Mettre a jour l'URL dans le flux web GA4
+
+## 5. Mentions legales — Completer avec la micro-entreprise
+Une fois la micro-entreprise creee, mettre a jour le fichier `mentions-legales.html` :
+- Section "1. Editeur du site" : ajouter le nom complet du representant legal
+- Ajouter le nom de la micro-entreprise (raison sociale)
+- Ajouter le numero SIRET
+- Ajouter l'adresse du siege social
+- Section "2. Hebergement" : completer avec le nom et l'adresse de l'hebergeur (ex: GitHub Pages, Netlify, OVH...)
+- Mettre a jour la date de derniere mise a jour en haut de la page
