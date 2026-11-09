@@ -874,6 +874,67 @@
       transform: scale(1.05);
     }
 
+    .contact-popup {
+      position: fixed;
+      bottom: 144px;
+      right: 24px;
+      z-index: 91;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(15, 76, 76, 0.18);
+      padding: 16px;
+      width: 300px;
+      display: none;
+      border: 1px solid rgba(15, 76, 76, 0.08);
+    }
+    .contact-popup.active { display: block; }
+    .contact-popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--green);
+    }
+    .contact-popup-close {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 0 4px;
+    }
+    .contact-popup-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+      border-top: 1px solid var(--sand);
+    }
+    .contact-popup-row svg { flex-shrink: 0; color: var(--text-muted); }
+    .contact-popup-value {
+      flex: 1;
+      font-size: 0.82rem;
+      color: var(--text);
+      user-select: all;
+    }
+    .contact-popup-copy {
+      background: var(--sand);
+      border: none;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--green);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .contact-popup-copy:hover { background: var(--sand-dark); }
+    @media (max-width: 639px) {
+      .contact-popup { right: 16px; left: 16px; width: auto; }
+    }
+
     .skip-link {
       position: absolute;
       top: -100%;
@@ -1387,9 +1448,25 @@
   </script>
 
   <!-- Bouton contact flottant + Retour en haut -->
-  <a href="mailto:haveo.conciergerie@gmail.com" class="floating-contact" aria-label="Nous contacter par email" title="Nous contacter">
+  <button class="floating-contact" id="floatingContactBtn" aria-label="Nous contacter" title="Nous contacter">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-  </a>
+  </button>
+  <div class="contact-popup" id="contactPopup">
+    <div class="contact-popup-header">
+      <span>Contactez-nous</span>
+      <button class="contact-popup-close" id="contactPopupClose" aria-label="Fermer">&times;</button>
+    </div>
+    <div class="contact-popup-row">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      <span class="contact-popup-value">haveo.conciergerie@gmail.com</span>
+      <button class="contact-popup-copy" data-copy="haveo.conciergerie@gmail.com" aria-label="Copier l'email">Copier</button>
+    </div>
+    <div class="contact-popup-row">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="contact-popup-value">07 63 88 81 36</span>
+      <button class="contact-popup-copy" data-copy="0763888136" aria-label="Copier le téléphone">Copier</button>
+    </div>
+  </div>
   <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
   </button>
@@ -1401,6 +1478,26 @@
       }, { passive: true });
       btn.addEventListener('click', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      var contactBtn = document.getElementById('floatingContactBtn');
+      var contactPopup = document.getElementById('contactPopup');
+      var contactClose = document.getElementById('contactPopupClose');
+      contactBtn.addEventListener('click', function() {
+        contactPopup.classList.toggle('active');
+      });
+      contactClose.addEventListener('click', function() {
+        contactPopup.classList.remove('active');
+      });
+      document.querySelectorAll('.contact-popup-copy').forEach(function(b) {
+        b.addEventListener('click', function() {
+          var val = b.getAttribute('data-copy');
+          try {
+            navigator.clipboard.writeText(val);
+            b.textContent = 'Copié !';
+            setTimeout(function() { b.textContent = 'Copier'; }, 1500);
+          } catch(e) {}
+        });
       });
     })();
   </script>
