@@ -1501,6 +1501,69 @@
       display: flex;
       gap: 20px;
     }
+
+    /* ============================================
+       BANDEAU COOKIES RGPD
+       ============================================ */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: var(--white);
+      border-top: 1px solid var(--sand-dark);
+      box-shadow: 0 -4px 24px rgba(15, 76, 76, 0.08);
+      padding: 20px 24px;
+      display: none;
+    }
+    .cookie-banner.active { display: block; }
+    .cookie-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .cookie-text {
+      flex: 1;
+      min-width: 280px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .cookie-text a { color: var(--green); }
+    .cookie-buttons {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .cookie-btn {
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .cookie-btn-accept {
+      background: var(--green);
+      color: var(--white);
+    }
+    .cookie-btn-accept:hover { background: var(--green-light); }
+    .cookie-btn-refuse {
+      background: var(--sand);
+      color: var(--text);
+    }
+    .cookie-btn-refuse:hover { background: var(--sand-dark); }
+    @media (max-width: 639px) {
+      .cookie-inner { flex-direction: column; align-items: stretch; }
+      .cookie-buttons { justify-content: stretch; }
+      .cookie-btn { flex: 1; text-align: center; }
+    }
   </style>
 </head>
 <body>
@@ -2922,6 +2985,59 @@
         if (!el.classList.contains('visible')) observer.observe(el);
       });
     }
+  </script>
+
+  <!-- ============================================
+       BANDEAU COOKIES RGPD + GOOGLE ANALYTICS
+       ============================================ -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-inner">
+      <p class="cookie-text">
+        Ce site utilise des cookies pour mesurer l'audience et améliorer votre expérience.
+        <a href="#confidentialite">En savoir plus</a>
+      </p>
+      <div class="cookie-buttons">
+        <button class="cookie-btn cookie-btn-refuse" id="cookieRefuse">Refuser</button>
+        <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accepter</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      const GA_ID = 'G-SELVF2RX1X';
+      const consent = localStorage.getItem('haveo_cookie_consent');
+
+      function loadGA() {
+        if (document.getElementById('ga-script')) return;
+        var s = document.createElement('script');
+        s.id = 'ga-script';
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', GA_ID, { anonymize_ip: true });
+      }
+
+      if (consent === 'accepted') {
+        loadGA();
+      } else if (consent !== 'refused') {
+        document.getElementById('cookieBanner').classList.add('active');
+      }
+
+      document.getElementById('cookieAccept').addEventListener('click', function() {
+        localStorage.setItem('haveo_cookie_consent', 'accepted');
+        document.getElementById('cookieBanner').classList.remove('active');
+        loadGA();
+      });
+
+      document.getElementById('cookieRefuse').addEventListener('click', function() {
+        localStorage.setItem('haveo_cookie_consent', 'refused');
+        document.getElementById('cookieBanner').classList.remove('active');
+      });
+    })();
   </script>
 </body>
 </html>
