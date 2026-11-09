@@ -532,80 +532,82 @@
     .cal-wrapper {
       margin-top: 40px;
       background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 32px;
+      border-radius: var(--radius);
+      padding: 24px;
       color: var(--text);
       overflow-x: auto;
+      max-width: 480px;
     }
     @media (max-width: 640px) {
-      .cal-wrapper { padding: 20px 16px; }
+      .cal-wrapper { padding: 16px 12px; max-width: 100%; }
     }
     .cal-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
     }
     .cal-month {
-      font-size: 1.15rem;
+      font-size: 1rem;
       font-weight: 600;
       color: var(--text);
     }
     .cal-legend {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
-      font-size: 0.82rem;
+      gap: 10px;
+      font-size: 0.72rem;
       font-weight: 600;
       color: var(--text-muted);
     }
     .cal-legend-item {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
     }
     .cal-legend-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
       flex-shrink: 0;
     }
     .cal-legend-dot--low { background: var(--green-light); }
     .cal-legend-dot--mid { background: var(--gold); }
     .cal-legend-dot--high { background: var(--coral); }
+    .cal-legend-dot--booked { background: rgba(15, 76, 76, 0.12); }
 
     .cal-grid {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 6px;
-      min-width: 420px;
+      gap: 4px;
+      min-width: 320px;
     }
     .cal-day-name {
       text-align: center;
-      font-size: 0.78rem;
+      font-size: 0.7rem;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       color: var(--text-muted);
-      padding-bottom: 8px;
+      padding-bottom: 6px;
     }
     .cal-day {
-      aspect-ratio: 1;
-      border-radius: var(--radius-sm);
+      border-radius: 6px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 2px;
-      font-size: 0.85rem;
+      gap: 1px;
       font-weight: 600;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       cursor: default;
-      min-height: 56px;
+      padding: 6px 2px;
     }
     .cal-day:not(.cal-day--empty):hover {
-      transform: scale(1.08);
-      box-shadow: 0 4px 16px rgba(15, 76, 76, 0.12);
+      transform: scale(1.06);
+      box-shadow: 0 3px 12px rgba(15, 76, 76, 0.1);
     }
     .cal-day--empty {
       background: transparent;
@@ -622,14 +624,25 @@
       background: rgba(242, 107, 91, 0.12);
       color: var(--coral);
     }
+    .cal-day--booked {
+      background: rgba(15, 76, 76, 0.06);
+      color: var(--text-muted);
+    }
     .cal-day-num {
-      font-size: 0.95rem;
+      font-size: 0.8rem;
       font-weight: 600;
     }
     .cal-day-price {
-      font-size: 0.72rem;
+      font-size: 0.65rem;
       font-weight: 600;
       opacity: 0.8;
+    }
+    .cal-day-booked-label {
+      font-size: 0.55rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      opacity: 0.6;
     }
     .cal-label {
       text-align: center;
@@ -1107,9 +1120,10 @@
         <div class="cal-header">
           <div class="cal-month">Novembre 2026</div>
           <div class="cal-legend">
-            <div class="cal-legend-item"><span class="cal-legend-dot cal-legend-dot--low"></span> Basse</div>
-            <div class="cal-legend-item"><span class="cal-legend-dot cal-legend-dot--mid"></span> Moyenne</div>
-            <div class="cal-legend-item"><span class="cal-legend-dot cal-legend-dot--high"></span> Forte</div>
+            <div class="cal-legend-item"><span class="cal-legend-dot cal-legend-dot--low"></span> Basse saison</div>
+            <div class="cal-legend-item"><span class="cal-legend-dot cal-legend-dot--mid"></span> Moyenne saison</div>
+            <div class="cal-legend-item"><span class="cal-legend-dot cal-legend-dot--high"></span> Haute saison</div>
+            <div class="cal-legend-item"><span class="cal-legend-dot cal-legend-dot--booked"></span> Réservé</div>
           </div>
         </div>
         <div class="cal-grid" id="calGrid"></div>
@@ -1277,8 +1291,7 @@
         grid.appendChild(el);
       });
 
-      // November 2026 starts on Sunday (day 7 in Mon-first grid → 6 empty cells)
-      const startDay = 6; // 0=Mon ... 6=Sun; Nov 1, 2026 is a Sunday
+      const startDay = 6;
       const daysInMonth = 30;
 
       const prices = {
@@ -1288,8 +1301,8 @@
         event: [180, 195, 210, 220]
       };
 
-      // Special event days (Toussaint tail, Beaujolais Nouveau, etc.)
       const eventDays = [1, 11, 19, 20, 21];
+      const bookedDays = [3, 4, 5, 6, 7, 8, 12, 13, 14, 15, 22, 25, 26, 27, 28];
 
       for (let i = 0; i < startDay; i++) {
         const empty = document.createElement('div');
@@ -1298,28 +1311,35 @@
       }
 
       for (let day = 1; day <= daysInMonth; day++) {
-        const dayOfWeek = (startDay + day - 1) % 7; // 0=Mon ... 6=Sun
+        const dayOfWeek = (startDay + day - 1) % 7;
         const isWeekend = dayOfWeek >= 5;
         const isEvent = eventDays.includes(day);
-
-        let level, price;
-        if (isEvent) {
-          level = 'high';
-          price = prices.event[day % prices.event.length];
-        } else if (isWeekend) {
-          level = 'mid';
-          price = prices.weekend[day % prices.weekend.length];
-        } else if (day > 15) {
-          level = 'mid';
-          price = prices.weekday_mid[day % prices.weekday_mid.length];
-        } else {
-          level = 'low';
-          price = prices.weekday_low[day % prices.weekday_low.length];
-        }
+        const isBooked = bookedDays.includes(day);
 
         const el = document.createElement('div');
-        el.className = `cal-day cal-day--${level}`;
-        el.innerHTML = `<span class="cal-day-num">${day}</span><span class="cal-day-price">${price} €</span>`;
+
+        if (isBooked) {
+          el.className = 'cal-day cal-day--booked';
+          el.innerHTML = `<span class="cal-day-num">${day}</span><span class="cal-day-booked-label">Réservé</span>`;
+        } else {
+          let level, price;
+          if (isEvent) {
+            level = 'high';
+            price = prices.event[day % prices.event.length];
+          } else if (isWeekend) {
+            level = 'mid';
+            price = prices.weekend[day % prices.weekend.length];
+          } else if (day > 15) {
+            level = 'mid';
+            price = prices.weekday_mid[day % prices.weekday_mid.length];
+          } else {
+            level = 'low';
+            price = prices.weekday_low[day % prices.weekday_low.length];
+          }
+          el.className = `cal-day cal-day--${level}`;
+          el.innerHTML = `<span class="cal-day-num">${day}</span><span class="cal-day-price">${price} €</span>`;
+        }
+
         grid.appendChild(el);
       }
     }
