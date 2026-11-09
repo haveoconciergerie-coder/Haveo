@@ -2278,7 +2278,7 @@
        CONFIGURATION (modifier ici)
        ============================================ */
 
-    const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+    const FORM_ENDPOINT = 'https://formsubmit.co/ajax/haveo.conciergerie@gmail.com';
 
     const CITIES = [
       'Paris',
@@ -2829,12 +2829,15 @@
     }
 
     async function submitForm(data, type) {
-      if (FORM_ENDPOINT.includes('YOUR_FORM_ID')) return;
       try {
         await fetch(FORM_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ ...data, type: type })
+          body: JSON.stringify({
+            ...data,
+            _subject: type === 'audit' ? 'Nouvelle demande d\'audit – Haveo' : 'Nouvelle estimation – Haveo',
+            _template: 'table'
+          })
         });
       } catch (e) {
         /* Silencieux */
