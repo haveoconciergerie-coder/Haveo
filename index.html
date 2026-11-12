@@ -1029,11 +1029,25 @@
     .mpc-theme-gold .mpc-pin { background: var(--gold); }
     .mpc-theme-gold .mpc-body { background: rgba(232, 176, 74, 0.08); border: 1px solid rgba(232, 176, 74, 0.15); }
     .mpc-theme-gold .mpc-body ul li::before { background: var(--gold); }
+    .method-connect-line--mobile { display: none; }
     @media (max-width: 639px) {
       .method-section { padding-block: 60px 40px; overflow: visible; }
-      .method-lines-bg,
-      .method-fade-left,
-      .method-fade-right { display: none; }
+      .method-lines-bg {
+        background-size: 32px 100%;
+        background-image: linear-gradient(to right, var(--text) 1px, transparent 1px);
+        opacity: 0.04;
+        margin-top: 0;
+      }
+      .method-fade-left {
+        width: 60px;
+        background: linear-gradient(to right, var(--white), transparent);
+        z-index: 1;
+      }
+      .method-fade-right {
+        width: 60px;
+        background: linear-gradient(to left, var(--white), transparent);
+        z-index: 1;
+      }
       .method-cards-container {
         flex-direction: row;
         overflow-x: auto;
@@ -1057,6 +1071,19 @@
       .method-pin-card .mpc-inner { transform: none !important; }
       .method-pin-card:hover .mpc-inner { transform: scale(1.03) !important; }
       .method-connect-line { display: none; }
+      .method-connect-line--mobile {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        overflow: visible;
+      }
+      .method-connect-line--mobile path {
+        animation: dashFlow 3s linear infinite;
+      }
       .mpc-number { font-size: 1.8rem; }
     }
 
@@ -2121,6 +2148,9 @@
       <svg class="method-connect-line" viewBox="0 0 1000 1800" preserveAspectRatio="none" aria-hidden="true">
         <path d="M 290 150 C 500 150, 550 450, 720 450 C 880 450, 500 750, 280 750 C 100 750, 500 1050, 720 1050 C 900 1050, 500 1350, 280 1350 C 100 1350, 500 1650, 720 1650" stroke="var(--sand-dark)" stroke-width="2" stroke-dasharray="8 6" fill="none" stroke-linecap="round"/>
       </svg>
+      <svg class="method-connect-line--mobile" aria-hidden="true">
+        <path id="mobileConnectPath" stroke="var(--sand-dark)" stroke-width="2" stroke-dasharray="8 6" fill="none" stroke-linecap="round"/>
+      </svg>
 
       <div class="method-pin-card mpc-card-left mpc-rotate-pos mpc-theme-coral reveal" role="group" aria-label="Étape 1 sur 6">
         <div class="mpc-inner">
@@ -2655,6 +2685,7 @@
       initServices();
       initWhyCards();
       initMethodTapToCenter();
+      initMobileConnectLine();
       initFooterCities();
       initNav();
       initSimulator();
@@ -2904,6 +2935,49 @@
           container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
         });
       });
+    }
+
+    /* ---- Méthode : mobile connect line ---- */
+    function initMobileConnectLine() {
+      if (window.innerWidth > 639) return;
+      var container = document.querySelector('.method-cards-container');
+      var svg = container && container.querySelector('.method-connect-line--mobile');
+      var path = document.getElementById('mobileConnectPath');
+      if (!container || !svg || !path) return;
+
+      function drawLine() {
+        var cards = container.querySelectorAll('.method-pin-card');
+        var pins = [];
+        cards.forEach(function(card) {
+          var pin = card.querySelector('.mpc-pin');
+          if (pin) {
+            var cx = card.offsetLeft + pin.offsetLeft + pin.offsetWidth / 2;
+            var cy = card.offsetTop + pin.offsetTop + pin.offsetHeight / 2;
+            pins.push({ x: cx, y: cy });
+          }
+        });
+        if (pins.length < 2) return;
+
+        var totalW = container.scrollWidth;
+        var totalH = container.scrollHeight;
+        svg.setAttribute('viewBox', '0 0 ' + totalW + ' ' + totalH);
+        svg.style.width = totalW + 'px';
+
+        var d = 'M ' + pins[0].x + ' ' + pins[0].y;
+        for (var i = 0; i < pins.length - 1; i++) {
+          var p0 = pins[i];
+          var p1 = pins[i + 1];
+          var midX = (p0.x + p1.x) / 2;
+          var offsetY = (i % 2 === 0) ? 40 : -40;
+          var cy1 = (p0.y + p1.y) / 2 + offsetY;
+          d += ' C ' + midX + ' ' + cy1 + ', ' + midX + ' ' + cy1 + ', ' + p1.x + ' ' + p1.y;
+        }
+        path.setAttribute('d', d);
+      }
+
+      drawLine();
+      var ro = new ResizeObserver(drawLine);
+      ro.observe(container);
     }
 
     /* ---- Footer villes (sélection représentative) ---- */
