@@ -1225,6 +1225,32 @@
       color: var(--text-muted);
       line-height: 1.5;
     }
+    .service-card--featured {
+      background: var(--green);
+      color: var(--white);
+      position: relative;
+    }
+    .service-card--featured .service-icon {
+      background: rgba(244, 235, 221, 0.15);
+      color: var(--gold);
+    }
+    .service-card--featured h3 { color: var(--white); }
+    .service-card--featured p { color: rgba(244, 235, 221, 0.8); }
+    .service-card--featured .service-arrow { color: var(--gold); }
+    @media (min-width: 640px) {
+      .service-card--featured { grid-column: span 2; }
+    }
+    .service-badge {
+      display: inline-block;
+      background: var(--coral);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.03em;
+      margin-bottom: 4px;
+    }
 
     /* ============================================
        PLATEFORMES (Airbnb & Booking)
@@ -2601,7 +2627,8 @@
       { title: 'Photos de qualité', desc: 'Photos lumineuses et soignées, de qualité professionnelle, pour mettre en valeur votre logement.', icon: 'camera', href: 'nos-services.html#photographie-decoration' },
       { title: 'Optimisation de la décoration', desc: 'Conseils et aménagements pour rendre votre logement plus attractif.', icon: 'palette', href: 'nos-services.html#photographie-decoration' },
       { title: 'Tarification dynamique', desc: 'Prix ajustés chaque nuit par nos algorithmes pour optimiser vos revenus.', icon: 'chart', href: 'nos-services.html#tarification-dynamique' },
-      { title: "Taux d'occupation maximisé", desc: 'Stratégie de pricing et visibilité pour remplir votre calendrier.', icon: 'calendar', href: 'nos-services.html#tarification-dynamique' }
+      { title: "Taux d'occupation maximisé", desc: 'Stratégie de pricing et visibilité pour remplir votre calendrier.', icon: 'calendar', href: 'nos-services.html#tarification-dynamique' },
+      { title: 'Travaux et rénovation', desc: 'Nous vous mettons en relation avec des artisans partenaires de confiance pour valoriser votre bien.', icon: 'renovation', href: 'nos-services.html#travaux-renovation', featured: true, badge: 'Nouveau' }
     ];
 
     const ICONS = {
@@ -2615,7 +2642,8 @@
       gift: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 01-2 2H7a2 2 0 01-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 010-5C9 3 12 8 12 8s3-5 4.5-5a2.5 2.5 0 010 5"/></svg>',
       phone: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.64.32 1.26.56 1.85a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.59.24 1.21.44 1.85.56A2 2 0 0122 16.92z"/></svg>',
       clock: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
-      key: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.78 7.78 5.5 5.5 0 017.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>'
+      key: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.78 7.78 5.5 5.5 0 017.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>',
+      renovation: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><rect x="4" y="8" width="16" height="12" rx="1"/><path d="M12 8V4"/><path d="M8 8V6"/><path d="M16 8V6"/><path d="M9 14h6"/><path d="M9 17h6"/></svg>'
     };
 
     /* ============================================
@@ -2788,11 +2816,12 @@
       SERVICES.forEach((s, i) => {
         const card = document.createElement('a');
         card.href = s.href;
-        card.className = 'service-card reveal' + (i % 3 === 1 ? ' reveal-delay-1' : i % 3 === 2 ? ' reveal-delay-2' : '');
+        card.className = 'service-card reveal' + (s.featured ? ' service-card--featured' : '') + (i % 3 === 1 ? ' reveal-delay-1' : i % 3 === 2 ? ' reveal-delay-2' : '');
+        const badgeHtml = s.badge ? `<span class="service-badge">${s.badge}</span>` : '';
         card.innerHTML = `
           <div class="service-icon">${ICONS[s.icon]}</div>
           <div>
-            <h3>${s.title}</h3>
+            ${badgeHtml}<h3>${s.title}</h3>
             <p>${s.desc}</p>
           </div>
           <span class="service-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
