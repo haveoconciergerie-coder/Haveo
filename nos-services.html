@@ -955,9 +955,15 @@
     }
 
     /* ---- Before/After Comparator ---- */
-    .compare {
+    .compare-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       width: 100%;
       max-width: 720px;
+    }
+    .compare {
+      width: 100%;
       aspect-ratio: 4 / 3;
       border-radius: var(--radius-lg);
       overflow: hidden;
@@ -1050,6 +1056,11 @@
     }
     .compare__label--avant { left: 12px; }
     .compare__label--apres { right: 12px; }
+    .compare-mention {
+      font-size: 0.75rem;
+      color: var(--sand-dark);
+      margin-top: 8px;
+    }
   </style>
 </head>
 <body>
@@ -1336,20 +1347,23 @@
           </div>
         </div>
         <div class="svc-visual reveal reveal-delay-1">
-          <div class="compare" id="compareSlider" role="slider" tabindex="0" aria-label="Comparer la cuisine avant et après travaux" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="--pos:50%">
-            <div class="compare__after">
-              <img src="images/travaux-apres.jpg" alt="Cuisine après rénovation" width="1448" height="1086" decoding="async" loading="lazy">
+          <div class="compare-wrapper">
+            <div class="compare" id="compareSlider" role="slider" tabindex="0" aria-label="Comparer la cuisine avant et après travaux" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="--pos:50%">
+              <div class="compare__after">
+                <img src="images/travaux-apres.jpg" alt="Cuisine après rénovation" width="1448" height="1086" decoding="async" loading="lazy">
+              </div>
+              <div class="compare__before">
+                <img src="images/travaux-avant.jpg" alt="Cuisine avant travaux" width="1448" height="1086" decoding="async" loading="lazy">
+              </div>
+              <div class="compare__line"></div>
+              <div class="compare__handle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </div>
+              <span class="compare__label compare__label--avant">Avant</span>
+              <span class="compare__label compare__label--apres">Après</span>
             </div>
-            <div class="compare__before">
-              <img src="images/travaux-avant.jpg" alt="Cuisine avant travaux" width="1448" height="1086" decoding="async" loading="lazy">
-            </div>
-            <div class="compare__line"></div>
-            <div class="compare__handle">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            </div>
-            <span class="compare__label compare__label--avant">Avant</span>
-            <span class="compare__label compare__label--apres">Après</span>
+            <p class="compare-mention">Exemple illustratif</p>
           </div>
         </div>
       </div>
