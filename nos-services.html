@@ -949,6 +949,115 @@
       text-decoration: none;
     }
     .skip-link:focus { top: 12px; }
+    /* ---- Wider visual for travaux section ---- */
+    @media (min-width: 768px) {
+      .svc-layout--wide-visual { grid-template-columns: 1fr 1.25fr; }
+    }
+
+    /* ---- Before/After Comparator ---- */
+    .compare {
+      width: 100%;
+      max-width: 640px;
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 16px 40px rgba(15, 76, 76, 0.12);
+      cursor: ew-resize;
+      touch-action: pan-y;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .compare:focus-visible {
+      outline: 2px solid var(--coral);
+      outline-offset: 3px;
+    }
+    .compare img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .compare__after {
+      position: absolute;
+      inset: 0;
+    }
+    .compare__before {
+      position: absolute;
+      inset: 0;
+      clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0);
+    }
+    .compare__line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: var(--pos, 50%);
+      transform: translateX(-50%);
+      width: 2px;
+      background: var(--gold);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .compare__handle {
+      position: absolute;
+      top: 50%;
+      left: var(--pos, 50%);
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--white);
+      box-shadow: 0 2px 12px rgba(15, 76, 76, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      z-index: 3;
+      pointer-events: none;
+      transition: transform 0.15s ease;
+    }
+    .compare__handle svg {
+      width: 14px;
+      height: 14px;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+    .compare:hover .compare__handle,
+    .compare.is-dragging .compare__handle {
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+    .compare.is-dragging {
+      cursor: grabbing;
+    }
+    .compare.no-transition .compare__line,
+    .compare.no-transition .compare__handle,
+    .compare.no-transition .compare__before {
+      transition: none !important;
+    }
+    .compare__label {
+      position: absolute;
+      top: 12px;
+      z-index: 2;
+      background: rgba(15, 76, 76, 0.75);
+      color: var(--sand);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 100px;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .compare__label--avant { left: 12px; }
+    .compare__label--apres { right: 12px; }
+    .compare-caption {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 12px;
+      opacity: 0.7;
+    }
+
   </style>
 </head>
 <body>
@@ -1213,7 +1322,7 @@
       <h2 class="reveal">Travaux et rénovation</h2>
       <p class="section-intro reveal">Besoin de rénover ou d'aménager votre bien avant de le proposer en location courte durée ? Nous vous orientons vers des artisans partenaires de confiance pour concrétiser votre projet.</p>
 
-      <div class="svc-layout">
+      <div class="svc-layout svc-layout--wide-visual">
         <div class="reveal">
           <ul class="svc-feature-list">
             <li class="svc-feature-item">Évaluation de vos besoins en aménagement et rénovation</li>
@@ -1235,9 +1344,28 @@
           </div>
         </div>
         <div class="svc-visual reveal reveal-delay-1">
-          <div class="svc-illus svc-illus--sand">
-            <img src="images/travaux-renovation.jpg" alt="Travaux et rénovation — chantier d'aménagement intérieur" loading="lazy" onerror="this.style.display='none'">
+          <div class="compare" id="compareSlider" role="slider" tabindex="0" aria-label="Comparer la cuisine avant et après travaux" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="--pos:50%">
+            <div class="compare__after">
+              <picture>
+                <source type="image/webp" srcset="images/travaux-apres-900.webp 900w, images/travaux-apres-1448.webp 1448w" sizes="(max-width: 767px) 100vw, 640px">
+                <img src="images/travaux-apres.jpg" alt="Exemple illustratif : la même cuisine après rénovation" width="1448" height="1086" decoding="async" loading="lazy">
+              </picture>
+            </div>
+            <div class="compare__before">
+              <picture>
+                <source type="image/webp" srcset="images/travaux-avant-900.webp 900w, images/travaux-avant-1448.webp 1448w" sizes="(max-width: 767px) 100vw, 640px">
+                <img src="images/travaux-avant.jpg" alt="Exemple illustratif : cuisine datée avant travaux" width="1448" height="1086" decoding="async" loading="lazy">
+              </picture>
+            </div>
+            <div class="compare__line"></div>
+            <div class="compare__handle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+            <span class="compare__label compare__label--avant">Avant</span>
+            <span class="compare__label compare__label--apres">Après</span>
           </div>
+          <p class="compare-caption">Exemple illustratif · Faites glisser pour comparer</p>
         </div>
       </div>
     </div>
@@ -1366,7 +1494,107 @@
       initScrollReveal();
       initCalendar();
       initFooterCities();
+      initCompare();
     });
+
+    function initCompare() {
+      var el = document.getElementById('compareSlider');
+      if (!el) return;
+      var before = el.querySelector('.compare__before');
+      var labelAvant = el.querySelector('.compare__label--avant');
+      var labelApres = el.querySelector('.compare__label--apres');
+      var isDragging = false;
+      var hasTouched = false;
+      var rafId = null;
+      var pos = 50;
+
+      function setPos(p, animate) {
+        pos = Math.max(0, Math.min(100, p));
+        if (animate) {
+          el.classList.remove('no-transition');
+        } else {
+          el.classList.add('no-transition');
+        }
+        el.style.setProperty('--pos', pos + '%');
+        el.setAttribute('aria-valuenow', Math.round(pos));
+        if (labelAvant) labelAvant.style.opacity = pos < 12 ? '0' : '';
+        if (labelApres) labelApres.style.opacity = pos > 88 ? '0' : '';
+      }
+
+      function getPosFromEvent(e) {
+        var rect = el.getBoundingClientRect();
+        return ((e.clientX - rect.left) / rect.width) * 100;
+      }
+
+      el.addEventListener('pointerdown', function(e) {
+        if (e.button && e.button !== 0) return;
+        hasTouched = true;
+        isDragging = true;
+        el.classList.add('is-dragging');
+        el.setPointerCapture(e.id || e.pointerId);
+        setPos(getPosFromEvent(e), false);
+      });
+
+      el.addEventListener('pointermove', function(e) {
+        if (!isDragging) return;
+        if (rafId) return;
+        rafId = requestAnimationFrame(function() {
+          rafId = null;
+          if (isDragging) setPos(getPosFromEvent(e), false);
+        });
+      });
+
+      el.addEventListener('pointerup', function() {
+        if (!isDragging) return;
+        isDragging = false;
+        el.classList.remove('is-dragging');
+        el.classList.remove('no-transition');
+      });
+
+      el.addEventListener('pointercancel', function() {
+        isDragging = false;
+        el.classList.remove('is-dragging');
+        el.classList.remove('no-transition');
+      });
+
+      el.addEventListener('click', function(e) {
+        if (!hasTouched) {
+          hasTouched = true;
+        }
+        setPos(getPosFromEvent(e), true);
+      });
+
+      el.addEventListener('keydown', function(e) {
+        var step = 5;
+        if (e.key === 'ArrowRight') { setPos(pos + step, true); e.preventDefault(); }
+        else if (e.key === 'ArrowLeft') { setPos(pos - step, true); e.preventDefault(); }
+        else if (e.key === 'Home') { setPos(0, true); e.preventDefault(); }
+        else if (e.key === 'End') { setPos(100, true); e.preventDefault(); }
+      });
+
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReduced) {
+        var hintObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !hasTouched) {
+              hintObserver.disconnect();
+              setTimeout(function() {
+                if (hasTouched) return;
+                var steps = [
+                  { p: 56, t: 0 },
+                  { p: 44, t: 300 },
+                  { p: 50, t: 600 }
+                ];
+                steps.forEach(function(s) {
+                  setTimeout(function() { if (!hasTouched) setPos(s.p, true); }, s.t);
+                });
+              }, 800);
+            }
+          });
+        }, { threshold: 0.5 });
+        hintObserver.observe(el);
+      }
+    }
 
     function initFooterCities() {
       const list = document.getElementById('footerCities');
