@@ -1054,8 +1054,8 @@
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x mandatory;
         gap: 16px;
-        padding: 16px 16px 24px;
-        margin-top: 32px;
+        padding: 56px 16px 24px;
+        margin-top: 12px;
         scrollbar-width: none;
       }
       .method-cards-container::-webkit-scrollbar { display: none; }
@@ -1078,7 +1078,7 @@
         left: 0;
         height: 100%;
         pointer-events: none;
-        z-index: 3;
+        z-index: 1;
         overflow: visible;
       }
       .method-connect-line--mobile path {
@@ -2997,18 +2997,26 @@
 
         var w = container.scrollWidth;
         var h = container.scrollHeight;
-        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
-        svg.style.width = w + 'px';
 
+        var minY = Infinity;
         var d = 'M ' + pins[0].x + ' ' + pins[0].y;
+        var segments = [];
         for (var i = 0; i < pins.length - 1; i++) {
           var p0 = pins[i];
           var p1 = pins[i + 1];
           var midX = (p0.x + p1.x) / 2;
           var offsetY = (i % 2 === 0) ? 40 : -40;
           var cy1 = (p0.y + p1.y) / 2 + offsetY;
+          if (cy1 < minY) minY = cy1;
           d += ' C ' + midX + ' ' + cy1 + ', ' + midX + ' ' + cy1 + ', ' + p1.x + ' ' + p1.y;
         }
+
+        var pad = Math.max(0, -minY + 10);
+        svg.setAttribute('viewBox', '0 ' + (-pad) + ' ' + w + ' ' + (h + pad));
+        svg.style.width = w + 'px';
+        svg.style.top = (-pad) + 'px';
+        svg.style.height = (h + pad) + 'px';
+
         path.setAttribute('d', d);
       }
 
