@@ -932,7 +932,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 0;
+      z-index: 3;
     }
     @keyframes dashFlow {
       to { stroke-dashoffset: -140; }
@@ -944,13 +944,14 @@
       position: relative;
       width: 100%;
       max-width: 320px;
-      z-index: 2;
       margin-bottom: -10px;
     }
     .method-pin-card:last-child { margin-bottom: 0; }
     .mpc-inner {
+      position: relative;
+      z-index: 4;
       background: var(--white);
-      padding: 8px;
+      padding: 32px 8px 8px;
       border-radius: 25px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.08);
       border: 1px solid rgba(15, 76, 76, 0.06);
@@ -966,11 +967,14 @@
     .mpc-rotate-pos:hover .mpc-inner { transform: rotate(6deg) scale(1.04); }
     .mpc-rotate-neg:hover .mpc-inner { transform: rotate(-6deg) scale(1.04); }
     .mpc-pin {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      margin-left: -4px;
       width: 8px;
       height: 8px;
-      margin: 0 auto 16px;
-      display: block;
       border-radius: 50%;
+      z-index: 5;
     }
     .mpc-body {
       border-radius: 15px;
@@ -1078,7 +1082,7 @@
         left: 0;
         height: 100%;
         pointer-events: none;
-        z-index: 1;
+        z-index: 3;
         overflow: visible;
       }
       .method-connect-line--mobile path {
@@ -2153,8 +2157,8 @@
       </svg>
 
       <div class="method-pin-card mpc-card-left mpc-rotate-pos mpc-theme-coral reveal" role="group" aria-label="Étape 1 sur 6">
+        <div class="mpc-pin"></div>
         <div class="mpc-inner">
-          <div class="mpc-pin"></div>
           <div class="mpc-body">
             <div class="mpc-number">01</div>
             <h3>Audit gratuit</h3>
@@ -2169,8 +2173,8 @@
       </div>
 
       <div class="method-pin-card mpc-card-right mpc-rotate-neg mpc-theme-green reveal reveal-delay-1" role="group" aria-label="Étape 2 sur 6">
+        <div class="mpc-pin"></div>
         <div class="mpc-inner">
-          <div class="mpc-pin"></div>
           <div class="mpc-body">
             <div class="mpc-number">02</div>
             <h3>Offre personnalisée</h3>
@@ -2185,8 +2189,8 @@
       </div>
 
       <div class="method-pin-card mpc-card-left mpc-rotate-pos mpc-theme-gold reveal reveal-delay-2" role="group" aria-label="Étape 3 sur 6">
+        <div class="mpc-pin"></div>
         <div class="mpc-inner">
-          <div class="mpc-pin"></div>
           <div class="mpc-body">
             <div class="mpc-number">03</div>
             <h3>Photos professionnelles</h3>
@@ -2201,8 +2205,8 @@
       </div>
 
       <div class="method-pin-card mpc-card-right mpc-rotate-neg mpc-theme-coral reveal reveal-delay-1" role="group" aria-label="Étape 4 sur 6">
+        <div class="mpc-pin"></div>
         <div class="mpc-inner">
-          <div class="mpc-pin"></div>
           <div class="mpc-body">
             <div class="mpc-number">04</div>
             <h3>Annonce optimisée</h3>
@@ -2217,8 +2221,8 @@
       </div>
 
       <div class="method-pin-card mpc-card-left mpc-rotate-pos mpc-theme-green reveal reveal-delay-2" role="group" aria-label="Étape 5 sur 6">
+        <div class="mpc-pin"></div>
         <div class="mpc-inner">
-          <div class="mpc-pin"></div>
           <div class="mpc-body">
             <div class="mpc-number">05</div>
             <h3>Tarification dynamique</h3>
@@ -2233,8 +2237,8 @@
       </div>
 
       <div class="method-pin-card mpc-card-right mpc-rotate-neg mpc-theme-gold reveal reveal-delay-1" role="group" aria-label="Étape 6 sur 6">
+        <div class="mpc-pin"></div>
         <div class="mpc-inner">
-          <div class="mpc-pin"></div>
           <div class="mpc-body">
             <div class="mpc-number">06</div>
             <h3>Accompagnement opérationnel</h3>
