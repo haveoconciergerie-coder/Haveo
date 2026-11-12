@@ -951,13 +951,13 @@
     .skip-link:focus { top: 12px; }
     /* ---- Wider visual for travaux section ---- */
     @media (min-width: 768px) {
-      .svc-layout--wide-visual { grid-template-columns: 1fr 1.25fr; }
+      .svc-layout--wide-visual { grid-template-columns: 1fr 1.4fr; }
     }
 
     /* ---- Before/After Comparator ---- */
     .compare {
       width: 100%;
-      max-width: 640px;
+      max-width: 720px;
       aspect-ratio: 4 / 3;
       border-radius: var(--radius-lg);
       overflow: hidden;
@@ -1050,14 +1050,6 @@
     }
     .compare__label--avant { left: 12px; }
     .compare__label--apres { right: 12px; }
-    .compare-caption {
-      text-align: center;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-top: 12px;
-      opacity: 0.7;
-    }
-
   </style>
 </head>
 <body>
@@ -1346,16 +1338,10 @@
         <div class="svc-visual reveal reveal-delay-1">
           <div class="compare" id="compareSlider" role="slider" tabindex="0" aria-label="Comparer la cuisine avant et après travaux" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="--pos:50%">
             <div class="compare__after">
-              <picture>
-                <source type="image/webp" srcset="images/travaux-apres-900.webp 900w, images/travaux-apres-1448.webp 1448w" sizes="(max-width: 767px) 100vw, 640px">
-                <img src="images/travaux-apres.jpg" alt="Exemple illustratif : la même cuisine après rénovation" width="1448" height="1086" decoding="async" loading="lazy">
-              </picture>
+              <img src="images/travaux-apres.jpg" alt="Cuisine après rénovation" width="1448" height="1086" decoding="async" loading="lazy">
             </div>
             <div class="compare__before">
-              <picture>
-                <source type="image/webp" srcset="images/travaux-avant-900.webp 900w, images/travaux-avant-1448.webp 1448w" sizes="(max-width: 767px) 100vw, 640px">
-                <img src="images/travaux-avant.jpg" alt="Exemple illustratif : cuisine datée avant travaux" width="1448" height="1086" decoding="async" loading="lazy">
-              </picture>
+              <img src="images/travaux-avant.jpg" alt="Cuisine avant travaux" width="1448" height="1086" decoding="async" loading="lazy">
             </div>
             <div class="compare__line"></div>
             <div class="compare__handle">
@@ -1365,7 +1351,6 @@
             <span class="compare__label compare__label--avant">Avant</span>
             <span class="compare__label compare__label--apres">Après</span>
           </div>
-          <p class="compare-caption">Exemple illustratif · Faites glisser pour comparer</p>
         </div>
       </div>
     </div>
