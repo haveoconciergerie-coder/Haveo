@@ -1,0 +1,334 @@
+<meta charset="utf-8">
+<title>Haveo Instagram</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Mise en page : à gauche le téléphone (profil + grille, fixe sur grand écran), à droite le planning des posts. */
+:root{
+  --bg:#F7F1E7; --surface:#FFFDF9; --sunk:#EFE6D6; --ink:#0F4C4C; --muted:#4E7474; --line:rgba(15,76,76,.13);
+  --coral:#F26B5B; --coral-ink:#C8402F; --gold:#E8B04A; --sand:#F4EBDD; --green:#0F4C4C;
+  --phone:#FFFFFF; --phone-ink:#111A1A; --phone-muted:#5B6767; --phone-line:#E6E6E6;
+  --btn:#0F4C4C; --btn-ink:#FFFDF9; --ok:#2E7D5B;
+  --font:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#082626; --surface:#0E3434; --sunk:#0B2D2D; --ink:#F4EBDD; --muted:#A3C1BC; --line:rgba(244,235,221,.13);
+  --coral-ink:#FF8C7D; --phone:#000000; --phone-ink:#F5F5F5; --phone-muted:#A8A8A8; --phone-line:#262626;
+  --btn:#F4EBDD; --btn-ink:#0F4C4C; --ok:#6FCF9F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#082626; --surface:#0E3434; --sunk:#0B2D2D; --ink:#F4EBDD; --muted:#A3C1BC; --line:rgba(244,235,221,.13);
+  --coral-ink:#FF8C7D; --phone:#000000; --phone-ink:#F5F5F5; --phone-muted:#A8A8A8; --phone-line:#262626;
+  --btn:#F4EBDD; --btn-ink:#0F4C4C; --ok:#6FCF9F; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.5;margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1180px;margin:0 auto}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;padding-block:32px 28px;border-bottom:1px solid var(--line);margin-bottom:32px}
+.brand{font-size:30px;font-weight:700;letter-spacing:-.04em;line-height:1}
+.brand i{font-style:normal;color:var(--coral)}
+.brand small{display:block;font-size:14px;font-weight:500;letter-spacing:0;color:var(--muted);margin-top:8px}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:500;font-variant-numeric:tabular-nums}
+.fact b{font-weight:700}
+
+.layout{display:grid;grid-template-columns:380px minmax(0,1fr);gap:48px;align-items:start}
+@media (max-width:900px){.layout{grid-template-columns:minmax(0,1fr)}}
+.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+@media (max-width:900px){.side{position:static;max-width:400px;margin:0 auto;width:100%}}
+
+/* --- Téléphone --- */
+.phone{background:var(--phone);color:var(--phone-ink);border-radius:36px;border:10px solid #1B1F1F;overflow:hidden;box-shadow:0 30px 60px -30px rgba(8,38,38,.45)}
+.ph-bar{display:flex;align-items:center;justify-content:center;padding:14px 16px 10px;font-weight:700;font-size:15px}
+.ph-head{display:flex;align-items:center;gap:22px;padding:4px 16px 10px}
+.ph-avatar{width:78px;height:78px;border-radius:50%;object-fit:cover;flex:none;border:1px solid var(--phone-line)}
+.ph-stats{display:flex;gap:18px;font-size:13px;color:var(--phone-ink)}
+.ph-stats div{text-align:center;line-height:1.25}.ph-stats b{display:block;font-size:16px;font-variant-numeric:tabular-nums}
+.ph-bio{padding:0 16px 10px;font-size:13px;line-height:1.4;white-space:pre-line}
+.ph-bio .n{font-weight:700;display:block}
+.ph-bio .l{color:#4F7DCC;font-weight:600}
+.ph-btns{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:0 16px 12px}
+.ph-btns span{background:var(--phone-line);border-radius:8px;text-align:center;font-size:13px;font-weight:600;padding:7px 0}
+.ph-unes{display:flex;gap:14px;padding:4px 16px 14px;overflow-x:auto;scrollbar-width:none}
+.ph-une{flex:none;width:62px;text-align:center;font-size:11px}
+.ph-une span{display:block;width:62px;height:62px;border-radius:50%;padding:3px;border:1px solid var(--phone-line)}
+.ph-une img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.ph-tabs{border-top:1px solid var(--phone-line);display:flex;justify-content:center;padding:8px 0}
+.ph-tabs svg{width:22px;height:22px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;min-height:120px}
+.cell{aspect-ratio:3/4;max-width:100%;background:var(--phone-line);position:relative;border:0;padding:0;cursor:pointer;overflow:hidden;display:block}
+.cell img{width:100%;height:100%;object-fit:cover;display:block}
+.cell .new{position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,.65);color:#fff;font:600 10px/1 var(--font);padding:4px 6px;border-radius:6px}
+.cell.ex::after{content:"exemple";position:absolute;bottom:6px;right:6px;background:rgba(0,0,0,.65);color:#fff;font:600 10px/1 var(--font);padding:4px 6px;border-radius:6px}
+.cell:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+.empty{aspect-ratio:3/4;background:transparent}
+
+.sim{margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px}
+.sim-row{display:flex;align-items:center;gap:10px}
+.sim-row label{font-weight:600;font-size:14px;flex:1}
+.step{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:600 18px/1 var(--font);cursor:pointer}
+.step:focus-visible,.btn:focus-visible,.tab:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
+.count{min-width:2ch;text-align:center;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;margin:12px 0 4px;accent-color:var(--coral)}
+.sim p{margin:6px 0 0;font-size:13px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
+.cols span{height:8px;border-radius:4px}
+
+/* --- Colonne principale --- */
+main{min-width:0}
+section.block{margin-bottom:44px}
+h2{font-size:22px;letter-spacing:-.02em;margin:0 0 6px;text-wrap:balance}
+.lede{color:var(--muted);margin:0 0 18px;max-width:62ch}
+.rule{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.swatch{border-radius:16px;padding:14px 16px;min-height:96px;display:flex;flex-direction:column;justify-content:space-between;font-size:13px}
+.swatch b{font-size:16px}
+.sw-corail{background:#F26B5B;color:#0B3A3A}.sw-sable{background:#F4EBDD;color:#0F4C4C;border:1px solid var(--line)}.sw-vert{background:#0F4C4C;color:#FBF6EE}
+.tips{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.tips li{padding-left:22px;position:relative;max-width:70ch}
+.tips li::before{content:"";position:absolute;left:4px;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--coral)}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px}
+.kv{display:grid;gap:14px}
+.kv .k{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:4px}
+.kv pre{margin:0;font:500 14px/1.5 var(--font);white-space:pre-wrap;background:var(--sunk);border-radius:12px;padding:12px 14px}
+.kv .row{display:flex;gap:10px;align-items:flex-start}.kv .row>div{flex:1;min-width:0}
+.unes{display:flex;flex-wrap:wrap;gap:14px;margin-top:6px}
+.une{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;font-weight:600}
+.une img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
+
+.posts{display:grid;gap:18px}
+.post{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:18px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:20px;scroll-margin-top:20px}
+@media (max-width:560px){.post{grid-template-columns:minmax(0,1fr)}.post .vis{max-width:260px}}
+.post.flash{box-shadow:0 0 0 3px var(--gold)}
+.vis img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;display:block;max-width:100%}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:12px}
+.meta h3{margin:0;font-size:17px;letter-spacing:-.01em}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--muted)}
+.chip i{width:12px;height:12px;border-radius:4px;display:inline-block;border:1px solid var(--line)}
+.status{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--sunk);color:var(--muted)}
+.status.pret{color:var(--ok)} .status.proposition{color:#A16C0B;background:rgba(232,176,74,.18)} .status.exemple{color:var(--coral-ink);background:rgba(242,107,91,.12)}
+:root[data-theme="dark"] .status.proposition{color:var(--gold)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .status.proposition{color:var(--gold)}}
+.tabs{display:flex;gap:4px;background:var(--sunk);border-radius:12px;padding:4px;width:max-content;max-width:100%;overflow-x:auto}
+.tab{border:0;background:transparent;color:var(--muted);font:600 13px/1 var(--font);padding:8px 12px;border-radius:9px;cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.cap{margin:10px 0 0;font:400 14px/1.55 var(--font);white-space:pre-wrap;max-height:300px;overflow:auto;background:var(--sunk);border-radius:12px;padding:14px 16px;overflow-wrap:anywhere}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 13px/1 var(--font);padding:10px 14px;border-radius:999px;cursor:pointer}
+.btn.primary{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
+.btn[data-done]{color:var(--ok)}
+.len{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;margin-left:auto}
+.ref{font-size:12px;color:var(--muted);margin-top:10px}
+@media (prefers-reduced-motion: no-preference){.post{transition:box-shadow .3s}.cell img{transition:opacity .2s}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">haveo<i>.</i><small>Instagram et Facebook · série de lancement</small></div>
+    <div class="facts" id="facts"></div>
+  </header>
+
+  <div class="layout">
+    <aside class="side">
+      <div class="phone" aria-label="Aperçu du profil">
+        <div class="ph-bar" id="ph-pseudo"></div>
+        <div class="ph-head">
+          <img class="ph-avatar" src="avatar.png" alt="Photo de profil Haveo">
+          <div class="ph-stats"><div><b id="ph-n">0</b>publications</div><div><b>–</b>abonnés</div><div><b>–</b>suivis</div></div>
+        </div>
+        <div class="ph-bio" id="ph-bio"></div>
+        <div class="ph-btns"><span>Suivre</span><span>Contacter</span></div>
+        <div class="ph-unes" id="ph-unes"></div>
+        <div class="ph-tabs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></div>
+        <div class="grid" id="grid"></div>
+      </div>
+
+      <div class="sim">
+        <div class="sim-row">
+          <label for="n">Grille après le post n°</label>
+          <button class="step" id="moins" type="button" aria-label="Post précédent">−</button>
+          <span class="count" id="n-val">9</span>
+          <button class="step" id="plus" type="button" aria-label="Post suivant">+</button>
+        </div>
+        <input type="range" id="n" min="1" max="9" value="9">
+        <p id="sim-txt"></p>
+        <div class="cols" id="cols" aria-hidden="true"></div>
+      </div>
+    </aside>
+
+    <main>
+      <section class="block">
+        <h2>Le code couleur de la grille</h2>
+        <p class="lede">Chaque post prend la couleur suivante, dans cet ordre, puis on recommence. Le post le plus récent s'affiche en haut à gauche et pousse les autres d'une case. Comme il y a 3 couleurs et 3 colonnes, chaque colonne garde une seule couleur, quel que soit le nombre de posts. Fais défiler la grille à gauche pour le voir.</p>
+        <div class="rule" id="rule"></div>
+        <ul class="tips">
+          <li>Ne supprime pas, n'archive pas et n'épingle pas de post : un post qui sort de la suite décale toutes les couleurs.</li>
+          <li>Une vraie photo de logement prend sa place dans la suite comme les autres : utilise le modèle photo, son cadre a la couleur du tour.</li>
+          <li>Le profil recadre chaque post en 3:4 (un peu moins large). Les visuels gardent une marge, rien n'est coupé.</li>
+          <li>Visuels en 1080 × 1350 (4:5), le format qui prend le plus de place dans le fil, sur Instagram comme sur Facebook.</li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h2>Profil</h2>
+        <p class="lede">Le nom affiché compte dans la recherche Instagram : on y met « Conciergerie Airbnb Paris ». La bio tient en 150 caractères.</p>
+        <div class="panel kv" id="profil"></div>
+      </section>
+
+      <section class="block">
+        <h2>Les posts</h2>
+        <p class="lede">Dans l'ordre de publication. Sur Instagram, la première ligne est la seule visible avant « … plus » : c'est l'accroche. Sur Facebook, « lien en bio » est remplacé par le lien du site et on garde deux hashtags.</p>
+        <div class="posts" id="posts"></div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+const D = /*DONNEES*/null;
+const $ = (s, r = document) => r.querySelector(s);
+const el = (tag, attrs = {}, ...kids) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'class') e.className = v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else if (v !== false && v != null) e.setAttribute(k, v === true ? '' : v);
+  }
+  for (const k of kids.flat()) if (k != null) e.append(k.nodeType ? k : document.createTextNode(k));
+  return e;
+};
+const coul = Object.fromEntries(D.couleurs.map((c) => [c.id, c]));
+const publies = D.posts.filter((p) => p.statut !== 'exemple');
+const nbPublies = publies.length;
+const STATUT = { pret: 'Prêt', proposition: 'Proposition', exemple: 'Exemple' };
+
+// ---------- Copier ----------
+async function copier(texte, bouton, cible) {
+  const lab = bouton.textContent;
+  try { await navigator.clipboard.writeText(texte); bouton.textContent = 'Copié'; bouton.dataset.done = ''; }
+  catch {
+    if (cible) { const r = document.createRange(); r.selectNodeContents(cible); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    bouton.textContent = 'Texte sélectionné, copie-le';
+  }
+  setTimeout(() => { bouton.textContent = lab; delete bouton.dataset.done; }, 1800);
+}
+
+// ---------- Enregistrer une image (si la page le permet) ----------
+let downloads = null;
+const enregistrables = [];
+async function enregistrer(chemin, nom, bouton) {
+  const lab = bouton.textContent;
+  try {
+    const blob = await (await fetch(chemin)).blob();
+    await downloads.save({ filename: nom, data: blob });
+    bouton.textContent = 'Enregistrée';
+  } catch (e) {
+    bouton.textContent = e && e.code === 'declined' ? lab : 'Impossible ici';
+  }
+  setTimeout(() => { bouton.textContent = lab; }, 2000);
+}
+const boutonImage = (chemin, nom, label = "Enregistrer l'image") => {
+  const b = el('button', { class: 'btn', type: 'button', hidden: true, onclick: () => enregistrer(chemin, nom, b) }, label);
+  enregistrables.push(b); return b;
+};
+
+// ---------- En-tête ----------
+$('#facts').append(
+  el('span', { class: 'fact' }, el('b', {}, String(nbPublies)), ' posts'),
+  el('span', { class: 'fact' }, 'Lancement ', el('b', {}, publies[0].date)),
+  el('span', { class: 'fact' }, 'Vers ', el('b', {}, D.heure)),
+);
+
+// ---------- Téléphone ----------
+$('#ph-pseudo').textContent = D.profil.pseudo;
+$('#ph-bio').append(el('span', { class: 'n' }, D.profil.nom), D.profil.bio + '\n', el('span', { class: 'l' }, D.profil.lien));
+for (const u of D.unes) $('#ph-unes').append(el('div', { class: 'ph-une' }, el('span', {}, el('img', { src: 'a-la-une/' + u.fichier, alt: '' })), u.titre));
+
+const range = $('#n');
+range.max = D.posts.length;
+function grille(n) {
+  n = Math.max(1, Math.min(D.posts.length, n));
+  range.value = n; $('#n-val').textContent = n; $('#ph-n').textContent = n;
+  const g = $('#grid'); g.replaceChildren();
+  const vus = D.posts.slice(0, n).reverse();
+  vus.forEach((p, i) => {
+    const c = el('button', { class: 'cell' + (p.statut === 'exemple' ? ' ex' : ''), type: 'button', 'aria-label': `Post ${p.numero}, ${coul[p.couleur].nom.toLowerCase()}`, onclick: () => voir(p.numero) },
+      el('img', { src: 'visuels/' + p.fichier, alt: '' }));
+    if (i === 0) c.append(el('span', { class: 'new' }, 'n° ' + p.numero));
+    g.append(c);
+  });
+  for (let r = vus.length % 3 ? 3 - vus.length % 3 : 0; r > 0; r--) g.append(el('div', { class: 'empty' }));
+  const colonnes = [0, 1, 2].map((k) => D.posts[n - 1 - k] ? coul[D.posts[n - 1 - k].couleur] : null);
+  $('#cols').replaceChildren(...colonnes.map((c) => el('span', { style: `background:${c ? c.hex : 'transparent'};${c && c.id === 'sable' ? 'box-shadow:inset 0 0 0 1px var(--line)' : ''}` })));
+  const prochain = D.couleurs[n % D.couleurs.length];
+  $('#sim-txt').textContent = `Colonnes : ${colonnes.filter(Boolean).map((c) => c.nom.toLowerCase()).join(', ')}. Le prochain post (n° ${n + 1}) sera ${prochain.nom.toLowerCase()}.`
+    + (n === nbPublies && n % 3 === 0 ? ' La grille est complète : ' + n / 3 + ' lignes pleines.' : '');
+}
+range.addEventListener('input', () => grille(+range.value));
+$('#moins').addEventListener('click', () => grille(+range.value - 1));
+$('#plus').addEventListener('click', () => grille(+range.value + 1));
+
+function voir(numero) {
+  const c = document.getElementById('post-' + numero);
+  if (!c) return;
+  c.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  c.classList.add('flash'); setTimeout(() => c.classList.remove('flash'), 1400);
+}
+
+// ---------- Code couleur ----------
+for (const c of D.couleurs) {
+  const nums = publies.filter((p) => p.couleur === c.id).map((p) => p.numero);
+  $('#rule').append(el('div', { class: 'swatch sw-' + c.id }, el('b', {}, c.nom), 'Posts ' + nums.join(', ') + '…'));
+}
+
+// ---------- Profil ----------
+const ligneCopie = (k, v) => {
+  const pre = el('pre', {}, v);
+  const b = el('button', { class: 'btn', type: 'button', onclick: () => copier(v, b, pre) }, 'Copier');
+  return el('div', { class: 'row' }, el('div', {}, el('div', { class: 'k' }, k), pre), b);
+};
+$('#profil').append(
+  ligneCopie('Nom affiché', D.profil.nom),
+  ligneCopie(`Bio (${[...D.profil.bio].length} / 150)`, D.profil.bio),
+  ligneCopie('Lien', D.profil.lien),
+  el('div', {}, el('div', { class: 'k' }, 'Stories à la une : couvertures'),
+    el('div', { class: 'unes' }, D.unes.map((u) => el('div', { class: 'une' }, el('img', { src: 'a-la-une/' + u.fichier, alt: '' }), u.titre, boutonImage('a-la-une/' + u.fichier, u.fichier, 'Enregistrer'))))),
+);
+
+// ---------- Posts ----------
+for (const p of D.posts) {
+  const vues = [['instagram', 'Instagram'], ['facebook', 'Facebook'], ['alt', 'Texte alternatif']];
+  let vue = 'instagram';
+  const cap = el('div', { class: 'cap', tabindex: '0' });
+  const len = el('span', { class: 'len' });
+  const tabs = el('div', { class: 'tabs', role: 'tablist' });
+  const copie = el('button', { class: 'btn primary', type: 'button', onclick: () => copier(p[vue], copie, cap) }, 'Copier la légende');
+  const montrer = (v) => {
+    vue = v; cap.textContent = p[v];
+    len.textContent = v === 'alt' ? '' : `${[...p[v]].length} caractères`;
+    copie.textContent = v === 'alt' ? 'Copier le texte' : 'Copier la légende';
+    for (const t of tabs.children) t.setAttribute('aria-selected', String(t.dataset.v === v));
+  };
+  for (const [v, l] of vues) tabs.append(el('button', { class: 'tab', role: 'tab', type: 'button', 'data-v': v, onclick: () => montrer(v) }, l));
+  const c = coul[p.couleur];
+  $('#posts').append(el('article', { class: 'post', id: 'post-' + p.numero },
+    el('div', { class: 'vis' }, el('img', { src: 'visuels/' + p.fichier, alt: p.alt, loading: 'lazy' })),
+    el('div', { style: 'min-width:0' },
+      el('div', { class: 'meta' },
+        el('h3', {}, 'Post ' + p.numero),
+        el('span', { class: 'chip' }, el('i', { style: 'background:' + c.hex }), c.nom),
+        el('span', { class: 'chip' }, p.date),
+        el('span', { class: 'status ' + p.statut }, STATUT[p.statut])),
+      tabs, cap,
+      el('div', { class: 'acts' }, copie, boutonImage('visuels/' + p.fichier, p.fichier), len),
+      p.contrat ? el('div', { class: 'ref' }, 'Contrat : ' + p.contrat + ' (ne pas publier)') : null)));
+  montrer('instagram');
+}
+
+grille(nbPublies);
+
+// La capacité d'enregistrement n'existe que dans la page publiée
+if (window.claude && window.claude.use) {
+  window.claude.use('downloads').then((d) => { downloads = d; if (d) for (const b of enregistrables) b.hidden = false; }).catch(() => {});
+}
+</script>
