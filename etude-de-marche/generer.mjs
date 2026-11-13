@@ -401,7 +401,7 @@ ${X.conclusion.points.map((pt) => `<div class="puce-ligne filet pad-haut"><div c
 <div class="contact filet ${anim(4)}">
 <p class="contact-question t1">${tx(X.conclusion.question)}</p>
 <div class="espace"></div>
-<div class="contact-bloc"><p class="label t2">Téléphone</p><p class="contact-valeur t1">${tx(d.contact.telephone)}</p></div>
+<div class="contact-bloc"><p class="label t2">WhatsApp</p><p class="contact-valeur t1">${tx(d.contact.whatsapp)}</p></div>
 <div class="contact-bloc"><p class="label t2">E-mail</p><p class="contact-valeur t1">${tx(d.contact.email)}</p></div>
 </div>
 ${pied('sombre', '', p, n)}`;
