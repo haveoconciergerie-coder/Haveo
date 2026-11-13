@@ -398,7 +398,13 @@ ${X.conclusion.points.map((pt) => `<div class="puce-ligne filet pad-haut"><div c
 </div>
 </div>
 </div>
-${pied('sombre', tx(d.contact), p, n)}`;
+<div class="contact filet ${anim(4)}">
+<p class="contact-question t1">${tx(X.conclusion.question)}</p>
+<div class="espace"></div>
+<div class="contact-bloc"><p class="label t2">Téléphone</p><p class="contact-valeur t1">${tx(d.contact.telephone)}</p></div>
+<div class="contact-bloc"><p class="label t2">E-mail</p><p class="contact-valeur t1">${tx(d.contact.email)}</p></div>
+</div>
+${pied('sombre', '', p, n)}`;
   }, `Fourchette : scénarios ${r.nom.toLowerCase()} (${eur(r.net)}) à ${opt0(S, ids, r).nom.toLowerCase()} (${eur(opt0(S, ids, r).net)}), arrondis à 50 €. Le prudent (${eur(S[ids[0]].net)}) figure page 9.`);
 
   return L;
@@ -540,6 +546,14 @@ section.couv{justify-content:center}
 .couv-meta{font-size:26px;line-height:1.4;color:${C.menthe};width:820px}
 .couv-fort{color:${C.sable}}
 .couv-date{position:absolute;left:128px;bottom:64px;width:820px;font-size:24px;color:${C.mentheSourd}}
+
+/* Bloc contact (dernière slide) */
+.contact{display:flex;flex-direction:row;align-items:center;gap:40px;padding-top:28px}
+.contact-question{font-size:28px;font-weight:600;line-height:1.3}
+.contact-bloc{display:flex;flex-direction:column;gap:4px;padding-left:40px}
+.sombre .contact-bloc{border-left:1px solid rgba(244,235,221,0.16)}
+.clair .contact-bloc{border-left:1px solid rgba(15,76,76,0.14)}
+.contact-valeur{font-size:30px;font-weight:600;line-height:1.2;font-variant-numeric:tabular-nums}
 
 /* Pied de page */
 .pied{position:absolute;left:128px;bottom:64px;width:1664px;height:40px;display:flex;flex-direction:row;align-items:center;gap:12px}

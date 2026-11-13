@@ -2,7 +2,7 @@
   "slug": "boulogne-exemple",
   "date": "Novembre 2026",
   "proprietaire": "[Nom du propriétaire]",
-  "contact": "07 63 88 81 36 · haveo.conciergerie@gmail.com",
+  "contact": { "telephone": "07 63 88 81 36", "email": "haveo.conciergerie@gmail.com" },
 
   "deck": {
     "titre": "Étude de marché – Boulogne-Billancourt (v2)",
@@ -175,7 +175,8 @@
         { "titre": "Un produit rare.", "texte": "3 chambres, 2 salles de bain et un extérieur : peu de concurrents directs à Boulogne." },
         { "titre": "Une demande double.", "texte": "Familles et voyageurs d’affaires se relaient tout au long de l’année." }
       ],
-      "prochaineEtape": "Visite et audit gratuit, 1er mois d’honoraires offert, sans engagement"
+      "prochaineEtape": "Visite et audit gratuit, 1er mois d’honoraires offert, sans engagement",
+      "question": "Une question sur cette étude ?"
     }
   }
 }
