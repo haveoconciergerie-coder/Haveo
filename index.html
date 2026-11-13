@@ -2145,8 +2145,8 @@
     </div>
 
     <div class="method-cards-container">
-      <svg class="method-connect-line" aria-hidden="true">
-        <path id="desktopConnectPath" stroke="var(--sand-dark)" stroke-width="2" stroke-dasharray="8 6" fill="none" stroke-linecap="round"/>
+      <svg class="method-connect-line" viewBox="0 0 1000 1800" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M 290 150 C 500 150, 550 450, 720 450 C 880 450, 500 750, 280 750 C 100 750, 500 1050, 720 1050 C 900 1050, 500 1350, 280 1350 C 100 1350, 500 1650, 720 1650" stroke="var(--sand-dark)" stroke-width="2" stroke-dasharray="8 6" fill="none" stroke-linecap="round"/>
       </svg>
       <svg class="method-connect-line--mobile" aria-hidden="true">
         <path id="mobileConnectPath" stroke="var(--sand-dark)" stroke-width="2" stroke-dasharray="8 6" fill="none" stroke-linecap="round"/>
@@ -2685,7 +2685,7 @@
       initServices();
       initWhyCards();
       initMethodTapToCenter();
-      initMethodConnectLines();
+      initMobileConnectLine();
       initFooterCities();
       initNav();
       initSimulator();
@@ -2937,73 +2937,46 @@
       });
     }
 
-    /* ---- Méthode : connect lines (desktop + mobile) ----
-       Règle 1 : le fil va de pin à pin, exactement
-       Règle 2 : le fil passe toujours en dessous des cartes, jamais par-dessus
-    */
-    function initMethodConnectLines() {
+    /* ---- Méthode : mobile connect line ---- */
+    function initMobileConnectLine() {
+      if (window.innerWidth > 639) return;
       var container = document.querySelector('.method-cards-container');
-      if (!container) return;
+      var svg = container && container.querySelector('.method-connect-line--mobile');
+      var path = document.getElementById('mobileConnectPath');
+      if (!container || !svg || !path) return;
 
-      function getPoints() {
-        var pts = [];
-        container.querySelectorAll('.method-pin-card').forEach(function(card) {
+      function drawLine() {
+        var cards = container.querySelectorAll('.method-pin-card');
+        var pins = [];
+        cards.forEach(function(card) {
           var pin = card.querySelector('.mpc-pin');
           if (pin) {
-            pts.push({
-              x: card.offsetLeft + pin.offsetLeft + pin.offsetWidth / 2,
-              y: card.offsetTop + pin.offsetTop + pin.offsetHeight / 2,
-              bottom: card.offsetTop + card.offsetHeight
-            });
+            var cx = card.offsetLeft + pin.offsetLeft + pin.offsetWidth / 2;
+            var cy = card.offsetTop + pin.offsetTop + pin.offsetHeight / 2;
+            pins.push({ x: cx, y: cy });
           }
         });
-        return pts;
-      }
+        if (pins.length < 2) return;
 
-      function drawLine(svg, pathEl, points) {
-        if (!svg || !pathEl || points.length < 2) return;
-        var w = container.scrollWidth;
-        var h = container.scrollHeight + 30;
-        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        var totalW = container.scrollWidth;
+        var totalH = container.scrollHeight;
+        svg.setAttribute('viewBox', '0 0 ' + totalW + ' ' + totalH);
+        svg.style.width = totalW + 'px';
 
-        var n = points.length;
-        var d = 'M ' + points[0].x + ' ' + points[0].y;
-        for (var i = 0; i < n - 1; i++) {
-          var prev = points[Math.max(0, i - 1)];
-          var curr = points[i];
-          var next = points[i + 1];
-          var next2 = points[Math.min(n - 1, i + 2)];
-          var cp1x = curr.x + (next.x - prev.x) / 6;
-          var cp1y = curr.y + (next.y - prev.y) / 6;
-          var cp2x = next.x - (next2.x - curr.x) / 6;
-          var cp2y = next.y - (next2.y - curr.y) / 6;
-          d += ' C ' + cp1x + ' ' + cp1y + ', ' + cp2x + ' ' + cp2y + ', ' + next.x + ' ' + next.y;
+        var d = 'M ' + pins[0].x + ' ' + pins[0].y;
+        for (var i = 0; i < pins.length - 1; i++) {
+          var p0 = pins[i];
+          var p1 = pins[i + 1];
+          var midX = (p0.x + p1.x) / 2;
+          var offsetY = (i % 2 === 0) ? 40 : -40;
+          var cy1 = (p0.y + p1.y) / 2 + offsetY;
+          d += ' C ' + midX + ' ' + cy1 + ', ' + midX + ' ' + cy1 + ', ' + p1.x + ' ' + p1.y;
         }
-        pathEl.setAttribute('d', d);
+        path.setAttribute('d', d);
       }
 
-      function draw() {
-        var points = getPoints();
-        if (window.innerWidth <= 639) {
-          var svg = container.querySelector('.method-connect-line--mobile');
-          var path = document.getElementById('mobileConnectPath');
-          if (svg) {
-            svg.style.width = container.scrollWidth + 'px';
-            svg.style.height = container.scrollHeight + 'px';
-            svg.style.top = '0';
-          }
-          drawLine(svg, path, points);
-        } else {
-          drawLine(
-            container.querySelector('.method-connect-line'),
-            document.getElementById('desktopConnectPath'),
-            points
-          );
-        }
-      }
-
-      draw();
-      var ro = new ResizeObserver(draw);
+      drawLine();
+      var ro = new ResizeObserver(drawLine);
       ro.observe(container);
     }
 
