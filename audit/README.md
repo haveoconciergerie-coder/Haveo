@@ -90,6 +90,10 @@ Un jeton mal orthographié arrête le générateur avec un message clair, plutô
 
 Avec `--verifier`, il ouvre l'aperçu dans un navigateur et signale tout texte qui déborde de la slide ou descend dans le pied de page.
 
+## Contact
+
+`contact.whatsapp` est le numéro affiché sur la dernière slide, `contact.whatsappLien` le lien WhatsApp Business qu'il ouvre. Sans lien, le numéro ouvre une conversation WhatsApp classique (wa.me).
+
 ## Photos
 
 Chaque photo a deux sources : `blob` (l'image envoyée sur le deck claude.ai) et `fichier` (le fichier local, pour l'aperçu et le PDF). Sans `blob`, la slide affiche un cadre sable vide à la place de la photo.

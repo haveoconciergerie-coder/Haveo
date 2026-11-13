@@ -3,7 +3,7 @@
   "date": "Novembre 2026",
   "dateVisite": "[date]",
   "proprietaire": "[Nom du propriétaire]",
-  "contact": { "whatsapp": "07 63 88 81 36", "email": "haveo.conciergerie@gmail.com" },
+  "contact": { "whatsapp": "07 63 88 81 36", "whatsappLien": "https://wa.me/message/JHFOQS5NLTHTO1", "email": "haveo.conciergerie@gmail.com" },
 
   "deck": {
     "titre": "Audit du logement – Exemple (v2)",

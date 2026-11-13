@@ -494,7 +494,7 @@ ${intro(tx(X.apres.intro))}
 <div class="contact filet ${anim(4)}">
 <p class="contact-t t1">Une question sur cet audit ?</p>
 <div class="espace"></div>
-<div class="contact-item"><p class="corps t2">WhatsApp</p><p class="contact-v t1"><a class="mail" href="${lienWhatsApp(d.contact.whatsapp)}">${esc(d.contact.whatsapp)}</a></p></div>
+<div class="contact-item"><p class="corps t2">WhatsApp</p><p class="contact-v t1"><a class="mail" href="${esc(d.contact.whatsappLien || lienWhatsApp(d.contact.whatsapp))}">${esc(d.contact.whatsapp)}</a></p></div>
 <div class="contact-item"><p class="corps t2">E-mail</p><p class="contact-v t1"><a class="mail" href="mailto:${esc(d.contact.email)}">${esc(d.contact.email)}</a></p></div>
 </div>
 ${pied('clair', '', p, n)}`, 'Toujours finir par les deux options : l’audit doit avoir de la valeur même sans signature.');
