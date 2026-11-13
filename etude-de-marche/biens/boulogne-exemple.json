@@ -2,7 +2,7 @@
   "slug": "boulogne-exemple",
   "date": "Novembre 2026",
   "proprietaire": "[Nom du propriétaire]",
-  "contact": { "whatsapp": "07 63 88 81 36", "email": "haveo.conciergerie@gmail.com" },
+  "contact": { "whatsapp": "07 63 88 81 36", "lienWhatsapp": "https://wa.me/message/JHFOQS5NLTHTO1", "email": "haveo.conciergerie@gmail.com" },
 
   "deck": {
     "titre": "Étude de marché – Boulogne-Billancourt (v2)",

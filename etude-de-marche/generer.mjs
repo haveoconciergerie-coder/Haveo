@@ -401,7 +401,7 @@ ${X.conclusion.points.map((pt) => `<div class="puce-ligne filet pad-haut"><div c
 <div class="contact filet ${anim(4)}">
 <p class="contact-question t1">${tx(X.conclusion.question)}</p>
 <div class="espace"></div>
-<div class="contact-bloc"><p class="label t2">WhatsApp</p><p class="contact-valeur t1">${tx(d.contact.whatsapp)}</p></div>
+<div class="contact-bloc"><p class="label t2">WhatsApp</p><p class="contact-valeur t1">${d.contact.lienWhatsapp ? `<a href="${esc(d.contact.lienWhatsapp)}">${tx(d.contact.whatsapp)}</a>` : tx(d.contact.whatsapp)}</p></div>
 <div class="contact-bloc"><p class="label t2">E-mail</p><p class="contact-valeur t1">${tx(d.contact.email)}</p></div>
 </div>
 ${pied('sombre', '', p, n)}`;
@@ -554,6 +554,7 @@ section.couv{justify-content:center}
 .sombre .contact-bloc{border-left:1px solid rgba(244,235,221,0.16)}
 .clair .contact-bloc{border-left:1px solid rgba(15,76,76,0.14)}
 .contact-valeur{font-size:30px;font-weight:600;line-height:1.2;font-variant-numeric:tabular-nums}
+.contact-valeur a{color:inherit;text-decoration:none}
 
 /* Pied de page */
 .pied{position:absolute;left:128px;bottom:64px;width:1664px;height:40px;display:flex;flex-direction:row;align-items:center;gap:12px}
