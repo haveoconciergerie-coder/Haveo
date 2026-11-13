@@ -11,7 +11,7 @@
     "lien": "[adresse du site]",
     "email": "haveo.conciergerie@gmail.com",
     "whatsapp": "07 63 88 81 36",
-    "whatsappLien": "https://wa.me/33763888136",
+    "whatsappLien": "https://wa.me/message/JHFOQS5NLTHTO1",
     "avatar": "../brand/logo/png/haveo-avatar-corail.png"
   },
   "reglages": {
@@ -174,7 +174,7 @@
             }
           ],
           "bouton": "Demander un audit gratuit",
-          "conseil": "Ajoute un sticker « Lien » vers WhatsApp (wa.me/33763888136) sous le bouton."
+          "conseil": "Ajoute un sticker « Lien » vers WhatsApp (wa.me/message/JHFOQS5NLTHTO1) sous le bouton."
         }
       ]
     },
@@ -241,7 +241,7 @@
           "texte": "Écrivez « OFFRE » sur WhatsApp au 07 63 88 81 36.",
           "bouton": "Profiter du mois offert",
           "fleche": false,
-          "conseil": "Ajoute un sticker « Lien » vers WhatsApp (wa.me/33763888136) sous le bouton."
+          "conseil": "Ajoute un sticker « Lien » vers WhatsApp (wa.me/message/JHFOQS5NLTHTO1) sous le bouton."
         }
       ]
     },
@@ -297,7 +297,7 @@
           "bouton": "Nous écrire",
           "fleche": false,
           "note": "WhatsApp : 07 63 88 81 36",
-          "conseil": "Ajoute un sticker « Lien » vers WhatsApp (wa.me/33763888136) sous le bouton."
+          "conseil": "Ajoute un sticker « Lien » vers WhatsApp (wa.me/message/JHFOQS5NLTHTO1) sous le bouton."
         }
       ]
     },
@@ -327,7 +327,7 @@
             }
           ],
           "note": "Audit gratuit, sans engagement",
-          "conseil": "Ajoute deux stickers « Lien » : WhatsApp (wa.me/33763888136) sur la ligne WhatsApp, et le site sur la ligne « Site et simulateur »."
+          "conseil": "Ajoute deux stickers « Lien » : WhatsApp (wa.me/message/JHFOQS5NLTHTO1) sur la ligne WhatsApp, et le site sur la ligne « Site et simulateur »."
         }
       ]
     }
