@@ -160,11 +160,11 @@
         { "titre": "Gestion au quotidien", "texte": "Arrivées, ménage hôtelier, linge, petites interventions, joignable 7j/7." }
       ],
       "offre": [
-        { "label": "Commission", "texte": "{commission} TTC des revenus" },
+        { "label": "Commission · TVA non applicable", "texte": "{commission} des revenus locatifs" },
         { "label": "Lancement", "texte": "1er mois d’honoraires offert" },
         { "label": "Engagement", "texte": "Aucun, résiliable à tout moment" }
       ],
-      "notes": "Page fixe, identique dans toutes les études. Seul le taux de commission change, il vient des hypothèses du bien."
+      "notes": "Page fixe, identique dans toutes les études. Seul le taux de commission change, il vient des hypothèses du bien. Micro-entreprise : TVA non applicable. Les honoraires sont offerts le premier mois suivant la première mise en location ; ménage, linge et consommables restent facturés à part."
     },
 
     "conclusion": {
