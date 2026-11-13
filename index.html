@@ -1054,8 +1054,8 @@
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x mandatory;
         gap: 16px;
-        padding: 56px 16px 24px;
-        margin-top: 12px;
+        padding: 16px 16px 60px;
+        margin-top: 32px;
         scrollbar-width: none;
       }
       .method-cards-container::-webkit-scrollbar { display: none; }
@@ -2937,43 +2937,31 @@
       });
     }
 
-    /* ---- Méthode : connect lines (desktop + mobile) ---- */
+    /* ---- Méthode : connect lines (desktop + mobile) ----
+       Règle 1 : le fil va de pin à pin, exactement
+       Règle 2 : le fil passe toujours en dessous des cartes, jamais par-dessus
+    */
     function initMethodConnectLines() {
       var container = document.querySelector('.method-cards-container');
       if (!container) return;
 
-      function getPins() {
-        var pins = [];
+      function getPoints() {
+        var pts = [];
         container.querySelectorAll('.method-pin-card').forEach(function(card) {
           var pin = card.querySelector('.mpc-pin');
           if (pin) {
-            var cx = card.offsetLeft + pin.offsetLeft + pin.offsetWidth / 2;
-            var cy = card.offsetTop + pin.offsetTop + pin.offsetHeight / 2;
-            pins.push({ x: cx, y: cy });
-          }
-        });
-        return pins;
-      }
-
-      function drawDesktop() {
-        var svg = container.querySelector('.method-connect-line');
-        var path = document.getElementById('desktopConnectPath');
-        if (!svg || !path) return;
-
-        var cards = container.querySelectorAll('.method-pin-card');
-        var points = [];
-        cards.forEach(function(card) {
-          var pin = card.querySelector('.mpc-pin');
-          if (pin) {
-            points.push({
+            pts.push({
               x: card.offsetLeft + pin.offsetLeft + pin.offsetWidth / 2,
               y: card.offsetTop + pin.offsetTop + pin.offsetHeight / 2,
               bottom: card.offsetTop + card.offsetHeight
             });
           }
         });
-        if (points.length < 2) return;
+        return pts;
+      }
 
+      function drawLine(svg, pathEl, points) {
+        if (!svg || !pathEl || points.length < 2) return;
         var w = container.scrollWidth;
         var h = container.scrollHeight;
         svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
@@ -2982,49 +2970,29 @@
         for (var i = 0; i < points.length - 1; i++) {
           var p0 = points[i];
           var p1 = points[i + 1];
-          var dipY = p0.bottom + 15;
+          var dipY = Math.max(p0.bottom, p1.bottom) + 20;
           d += ' C ' + p0.x + ' ' + dipY + ', ' + p1.x + ' ' + dipY + ', ' + p1.x + ' ' + p1.y;
         }
-        path.setAttribute('d', d);
-      }
-
-      function drawMobile() {
-        var svg = container.querySelector('.method-connect-line--mobile');
-        var path = document.getElementById('mobileConnectPath');
-        if (!svg || !path) return;
-        var pins = getPins();
-        if (pins.length < 2) return;
-
-        var w = container.scrollWidth;
-        var h = container.scrollHeight;
-
-        var minY = Infinity;
-        var d = 'M ' + pins[0].x + ' ' + pins[0].y;
-        var segments = [];
-        for (var i = 0; i < pins.length - 1; i++) {
-          var p0 = pins[i];
-          var p1 = pins[i + 1];
-          var midX = (p0.x + p1.x) / 2;
-          var offsetY = (i % 2 === 0) ? 40 : -40;
-          var cy1 = (p0.y + p1.y) / 2 + offsetY;
-          if (cy1 < minY) minY = cy1;
-          d += ' C ' + midX + ' ' + cy1 + ', ' + midX + ' ' + cy1 + ', ' + p1.x + ' ' + p1.y;
-        }
-
-        var pad = Math.max(0, -minY + 10);
-        svg.setAttribute('viewBox', '0 ' + (-pad) + ' ' + w + ' ' + (h + pad));
-        svg.style.width = w + 'px';
-        svg.style.top = (-pad) + 'px';
-        svg.style.height = (h + pad) + 'px';
-
-        path.setAttribute('d', d);
+        pathEl.setAttribute('d', d);
       }
 
       function draw() {
+        var points = getPoints();
         if (window.innerWidth <= 639) {
-          drawMobile();
+          var svg = container.querySelector('.method-connect-line--mobile');
+          var path = document.getElementById('mobileConnectPath');
+          if (svg) {
+            svg.style.width = container.scrollWidth + 'px';
+            svg.style.height = container.scrollHeight + 'px';
+            svg.style.top = '0';
+          }
+          drawLine(svg, path, points);
         } else {
-          drawDesktop();
+          drawLine(
+            container.querySelector('.method-connect-line'),
+            document.getElementById('desktopConnectPath'),
+            points
+          );
         }
       }
 
