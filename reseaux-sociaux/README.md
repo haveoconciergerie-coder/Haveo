@@ -71,7 +71,7 @@ Il signale aussi : une accroche de plus de 125 caractères, un texte entre croch
 
 ## Icônes
 
-`camera`, `key`, `bed`, `message`, `chart`, `filecheck`, `user`, `euro`, `sliders`, `calendar`, `search`, `filetext`, `house`, `bell`, `check`, `arrow`, `gift`, `mappin`, `phone`, `mail`, `globe`.
+`camera`, `key`, `bed`, `message`, `chart`, `filecheck`, `user`, `euro`, `sliders`, `calendar`, `search`, `filetext`, `house`, `bell`, `check`, `arrow`, `gift`, `mappin`, `phone`, `whatsapp`, `mail`, `globe`.
 
 ## Prérequis
 

@@ -10,7 +10,8 @@
     ],
     "lien": "[adresse du site]",
     "email": "haveo.conciergerie@gmail.com",
-    "telephone": "07 63 88 81 36",
+    "whatsapp": "07 63 88 81 36",
+    "whatsappLien": "https://wa.me/33763888136",
     "avatar": "../brand/logo/png/haveo-avatar-corail.png"
   },
   "reglages": {
@@ -221,9 +222,10 @@
           "centre": true,
           "label": "Jusqu'au 1er mars 2027",
           "titre": "**Profitez du**\n**mois offert.**",
-          "texte": "Écrivez « OFFRE » en message privé, ou appelez-nous au 07 63 88 81 36.",
+          "texte": "Écrivez « OFFRE » en message privé, ou sur WhatsApp au 07 63 88 81 36.",
           "bouton": "Profiter du mois offert",
-          "fleche": false
+          "fleche": false,
+          "conseil": "Ajoute un sticker « Lien » vers WhatsApp (wa.me/33763888136) sous le bouton."
         }
       ]
     },
@@ -278,7 +280,8 @@
           "texte": "Écrivez-nous avec le nom de votre ville. Si votre logement est dans notre zone, on vient le visiter pour l'audit gratuit.",
           "bouton": "Nous écrire",
           "fleche": false,
-          "note": "Message privé ou 07 63 88 81 36"
+          "note": "Message privé ou WhatsApp : 07 63 88 81 36",
+          "conseil": "Ajoute un sticker « Lien » vers WhatsApp (wa.me/33763888136) sous le bouton."
         }
       ]
     },
@@ -297,8 +300,8 @@
               "valeur": "@haveo.conciergerie"
             },
             {
-              "icone": "phone",
-              "label": "Téléphone",
+              "icone": "whatsapp",
+              "label": "WhatsApp",
               "valeur": "07 63 88 81 36"
             },
             {
@@ -313,7 +316,7 @@
             }
           ],
           "note": "Audit gratuit, sans engagement",
-          "conseil": "Ajoute un sticker « Lien » vers le site sur la ligne « Site et simulateur »."
+          "conseil": "Ajoute deux stickers « Lien » : WhatsApp (wa.me/33763888136) sur la ligne WhatsApp, et le site sur la ligne « Site et simulateur »."
         },
         {
           "label": "Démarrer avec Haveo",

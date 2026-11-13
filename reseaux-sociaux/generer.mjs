@@ -56,6 +56,7 @@ const I = {
   mappin: '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
   phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
   mail: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+  whatsapp: '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9.5 9.5c.3 1.6 1.4 3.4 3 4.5l1.1-1.1 2 .9-.4 1.6c-3.2.3-6.4-2.9-6.6-6.3l1.6-.4.9 2z"/>',
   globe: '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>',
 };
 const ic = (n, s = 30, w = 1.75) => {
@@ -511,7 +512,7 @@ function ecrireLegendes() {
   L.push('| # | Date | Fond | Fichier | Statut |', '|---|---|---|---|---|');
   for (const p of publies) L.push(`| ${p.numero} | ${p.date.texte} | ${NOM_COULEUR[p.couleur]} | ${p.fichier} | ${p.statut === 'proposition' ? 'proposition' : 'prêt'} |`);
   L.push('', '## Profil Instagram', '', `**Nom affiché** (64 caractères max, compte dans la recherche) : ${d.profil.nom}`, '', '**Bio** :', '```', bio, '```', `**Lien** : ${d.profil.lien}`, '');
-  L.push(`**Bouton Contacter** (Modifier le profil › Options de contact) : ${d.profil.email} · ${d.profil.telephone}`, '');
+  L.push(`**Bouton Contacter** (Modifier le profil › Options de contact) : ${d.profil.email} · WhatsApp ${d.profil.whatsapp} (${d.profil.whatsappLien})`, '');
   if (unes.length) {
     L.push('## Stories à la une', '', 'Publier chaque story (format 1080 × 1920), puis l’ajouter à la une correspondante avec sa couverture (`a-la-une/`).', '');
     for (const u of unes) {
@@ -535,7 +536,7 @@ function ecrireLegendes() {
 function ecrireApercu() {
   fs.copyFileSync(path.resolve(path.dirname(fichierFiche), d.profil.avatar), path.join(SORTIE, 'avatar.png'));
   const donnees = {
-    profil: { pseudo: d.profil.pseudo, nom: d.profil.nom, bio, lien: d.profil.lien, email: d.profil.email, telephone: d.profil.telephone },
+    profil: { pseudo: d.profil.pseudo, nom: d.profil.nom, bio, lien: d.profil.lien, email: d.profil.email, whatsapp: d.profil.whatsapp, whatsappLien: d.profil.whatsappLien },
     couleurs: R.couleurs.map((c) => ({ id: c, nom: NOM_COULEUR[c], hex: HEX_COULEUR[c] })),
     heure: R.heure,
     unes: unes.map((u) => ({ titre: u.titre, couleur: u.couleur, fichier: u.fichier, stories: u.stories.map((s) => ({ fichier: s.fichier, conseil: s.conseil || '' })) })),
