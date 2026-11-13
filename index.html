@@ -2966,11 +2966,18 @@
         var h = container.scrollHeight + 30;
         svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
 
+        var n = points.length;
         var d = 'M ' + points[0].x + ' ' + points[0].y;
-        for (var i = 0; i < points.length - 1; i++) {
-          var p0 = points[i];
-          var p1 = points[i + 1];
-          d += ' C ' + p0.x + ' ' + (p0.bottom + 10) + ', ' + p1.x + ' ' + (p1.bottom + 10) + ', ' + p1.x + ' ' + p1.y;
+        for (var i = 0; i < n - 1; i++) {
+          var prev = points[Math.max(0, i - 1)];
+          var curr = points[i];
+          var next = points[i + 1];
+          var next2 = points[Math.min(n - 1, i + 2)];
+          var cp1x = curr.x + (next.x - prev.x) / 6;
+          var cp1y = curr.y + (next.y - prev.y) / 6;
+          var cp2x = next.x - (next2.x - curr.x) / 6;
+          var cp2y = next.y - (next2.y - curr.y) / 6;
+          d += ' C ' + cp1x + ' ' + cp1y + ', ' + cp2x + ' ' + cp2y + ', ' + next.x + ' ' + next.y;
         }
         pathEl.setAttribute('d', d);
       }
