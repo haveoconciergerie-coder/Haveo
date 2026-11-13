@@ -2963,15 +2963,14 @@
       function drawLine(svg, pathEl, points) {
         if (!svg || !pathEl || points.length < 2) return;
         var w = container.scrollWidth;
-        var h = container.scrollHeight;
+        var h = container.scrollHeight + 30;
         svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
 
         var d = 'M ' + points[0].x + ' ' + points[0].y;
         for (var i = 0; i < points.length - 1; i++) {
           var p0 = points[i];
           var p1 = points[i + 1];
-          var dipY = Math.max(p0.bottom, p1.bottom) + 20;
-          d += ' C ' + p0.x + ' ' + dipY + ', ' + p1.x + ' ' + dipY + ', ' + p1.x + ' ' + p1.y;
+          d += ' C ' + p0.x + ' ' + (p0.bottom + 10) + ', ' + p1.x + ' ' + (p1.bottom + 10) + ', ' + p1.x + ' ' + p1.y;
         }
         pathEl.setAttribute('d', d);
       }
