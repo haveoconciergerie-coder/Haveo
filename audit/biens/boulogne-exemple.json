@@ -1,0 +1,275 @@
+{
+  "slug": "boulogne-exemple",
+  "date": "Novembre 2026",
+  "dateVisite": "[date]",
+  "proprietaire": "[Nom du propriétaire]",
+  "contact": { "telephone": "07 63 88 81 36", "email": "haveo.conciergerie@gmail.com" },
+
+  "deck": {
+    "titre": "Audit du logement – Exemple (v2)",
+    "url": "https://claude.ai/artifact/DvaDyUwyiVEZaR4KCefkWC",
+    "creeLe": "2026-11-13T22:00:00Z"
+  },
+
+  "photos": {
+    "entree":   { "blob": "/_blob/637ebdc041f312e84f0be15d2bcffcdf", "fichier": "../../images/arrivees-departs.jpg", "alt": "Porte d'entrée avec serrure à code" },
+    "sejour":   { "blob": "/_blob/3d7a1b054ee482dd17691546be43518f", "fichier": "../../images/optimisation-annonces.jpg", "alt": "Séjour lumineux avec canapé clair et grandes fenêtres" },
+    "chambre1": { "blob": "/_blob/3d8f41695fbc324829a64f0c833181ce", "fichier": "../../images/menage-linge.jpg", "alt": "Chambre principale avec lit fait et serviettes pliées" }
+  },
+
+  "bien": {
+    "type": "Appartement 3 chambres",
+    "ville": "Boulogne-Billancourt",
+    "codePostal": "92100",
+    "gamme": "Appartement haut de gamme",
+    "surface": 95,
+    "chambres": 3,
+    "sallesDeBain": 2,
+    "voyageurs": 6
+  },
+
+  "marche": {
+    "source": "AirROI, 12 mois à sept. 2026",
+    "libelleSegment": "3 chambres",
+    "prixMoyenSegment": 325,
+    "occupationSegment": 39
+  },
+
+  "situation": {
+    "depuis": "[18 mois]",
+    "prix": 260,
+    "prixFixe": true,
+    "nuits": 10,
+    "note": 4.62,
+    "avis": 38,
+    "noteCible": 4.85
+  },
+
+  "hypotheses": {
+    "commissionHaveo": 20,
+    "fraisPlateforme": 3,
+    "lingeParNuit": 15,
+    "joursParMois": 30,
+    "seuils": { "bas": 60, "haut": 70 }
+  },
+
+  "scenarios": [
+    { "id": "prudent",  "nom": "Prudent",  "prix": 300, "nuits": 12 },
+    { "id": "normal",   "nom": "Normal",   "prix": 340, "nuits": 14, "reference": true },
+    { "id": "optimise", "nom": "Optimisé", "prix": 390, "nuits": 17 }
+  ],
+
+  "noteCibleAudit": 80,
+  "criteres": [
+    { "id": "logement",       "nom": "Le logement et son état",  "note": "pieces" },
+    { "id": "equipements",    "nom": "Équipements",              "note": 58 },
+    { "id": "photos",         "nom": "Photos",                   "note": 45 },
+    { "id": "annonce",        "nom": "Titre et description",     "note": 52 },
+    { "id": "prix",           "nom": "Prix et calendrier",       "note": 48 },
+    { "id": "avis",           "nom": "Avis voyageurs",           "note": 71 },
+    { "id": "visibilite",     "nom": "Réactivité et visibilité", "note": 55 },
+    { "id": "reglementation", "nom": "Réglementation",           "note": 60 }
+  ],
+
+  "pieces": [
+    { "nom": "Entrée",          "note": 6, "constat": "Pas de rangement, pas de miroir, éclairage faible", "recommandation": "Patère, miroir, lampe d’appoint", "photo": "entree" },
+    { "nom": "Séjour",          "note": 8, "constat": "Lumineux, canapé en bon état, peu décoré",          "recommandation": "Coussins, plaid, 2 cadres, plantes", "photo": "sejour" },
+    { "nom": "Cuisine",         "note": 7, "constat": "Bien équipée, vaisselle dépareillée",               "recommandation": "Service complet pour 6, cafetière" },
+    { "nom": "Chambre 1",       "note": 8, "constat": "Bonne literie, rideaux non occultants",             "recommandation": "Rideaux occultants", "photo": "chambre1" },
+    { "nom": "Chambres 2 et 3", "note": 5, "constat": "Matelas usé en chambre 3, bruit côté rue",          "recommandation": "Matelas neuf, surmatelas, bouchons" },
+    { "nom": "Salles de bain",  "note": 6, "constat": "Joints noircis, pas de sèche-cheveux",              "recommandation": "Refaire les joints, sèche-cheveux" },
+    { "nom": "Balcon-terrasse", "note": 6, "constat": "Grand atout, mais vide et mal mis en valeur",        "recommandation": "Table bistrot, 2 chaises, guirlande" }
+  ],
+
+  "equipements": {
+    "presents": ["Wi-Fi fibre", "Cuisine équipée et lave-vaisselle", "Lave-linge", "Télévision connectée", "Balcon-terrasse", "Linge de lit et serviettes"],
+    "manquants": [
+      { "id": "boite-cles",    "nom": "Arrivée autonome (boîte à clés)",        "budget": [80, 250] },
+      { "id": "bureau",        "nom": "Espace de travail (bureau, chaise)",     "budget": 150 },
+      { "id": "clim",          "nom": "Climatiseur mobile",                     "budget": 350 },
+      { "id": "bebe",          "nom": "Kit bébé (lit parapluie, chaise haute)", "budget": 120 },
+      { "id": "cafetiere",     "nom": "Cafetière à capsules",                   "budget": 80 },
+      { "id": "seche-cheveux", "nom": "Sèche-cheveux × 2",                      "budget": 50 }
+    ]
+  },
+
+  "annonce": {
+    "photos": [
+      { "titre": "Première photo", "texte": "La chambre 2, sombre. C’est elle qui décide du clic dans les résultats." },
+      { "titre": "Qualité", "texte": "18 photos prises au téléphone, en vertical, certaines floues." },
+      { "titre": "Ordre", "texte": "La terrasse n’arrive qu’en 14e position, la 2e salle de bain n’apparaît pas." }
+    ],
+    "titreActuel": "Appartement Boulogne",
+    "titrePropose": "95 m² familial · terrasse · 3 ch. · métro Paris",
+    "description": "Elle ne mentionne ni les 2 salles de bain, ni Roland-Garros, ni l’espace pour travailler. On la réécrit autour de ce que cherchent vos voyageurs."
+  },
+
+  "prix": {
+    "reglages": [
+      { "reglage": "Prix moyen",              "actuel": "{prixActuel} fixe toute l’année", "recommande": "{prix.normal} en moyenne, ajusté chaque semaine" },
+      { "reglage": "Week-ends",               "actuel": "Même prix",                       "recommande": "+15 %" },
+      { "reglage": "Événements",              "actuel": "Même prix",                       "recommande": "+25 à 40 % : Roland-Garros, salons, matchs" },
+      { "reglage": "Durée minimale",          "actuel": "3 nuits toute l’année",           "recommande": "2 nuits, 1 nuit pour combler les trous" },
+      { "reglage": "Long séjour",             "actuel": "Aucune réduction",                "recommande": "−10 % dès 7 nuits" },
+      { "reglage": "Ouverture du calendrier", "actuel": "3 mois",                          "recommande": "12 mois" }
+    ]
+  },
+
+  "reglementation": [
+    { "statut": "verifier", "titre": "Numéro d’enregistrement", "texte": "Obligatoire pour tout meublé de tourisme depuis le 20 mai 2026. À afficher sur l’annonce." },
+    { "statut": "verifier", "titre": "Statut du logement",      "texte": "Principale : 120 nuits par an maximum, 90 selon la commune. Secondaire : changement d’usage possible." },
+    { "statut": "ok",       "titre": "Copropriété",             "texte": "Le règlement n’interdit pas la location courte durée (vérifié)." },
+    { "statut": "verifier", "titre": "DPE",                     "texte": "Classe [__]. Hors résidence principale, classe A à D exigée d’ici 2034." },
+    { "statut": "faire",    "titre": "Assurance",               "texte": "Passer à une assurance adaptée à la location courte durée." },
+    { "statut": "ok",       "titre": "Taxe de séjour",          "texte": "Collectée et reversée automatiquement par Airbnb." }
+  ],
+
+  "plan": [
+    { "action": "Shooting photo et retouche",            "cout": "inclus",                          "effet": "Plus de clics dans les résultats",          "qui": "Haveo" },
+    { "action": "Prix dynamique et calendrier",          "cout": "inclus",                          "effet": "+{hausseParNuit} par nuit en moyenne",       "qui": "Haveo" },
+    { "action": "Arrivée autonome (boîte à clés)",       "cout": { "equipements": ["boite-cles"] }, "effet": "Fin du reproche n°1 des avis",              "qui": "Vous" },
+    { "action": "Matelas neuf et surmatelas, chambre 3", "cout": 400,                               "effet": "Literie au niveau des autres chambres",      "qui": "Vous" },
+    { "action": "Autres équipements manquants",          "cout": { "equipements": "reste" },        "effet": "Visible dans plus de recherches filtrées",   "qui": "Vous" },
+    { "action": "Joints des salles de bain",             "cout": 120,                               "effet": "Propreté perçue, meilleures notes",          "qui": "Artisan Haveo" },
+    { "action": "Déco séjour, entrée et terrasse",       "cout": 200,                               "effet": "Photos plus chaleureuses",                   "qui": "Vous" },
+    { "action": "Titre, description et Booking",         "cout": "inclus",                          "effet": "Plus de visibilité",                         "qui": "Haveo" }
+  ],
+
+  "services": [
+    { "titre": "Photos et annonce",   "texte": "Shooting, retouche, titre et description réécrits" },
+    { "titre": "Prix dynamique",      "texte": "Ajusté chaque semaine selon la saison et les événements" },
+    { "titre": "Voyageurs 7 j/7",     "texte": "Réponse en moins d’une heure, avant, pendant et après" },
+    { "titre": "Arrivées et départs", "texte": "Boîte à clés ou accueil en personne, état des lieux" },
+    { "titre": "Ménage et linge",     "texte": "Ménage professionnel, linge de qualité hôtelière" },
+    { "titre": "Travaux et entretien","texte": "Artisans partenaires de confiance, interventions rapides" },
+    { "titre": "Airbnb et Booking",   "texte": "Une annonce sur chaque plateforme, un calendrier commun" },
+    { "titre": "Suivi mensuel",       "texte": "Vos revenus, vos avis et nos actions, chaque mois" }
+  ],
+
+  "textes": {
+    "couverture": {
+      "intro": "Ce qui fonctionne, ce qui freine vos réservations et les actions à mener en priorité, pièce par pièce, avec leur coût et leur effet sur vos revenus.",
+      "notes": "À chaque audit : ville, gamme, nom du propriétaire, date de visite, surface, chambres et capacité viennent de la fiche du bien."
+    },
+
+    "synthese": {
+      "titre": "Votre logement obtient {noteGlobale}/100",
+      "priorites": [
+        { "titre": "Refaire les photos", "texte": "Ouvrir sur le séjour et la terrasse, en pleine lumière." },
+        { "titre": "Passer au prix dynamique", "texte": "Viser {prix.normal} en moyenne au lieu de {prixActuel} fixe." },
+        { "titre": "Régler les 2 reproches des avis", "texte": "Boîte à clés et literie neuve dans la chambre 3." }
+      ],
+      "notes": "Les 3 priorités reprennent les critères les plus faibles qui pèsent le plus sur les revenus."
+    },
+
+    "situation": {
+      "titre": "Moins cher et moins rempli que le marché : l’annonce ne convertit pas",
+      "intro": "Loué en direct sur Airbnb depuis {depuis}, **le bien est {ecartPrix} moins cher que les logements comparables, et pourtant moins réservé.** Ce n’est pas la demande qui manque : c’est la façon dont il est présenté.",
+      "blocs": [
+        { "titre": "Ce que cela signifie", "texte": "Les voyageurs voient l’annonce mais ne cliquent pas, ou cliquent sans réserver. Les causes sont dans les photos, le titre et le calendrier, pas dans le logement lui-même." },
+        { "titre": "La bonne nouvelle", "texte": "Ce sont des points qui se corrigent vite, la plupart sans travaux. Le logement a déjà ce que le marché recherche." }
+      ]
+    },
+
+    "bien": {
+      "titre": "Un logement familial qui correspond à la demande de Boulogne",
+      "intro": "Cible idéale : **familles en séjour à Paris et petits groupes de collaborateurs.** Les professionnels remplissent la semaine, les familles les week-ends et les vacances.",
+      "forces": [
+        { "titre": "{chambres} chambres et {sallesDeBain} salles de bain", "texte": "Un produit rare : peu d’annonces du secteur accueillent {voyageurs} personnes avec ce confort." },
+        { "titre": "Balcon-terrasse privatif", "texte": "Un extérieur très demandé, qui justifie un prix au-dessus du marché." },
+        { "titre": "Métro 9 et 10, Roland-Garros", "texte": "Paris en 20 minutes et des pics de demande lors des événements sportifs." }
+      ],
+      "freins": [
+        { "titre": "4e étage sans ascenseur", "texte": "À annoncer clairement pour éviter les mauvaises surprises et les avis négatifs." },
+        { "titre": "Pas de climatisation", "texte": "Un vrai frein en juillet-août, et un filtre que beaucoup de voyageurs cochent." },
+        { "titre": "Chambre 2 côté rue", "texte": "Bruit le matin, déjà cité dans 3 avis." }
+      ],
+      "notes": "3 forces et 3 freins observés pendant la visite. Chaque frein doit réapparaître dans le plan d’action."
+    },
+
+    "pieces": {
+      "titre": "Un logement sain, à remettre au niveau dans 3 pièces",
+      "notes": "Une ligne par pièce visitée, note sur 10. Constat en moins de 45 caractères, action concrète et achetable."
+    },
+
+    "photos": {
+      "titre": "Ce que nous avons vu sur place",
+      "notes": "Les 3 premières pièces de la fiche qui ont une photo. Photos prises pendant la visite, à l’horizontale."
+    },
+
+    "annonce": {
+      "titre": "Votre annonce cache vos meilleurs atouts",
+      "notes": "Titre Airbnb : 50 caractères maximum. Toujours : surface ou type, atout n°1, capacité, transport. Ordre des photos recommandé : séjour + terrasse, chambre parentale, cuisine, salles de bain, autres chambres, terrasse, quartier."
+    },
+
+    "equipements": {
+      "titre": "{NbManquantsMot} équipements manquants vous sortent des recherches filtrées",
+      "intro": "Les voyageurs filtrent leurs recherches. **Sans ces équipements, l’annonce n’apparaît tout simplement pas pour eux.**",
+      "notes": "Liste de base des filtres Airbnb à vérifier à chaque visite : Wi-Fi, cuisine, lave-linge, climatisation, chauffage, espace de travail, arrivée autonome, parking, lit pour bébé, chaise haute, sèche-cheveux, fer à repasser."
+    },
+
+    "experience": {
+      "titre": "Vos {nbAvis} avis disent la même chose : très bien placé, arrivée à revoir",
+      "intro": "Nous avons relu tous vos avis. **Trois reproches reviennent et coûtent chacun des étoiles.** Bonne nouvelle : aucun ne demande de gros travaux.",
+      "titrePositifs": "Ce que les voyageurs aiment",
+      "positifs": [
+        { "titre": "Emplacement", "texte": "cité dans 21 avis" },
+        { "titre": "Espace et volumes", "texte": "cité dans 17 avis" },
+        { "titre": "Accueil du propriétaire", "texte": "cité dans 9 avis" }
+      ],
+      "titreNegatifs": "Ce qui leur coûte des étoiles",
+      "negatifs": [
+        { "titre": "Remise des clés compliquée", "detail": "cité dans 6 avis", "reponse": "Boîte à clés et guide d’arrivée envoyé la veille" },
+        { "titre": "Literie de la chambre 3", "detail": "cité dans 4 avis", "reponse": "Matelas neuf et surmatelas" },
+        { "titre": "Bruit côté rue", "detail": "cité dans 3 avis", "reponse": "Bouchons d’oreille, rideaux épais, mention honnête dans l’annonce" }
+      ],
+      "notes": "Relire tous les avis (Airbnb + Booking) et compter les remarques qui reviennent. Chaque reproche = une réponse concrète, reprise dans le plan d’action."
+    },
+
+    "prix": {
+      "titre": "Un prix unique toute l’année laisse de l’argent sur la table",
+      "encadre": "Soit +{hausseParNuit} par nuit. Votre prix actuel est {ecartPrix} sous celui des {libelleSegment} du secteur ({prixMoyenSegment}), sans raison : le logement est au niveau."
+    },
+
+    "visibilite": {
+      "titre": "Être plus rapide et plus visible fait remonter l’annonce",
+      "intro": "Airbnb classe mieux les annonces qui répondent vite, qui acceptent la réservation instantanée et qui ont de bonnes notes. **Booking ajoute une clientèle internationale et professionnelle qui ne vous voit pas aujourd’hui.**",
+      "indicateurs": [
+        { "avant": "{note}", "apres": "{noteCible}+", "label": "Note moyenne" },
+        { "avant": "6 h", "apres": "< 1 h", "label": "Délai de réponse" },
+        { "avant": "1", "apres": "2", "label": "Plateformes : Airbnb, + Booking" }
+      ],
+      "actions": [
+        { "titre": "Réservation instantanée", "texte": "Désactivée aujourd’hui. À activer : beaucoup de voyageurs filtrent sur ce critère." },
+        { "titre": "Messages automatiques", "texte": "Aucun. On met en place les messages de réservation, d’arrivée, de séjour et de départ." },
+        { "titre": "Réponse aux avis", "texte": "Aucun avis n’a de réponse. Répondre à chacun, surtout aux critiques, rassure les futurs voyageurs." }
+      ],
+      "notes": "Délai de réponse et taux d’acceptation : visibles dans le tableau de bord Airbnb du propriétaire. Seuil du badge Coup de cœur voyageurs à vérifier sur la plateforme."
+    },
+
+    "reglementation": {
+      "titre": "{NbPointsRegleMot} points à sécuriser avant de développer la location",
+      "notes": "Statuts possibles : ok, faire, verifier. Toujours vérifier les règles de la commune du bien (plafond 90 ou 120 nuits, changement d’usage, compensation). Ne jamais présenter cette page comme un avis juridique."
+    },
+
+    "plan": {
+      "titre": "{NbActionsMot} actions, dans l’ordre, pour environ {totalEnviron} d’investissement",
+      "notes": "Trier par impact sur les revenus."
+    },
+
+    "revenus": {
+      "titre": "Avec Haveo, environ {gainEnviron} de plus par mois, sans rien gérer",
+      "intro": "Même après notre commission, le scénario normal rapporte plus que ce que vous gagnez aujourd’hui en gérant tout vous-même. **Et vous récupérez le temps passé avec les voyageurs, le ménage et les clés.**"
+    },
+
+    "services": {
+      "titre": "Tout ce que l’audit recommande, pris en charge de A à Z"
+    },
+
+    "apres": {
+      "intro": "Cet audit est à vous, que vous nous confiiez votre logement ou non. **Vous repartez avec vos priorités, dans l’ordre.**",
+      "optionA": "Beaucoup de propriétaires corrigent seuls leurs photos, leur titre ou leurs prix. Commencez par les 3 priorités de la page 2.",
+      "optionB": "Nous nous occupons de tout : annonce, prix, voyageurs, ménage. Déjà avec une conciergerie ? Nous gérons la transition sans coupure de réservations."
+    }
+  }
+}
