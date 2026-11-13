@@ -9,28 +9,337 @@
       "1er mois offert · Audit gratuit ↓"
     ],
     "lien": "[adresse du site]",
+    "email": "haveo.conciergerie@gmail.com",
+    "telephone": "07 63 88 81 36",
     "avatar": "../brand/logo/png/haveo-avatar-corail.png"
   },
-
   "reglages": {
-    "couleurs": ["corail", "sable", "vert"],
+    "couleurs": [
+      "corail",
+      "sable",
+      "vert"
+    ],
     "lancement": "2026-11-17",
     "heure": "18h30",
     "zone": "Paris · Île-de-France",
-    "finOffre": null,
+    "finOffre": "1er mars 2027",
     "hashtagsMax": 5,
     "hashtagsFacebook": 2,
-    "motsInterdits": ["gestion locative", "gestion immobilière", "mandat", "piloter", "pilotons", "pilote vos", "garanti", "réactivité garantie", "7j/7"]
+    "motsInterdits": [
+      "gestion locative",
+      "gestion immobilière",
+      "mandat",
+      "piloter",
+      "pilotons",
+      "pilote vos",
+      "garanti",
+      "réactivité garantie",
+      "7j/7"
+    ]
   },
-
   "aLaUne": [
-    { "titre": "Services", "icone": "bed", "couleur": "sable" },
-    { "titre": "Accueil", "icone": "key", "couleur": "vert" },
-    { "titre": "Offre", "icone": "gift", "couleur": "corail" },
-    { "titre": "Estimation", "icone": "chart", "couleur": "sable" },
-    { "titre": "Contact", "icone": "message", "couleur": "vert" }
+    {
+      "titre": "Services",
+      "icone": "house",
+      "couleur": "sable",
+      "stories": [
+        {
+          "centre": true,
+          "label": "Nos services · un seul interlocuteur",
+          "titre": "Tout est\n**pris en charge.**",
+          "cartes": [
+            {
+              "icone": "camera",
+              "titre": "Annonce et photos"
+            },
+            {
+              "icone": "key",
+              "titre": "Accueil et clés"
+            },
+            {
+              "icone": "bed",
+              "titre": "Ménage et linge"
+            },
+            {
+              "icone": "message",
+              "titre": "Relation voyageurs"
+            },
+            {
+              "icone": "chart",
+              "titre": "Prix conseillés"
+            },
+            {
+              "icone": "filecheck",
+              "titre": "Suivi et incidents"
+            }
+          ]
+        },
+        {
+          "icone": "camera",
+          "label": "Annonce et photos",
+          "titre": "Votre annonce,\n**sur votre compte.**",
+          "points": [
+            "Photos et annonce préparées par nos soins",
+            "Livret d'accueil pour les voyageurs",
+            "Inventaire du logement",
+            "Publication après votre accord",
+            "L'annonce reste sur votre compte Airbnb ou Booking"
+          ],
+          "colonne": true
+        },
+        {
+          "icone": "key",
+          "label": "Accueil et clés",
+          "titre": "L'arrivée de vos\n**voyageurs, de A à Z.**",
+          "etapes": [
+            {
+              "titre": "Avant l'arrivée",
+              "texte": "Instructions d'accès et livret d'accueil envoyés au voyageur."
+            },
+            {
+              "titre": "Le jour J",
+              "texte": "Accueil en personne, ou arrivée autonome par boîte à clés ou serrure connectée."
+            },
+            {
+              "titre": "Pendant le séjour",
+              "texte": "Réponses par téléphone ou message, petits imprévus réglés."
+            },
+            {
+              "titre": "Au départ",
+              "texte": "Clés récupérées, ménage, logement contrôlé."
+            }
+          ]
+        },
+        {
+          "label": "Ménage et linge · avant chaque arrivée",
+          "titre": "**10 points**\ncontrôlés.",
+          "points": [
+            "Sols et surfaces nettoyés",
+            "Salle de bain impeccable",
+            "Cuisine et vaisselle propres",
+            "Lit fait, draps changés",
+            "Serviettes propres",
+            "Produits d'accueil en place",
+            "Poubelles vidées",
+            "Logement aéré",
+            "Wi-Fi et équipements testés",
+            "Clés et accès vérifiés"
+          ],
+          "alerte": [
+            "Une anomalie ?",
+            "Vous êtes prévenu sous 24 h"
+          ]
+        },
+        {
+          "label": "Au quotidien",
+          "titre": "Vous êtes informé,\n**vous validez.**",
+          "cartes": [
+            {
+              "icone": "message",
+              "titre": "Relation voyageurs",
+              "texte": "Questions et imprévus, avant et pendant le séjour."
+            },
+            {
+              "icone": "chart",
+              "titre": "Prix conseillés",
+              "texte": "Selon la saison et les événements. Vous validez."
+            },
+            {
+              "icone": "filecheck",
+              "titre": "Suivi et incidents",
+              "texte": "Relevé mensuel, coordination des interventions. Tout incident signalé sous 24 h."
+            }
+          ]
+        },
+        {
+          "centre": true,
+          "label": "Et pour votre logement ?",
+          "titre": "On commence par\n**un audit gratuit.**",
+          "texte": "On visite votre logement avec vous et on vous dit ce dont il a besoin.",
+          "bouton": "Demander un audit gratuit",
+          "note": "Écrivez « AUDIT » en message privé",
+          "conseil": "Ajoute un sticker « Lien » vers le site, juste sous le bouton."
+        }
+      ]
+    },
+    {
+      "titre": "Offre",
+      "icone": "gift",
+      "couleur": "corail",
+      "stories": [
+        {
+          "centre": true,
+          "badge": "Offre de lancement",
+          "offre": true,
+          "texte": "sur nos honoraires de conciergerie,\njusqu'au 1er mars 2027.",
+          "conseil": "À retirer ou à mettre à jour le 1er mars 2027."
+        },
+        {
+          "label": "Les conditions",
+          "titre": "Testez Haveo\n**sans risque.**",
+          "cartes": [
+            {
+              "icone": "gift",
+              "titre": "Le premier mois offert",
+              "texte": "Aucun honoraire de conciergerie le premier mois de location."
+            },
+            {
+              "icone": "filetext",
+              "titre": "Résiliable à tout moment",
+              "texte": "Sans pénalité, avec un simple préavis de 7 jours."
+            },
+            {
+              "icone": "house",
+              "titre": "Pour un premier logement",
+              "texte": "Ensuite : 20 % du montant des nuitées. Ménage, linge et consommables facturés à part."
+            }
+          ]
+        },
+        {
+          "icone": "search",
+          "label": "Avant de démarrer",
+          "titre": "L'audit de votre\n**logement, offert.**",
+          "points": [
+            "Visite du logement, avec vous",
+            "Potentiel de location",
+            "Prix, décoration et annonce passés en revue",
+            "Premières recommandations"
+          ],
+          "colonne": true,
+          "note": "Gratuit, sans engagement"
+        },
+        {
+          "icone": "chart",
+          "label": "Estimation en ligne",
+          "titre": "Combien pourrait\nrapporter votre\n**logement ?**",
+          "texte": "Quelques infos sur votre logement dans notre simulateur, et vous avez une estimation mensuelle.",
+          "bouton": "Estimer mes revenus",
+          "note": "Sur notre site, gratuit.\nEstimation indicative, non contractuelle.",
+          "conseil": "Ajoute un sticker « Lien » vers le simulateur du site, juste sous le bouton."
+        },
+        {
+          "centre": true,
+          "label": "Jusqu'au 1er mars 2027",
+          "titre": "**Profitez du**\n**mois offert.**",
+          "texte": "Écrivez « OFFRE » en message privé, ou appelez-nous au 07 63 88 81 36.",
+          "bouton": "Profiter du mois offert",
+          "fleche": false
+        }
+      ]
+    },
+    {
+      "titre": "Zone",
+      "icone": "mappin",
+      "couleur": "vert",
+      "stories": [
+        {
+          "label": "Zone d'intervention",
+          "titre": "Paris et toute\n**l'Île-de-France.**",
+          "departements": [
+            [
+              "75",
+              "Paris"
+            ],
+            [
+              "92",
+              "Hauts-de-Seine"
+            ],
+            [
+              "93",
+              "Seine-Saint-Denis"
+            ],
+            [
+              "94",
+              "Val-de-Marne"
+            ],
+            [
+              "78",
+              "Yvelines"
+            ],
+            [
+              "91",
+              "Essonne"
+            ],
+            [
+              "95",
+              "Val-d'Oise"
+            ],
+            [
+              "77",
+              "Seine-et-Marne"
+            ]
+          ]
+        },
+        {
+          "centre": true,
+          "icone": "mappin",
+          "label": "Votre adresse",
+          "titre": "Un doute sur\n**votre ville ?**",
+          "texte": "Écrivez-nous avec le nom de votre ville. Si votre logement est dans notre zone, on vient le visiter pour l'audit gratuit.",
+          "bouton": "Nous écrire",
+          "fleche": false,
+          "note": "Message privé ou 07 63 88 81 36"
+        }
+      ]
+    },
+    {
+      "titre": "Contact",
+      "icone": "message",
+      "couleur": "sable",
+      "stories": [
+        {
+          "label": "Contact",
+          "titre": "Parlons de\n**votre logement.**",
+          "contacts": [
+            {
+              "icone": "message",
+              "label": "Message privé",
+              "valeur": "@haveo.conciergerie"
+            },
+            {
+              "icone": "phone",
+              "label": "Téléphone",
+              "valeur": "07 63 88 81 36"
+            },
+            {
+              "icone": "mail",
+              "label": "E-mail",
+              "valeur": "haveo.conciergerie@gmail.com"
+            },
+            {
+              "icone": "globe",
+              "label": "Site et simulateur",
+              "valeur": "Lien en bio"
+            }
+          ],
+          "note": "Audit gratuit, sans engagement",
+          "conseil": "Ajoute un sticker « Lien » vers le site sur la ligne « Site et simulateur »."
+        },
+        {
+          "label": "Démarrer avec Haveo",
+          "titre": "Et ensuite ?\n**4 étapes.**",
+          "etapes": [
+            {
+              "titre": "Audit gratuit",
+              "texte": "Visite du logement, potentiel et premières recommandations."
+            },
+            {
+              "titre": "Offre et contrat",
+              "texte": "Les services dont vous avez besoin, un contrat clair, résiliable à tout moment."
+            },
+            {
+              "titre": "Mise en valeur",
+              "texte": "Photos, annonce, livret d'accueil et inventaire, validés par vous."
+            },
+            {
+              "titre": "Premiers voyageurs",
+              "texte": "Accueil, ménage et suivi. Une facture claire chaque mois."
+            }
+          ]
+        }
+      ]
+    }
   ],
-
   "posts": [
     {
       "id": "presentation",
@@ -40,7 +349,14 @@
         "label": "Conciergerie · location courte durée",
         "titre": "**Vous louez.**\nHaveo s'occupe du reste.",
         "texte": "On prend en charge le quotidien de votre location courte durée, à Paris et dans toute l'Île-de-France. Vous gardez la main sur votre logement, vos prix et vos revenus.",
-        "puces": ["Accueil", "Ménage", "Linge", "Annonce", "Voyageurs", "Suivi"],
+        "puces": [
+          "Accueil",
+          "Ménage",
+          "Linge",
+          "Annonce",
+          "Voyageurs",
+          "Suivi"
+        ],
         "bouton": "Demander un audit gratuit",
         "note": "Gratuit, sans engagement"
       },
@@ -58,11 +374,16 @@
         "",
         "→ Demandez le vôtre : {lien}, ou écrivez-nous en message privé."
       ],
-      "hashtags": ["conciergerieparis", "conciergerieairbnb", "locationcourteduree", "airbnbparis", "iledefrance"],
+      "hashtags": [
+        "conciergerieparis",
+        "conciergerieairbnb",
+        "locationcourteduree",
+        "airbnbparis",
+        "iledefrance"
+      ],
       "alt": "Visuel corail Haveo. Titre : Vous louez. Haveo s'occupe du reste. Conciergerie pour la location courte durée à Paris et en Île-de-France : accueil, ménage, linge, annonce, voyageurs et suivi. Bouton : demander un audit gratuit.",
       "contrat": "préambule, art. 3, art. 4"
     },
-
     {
       "id": "services",
       "modele": "grille",
@@ -71,12 +392,36 @@
         "label": "Nos services",
         "titre": "Un seul interlocuteur,\n**tout est pris en charge.**",
         "cartes": [
-          { "icone": "camera", "titre": "Annonce et photos", "texte": "Photos et annonce préparées, publiées après votre accord." },
-          { "icone": "key", "titre": "Accueil et clés", "texte": "Accueil en personne ou arrivée autonome." },
-          { "icone": "bed", "titre": "Ménage et linge", "texte": "Ménage contrôlé et linge changé à chaque départ." },
-          { "icone": "message", "titre": "Relation voyageurs", "texte": "Questions et imprévus, avant et pendant le séjour." },
-          { "icone": "chart", "titre": "Prix conseillés", "texte": "Selon la saison et les événements. Vous validez." },
-          { "icone": "filecheck", "titre": "Suivi et incidents", "texte": "Relevé mensuel et coordination des interventions." }
+          {
+            "icone": "camera",
+            "titre": "Annonce et photos",
+            "texte": "Photos et annonce préparées, publiées après votre accord."
+          },
+          {
+            "icone": "key",
+            "titre": "Accueil et clés",
+            "texte": "Accueil en personne ou arrivée autonome."
+          },
+          {
+            "icone": "bed",
+            "titre": "Ménage et linge",
+            "texte": "Ménage contrôlé et linge changé à chaque départ."
+          },
+          {
+            "icone": "message",
+            "titre": "Relation voyageurs",
+            "texte": "Questions et imprévus, avant et pendant le séjour."
+          },
+          {
+            "icone": "chart",
+            "titre": "Prix conseillés",
+            "texte": "Selon la saison et les événements. Vous validez."
+          },
+          {
+            "icone": "filecheck",
+            "titre": "Suivi et incidents",
+            "texte": "Relevé mensuel et coordination des interventions."
+          }
         ]
       },
       "legende": [
@@ -93,11 +438,16 @@
         "",
         "→ Dites-nous lesquels en message privé, on vous répond avec une proposition claire."
       ],
-      "hashtags": ["conciergerieparis", "conciergerieairbnb", "locationcourteduree", "airbnbparis", "proprietaire"],
+      "hashtags": [
+        "conciergerieparis",
+        "conciergerieairbnb",
+        "locationcourteduree",
+        "airbnbparis",
+        "proprietaire"
+      ],
       "alt": "Visuel beige Haveo. Titre : Un seul interlocuteur, tout est pris en charge. Six cartes numérotées : annonce et photos, accueil et clés, ménage et linge, relation voyageurs, prix conseillés, suivi et incidents.",
       "contrat": "art. 3"
     },
-
     {
       "id": "accueil",
       "modele": "etapes",
@@ -106,10 +456,22 @@
         "label": "Accueil et clés",
         "titre": "L'arrivée de vos\n**voyageurs, de A à Z.**",
         "etapes": [
-          { "titre": "Avant l'arrivée", "texte": "Instructions d'accès et livret d'accueil envoyés au voyageur." },
-          { "titre": "Le jour J", "texte": "Accueil en personne, ou arrivée autonome par boîte à clés ou serrure connectée." },
-          { "titre": "Pendant le séjour", "texte": "Réponses par téléphone ou message, et petits imprévus réglés." },
-          { "titre": "Au départ", "texte": "Clés récupérées, ménage, logement contrôlé. Tout incident vous est signalé sous 24 h." }
+          {
+            "titre": "Avant l'arrivée",
+            "texte": "Instructions d'accès et livret d'accueil envoyés au voyageur."
+          },
+          {
+            "titre": "Le jour J",
+            "texte": "Accueil en personne, ou arrivée autonome par boîte à clés ou serrure connectée."
+          },
+          {
+            "titre": "Pendant le séjour",
+            "texte": "Réponses par téléphone ou message, et petits imprévus réglés."
+          },
+          {
+            "titre": "Au départ",
+            "texte": "Clés récupérées, ménage, logement contrôlé. Tout incident vous est signalé sous 24 h."
+          }
         ],
         "encadre": "Chaque logement est différent : le mode d'accès est choisi avec vous."
       },
@@ -125,11 +487,16 @@
         "",
         "→ Parlons de votre logement en message privé."
       ],
-      "hashtags": ["conciergerieparis", "accueilvoyageurs", "remisedescles", "airbnbparis", "locationcourteduree"],
+      "hashtags": [
+        "conciergerieparis",
+        "accueilvoyageurs",
+        "remisedescles",
+        "airbnbparis",
+        "locationcourteduree"
+      ],
       "alt": "Visuel vert Haveo. Titre : L'arrivée de vos voyageurs, de A à Z. Quatre étapes : avant l'arrivée, le jour J, pendant le séjour, au départ. Tout incident est signalé sous 24 heures.",
       "contrat": "art. 3, art. 5 (24 h), annexe 3"
     },
-
     {
       "id": "checklist",
       "modele": "checklist",
@@ -137,8 +504,22 @@
       "contenu": {
         "label": "Ménage et contrôle",
         "titre": "**Avant chaque arrivée,**\n10 points contrôlés.",
-        "points": ["Sols et surfaces nettoyés", "Salle de bain impeccable", "Cuisine et vaisselle propres", "Lit fait, draps changés", "Serviettes propres", "Produits d'accueil en place", "Poubelles vidées", "Logement aéré", "Wi-Fi et équipements testés", "Clés et accès vérifiés"],
-        "alerte": ["Une anomalie ?", "Vous êtes prévenu sous 24 h"]
+        "points": [
+          "Sols et surfaces nettoyés",
+          "Salle de bain impeccable",
+          "Cuisine et vaisselle propres",
+          "Lit fait, draps changés",
+          "Serviettes propres",
+          "Produits d'accueil en place",
+          "Poubelles vidées",
+          "Logement aéré",
+          "Wi-Fi et équipements testés",
+          "Clés et accès vérifiés"
+        ],
+        "alerte": [
+          "Une anomalie ?",
+          "Vous êtes prévenu sous 24 h"
+        ]
       },
       "legende": [
         "Avant chaque arrivée, 10 points contrôlés. Enregistrez la liste : elle sert aussi si vous accueillez vos voyageurs vous-même.",
@@ -158,11 +539,16 @@
         "",
         "Propriétaires : lequel de ces points vous prend le plus de temps ? Dites-le-nous en commentaire."
       ],
-      "hashtags": ["menageairbnb", "conciergerieparis", "airbnbparis", "locationcourteduree", "proprietaire"],
+      "hashtags": [
+        "menageairbnb",
+        "conciergerieparis",
+        "airbnbparis",
+        "locationcourteduree",
+        "proprietaire"
+      ],
       "alt": "Visuel corail Haveo. Titre : Avant chaque arrivée, 10 points contrôlés. Liste : sols, salle de bain, cuisine, lit, serviettes, produits d'accueil, poubelles, aération, wifi et équipements, clés et accès. Une anomalie : vous êtes prévenu sous 24 heures.",
       "contrat": "art. 3 (ménage et linge, consommables), art. 5 (24 h)"
     },
-
     {
       "id": "offre",
       "modele": "offre",
@@ -171,12 +557,21 @@
         "badge": "Offre de lancement",
         "sousTitre": "sur nos honoraires de conciergerie",
         "points": [
-          { "titre": "Vous testez sans risque", "texte": "Aucun honoraire de conciergerie le premier mois de location." },
-          { "titre": "Résiliable à tout moment", "texte": "Sans pénalité, avec un simple préavis de 7 jours." },
-          { "titre": "Audit gratuit avant de démarrer", "texte": "On visite et on étudie votre logement avec vous." }
+          {
+            "titre": "Vous testez sans risque",
+            "texte": "Aucun honoraire de conciergerie le premier mois de location."
+          },
+          {
+            "titre": "Résiliable à tout moment",
+            "texte": "Sans pénalité, avec un simple préavis de 7 jours."
+          },
+          {
+            "titre": "Audit gratuit avant de démarrer",
+            "texte": "On visite et on étudie votre logement avec vous."
+          }
         ],
         "bouton": "Profiter du mois offert",
-        "note": "Pour un premier logement. Ensuite : 20 % du montant des nuitées. Ménage, linge et consommables facturés à part."
+        "note": "Jusqu'au 1er mars 2027, pour un premier logement. Ensuite : 20 % du montant des nuitées. Ménage, linge et consommables facturés à part."
       },
       "legende": [
         "Offre de lancement : votre premier mois d'honoraires de conciergerie est offert.",
@@ -190,11 +585,16 @@
         "",
         "→ Profitez du mois offert : {lien}, ou écrivez « OFFRE » en message privé."
       ],
-      "hashtags": ["conciergerieparis", "conciergerieairbnb", "locationcourteduree", "airbnbparis", "offredelancement"],
-      "alt": "Visuel beige Haveo. 1er mois offert sur nos honoraires de conciergerie. Vous testez sans risque, résiliable à tout moment avec 7 jours de préavis, audit gratuit avant de démarrer. Ensuite 20 % du montant des nuitées.",
+      "hashtags": [
+        "conciergerieparis",
+        "conciergerieairbnb",
+        "locationcourteduree",
+        "airbnbparis",
+        "offredelancement"
+      ],
+      "alt": "Visuel beige Haveo. 1er mois offert sur nos honoraires de conciergerie. Vous testez sans risque, résiliable à tout moment avec 7 jours de préavis, audit gratuit avant de démarrer. Offre valable jusqu'au 1er mars 2027, pour un premier logement. Ensuite 20 % du montant des nuitées.",
       "contrat": "art. 8.2, 8.3, 9, 10, art. 3 (audit)"
     },
-
     {
       "id": "vos-regles",
       "modele": "liste",
@@ -203,10 +603,26 @@
         "label": "Transparence",
         "titre": "Votre logement,\n**vos règles.**",
         "cartes": [
-          { "icone": "user", "titre": "Vos comptes", "texte": "L'annonce reste sur votre compte Airbnb ou Booking. Haveo y intervient en co-hôte." },
-          { "icone": "euro", "titre": "Vos revenus", "texte": "Ils vous sont versés directement. Haveo n'encaisse jamais l'argent de vos séjours." },
-          { "icone": "sliders", "titre": "Vos prix", "texte": "Vous fixez la grille de prix. Nos ajustements restent dans ces limites." },
-          { "icone": "calendar", "titre": "Votre calendrier", "texte": "Besoin du logement ? Prévenez-nous 7 jours avant, on bloque les dates." }
+          {
+            "icone": "user",
+            "titre": "Vos comptes",
+            "texte": "L'annonce reste sur votre compte Airbnb ou Booking. Haveo y intervient en co-hôte."
+          },
+          {
+            "icone": "euro",
+            "titre": "Vos revenus",
+            "texte": "Ils vous sont versés directement. Haveo n'encaisse jamais l'argent de vos séjours."
+          },
+          {
+            "icone": "sliders",
+            "titre": "Vos prix",
+            "texte": "Vous fixez la grille de prix. Nos ajustements restent dans ces limites."
+          },
+          {
+            "icone": "calendar",
+            "titre": "Votre calendrier",
+            "texte": "Besoin du logement ? Prévenez-nous 7 jours avant, on bloque les dates."
+          }
         ],
         "apres": "Chaque mois, une facture détaillée, séjour par séjour."
       },
@@ -225,11 +641,16 @@
         "",
         "→ Une question sur le fonctionnement ? Posez-la en commentaire ou en message privé."
       ],
-      "hashtags": ["conciergerieparis", "conciergerieairbnb", "proprietaire", "airbnbparis", "locationcourteduree"],
+      "hashtags": [
+        "conciergerieparis",
+        "conciergerieairbnb",
+        "proprietaire",
+        "airbnbparis",
+        "locationcourteduree"
+      ],
       "alt": "Visuel vert Haveo. Titre : Votre logement, vos règles. Vos comptes restent les vôtres, vos revenus vous sont versés directement, vous fixez la grille de prix, et vous bloquez vos dates avec 7 jours de préavis.",
       "contrat": "art. 3 (dernier §), art. 4.1 à 4.3, art. 7, art. 11, art. 16"
     },
-
     {
       "id": "demarrer",
       "modele": "methode",
@@ -238,10 +659,26 @@
         "label": "Notre méthode",
         "titre": "**Démarrer avec Haveo,**\nen 4 étapes.",
         "etapes": [
-          { "icone": "search", "titre": "Audit gratuit", "texte": "Visite du logement, potentiel de location et premières recommandations." },
-          { "icone": "filetext", "titre": "Offre et contrat", "texte": "Les services dont vous avez besoin, un contrat clair, résiliable à tout moment." },
-          { "icone": "camera", "titre": "Mise en valeur", "texte": "Photos, annonce, livret d'accueil et inventaire, validés par vous." },
-          { "icone": "house", "titre": "Premiers voyageurs", "texte": "Accueil, ménage et suivi. Une facture claire chaque mois." }
+          {
+            "icone": "search",
+            "titre": "Audit gratuit",
+            "texte": "Visite du logement, potentiel de location et premières recommandations."
+          },
+          {
+            "icone": "filetext",
+            "titre": "Offre et contrat",
+            "texte": "Les services dont vous avez besoin, un contrat clair, résiliable à tout moment."
+          },
+          {
+            "icone": "camera",
+            "titre": "Mise en valeur",
+            "texte": "Photos, annonce, livret d'accueil et inventaire, validés par vous."
+          },
+          {
+            "icone": "house",
+            "titre": "Premiers voyageurs",
+            "texte": "Accueil, ménage et suivi. Une facture claire chaque mois."
+          }
         ],
         "bouton": "Demander un audit gratuit",
         "note": "Gratuit, sans engagement"
@@ -258,11 +695,16 @@
         "",
         "→ Demandez votre audit gratuit : {lien}, ou écrivez « AUDIT » en message privé."
       ],
-      "hashtags": ["conciergerieparis", "conciergerieairbnb", "locationcourteduree", "locationsaisonniere", "proprietaire"],
+      "hashtags": [
+        "conciergerieparis",
+        "conciergerieairbnb",
+        "locationcourteduree",
+        "locationsaisonniere",
+        "proprietaire"
+      ],
       "alt": "Visuel corail Haveo. Titre : Démarrer avec Haveo, en 4 étapes. 01 audit gratuit, 02 offre et contrat, 03 mise en valeur, 04 premiers voyageurs. Bouton : demander un audit gratuit.",
       "contrat": "art. 3, art. 8.3, art. 11"
     },
-
     {
       "id": "estimation",
       "modele": "estimation",
@@ -270,11 +712,55 @@
       "contenu": {
         "badge": "Estimation gratuite",
         "titre": "Combien pourrait rapporter votre **logement ?**",
-        "semaine": [["Lun", 95, "basse"], ["Mar", 98, "basse"], ["Mer", 105, "basse"], ["Jeu", 110, "moyenne"], ["Ven", 145, "moyenne"], ["Sam", 180, "forte"], ["Dim", 140, "moyenne"]],
+        "semaine": [
+          [
+            "Lun",
+            95,
+            "basse"
+          ],
+          [
+            "Mar",
+            98,
+            "basse"
+          ],
+          [
+            "Mer",
+            105,
+            "basse"
+          ],
+          [
+            "Jeu",
+            110,
+            "moyenne"
+          ],
+          [
+            "Ven",
+            145,
+            "moyenne"
+          ],
+          [
+            "Sam",
+            180,
+            "forte"
+          ],
+          [
+            "Dim",
+            140,
+            "moyenne"
+          ]
+        ],
         "exemple": "Exemple illustratif : les prix varient selon le logement et la période.",
         "outils": [
-          { "icone": "chart", "titre": "Simulateur en ligne", "texte": "Quelques infos sur votre logement, une estimation mensuelle." },
-          { "icone": "search", "titre": "Audit gratuit", "texte": "Potentiel, prix, décoration et annonce : on regarde tout." }
+          {
+            "icone": "chart",
+            "titre": "Simulateur en ligne",
+            "texte": "Quelques infos sur votre logement, une estimation mensuelle."
+          },
+          {
+            "icone": "search",
+            "titre": "Audit gratuit",
+            "texte": "Potentiel, prix, décoration et annonce : on regarde tout."
+          }
         ],
         "bouton": "Estimer mes revenus",
         "note": "Gratuit, sans engagement.\nEstimation indicative, non contractuelle."
@@ -290,11 +776,16 @@
         "",
         "Estimation indicative et non contractuelle, sans garantie de revenus. Les prix du visuel sont un exemple."
       ],
-      "hashtags": ["conciergerieparis", "airbnbparis", "locationcourteduree", "proprietaire", "investissementlocatif"],
+      "hashtags": [
+        "conciergerieparis",
+        "airbnbparis",
+        "locationcourteduree",
+        "proprietaire",
+        "investissementlocatif"
+      ],
       "alt": "Visuel beige Haveo. Titre : Combien pourrait rapporter votre logement ? Exemple de semaine type avec des prix de 95 à 180 euros la nuit selon le jour. Simulateur en ligne et audit gratuit. Bouton : estimer mes revenus.",
       "contrat": "art. 3 (audit), art. 13 (pas de garantie de revenus)"
     },
-
     {
       "id": "zone",
       "modele": "zone",
@@ -302,7 +793,40 @@
       "contenu": {
         "label": "Zone d'intervention",
         "titre": "Paris et toute\n**l'Île-de-France.**",
-        "departements": [["75", "Paris"], ["92", "Hauts-de-Seine"], ["93", "Seine-Saint-Denis"], ["94", "Val-de-Marne"], ["78", "Yvelines"], ["91", "Essonne"], ["95", "Val-d'Oise"], ["77", "Seine-et-Marne"]],
+        "departements": [
+          [
+            "75",
+            "Paris"
+          ],
+          [
+            "92",
+            "Hauts-de-Seine"
+          ],
+          [
+            "93",
+            "Seine-Saint-Denis"
+          ],
+          [
+            "94",
+            "Val-de-Marne"
+          ],
+          [
+            "78",
+            "Yvelines"
+          ],
+          [
+            "91",
+            "Essonne"
+          ],
+          [
+            "95",
+            "Val-d'Oise"
+          ],
+          [
+            "77",
+            "Seine-et-Marne"
+          ]
+        ],
         "encadre": "Un doute sur votre adresse ? Écrivez-nous avec le nom de votre ville."
       },
       "legende": [
@@ -314,12 +838,17 @@
         "",
         "→ Écrivez-nous en message privé avec le nom de votre ville."
       ],
-      "hashtags": ["conciergerieparis", "conciergerieairbnb", "airbnbparis", "iledefrance", "hautsdeseine"],
+      "hashtags": [
+        "conciergerieparis",
+        "conciergerieairbnb",
+        "airbnbparis",
+        "iledefrance",
+        "hautsdeseine"
+      ],
       "alt": "Visuel vert Haveo. Titre : Paris et toute l'Île-de-France. Les huit départements desservis : Paris 75, Hauts-de-Seine 92, Seine-Saint-Denis 93, Val-de-Marne 94, Yvelines 78, Essonne 91, Val-d'Oise 95, Seine-et-Marne 77.",
       "contrat": "préambule (zone)",
       "statut": "proposition"
     },
-
     {
       "id": "photo-exemple",
       "modele": "photo",
@@ -337,7 +866,11 @@
         "",
         "→ Votre logement pourrait être le prochain : {lien}."
       ],
-      "hashtags": ["conciergerieparis", "airbnbparis", "locationcourteduree"],
+      "hashtags": [
+        "conciergerieparis",
+        "airbnbparis",
+        "locationcourteduree"
+      ],
       "alt": "[Description de la photo.]",
       "contrat": "",
       "statut": "exemple"

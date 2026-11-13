@@ -6,7 +6,8 @@ Outil qui produit les posts Instagram et Facebook : visuels 1080 × 1350, légen
 
 ```
 posts.json  ──►  node generer.mjs  ──►  sortie/visuels/*.png
-                                        sortie/a-la-une/*.png
+                                        sortie/a-la-une/*.png   (couvertures)
+                                        sortie/stories/*.png
                                         sortie/legendes.md
                                         sortie/index.html   (aperçu du profil)
 ```
@@ -21,6 +22,16 @@ Pour garder la grille propre :
 - ne supprime pas, n'archive pas et n'épingle pas de post (un post retiré décale toutes les couleurs) ;
 - une vraie photo de logement prend sa place dans la suite comme les autres, avec le modèle `photo` : son cadre prend la couleur du tour ;
 - publie 9 posts (3 lignes pleines) avant de faire connaître le compte.
+
+## Stories à la une
+
+Dans `aLaUne` : une entrée par rond du profil (`titre`, `icone` de la couverture, `couleur`), avec ses `stories`. Aujourd'hui : Services (6), Offre (5), Zone (2), Contact (2). Quand tu auras de belles photos de logements, ajoute une à la une « Logements ».
+
+Une story (1080 × 1920) est faite de blocs facultatifs, affichés dans cet ordre :
+`badge`, `icone`, `label`, `offre` (le gros « 1er mois offert »), `titre`, `texte`, puis un seul bloc parmi `cartes`, `points` (avec `"colonne": true` pour une seule colonne), `etapes`, `departements`, `contacts`, puis `alerte`, `bouton`, `note`.
+`conseil` n'apparaît pas sur l'image : c'est une consigne pour toi, affichée dans l'aperçu (par exemple, où poser le sticker « Lien »).
+
+Le haut (250 px) et le bas (300 px) d'une story sont cachés par Instagram : le générateur n'y met que le logo, et il signale tout contenu qui déborde.
 
 ## Ajouter un post
 
@@ -60,7 +71,7 @@ Il signale aussi : une accroche de plus de 125 caractères, un texte entre croch
 
 ## Icônes
 
-`camera`, `key`, `bed`, `message`, `chart`, `filecheck`, `user`, `euro`, `sliders`, `calendar`, `search`, `filetext`, `house`, `bell`, `check`, `arrow`, `gift`, `mappin`.
+`camera`, `key`, `bed`, `message`, `chart`, `filecheck`, `user`, `euro`, `sliders`, `calendar`, `search`, `filetext`, `house`, `bell`, `check`, `arrow`, `gift`, `mappin`, `phone`, `mail`, `globe`.
 
 ## Prérequis
 

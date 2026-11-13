@@ -51,7 +51,35 @@ header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:spac
 .ph-btns{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:0 16px 12px}
 .ph-btns span{background:var(--phone-line);border-radius:8px;text-align:center;font-size:13px;font-weight:600;padding:7px 0}
 .ph-unes{display:flex;gap:14px;padding:4px 16px 14px;overflow-x:auto;scrollbar-width:none}
-.ph-une{flex:none;width:62px;text-align:center;font-size:11px}
+.ph-une{flex:none;width:62px;text-align:center;font:400 11px/1.4 var(--font);color:var(--phone-ink);background:none;border:0;padding:0;cursor:pointer}
+.ph-une:focus-visible{outline:2px solid var(--coral);outline-offset:2px;border-radius:8px}
+.phone{position:relative}
+.lecteur[hidden]{display:none}
+.lecteur{position:absolute;inset:0;background:#000;z-index:5;display:flex;align-items:center;justify-content:center}
+.lecteur #lect-img{width:100%;height:100%;object-fit:contain;display:block}
+.lect-bars{position:absolute;top:10px;left:10px;right:10px;display:flex;gap:4px;z-index:2}
+.lect-bars span{flex:1;height:2px;border-radius:2px;background:rgba(255,255,255,.35)}
+.lect-bars span.vu,.lect-bars span.en-cours{background:#fff}
+.lect-top{position:absolute;top:20px;left:12px;right:8px;display:flex;align-items:center;gap:8px;color:#fff;font-size:13px;z-index:3}
+.lect-top img{width:28px;height:28px;border-radius:50%}
+.lect-top b{flex:1}
+.lect-top button{background:none;border:0;color:#fff;font:400 28px/1 var(--font);cursor:pointer;padding:0 6px}
+.lect-zone{position:absolute;top:60px;bottom:0;width:40%;background:none;border:0;cursor:pointer;z-index:2}
+.lect-zone.g{left:0}.lect-zone.d{right:0;width:60%}
+.unes-list{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.une-bloc{min-width:0}
+.une-bloc{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:18px}
+.une-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;margin-bottom:14px}
+.une-head h3{margin:0 0 2px;font-size:17px}
+.une-cov{width:56px;height:56px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
+.strip{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px}
+.st{margin:0;flex:none;width:132px;display:flex;flex-direction:column;gap:8px}
+.st-img{padding:0;border:0;background:none;cursor:pointer;border-radius:10px;overflow:hidden;display:block}
+.st-img img{width:132px;aspect-ratio:9/16;object-fit:cover;display:block}
+.st-img:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
+.st figcaption{font-size:12px;line-height:1.4;color:var(--muted)}
+.st figcaption b{color:var(--ink)}
+.st .btn{padding:8px 10px;font-size:12px}
 .ph-une span{display:block;width:62px;height:62px;border-radius:50%;padding:3px;border:1px solid var(--phone-line)}
 .ph-une img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
 .ph-tabs{border-top:1px solid var(--phone-line);display:flex;justify-content:center;padding:8px 0}
@@ -142,6 +170,13 @@ h2{font-size:22px;letter-spacing:-.02em;margin:0 0 6px;text-wrap:balance}
         <div class="ph-unes" id="ph-unes"></div>
         <div class="ph-tabs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></div>
         <div class="grid" id="grid"></div>
+        <div class="lecteur" id="lecteur" hidden>
+          <div class="lect-bars" id="lect-bars"></div>
+          <div class="lect-top"><img src="avatar.png" alt=""><b id="lect-nom"></b><button id="lect-fermer" type="button" aria-label="Fermer">×</button></div>
+          <img id="lect-img" alt="">
+          <button class="lect-zone g" id="lect-prec" type="button" aria-label="Story précédente"></button>
+          <button class="lect-zone d" id="lect-suiv" type="button" aria-label="Story suivante"></button>
+        </div>
       </div>
 
       <div class="sim">
@@ -174,6 +209,12 @@ h2{font-size:22px;letter-spacing:-.02em;margin:0 0 6px;text-wrap:balance}
         <h2>Profil</h2>
         <p class="lede">Le nom affiché compte dans la recherche Instagram : on y met « Conciergerie Airbnb Paris ». La bio tient en 150 caractères.</p>
         <div class="panel kv" id="profil"></div>
+      </section>
+
+      <section class="block">
+        <h2>Stories à la une</h2>
+        <p class="lede">Publie chaque story, puis ajoute-la à la une correspondante avec sa couverture. Elles restent en haut du profil, sous la bio. Touche un rond dans le téléphone pour les faire défiler. Plus tard, une à la une « Logements » avec tes plus belles photos viendra s'ajouter.</p>
+        <div class="unes-list" id="unes"></div>
       </section>
 
       <section class="block">
@@ -242,7 +283,7 @@ $('#facts').append(
 // ---------- Téléphone ----------
 $('#ph-pseudo').textContent = D.profil.pseudo;
 $('#ph-bio').append(el('span', { class: 'n' }, D.profil.nom), D.profil.bio + '\n', el('span', { class: 'l' }, D.profil.lien));
-for (const u of D.unes) $('#ph-unes').append(el('div', { class: 'ph-une' }, el('span', {}, el('img', { src: 'a-la-une/' + u.fichier, alt: '' })), u.titre));
+D.unes.forEach((u, i) => $('#ph-unes').append(el('button', { class: 'ph-une', type: 'button', onclick: () => ouvrir(i, 0) }, el('span', {}, el('img', { src: 'a-la-une/' + u.fichier, alt: '' })), u.titre)));
 
 const range = $('#n');
 range.max = D.posts.length;
@@ -291,9 +332,64 @@ $('#profil').append(
   ligneCopie('Nom affiché', D.profil.nom),
   ligneCopie(`Bio (${[...D.profil.bio].length} / 150)`, D.profil.bio),
   ligneCopie('Lien', D.profil.lien),
-  el('div', {}, el('div', { class: 'k' }, 'Stories à la une : couvertures'),
-    el('div', { class: 'unes' }, D.unes.map((u) => el('div', { class: 'une' }, el('img', { src: 'a-la-une/' + u.fichier, alt: '' }), u.titre, boutonImage('a-la-une/' + u.fichier, u.fichier, 'Enregistrer'))))),
+  ligneCopie('E-mail (bouton Contacter)', D.profil.email),
+  ligneCopie('Téléphone (bouton Contacter)', D.profil.telephone),
 );
+
+// ---------- Stories à la une ----------
+for (const [i, u] of D.unes.entries()) {
+  const c = coul[u.couleur];
+  $('#unes').append(el('article', { class: 'une-bloc' },
+    el('div', { class: 'une-head' },
+      el('img', { class: 'une-cov', src: 'a-la-une/' + u.fichier, alt: '' }),
+      el('div', { style: 'min-width:0;flex:1' },
+        el('h3', {}, u.titre),
+        el('span', { class: 'chip' }, el('i', { style: 'background:' + c.hex }), `${c.nom} · ${u.stories.length} stories`)),
+      el('button', { class: 'btn primary', type: 'button', onclick: () => ouvrir(i, 0) }, 'Voir dans le téléphone'),
+      boutonImage('a-la-une/' + u.fichier, u.fichier, 'Enregistrer la couverture')),
+    el('div', { class: 'strip' }, u.stories.map((s, j) => el('figure', { class: 'st' },
+      el('button', { class: 'st-img', type: 'button', 'aria-label': `${u.titre}, story ${j + 1}`, onclick: () => ouvrir(i, j) },
+        el('img', { src: 'stories/' + s.fichier, alt: '', loading: 'lazy' })),
+      el('figcaption', {}, el('b', {}, String(j + 1)), s.conseil ? ' ' + s.conseil : ''),
+      boutonImage('stories/' + s.fichier, s.fichier, 'Enregistrer'))))));
+}
+
+// ---------- Lecteur de stories dans le téléphone ----------
+let lu = { i: 0, j: 0 }, minuteur = null;
+const lecteur = $('#lecteur');
+function afficher() {
+  const u = D.unes[lu.i], s = u.stories[lu.j];
+  $('#lect-img').src = 'stories/' + s.fichier;
+  $('#lect-nom').textContent = u.titre;
+  $('#lect-bars').replaceChildren(...u.stories.map((_, k) => el('span', { class: k < lu.j ? 'vu' : k === lu.j ? 'en-cours' : '' })));
+  clearTimeout(minuteur);
+  minuteur = setTimeout(suivant, 5000);
+}
+function ouvrir(i, j) {
+  lu = { i, j }; lecteur.hidden = false; afficher();
+  if (matchMedia('(max-width:900px)').matches) $('.phone').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  $('#lect-fermer').focus();
+}
+function fermer() { lecteur.hidden = true; clearTimeout(minuteur); }
+function suivant() {
+  const u = D.unes[lu.i];
+  if (lu.j < u.stories.length - 1) lu.j++;
+  else if (lu.i < D.unes.length - 1) { lu.i++; lu.j = 0; }
+  else return fermer();
+  afficher();
+}
+function precedent() {
+  if (lu.j > 0) lu.j--;
+  else if (lu.i > 0) { lu.i--; lu.j = D.unes[lu.i].stories.length - 1; }
+  afficher();
+}
+$('#lect-prec').addEventListener('click', precedent);
+$('#lect-suiv').addEventListener('click', suivant);
+$('#lect-fermer').addEventListener('click', fermer);
+document.addEventListener('keydown', (e) => {
+  if (lecteur.hidden) return;
+  if (e.key === 'Escape') fermer(); else if (e.key === 'ArrowRight') suivant(); else if (e.key === 'ArrowLeft') precedent();
+});
 
 // ---------- Posts ----------
 for (const p of D.posts) {

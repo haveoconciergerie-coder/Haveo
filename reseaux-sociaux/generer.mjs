@@ -54,6 +54,9 @@ const I = {
   arrow: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
   gift: '<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/>',
   mappin: '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
+  phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
+  mail: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+  globe: '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>',
 };
 const ic = (n, s = 30, w = 1.75) => {
   if (!I[n]) throw new Error(`Icône inconnue : « ${n} ». Icônes disponibles : ${Object.keys(I).join(', ')}`);
@@ -267,6 +270,32 @@ function couverture(u, i) {
   return `<section class="une ${t}" id="u${i}"><span class="une-ic">${ic(u.icone, 300, 1.5)}</span></section>`;
 }
 
+// ---------- Stories à la une (1080 × 1920) ----------
+// Une story se compose de blocs facultatifs, dans cet ordre :
+// badge, icone, label, offre, titre, texte, cartes | points | etapes | departements | contacts, alerte, bouton, note.
+// Zones de sécurité : rien d'important dans les 250 px du haut (barre de progression, nom du compte)
+// ni dans les 300 px du bas (barre « Envoyer un message »).
+function story(u, s, i, j) {
+  const t = THEME[u.couleur];
+  const h = [];
+  if (s.badge) h.push(`<p class="pill">${texte(s.badge)}</p>`);
+  if (s.icone) h.push(`<span class="s-ic">${ic(s.icone, 52)}</span>`);
+  if (s.label) h.push(`<p class="label">${texte(s.label)}</p>`);
+  if (s.offre) h.push(`<h1 class="offer">1<sup>er</sup> mois<br><span class="box">offert</span></h1>`);
+  if (s.titre) h.push(`<h1>${titre(s.titre)}</h1>`);
+  if (s.texte) h.push(`<p class="lead">${texte(s.texte)}</p>`);
+  if (s.cartes) h.push(`<div class="stack">${s.cartes.map((k) => `<div class="card line${k.texte ? '' : ' mini'}"><span class="tile big">${ic(k.icone, 34)}</span><div><h3>${texte(k.titre)}</h3>${k.texte ? `<p>${texte(k.texte)}</p>` : ''}</div></div>`).join('')}</div>`);
+  if (s.points) h.push(`<div class="${s.colonne ? 'stack' : 'grid2'} checks">${s.points.map((x) => `<div class="card"><span class="ck">${ic('check', 24, 2.25)}</span><span>${texte(x)}</span></div>`).join('')}</div>`);
+  if (s.etapes) h.push(`<ol class="timeline">${s.etapes.map((e, k) => `<li><span class="step">${k + 1}</span><div><h3>${texte(e.titre)}</h3><p>${texte(e.texte)}</p></div></li>`).join('')}</ol>`);
+  if (s.departements) h.push(`<div class="grid2 depts">${s.departements.map(([n, nom]) => `<div class="dept"><b>${esc(n)}</b><span>${esc(nom)}</span></div>`).join('')}</div>`);
+  if (s.contacts) h.push(`<div class="stack">${s.contacts.map((k) => `<div class="card line contact"><span class="tile big">${ic(k.icone, 34)}</span><div><p>${texte(k.label)}</p><h3>${texte(k.valeur)}</h3></div></div>`).join('')}</div>`);
+  if (s.alerte) h.push(`<div class="bar">${ic('bell', 34)}<span>${texte(s.alerte[0])} <b>${texte(s.alerte[1])}</b></span></div>`);
+  if (s.bouton) h.push(bouton({ ...s, note: null }, t).replace('class="cta"', 'class="cta s-cta"'));
+  if (s.note) h.push(`<p class="s-note">${texte(s.note)}</p>`);
+  return `<section class="story ${t}${s.centre ? ' centre' : ''}" id="s${i}-${j}">${WM}<div class="inner">${h.join('\n')}</div>`
+    + `<footer><div class="logo">${logo(LOGO_PIED[t])}</div><span class="zone">${esc(ZONE)}</span></footer></section>`;
+}
+
 const CSS = `
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:#ddd}
@@ -352,12 +381,44 @@ footer .logo svg{height:42px;width:auto;display:block}
 .une{width:1080px;height:1920px;display:grid;place-items:center}
 .une-ic{width:520px;height:520px;border-radius:50%;display:grid;place-items:center;background:var(--soft)}
 .une.coral .une-ic{color:${C.papier}} .une.sand .une-ic{color:${C.vert}} .une.green .une-ic{color:${C.or}}
+/* --- stories --- */
+.story{position:relative;width:1080px;height:1920px;overflow:hidden;display:flex;flex-direction:column;padding:260px 88px 0;background:var(--bg);color:var(--ink)}
+.story .wm{top:auto;bottom:260px;right:-200px;width:760px}
+.story .inner{justify-content:center}
+.story footer{height:300px;border-top:0;align-items:flex-start;padding-top:44px}
+.story .label{font-size:36px;margin-bottom:24px}
+.story h1{font-size:92px;margin-bottom:52px}
+.story h1.offer{font-size:200px;margin-bottom:48px}
+.story .pill{font-size:34px;padding:14px 34px;border-radius:40px;margin-bottom:56px}
+.story .lead{font-size:40px;line-height:1.4;margin-bottom:48px;max-width:none}
+.story h3{font-size:40px}
+.story p{font-size:32px}
+.story .card.line{padding:30px 36px;gap:32px}
+.story .card.line p{font-size:30px;margin-top:6px}
+.story .card.mini{padding:24px 32px}.story .card.mini h3{font-size:42px}
+.story .stack{gap:20px}
+.story .checks .card{height:auto;min-height:132px;padding:26px 30px;font-size:32px;gap:24px}
+.story .stack.checks .card{min-height:0;padding:30px 36px;font-size:36px}
+.story .ck{width:56px;height:56px;border-radius:28px}
+.story .timeline li{margin-bottom:56px;gap:44px}
+.story .timeline:before{left:43px;top:48px;bottom:140px}
+.story .step{width:88px;height:88px;border-radius:44px;font-size:36px}
+.story .timeline h3{margin:16px 0 12px}
+.story .depts{gap:20px}.story .dept{padding:52px 32px}.story .dept span{font-size:32px}
+.story .contact h3{font-size:38px;margin:4px 0 0}.story .contact p{font-size:28px;margin:0;color:${C.sourd}}
+.story .bar{font-size:32px;padding:32px 36px;margin-top:40px}
+.story .s-cta{margin:40px 0 0;padding:0}
+.story .btn{font-size:38px;padding:34px 48px;border-radius:60px;gap:20px}
+.story .s-note{font-size:30px;font-weight:500;margin-top:32px;color:var(--ink);line-height:1.45}
+.s-ic{display:inline-grid;place-items:center;width:112px;height:112px;border-radius:30px;background:var(--soft);color:var(--ink);margin-bottom:48px;align-self:flex-start}
+.green .s-ic{color:${C.or}}
 `;
 
 const pageVisuels = `<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Visuels Haveo</title>
 <link rel="stylesheet" href="${POLICE}"><style>${CSS}</style></head><body>
 ${posts.map(visuel).join('\n')}
 ${(d.aLaUne || []).map(couverture).join('\n')}
+${(d.aLaUne || []).map((u, i) => (u.stories || []).map((s, j) => story(u, s, i, j)).join('\n')).join('\n')}
 </body></html>`;
 
 if (erreurs.length) {
@@ -372,7 +433,22 @@ fs.writeFileSync(path.join(SORTIE, 'visuels.html'), pageVisuels);
 // ============================================================
 // 4. RENDU DES IMAGES + CONTRÔLE DE MISE EN PAGE
 // ============================================================
-const unes = (d.aLaUne || []).map((u, i) => ({ ...u, fichier: `haveo-une-${pad2(i + 1)}-${u.titre.toLowerCase().normalize('NFD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}.png` }));
+const unes = (d.aLaUne || []).map((u, i) => {
+  const slug = u.titre.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  return {
+    ...u, slug, fichier: `haveo-une-${pad2(i + 1)}-${slug}.png`,
+    stories: (u.stories || []).map((s, j) => ({ ...s, fichier: `haveo-story-${pad2(i + 1)}-${slug}-${pad2(j + 1)}.png` })),
+  };
+});
+for (const u of unes) {
+  const tout = JSON.stringify(u.stories);
+  for (const mot of R.motsInterdits) {
+    const re = new RegExp(`(^|[^\\p{L}])${mot.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}($|[^\\p{L}])`, 'iu');
+    if (re.test(tout)) { console.error(`\n✗ Story « ${u.titre} » : « ${mot} » est dans la liste des mots à ne pas utiliser\n`); process.exit(1); }
+  }
+  if (!u.stories.length) warn(`À la une « ${u.titre} » : aucune story`);
+}
+fs.mkdirSync(path.join(SORTIE, 'stories'), { recursive: true });
 
 async function rendre() {
   let pw;
@@ -391,7 +467,7 @@ async function rendre() {
   // (la grille Instagram recadre chaque post en 3:4, soit ~34 px en moins de chaque côté)
   const pb = await page.evaluate(() => {
     const out = [];
-    for (const s of document.querySelectorAll('.post')) {
+    for (const s of document.querySelectorAll('.post, .story')) {
       const box = s.getBoundingClientRect();
       const inner = s.querySelector('.inner');
       if (inner.scrollHeight > inner.clientHeight + 1) out.push([s.id, `le contenu dépasse de ${inner.scrollHeight - inner.clientHeight} px en bas`]);
@@ -407,12 +483,18 @@ async function rendre() {
     }
     return out;
   });
-  for (const [id, m] of pb) warn(`Post ${id.slice(1)} : ${m}`);
+  for (const [id, m] of pb) {
+    if (id.startsWith('p')) warn(`Post ${id.slice(1)} : ${m}`);
+    else { const [i, j] = id.slice(1).split('-').map(Number); warn(`Story « ${unes[i].titre} » n° ${j + 1} : ${m}`); }
+  }
 
   if (!SANS_IMAGES) {
     for (const p of posts) await page.locator('#p' + p.numero).screenshot({ path: path.join(SORTIE, 'visuels', p.fichier) });
     await page.setViewportSize({ width: 1080, height: 1920 });
-    for (const [i, u] of unes.entries()) await page.locator('#u' + i).screenshot({ path: path.join(SORTIE, 'a-la-une', u.fichier) });
+    for (const [i, u] of unes.entries()) {
+      await page.locator('#u' + i).screenshot({ path: path.join(SORTIE, 'a-la-une', u.fichier) });
+      for (const [j, s] of u.stories.entries()) await page.locator(`#s${i}-${j}`).screenshot({ path: path.join(SORTIE, 'stories', s.fichier) });
+    }
   }
   await nav.close();
 }
@@ -429,7 +511,15 @@ function ecrireLegendes() {
   L.push('| # | Date | Fond | Fichier | Statut |', '|---|---|---|---|---|');
   for (const p of publies) L.push(`| ${p.numero} | ${p.date.texte} | ${NOM_COULEUR[p.couleur]} | ${p.fichier} | ${p.statut === 'proposition' ? 'proposition' : 'prêt'} |`);
   L.push('', '## Profil Instagram', '', `**Nom affiché** (64 caractères max, compte dans la recherche) : ${d.profil.nom}`, '', '**Bio** :', '```', bio, '```', `**Lien** : ${d.profil.lien}`, '');
-  if (unes.length) L.push('**Stories à la une** : ' + unes.map((u) => `${u.titre} (${NOM_COULEUR[u.couleur].toLowerCase()})`).join(', '), '');
+  L.push(`**Bouton Contacter** (Modifier le profil › Options de contact) : ${d.profil.email} · ${d.profil.telephone}`, '');
+  if (unes.length) {
+    L.push('## Stories à la une', '', 'Publier chaque story (format 1080 × 1920), puis l’ajouter à la une correspondante avec sa couverture (`a-la-une/`).', '');
+    for (const u of unes) {
+      L.push(`### ${u.titre} – ${NOM_COULEUR[u.couleur].toLowerCase()} – couverture \`a-la-une/${u.fichier}\``, '');
+      for (const [j, s] of u.stories.entries()) L.push(`${j + 1}. \`stories/${s.fichier}\`${s.conseil ? ` – ${s.conseil}` : ''}`);
+      L.push('');
+    }
+  }
   for (const p of publies) {
     L.push('---', `## Post ${p.numero} – ${NOM_COULEUR[p.couleur]} – ${p.date.texte}`, '', `Visuel : \`visuels/${p.fichier}\``, '');
     L.push('### Instagram', '```', p.instagram, '```', '### Facebook', '```', p.facebook, '```');
@@ -445,10 +535,10 @@ function ecrireLegendes() {
 function ecrireApercu() {
   fs.copyFileSync(path.resolve(path.dirname(fichierFiche), d.profil.avatar), path.join(SORTIE, 'avatar.png'));
   const donnees = {
-    profil: { pseudo: d.profil.pseudo, nom: d.profil.nom, bio, lien: d.profil.lien },
+    profil: { pseudo: d.profil.pseudo, nom: d.profil.nom, bio, lien: d.profil.lien, email: d.profil.email, telephone: d.profil.telephone },
     couleurs: R.couleurs.map((c) => ({ id: c, nom: NOM_COULEUR[c], hex: HEX_COULEUR[c] })),
     heure: R.heure,
-    unes: unes.map((u) => ({ titre: u.titre, couleur: u.couleur, fichier: u.fichier })),
+    unes: unes.map((u) => ({ titre: u.titre, couleur: u.couleur, fichier: u.fichier, stories: u.stories.map((s) => ({ fichier: s.fichier, conseil: s.conseil || '' })) })),
     posts: posts.map((p) => ({
       numero: p.numero, id: p.id, couleur: p.couleur, statut: p.statut, fichier: p.fichier,
       date: p.date.texte, instagram: p.instagram, facebook: p.facebook, alt: p.alt, contrat: p.contrat,
@@ -463,7 +553,7 @@ await rendre();
 ecrireLegendes();
 ecrireApercu();
 
-console.log(`\n✓ ${posts.length} posts, ${unes.length} couvertures à la une`);
+console.log(`\n✓ ${posts.length} posts, ${unes.length} stories à la une (${unes.map((u) => `${u.titre} : ${u.stories.length}`).join(', ')})`);
 console.log(posts.map((p) => `  ${pad2(p.numero)}  ${NOM_COULEUR[p.couleur].padEnd(6)}  ${p.date.texte.padEnd(22)} ${p.fichier}${p.statut !== 'pret' ? '  (' + p.statut + ')' : ''}`).join('\n'));
 if (avertissements.length) console.log('\n⚠ À vérifier :\n' + avertissements.map((a) => '  - ' + a).join('\n'));
 console.log(`\nSortie : ${path.relative(process.cwd(), SORTIE) || '.'}/  (index.html, legendes.md, visuels/, a-la-une/)\n`);
