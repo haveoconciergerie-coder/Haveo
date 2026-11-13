@@ -1,0 +1,181 @@
+{
+  "slug": "boulogne-exemple",
+  "date": "Novembre 2026",
+  "proprietaire": "[Nom du propriétaire]",
+  "contact": "[téléphone] · [email]",
+
+  "deck": {
+    "titre": "Étude de marché – Boulogne-Billancourt (v2)",
+    "url": "https://claude.ai/artifact/GhgYHuXgmkBkrV5KC6kFnj",
+    "creeLe": "2026-11-13T21:30:00Z"
+  },
+
+  "photos": {
+    "couverture":   { "blob": "/_blob/5e301e9c1eb00cb5bd8b26ae53f9155b", "fichier": "../../images/hero-accueil.jpg", "alt": "Séjour lumineux avec mezzanine et grandes baies vitrées" },
+    "localisation": { "blob": "/_blob/48d4ba09c8469e567c5db4ffb1026b74", "fichier": "../../images/optimisation-annonces.jpg", "alt": "Grande baie vitrée donnant sur un immeuble haussmannien" },
+    "atout1":       { "blob": "/_blob/91ab0371618cb3db637d3019d2eb4a55", "fichier": "../../images/optimisation-annonces.jpg", "alt": "Séjour avec canapé clair et table basse en bois" },
+    "atout2":       { "blob": "/_blob/99a371cda1b91026f1ddd35c7fc17f3d", "fichier": "../../images/menage-linge.jpg", "alt": "Coin repas avec table ronde et chaises en velours vert" },
+    "atout3":       { "blob": "/_blob/cba63f875d0cba472e1963e64384ae25", "fichier": "../../images/hero-accueil.jpg", "alt": "Escalier suspendu en bois menant à une mezzanine vitrée" }
+  },
+
+  "bien": {
+    "type": "Appartement 3 chambres",
+    "ville": "Boulogne-Billancourt",
+    "codePostal": "92100",
+    "quartier": "[Rives de Seine]",
+    "gamme": "Appartement haut de gamme",
+    "surface": 95,
+    "voyageurs": 6
+  },
+
+  "marche": {
+    "source": "AirROI, 12 mois à sept. 2026",
+    "libelleSegment": "3 chambres",
+    "prixMoyenSegment": 325,
+    "prixMoyenTous": 178,
+    "occupationSegment": 39,
+    "occupationTous": 41.5,
+    "occupationPic": 56,
+    "moisPic": "juin 2026",
+    "loyerM2": 30.10,
+    "sourceLoyer": "MoneyVox, oct. 2026",
+    "moisLoyer": "octobre 2026"
+  },
+
+  "hypotheses": {
+    "commissionHaveo": 20,
+    "fraisPlateforme": 3,
+    "lingeParNuit": 15,
+    "joursParMois": 30
+  },
+
+  "scenarios": [
+    { "id": "prudent",  "nom": "Prudent",  "prix": 300, "nuits": 12, "positionnement": "Sous la moyenne, remplissage sécurisé" },
+    { "id": "normal",   "nom": "Normal",   "prix": 340, "nuits": 14, "positionnement": "Au-dessus du marché, justifié par le standing", "reference": true },
+    { "id": "optimise", "nom": "Optimisé", "prix": 390, "nuits": 17, "positionnement": "Prix dynamique, hausse en haute saison" }
+  ],
+
+  "textes": {
+    "couverture": {
+      "intro": "Ce que ce logement de {surface} m² peut rapporter en location courte durée, aux portes de Paris. Trois scénarios chiffrés, construits à partir des données réelles du marché local.",
+      "notes": "À chaque nouveau bien : changer la photo, le type, la ville, la gamme, la surface, la capacité, le nom du propriétaire et adapter l’introduction au standing."
+    },
+
+    "synthese": {
+      "titre": "Un potentiel de {net.normal} net par mois",
+      "intro": "Positionné juste au-dessus des prix du secteur et loué environ {nuits.normal} nuits par mois, **le bien rapporte {ratio.normal} fois un loyer classique en scénario normal**, frais de gestion déduits. Chaque chiffre est détaillé dans les pages suivantes.",
+      "notes": "Page de synthèse : le propriétaire voit tout de suite la réponse à sa question. Les chiffres viennent du scénario normal ; le détail suit pages 6 à 10."
+    },
+
+    "localisation": {
+      "titre": "{ville}, la porte ouest de Paris",
+      "intro": "Le bien est situé dans le quartier {quartier}, à {ville} ({codePostal}). Collée au 16e arrondissement, la ville combine un cadre résidentiel recherché et un tissu d’entreprises dense : **elle attire à la fois des familles en séjour à Paris et des voyageurs professionnels.**",
+      "points": [
+        { "titre": "Paris en métro", "texte": "Les lignes 9 et 10 relient directement le cœur de Paris. Les touristes visitent la capitale tout en logeant plus grand et plus au calme." },
+        { "titre": "Un pôle d’affaires actif", "texte": "Sièges de grands groupes et sociétés de services : la demande professionnelle remplit la semaine, le tourisme les week-ends et les vacances." },
+        { "titre": "De grands événements", "texte": "Roland-Garros et le Parc des Princes sont tout proches. Ces dates créent des pics de demande où les prix peuvent être nettement relevés." }
+      ],
+      "notes": "À adapter : ville, quartier, transports et 3 atouts du secteur, chacun expliqué en 2 phrases. Remplacer la photo par une vue du bien ou du quartier."
+    },
+
+    "bien": {
+      "titre": "Un appartement familial haut de gamme",
+      "intro": "{surface} m² pensés pour une clientèle exigeante. **Peu d’annonces du secteur offrent à la fois 3 vraies chambres, 2 salles de bain et un extérieur** : c’est ce qui rend ce produit rare en location courte durée.",
+      "caracteristiques": [
+        { "titre": "3 chambres", "texte": "Spacieuses, literie de qualité hôtelière" },
+        { "titre": "2 salles de bain", "texte": "Un vrai confort quand le logement est complet" },
+        { "titre": "Salon et séjour", "texte": "Pièce de vie lumineuse pour se retrouver à six" },
+        { "titre": "Balcon-terrasse", "texte": "Espace extérieur privatif, très demandé" },
+        { "titre": "Cuisine équipée", "texte": "Électroménager complet pour les longs séjours" },
+        { "titre": "{surface} m²", "texte": "Une surface rare en location courte durée" }
+      ],
+      "cartes": [
+        { "label": "Capacité d’accueil", "texte": "{voyageurs} voyageurs, idéal pour les familles et les petits groupes de collaborateurs" },
+        { "label": "Positionnement marché", "texte": "Haut de gamme familial et business, une clientèle solvable et exigeante" }
+      ],
+      "notes": "La liste reprend la fiche du bien. En milieu de gamme, remplacer les arguments de standing par des arguments pratiques (prix, emplacement, équipements)."
+    },
+
+    "atouts": {
+      "titre": "Standing supérieur, clientèle premium",
+      "intro": "Prestations soignées, extérieur privatif et emplacement stratégique : **ces atouts justifient un prix au-dessus de la moyenne** et attirent des voyageurs qui réservent plus tôt et respectent davantage le logement.",
+      "colonnes": [
+        { "photo": "atout1", "titre": "Espaces de vie généreux", "texte": "Séjour lumineux et balcon-terrasse privatif : un atout rare, qui justifie un positionnement tarifaire premium." },
+        { "photo": "atout2", "titre": "Une double clientèle", "texte": "Familles aisées en vacances et cadres en déplacement. Cette double cible lisse la saisonnalité et stabilise les revenus." },
+        { "photo": "atout3", "titre": "Le service Haveo", "texte": "Accueil des voyageurs, linge de qualité, ménage professionnel et réponses rapides : une expérience d’hôtel, qui se traduit en avis 5 étoiles." }
+      ],
+      "notes": "Remplacer les 3 photos par celles du bien. La 3e colonne (service Haveo) reste dans toutes les études."
+    },
+
+    "prix": {
+      "titre": "Une grille tarifaire en trois scénarios",
+      "intro": "La grille part des prix réellement pratiqués par les {libelleSegment} de {ville}, **{prixMoyenSegment} la nuit en moyenne sur 12 mois.** Chaque scénario tient compte de la saison, du standing et du taux de remplissage visé.",
+      "encadre": "Juste au-dessus de la moyenne du secteur. Haveo l’ajuste chaque semaine : plus haut en mai-juin et pendant les événements, plus bas en janvier-février.",
+      "notes": "Source : {source}. {prixMoyenSegment} la nuit en moyenne pour les {libelleSegment}, {prixMoyenTous} tous logements confondus."
+    },
+
+    "occupation": {
+      "titre": "Une demande réelle, encore mal exploitée",
+      "intro": "Voyageurs d’affaires, familles en séjour à Paris et grands événements sportifs portent la demande. Pourtant l’occupation moyenne reste modeste : **beaucoup d’annonces sont gérées en amateur, ce qui laisse de la place à une gestion professionnelle.**",
+      "blocs": [
+        { "titre": "Comment dépasser la moyenne", "texte": "Photos soignées, prix ajustés chaque semaine et réponses rapides aux voyageurs. L’objectif reste prudent et n’est pas une garantie." },
+        { "titre": "La logique du haut de gamme", "texte": "Moins de nuits, mais mieux payées. Un logement standard à {prixMoyenTous} doit être loué {nuitsEquivalent} nuits pour égaler {nuits.normal} nuits à {prix.normal}." }
+      ],
+      "notes": "{source} : {occupationSegment} pour les {libelleSegment}, {occupationTous} tous logements, {occupationPic} en {moisPic}."
+    },
+
+    "estimation": {
+      "titre": "Ce que le propriétaire perçoit chaque mois",
+      "intro": "Sur la base de {prix.normal} la nuit et de {nuits.normal} nuits louées par mois. Tous les frais d’exploitation sont déduits, **y compris la commission Haveo : le montant net est bien celui que le propriétaire reçoit.**",
+      "piedDePage": "Restent à la charge du propriétaire, comme en location classique : énergie, internet, charges de copropriété et impôts."
+    },
+
+    "scenarios": {
+      "titre": "Trois scénarios, du plus prudent au plus favorable",
+      "intro": "Une vision claire et honnête des revenus attendus, qui tient compte des aléas du marché et des variations saisonnières. **Le scénario normal sert de référence.**",
+      "blocs": [
+        { "titre": "Le cas prudent", "texte": "Prix sous le marché et occupation dans la moyenne : le bien dégage encore près de {netEnviron.prudent} net par mois." },
+        { "titre": "Le cas optimisé", "texte": "Atteignable en profitant des pics de demande, Roland-Garros, salons et vacances, avec des prix relevés de 15 à 30 %." }
+      ]
+    },
+
+    "longue": {
+      "titre": "Courte durée contre longue durée",
+      "intro": "Loué à l’année, ce bien rapporterait environ {loyerLD} par mois ({surface} m² × {loyerM2}/m², loyer moyen à {ville} en {moisLoyer}). **En courte durée, le net atteint {ratio.normal} fois ce montant en scénario normal et {ratio.optimise} fois en optimisé**, tout en laissant le bien disponible pour le propriétaire.",
+      "legalTitre": "Cadre légal à valider avant le lancement",
+      "legal": "Numéro d’enregistrement obligatoire sur l’annonce. En résidence principale, 120 nuits par an au maximum. En résidence secondaire, Boulogne exige une autorisation de changement d’usage avec compensation (règlement GPSO). Les scénarios supposent un bien autorisé à l’année.",
+      "sources": "Sources : {sourceLoyer}, règlement GPSO",
+      "notes": "En scénario prudent ({net.prudent}), la courte durée reste un peu sous la longue durée ({ratio.prudent} fois) : le dire franchement si le propriétaire demande. Réglementation à revérifier en mairie à chaque étude."
+    },
+
+    "accompagnement": {
+      "titre": "Haveo s’occupe de tout, de l’annonce au ménage",
+      "intro": "Le propriétaire n’a rien à gérer au quotidien. **Il reçoit chaque mois un rapport clair : nuits réservées, taux d’occupation et revenus versés.**",
+      "etapes": [
+        { "titre": "Audit gratuit", "texte": "Analyse du logement, de son emplacement et de son potentiel locatif." },
+        { "titre": "Offre personnalisée", "texte": "Une stratégie de mise en location adaptée au bien et aux objectifs." },
+        { "titre": "Photos professionnelles", "texte": "Des visuels soignés qui donnent envie de réserver." },
+        { "titre": "Annonce optimisée", "texte": "Rédaction persuasive, validée par le propriétaire avant publication." },
+        { "titre": "Tarification dynamique", "texte": "Prix ajustés selon la demande, la saison et les événements locaux." },
+        { "titre": "Gestion au quotidien", "texte": "Arrivées, ménage hôtelier, linge, petites interventions, joignable 7j/7." }
+      ],
+      "offre": [
+        { "label": "Commission", "texte": "{commission} TTC des revenus" },
+        { "label": "Lancement", "texte": "1er mois d’honoraires offert" },
+        { "label": "Engagement", "texte": "Aucun, résiliable à tout moment" }
+      ],
+      "notes": "Page fixe, identique dans toutes les études. Seul le taux de commission change, il vient des hypothèses du bien."
+    },
+
+    "conclusion": {
+      "titre": "Un bien taillé pour la location courte durée",
+      "intro": "Emplacement, configuration et standing réunissent les conditions d’une exploitation rentable. **Avec une gestion professionnelle, ce bien peut dépasser nettement la moyenne du marché local.**",
+      "points": [
+        { "titre": "Le standing, levier de rentabilité.", "texte": "Un prix au-dessus de la moyenne compense une occupation plus sélective." },
+        { "titre": "Un produit rare.", "texte": "3 chambres, 2 salles de bain et un extérieur : peu de concurrents directs à Boulogne." },
+        { "titre": "Une demande double.", "texte": "Familles et voyageurs d’affaires se relaient tout au long de l’année." }
+      ],
+      "prochaineEtape": "Visite et audit gratuit, 1er mois d’honoraires offert, sans engagement"
+    }
+  }
+}
