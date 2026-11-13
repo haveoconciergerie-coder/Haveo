@@ -25,7 +25,7 @@ Pour garder la grille propre :
 
 ## Stories à la une
 
-Dans `aLaUne` : une entrée par rond du profil (`titre`, `icone` de la couverture, `couleur`), avec ses `stories`. Aujourd'hui : Services (6), Offre (5), Zone (2), Contact (2). Quand tu auras de belles photos de logements, ajoute une à la une « Logements ».
+Dans `aLaUne` : une entrée par rond du profil (`titre`, `icone` de la couverture, `couleur`), avec ses `stories`. Aujourd'hui : Services (6), Offre (5), Zone (2), Contact (1). Quand tu auras de belles photos de logements, ajoute une à la une « Logements ».
 
 Une story (1080 × 1920) est faite de blocs facultatifs, affichés dans cet ordre :
 `badge`, `icone`, `label`, `offre` (le gros « 1er mois offert »), `titre`, `texte`, puis un seul bloc parmi `cartes`, `points` (avec `"colonne": true` pour une seule colonne), `etapes`, `departements`, `contacts`, puis `alerte`, `bouton`, `note`.
@@ -57,7 +57,7 @@ Le plus simple, dans Claude Code :
 | Jeton | Instagram | Facebook |
 |---|---|---|
 | `{lien}` | lien en bio | `profil.lien` |
-| `{finOffre}` | vide, ou « et jusqu'au … » si `reglages.finOffre` est rempli | idem |
+| `{finOffre}` | vide, ou « , jusqu'au … » si `reglages.finOffre` est rempli | idem |
 | `{zone}` | `reglages.zone` | idem |
 
 ## Les contrôles

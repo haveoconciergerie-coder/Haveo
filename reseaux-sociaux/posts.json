@@ -153,13 +153,28 @@
           ]
         },
         {
-          "centre": true,
-          "label": "Et pour votre logement ?",
-          "titre": "On commence par\n**un audit gratuit.**",
-          "texte": "On visite votre logement avec vous et on vous dit ce dont il a besoin.",
+          "label": "Démarrer avec Haveo",
+          "titre": "On démarre\n**en 4 étapes.**",
+          "etapes": [
+            {
+              "titre": "Audit gratuit",
+              "texte": "Visite du logement, potentiel et premières recommandations."
+            },
+            {
+              "titre": "Offre et contrat",
+              "texte": "Les services dont vous avez besoin, résiliable à tout moment."
+            },
+            {
+              "titre": "Mise en valeur",
+              "texte": "Photos, annonce et livret d'accueil, validés par vous."
+            },
+            {
+              "titre": "Premiers voyageurs",
+              "texte": "Accueil, ménage, suivi. Une facture claire chaque mois."
+            }
+          ],
           "bouton": "Demander un audit gratuit",
-          "note": "Écrivez « AUDIT » en message privé",
-          "conseil": "Ajoute un sticker « Lien » vers le site, juste sous le bouton."
+          "conseil": "Ajoute un sticker « Lien » vers WhatsApp (wa.me/33763888136) sous le bouton."
         }
       ]
     },
@@ -181,20 +196,21 @@
           "cartes": [
             {
               "icone": "gift",
-              "titre": "Le premier mois offert",
-              "texte": "Aucun honoraire de conciergerie le premier mois de location."
+              "titre": "Le 1er mois offert",
+              "texte": "Aucun honoraire de conciergerie sur votre premier mois de location."
+            },
+            {
+              "icone": "euro",
+              "titre": "Ensuite, 20 % des nuitées",
+              "texte": "C'est notre seul honoraire. Ménage, linge et consommables sont facturés à part, selon une grille connue à l'avance."
             },
             {
               "icone": "filetext",
               "titre": "Résiliable à tout moment",
               "texte": "Sans pénalité, avec un simple préavis de 7 jours."
-            },
-            {
-              "icone": "house",
-              "titre": "Pour un premier logement",
-              "texte": "Ensuite : 20 % du montant des nuitées. Ménage, linge et consommables facturés à part."
             }
-          ]
+          ],
+          "note": "Offre valable sur le premier logement que vous nous confiez, jusqu'au 1er mars 2027."
         },
         {
           "icone": "search",
@@ -222,7 +238,7 @@
           "centre": true,
           "label": "Jusqu'au 1er mars 2027",
           "titre": "**Profitez du**\n**mois offert.**",
-          "texte": "Écrivez « OFFRE » en message privé, ou sur WhatsApp au 07 63 88 81 36.",
+          "texte": "Écrivez « OFFRE » sur WhatsApp au 07 63 88 81 36.",
           "bouton": "Profiter du mois offert",
           "fleche": false,
           "conseil": "Ajoute un sticker « Lien » vers WhatsApp (wa.me/33763888136) sous le bouton."
@@ -280,7 +296,7 @@
           "texte": "Écrivez-nous avec le nom de votre ville. Si votre logement est dans notre zone, on vient le visiter pour l'audit gratuit.",
           "bouton": "Nous écrire",
           "fleche": false,
-          "note": "Message privé ou WhatsApp : 07 63 88 81 36",
+          "note": "WhatsApp : 07 63 88 81 36",
           "conseil": "Ajoute un sticker « Lien » vers WhatsApp (wa.me/33763888136) sous le bouton."
         }
       ]
@@ -294,11 +310,6 @@
           "label": "Contact",
           "titre": "Parlons de\n**votre logement.**",
           "contacts": [
-            {
-              "icone": "message",
-              "label": "Message privé",
-              "valeur": "@haveo.conciergerie"
-            },
             {
               "icone": "whatsapp",
               "label": "WhatsApp",
@@ -317,28 +328,6 @@
           ],
           "note": "Audit gratuit, sans engagement",
           "conseil": "Ajoute deux stickers « Lien » : WhatsApp (wa.me/33763888136) sur la ligne WhatsApp, et le site sur la ligne « Site et simulateur »."
-        },
-        {
-          "label": "Démarrer avec Haveo",
-          "titre": "Et ensuite ?\n**4 étapes.**",
-          "etapes": [
-            {
-              "titre": "Audit gratuit",
-              "texte": "Visite du logement, potentiel et premières recommandations."
-            },
-            {
-              "titre": "Offre et contrat",
-              "texte": "Les services dont vous avez besoin, un contrat clair, résiliable à tout moment."
-            },
-            {
-              "titre": "Mise en valeur",
-              "texte": "Photos, annonce, livret d'accueil et inventaire, validés par vous."
-            },
-            {
-              "titre": "Premiers voyageurs",
-              "texte": "Accueil, ménage et suivi. Une facture claire chaque mois."
-            }
-          ]
         }
       ]
     }
@@ -574,7 +563,7 @@
           }
         ],
         "bouton": "Profiter du mois offert",
-        "note": "Jusqu'au 1er mars 2027, pour un premier logement. Ensuite : 20 % du montant des nuitées. Ménage, linge et consommables facturés à part."
+        "note": "Valable jusqu'au 1er mars 2027, sur le premier logement confié. Ensuite : 20 % du montant des nuitées. Ménage, linge et consommables facturés à part."
       },
       "legende": [
         "Offre de lancement : votre premier mois d'honoraires de conciergerie est offert.",
@@ -584,7 +573,7 @@
         "— résiliable à tout moment, sans pénalité, avec un préavis de 7 jours",
         "— un audit gratuit de votre logement avant de démarrer",
         "",
-        "Conditions : pour un premier logement{finOffre}. Ensuite, nos honoraires sont de 20 % du montant des nuitées. Le ménage, le linge et les consommables sont facturés à part, selon une grille communiquée à l'avance.",
+        "Conditions : offre valable sur le premier logement que vous nous confiez{finOffre}. Ensuite, nos honoraires sont de 20 % du montant des nuitées. Le ménage, le linge et les consommables sont facturés à part, selon une grille communiquée à l'avance.",
         "",
         "→ Profitez du mois offert : {lien}, ou écrivez « OFFRE » en message privé."
       ],
@@ -595,7 +584,7 @@
         "airbnbparis",
         "offredelancement"
       ],
-      "alt": "Visuel beige Haveo. 1er mois offert sur nos honoraires de conciergerie. Vous testez sans risque, résiliable à tout moment avec 7 jours de préavis, audit gratuit avant de démarrer. Offre valable jusqu'au 1er mars 2027, pour un premier logement. Ensuite 20 % du montant des nuitées.",
+      "alt": "Visuel beige Haveo. 1er mois offert sur nos honoraires de conciergerie. Vous testez sans risque, résiliable à tout moment avec 7 jours de préavis, audit gratuit avant de démarrer. Offre valable jusqu'au 1er mars 2027, sur le premier logement confié. Ensuite 20 % du montant des nuitées.",
       "contrat": "art. 8.2, 8.3, 9, 10, art. 3 (audit)"
     },
     {

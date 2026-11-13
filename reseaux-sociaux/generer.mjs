@@ -66,9 +66,10 @@ const ic = (n, s = 30, w = 1.75) => {
 
 // ---------- Petits outils ----------
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const NBSP = ' ';
+const NBSP = '\u00a0';
 // Espaces insécables devant ; : ? ! € % et après « (typographie française)
-const typo = (s) => s.replace(/ ([;:?!€%»])/g, NBSP + '$1').replace(/« /g, '«' + NBSP);
+const typo = (s) => s.replace(/ ([;:?!€%»])/g, NBSP + '$1').replace(/« /g, '«' + NBSP)
+  .replace(/\b(0\d)((?: \d{2}){4})\b/g, (m) => m.replace(/ /g, NBSP)); // numéro de téléphone jamais coupé
 const pad2 = (n) => String(n).padStart(2, '0');
 const logo = (nom) => fs.readFileSync(path.join(LOGOS, nom), 'utf8');
 
@@ -111,7 +112,7 @@ function legende(p, reseau) {
   const val = {
     lien,
     zone: R.zone,
-    finOffre: R.finOffre ? ` et jusqu'au ${R.finOffre}` : '',
+    finOffre: R.finOffre ? `, jusqu'au ${R.finOffre}` : '',
   };
   const corps = p.legende.join('\n').replace(/\{(\w+)\}/g, (m, k) => {
     if (!(k in val)) { err(`Post « ${p.id} » : jeton inconnu ${m} dans la légende (jetons possibles : ${Object.keys(val).map((x) => `{${x}}`).join(' ')})`); return m; }
