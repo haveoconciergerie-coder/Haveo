@@ -238,7 +238,7 @@
           "centre": true,
           "label": "Jusqu'au 1er mars 2027",
           "titre": "**Profitez du**\n**mois offert.**",
-          "texte": "Écrivez « OFFRE » sur WhatsApp au 07 63 88 81 36.",
+          "texte": "Écrivez « OFFRE » sur WhatsApp, on vous explique tout.",
           "bouton": "Profiter du mois offert",
           "fleche": false,
           "conseil": "Ajoute un sticker « Lien » vers WhatsApp (wa.me/message/JHFOQS5NLTHTO1) sous le bouton."
@@ -296,7 +296,7 @@
           "texte": "Écrivez-nous avec le nom de votre ville. Si votre logement est dans notre zone, on vient le visiter pour l'audit gratuit.",
           "bouton": "Nous écrire",
           "fleche": false,
-          "note": "WhatsApp : 07 63 88 81 36",
+          "note": "Sur WhatsApp, en un clic",
           "conseil": "Ajoute un sticker « Lien » vers WhatsApp (wa.me/message/JHFOQS5NLTHTO1) sous le bouton."
         }
       ]
@@ -313,7 +313,7 @@
             {
               "icone": "whatsapp",
               "label": "WhatsApp",
-              "valeur": "07 63 88 81 36"
+              "valeur": "Écrivez-nous en un clic"
             },
             {
               "icone": "mail",

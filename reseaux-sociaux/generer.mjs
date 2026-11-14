@@ -162,6 +162,13 @@ for (const p of posts) {
   (function lire(v) { if (typeof v === 'string') textes.push(v); else if (v && typeof v === 'object') Object.values(v).forEach(lire); })(p.contenu);
   if (p.statut !== 'exemple' && /\[[^\]]+\]/.test(textes.join(' ') + p.legende.join(' ') + p.alt)) warn(`${nom} : il reste un texte entre crochets à compléter`);
 }
+// Aucun numéro de téléphone sur un post ou une story : un numéro change, un post publié ne se modifie pas.
+const TEL = /(?:\+33[ .\u00a0]?|\b0)[1-9](?:[ .\u00a0-]?\d{2}){4}\b/;
+for (const p of posts) if (TEL.test(JSON.stringify(p.contenu) + p.legende.join(' ') + p.alt)) err(`Post ${p.numero} (${p.id}) : numéro de téléphone interdit dans un post (utilise WhatsApp via le bouton du profil)`);
+for (const u of d.aLaUne || []) for (const [j, s] of (u.stories || []).entries()) {
+  const { conseil, ...visible } = s;
+  if (TEL.test(JSON.stringify(visible))) err(`Story « ${u.titre} » n° ${j + 1} : numéro de téléphone interdit (utilise le sticker « Lien » WhatsApp)`);
+}
 if (/\[.*\]/.test(d.profil.lien)) warn(`profil.lien est vide (« ${d.profil.lien} ») : les légendes Facebook l'affichent tel quel`);
 const bio = d.profil.bio.join('\n');
 if ([...bio].length > 150) err(`La bio fait ${[...bio].length} caractères, Instagram en accepte 150`);
