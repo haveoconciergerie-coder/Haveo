@@ -291,9 +291,8 @@
         {
           "centre": true,
           "icone": "mappin",
-          "label": "Votre adresse",
-          "titre": "Un doute sur\n**votre ville ?**",
-          "texte": "Écrivez-nous avec le nom de votre ville. Si votre logement est dans notre zone, on vient le visiter pour l'audit gratuit.",
+          "titre": "Votre logement est\n**en Île-de-France ?**",
+          "texte": "Écrivez-nous avec le nom de votre ville : on vient le visiter pour l'audit gratuit.",
           "bouton": "Nous écrire",
           "fleche": false,
           "note": "Sur WhatsApp, en un clic",
@@ -819,7 +818,7 @@
             "Seine-et-Marne"
           ]
         ],
-        "encadre": "Un doute sur votre adresse ? Écrivez-nous avec le nom de votre ville."
+        "encadre": "Votre logement est en Île-de-France ? Écrivez-nous avec le nom de votre ville."
       },
       "legende": [
         "Où intervient Haveo ? À Paris et dans toute l'Île-de-France.",
