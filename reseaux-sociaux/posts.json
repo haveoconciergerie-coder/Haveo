@@ -842,19 +842,40 @@
       "statut": "proposition"
     },
     {
-      "id": "photo-exemple",
-      "modele": "photo",
+      "id": "logement-exemple",
+      "modele": "logement",
       "jour": 16,
       "contenu": {
-        "photo": "../images/hero-accueil.jpg",
+        "couverture": "../images/hero-accueil.jpg",
         "label": "[Quartier, ville]",
         "titre": "[Type de logement], **prêt à accueillir.**",
-        "texte": "[Une phrase sur le logement : surface, voyageurs, ce qui le rend agréable.]"
+        "texte": "[Une phrase sur le logement : surface, voyageurs, ce qui le rend agréable.]",
+        "photos": [
+          {
+            "fichier": "../images/photographie-decoration.jpg",
+            "piece": "[Pièce]"
+          },
+          {
+            "fichier": "../images/menage-linge.jpg",
+            "piece": "[Pièce]"
+          },
+          {
+            "fichier": "../images/arrivees-departs.jpg",
+            "piece": "[Pièce]"
+          }
+        ],
+        "fin": {
+          "label": "Propriétaires",
+          "titre": "Et si c'était\n**votre logement ?**",
+          "texte": "On commence par un audit gratuit de votre logement, avec vous.",
+          "bouton": "Demander un audit gratuit",
+          "note": "Gratuit, sans engagement"
+        }
       },
       "legende": [
-        "[Une phrase d'accroche sur le logement.]",
+        "[Une phrase d'accroche sur le logement.] Faites défiler pour la visite →",
         "",
-        "[2 ou 3 lignes : ce que Haveo a fait pour ce logement.]",
+        "[2 ou 3 lignes : le logement, et ce que Haveo a fait pour lui.]",
         "",
         "→ Votre logement pourrait être le prochain : {lien}."
       ],
@@ -863,7 +884,7 @@
         "airbnbparis",
         "locationcourteduree"
       ],
-      "alt": "[Description de la photo.]",
+      "alt": "[Description de la photo de couverture.]",
       "contrat": "",
       "statut": "exemple"
     }

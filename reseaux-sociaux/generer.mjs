@@ -255,23 +255,43 @@ ${bouton(c, t)}` }),
 <div class="grid2 depts">${c.departements.map(([n, nom]) => `<div class="dept"><b>${esc(n)}</b><span>${esc(nom)}</span></div>`).join('')}</div>
 ${c.encadre ? `<p class="note">${ic('mappin', 28)}<span>${texte(c.encadre)}</span></p>` : ''}` }),
 
-  photo: (c, t, p) => {
-    const src = path.resolve(path.dirname(fichierFiche), c.photo);
-    if (!fs.existsSync(src)) err(`Post ${p.numero} (${p.id}) : photo introuvable (${c.photo})`);
-    return { html: `
-<div class="photo"><img src="file://${esc(src)}" alt=""></div>
+  // Carrousel : couverture aux couleurs du tour (seule visible dans la grille),
+  // puis une photo plein cadre par image, puis une image de fin facultative.
+  logement: (c, t, p) => {
+    const img = (f) => {
+      const src = path.resolve(path.dirname(fichierFiche), f);
+      if (!fs.existsSync(src)) err(`Post ${p.numero} (${p.id}) : photo introuvable (${f})`);
+      return `file://${esc(src)}`;
+    };
+    const slides = [{ html: `
+<div class="photo"><img src="${img(c.couverture)}" alt=""></div>
 <p class="label">${texte(c.label)}</p>
 <h1 class="md">${titre(c.titre)}</h1>
-${c.texte ? `<p class="lead sm">${texte(c.texte)}</p>` : ''}` };
+${c.texte ? `<p class="lead sm">${texte(c.texte)}</p>` : ''}
+${c.photos?.length ? `<p class="swipe">Faites défiler ${ic('arrow', 24)}</p>` : ''}` }];
+    for (const ph of c.photos || []) slides.push({ plein: true, html: `<img class="plein-img" src="${img(ph.fichier)}" alt="">${ph.piece ? `<span class="piece">${texte(ph.piece)}</span>` : ''}` });
+    if (c.fin) slides.push({ wm: true, centre: true, html: `
+${c.fin.label ? `<p class="label">${texte(c.fin.label)}</p>` : ''}
+<h1>${titre(c.fin.titre)}</h1>
+${c.fin.texte ? `<p class="lead">${texte(c.fin.texte)}</p>` : ''}
+${c.fin.bouton ? bouton(c.fin, t).replace('class="cta"', 'class="cta fin-cta"') : ''}` });
+    if (slides.length > 20) err(`Post ${p.numero} (${p.id}) : ${slides.length} images, Instagram en accepte 20 par carrousel`);
+    return { slides };
   },
 };
 
 function visuel(p) {
   const m = MODELES[p.modele];
   if (!m) { err(`Post ${p.numero} (${p.id}) : modèle « ${p.modele} » inconnu (${Object.keys(MODELES).join(', ')})`); return ''; }
-  const { html, wm } = m(p.contenu, p.theme, p);
-  return `<section class="post ${p.theme} m-${p.modele}" id="p${p.numero}">${wm ? WM : ''}<div class="inner">${html}</div>`
-    + `<footer><div class="logo">${logo(LOGO_PIED[p.theme])}</div><span class="zone">${esc(ZONE)}</span></footer></section>`;
+  const r = m(p.contenu, p.theme, p);
+  const slides = r.slides || [r];
+  p.fichiers = slides.length === 1 ? [p.fichier] : slides.map((_, k) => p.fichier.replace(/\.png$/, `-${pad2(k + 1)}.png`));
+  p.fichier = p.fichiers[0];
+  p.ids = slides.map((_, k) => (k ? `p${p.numero}-${k + 1}` : `p${p.numero}`));
+  return slides.map((sl, k) => sl.plein
+    ? `<section class="post ${p.theme} plein" id="${p.ids[k]}">${sl.html}</section>`
+    : `<section class="post ${p.theme} m-${p.modele}${sl.centre ? ' centre' : ''}" id="${p.ids[k]}">${sl.wm ? WM : ''}<div class="inner">${sl.html}</div>`
+      + `<footer><div class="logo">${logo(LOGO_PIED[p.theme])}</div><span class="zone">${esc(ZONE)}</span></footer></section>`).join('\n');
 }
 
 function couverture(u, i) {
@@ -383,6 +403,13 @@ i.basse{background:${C.vert}} i.moyenne{background:${C.or}} i.forte{background:$
 .dept span{font-size:28px;font-weight:500;line-height:1.2}
 .photo{height:720px;border-radius:28px;overflow:hidden;margin-bottom:40px;flex:none}
 .photo img{width:100%;height:100%;object-fit:cover;display:block}
+.m-logement .photo{height:640px}
+.swipe{margin-top:auto;margin-bottom:48px;display:flex;align-items:center;gap:12px;font-size:24px;font-weight:600;color:var(--ink)}
+.post.plein{padding:0}
+.plein-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.piece{position:absolute;left:64px;bottom:64px;background:${C.papier};color:${C.vert};font-size:28px;font-weight:600;padding:14px 28px;border-radius:32px}
+.post.centre .inner{justify-content:center}
+.fin-cta{margin-top:16px}
 footer{position:relative;height:132px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex:none}
 footer .logo svg{height:42px;width:auto;display:block}
 .zone{font-size:22px;font-weight:500;color:var(--ink)}
@@ -476,7 +503,7 @@ async function rendre() {
   // (la grille Instagram recadre chaque post en 3:4, soit ~34 px en moins de chaque côté)
   const pb = await page.evaluate(() => {
     const out = [];
-    for (const s of document.querySelectorAll('.post, .story')) {
+    for (const s of document.querySelectorAll('.post:not(.plein), .story')) {
       const box = s.getBoundingClientRect();
       const inner = s.querySelector('.inner');
       if (inner.scrollHeight > inner.clientHeight + 1) out.push([s.id, `le contenu dépasse de ${inner.scrollHeight - inner.clientHeight} px en bas`]);
@@ -493,12 +520,12 @@ async function rendre() {
     return out;
   });
   for (const [id, m] of pb) {
-    if (id.startsWith('p')) warn(`Post ${id.slice(1)} : ${m}`);
+    if (id.startsWith('p')) warn(`Post ${id.slice(1).replace('-', ', image ')} : ${m}`);
     else { const [i, j] = id.slice(1).split('-').map(Number); warn(`Story « ${unes[i].titre} » n° ${j + 1} : ${m}`); }
   }
 
   if (!SANS_IMAGES) {
-    for (const p of posts) await page.locator('#p' + p.numero).screenshot({ path: path.join(SORTIE, 'visuels', p.fichier) });
+    for (const p of posts) for (const [k, id] of p.ids.entries()) await page.locator('#' + id).screenshot({ path: path.join(SORTIE, 'visuels', p.fichiers[k]) });
     await page.setViewportSize({ width: 1080, height: 1920 });
     for (const [i, u] of unes.entries()) {
       await page.locator('#u' + i).screenshot({ path: path.join(SORTIE, 'a-la-une', u.fichier) });
@@ -530,7 +557,7 @@ function ecrireLegendes() {
     }
   }
   for (const p of publies) {
-    L.push('---', `## Post ${p.numero} – ${NOM_COULEUR[p.couleur]} – ${p.date.texte}`, '', `Visuel : \`visuels/${p.fichier}\``, '');
+    L.push('---', `## Post ${p.numero} – ${NOM_COULEUR[p.couleur]} – ${p.date.texte}`, '', p.fichiers.length > 1 ? `Carrousel de ${p.fichiers.length} images, dans cet ordre : ${p.fichiers.map((f) => `\`visuels/${f}\``).join(', ')}` : `Visuel : \`visuels/${p.fichier}\``, '');
     L.push('### Instagram', '```', p.instagram, '```', '### Facebook', '```', p.facebook, '```');
     L.push(`**Texte alternatif** : ${p.alt}`, '');
     if (p.contrat) L.push(`*Contrat : ${p.contrat} (ne pas publier)*`, '');
@@ -549,7 +576,7 @@ function ecrireApercu() {
     heure: R.heure,
     unes: unes.map((u) => ({ titre: u.titre, couleur: u.couleur, fichier: u.fichier, stories: u.stories.map((s) => ({ fichier: s.fichier, conseil: s.conseil || '' })) })),
     posts: posts.map((p) => ({
-      numero: p.numero, id: p.id, couleur: p.couleur, statut: p.statut, fichier: p.fichier,
+      numero: p.numero, id: p.id, couleur: p.couleur, statut: p.statut, fichier: p.fichier, fichiers: p.fichiers,
       date: p.date.texte, instagram: p.instagram, facebook: p.facebook, alt: p.alt, contrat: p.contrat,
     })),
   };

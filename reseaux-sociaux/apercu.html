@@ -80,6 +80,11 @@ header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:spac
 .st figcaption{font-size:12px;line-height:1.4;color:var(--muted)}
 .st figcaption b{color:var(--ink)}
 .st .btn{padding:8px 10px;font-size:12px}
+.cell .car{position:absolute;top:6px;right:6px;width:18px;height:18px;color:#fff;filter:drop-shadow(0 1px 2px rgba(0,0,0,.5))}
+.cell .car svg{width:100%;height:100%;display:block}
+.car-n{margin:8px 0 0;font-size:12px;font-weight:600;color:var(--muted)}
+.car-strip{margin-top:14px}
+.car-img{width:132px;aspect-ratio:4/5;object-fit:cover;border-radius:10px;display:block}
 .ph-une span{display:block;width:62px;height:62px;border-radius:50%;padding:3px;border:1px solid var(--phone-line)}
 .ph-une img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
 .ph-tabs{border-top:1px solid var(--phone-line);display:flex;justify-content:center;padding:8px 0}
@@ -119,7 +124,7 @@ h2{font-size:22px;letter-spacing:-.02em;margin:0 0 6px;text-wrap:balance}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px}
 .kv{display:grid;gap:14px}
 .kv .k{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:4px}
-.kv pre{margin:0;font:500 14px/1.5 var(--font);white-space:pre-wrap;background:var(--sunk);border-radius:12px;padding:12px 14px}
+.kv pre{margin:0;font:500 14px/1.5 var(--font);white-space:pre-wrap;overflow-wrap:anywhere;background:var(--sunk);border-radius:12px;padding:12px 14px}
 .kv .row{display:flex;gap:10px;align-items:flex-start}.kv .row>div{flex:1;min-width:0}
 .unes{display:flex;flex-wrap:wrap;gap:14px;margin-top:6px}
 .une{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;font-weight:600}
@@ -241,6 +246,7 @@ const el = (tag, attrs = {}, ...kids) => {
 const coul = Object.fromEntries(D.couleurs.map((c) => [c.id, c]));
 const publies = D.posts.filter((p) => p.statut !== 'exemple');
 const nbPublies = publies.length;
+const ICONE_CAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="7" width="13" height="13" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg>';
 const STATUT = { pret: 'Prêt', proposition: 'Proposition', exemple: 'Exemple' };
 
 // ---------- Copier ----------
@@ -296,6 +302,7 @@ function grille(n) {
     const c = el('button', { class: 'cell' + (p.statut === 'exemple' ? ' ex' : ''), type: 'button', 'aria-label': `Post ${p.numero}, ${coul[p.couleur].nom.toLowerCase()}`, onclick: () => voir(p.numero) },
       el('img', { src: 'visuels/' + p.fichier, alt: '' }));
     if (i === 0) c.append(el('span', { class: 'new' }, 'n° ' + p.numero));
+    if (p.fichiers.length > 1) { const k = el('span', { class: 'car', 'aria-hidden': 'true' }); k.innerHTML = ICONE_CAR; c.append(k); }
     g.append(c);
   });
   for (let r = vus.length % 3 ? 3 - vus.length % 3 : 0; r > 0; r--) g.append(el('div', { class: 'empty' }));
@@ -409,7 +416,8 @@ for (const p of D.posts) {
   for (const [v, l] of vues) tabs.append(el('button', { class: 'tab', role: 'tab', type: 'button', 'data-v': v, onclick: () => montrer(v) }, l));
   const c = coul[p.couleur];
   $('#posts').append(el('article', { class: 'post', id: 'post-' + p.numero },
-    el('div', { class: 'vis' }, el('img', { src: 'visuels/' + p.fichier, alt: p.alt, loading: 'lazy' })),
+    el('div', { class: 'vis' }, el('img', { src: 'visuels/' + p.fichier, alt: p.alt, loading: 'lazy' }),
+      p.fichiers.length > 1 ? el('p', { class: 'car-n' }, `Carrousel · ${p.fichiers.length} images`) : null),
     el('div', { style: 'min-width:0' },
       el('div', { class: 'meta' },
         el('h3', {}, 'Post ' + p.numero),
@@ -417,7 +425,11 @@ for (const p of D.posts) {
         el('span', { class: 'chip' }, p.date),
         el('span', { class: 'status ' + p.statut }, STATUT[p.statut])),
       tabs, cap,
-      el('div', { class: 'acts' }, copie, boutonImage('visuels/' + p.fichier, p.fichier), len),
+      el('div', { class: 'acts' }, copie, p.fichiers.length === 1 ? boutonImage('visuels/' + p.fichier, p.fichier) : null, len),
+      p.fichiers.length > 1 ? el('div', { class: 'strip car-strip' }, p.fichiers.map((f, k) => el('figure', { class: 'st' },
+        el('img', { src: 'visuels/' + f, alt: '', loading: 'lazy', class: 'car-img' }),
+        el('figcaption', {}, el('b', {}, String(k + 1)), k === 0 ? ' Couverture, visible dans la grille' : ''),
+        boutonImage('visuels/' + f, f, 'Enregistrer')))) : null,
       p.contrat ? el('div', { class: 'ref' }, 'Contrat : ' + p.contrat + ' (ne pas publier)') : null)));
   montrer('instagram');
 }

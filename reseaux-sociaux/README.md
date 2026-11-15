@@ -20,8 +20,18 @@ Sur le profil, le post le plus récent est en haut à gauche et chaque nouveau p
 
 Pour garder la grille propre :
 - ne supprime pas, n'archive pas et n'épingle pas de post (un post retiré décale toutes les couleurs) ;
-- une vraie photo de logement prend sa place dans la suite comme les autres, avec le modèle `photo` : son cadre prend la couleur du tour ;
+- un logement se publie en carrousel avec le modèle `logement` : seule la couverture apparaît dans la grille, et elle prend la couleur du tour ;
 - publie 9 posts (3 lignes pleines) avant de faire connaître le compte.
+
+## Post logement (carrousel)
+
+Modèle `logement`, plusieurs images dans un seul post (20 au maximum) :
+
+1. **La couverture** : la photo principale (`couverture`) dans un cadre de la couleur du tour, avec `label` (quartier, ville), `titre` et `texte`. C'est la seule image visible dans la grille, donc le code couleur est respecté.
+2. **Une image par photo** (`photos`) : la photo en plein cadre, avec le nom de la pièce (`piece`) en petite étiquette.
+3. **L'image de fin** (`fin`, facultative) : un appel à l'action aux couleurs du tour.
+
+Les fichiers sortent numérotés dans l'ordre de publication : `haveo-10-<id>-01.png`, `-02.png`… Publie-les dans cet ordre, dans un seul post. Sur Facebook, même chose : un post avec plusieurs photos. Mets les photos dans `photos/` à côté de `posts.json` (format portrait de préférence : elles sont recadrées en 4:5).
 
 ## Stories à la une
 
@@ -43,7 +53,7 @@ Le plus simple, dans Claude Code :
 
 | Champ | Rôle |
 |---|---|
-| `modele` | `presentation`, `grille`, `etapes`, `checklist`, `offre`, `liste`, `methode`, `estimation`, `zone`, `photo` |
+| `modele` | `presentation`, `grille`, `etapes`, `checklist`, `offre`, `liste`, `methode`, `estimation`, `zone`, `logement` |
 | `jour` | Nombre de jours après `reglages.lancement` (la date est calculée) |
 | `contenu.titre` | `\n` = retour à la ligne, `**…**` = partie en couleur, le point final devient le point du logo |
 | `legende` | Une ligne par élément, `""` pour une ligne vide. La 1re ligne est l'accroche : moins de 125 caractères, c'est tout ce qu'on voit avant « … plus » |
