@@ -6,7 +6,7 @@
       "Conciergerie location courte durée",
       "Accueil · Ménage · Linge · Annonce",
       "📍 Paris & Île-de-France",
-      "1er mois offert · Audit gratuit ↓"
+      "1er mois offert · Estimation gratuite ↓"
     ],
     "lien": "[adresse du site]",
     "email": "haveo.conciergerie@gmail.com",
@@ -157,23 +157,23 @@
           "titre": "On démarre\n**en 4 étapes.**",
           "etapes": [
             {
-              "titre": "Audit gratuit",
-              "texte": "Visite du logement, potentiel et premières recommandations."
+              "titre": "Premier échange",
+              "texte": "Sur WhatsApp ou par téléphone : votre logement et vos attentes."
             },
             {
-              "titre": "Offre et contrat",
-              "texte": "Les services dont vous avez besoin, résiliable à tout moment."
+              "titre": "Visite et audit",
+              "texte": "Offerts, sur rendez-vous : potentiel de location et premières recommandations."
             },
             {
-              "titre": "Mise en valeur",
-              "texte": "Photos, annonce et livret d'accueil, validés par vous."
+              "titre": "Contrat et mise en valeur",
+              "texte": "Un contrat clair, puis photos, annonce et livret d'accueil, validés par vous."
             },
             {
               "titre": "Premiers voyageurs",
-              "texte": "Accueil, ménage, suivi. Une facture claire chaque mois."
+              "texte": "Accueil, ménage et suivi. Une facture claire chaque mois."
             }
           ],
-          "bouton": "Demander un audit gratuit",
+          "bouton": "Nous écrire",
           "conseil": "Ajoute un sticker « Lien » vers WhatsApp (wa.me/message/JHFOQS5NLTHTO1) sous le bouton."
         }
       ]
@@ -215,7 +215,7 @@
         {
           "icone": "search",
           "label": "Avant de démarrer",
-          "titre": "L'audit de votre\n**logement, offert.**",
+          "titre": "Visite et audit\n**offerts.**",
           "points": [
             "Visite du logement, avec vous",
             "Potentiel de location",
@@ -223,7 +223,7 @@
             "Premières recommandations"
           ],
           "colonne": true,
-          "note": "Gratuit, sans engagement"
+          "note": "Sur rendez-vous, après un premier échange."
         },
         {
           "icone": "chart",
@@ -292,7 +292,7 @@
           "centre": true,
           "icone": "mappin",
           "titre": "Votre logement est\n**en Île-de-France ?**",
-          "texte": "Écrivez-nous avec le nom de votre ville : on vient le visiter pour l'audit gratuit.",
+          "texte": "Écrivez-nous avec le nom de votre ville : on en parle, puis on vient le visiter sur rendez-vous.",
           "bouton": "Nous écrire",
           "fleche": false,
           "note": "Sur WhatsApp, en un clic",
@@ -325,7 +325,6 @@
               "valeur": "Lien en bio"
             }
           ],
-          "note": "Audit gratuit, sans engagement",
           "conseil": "Ajoute deux stickers « Lien » : WhatsApp (wa.me/message/JHFOQS5NLTHTO1) sur la ligne WhatsApp, et le site sur la ligne « Site et simulateur »."
         }
       ]
@@ -348,8 +347,8 @@
           "Voyageurs",
           "Suivi"
         ],
-        "bouton": "Demander un audit gratuit",
-        "note": "Gratuit, sans engagement"
+        "bouton": "Estimer mes revenus",
+        "note": "Simulateur gratuit, sans engagement"
       },
       "legende": [
         "Vous louez votre logement en courte durée ? Haveo s'occupe du reste.",
@@ -361,9 +360,9 @@
         "— vous validez vos prix",
         "— vos revenus vous sont versés directement",
         "",
-        "Pour faire connaissance, nous commençons toujours par un audit gratuit de votre logement.",
+        "Pour commencer, estimez ce que pourrait rapporter votre logement avec notre simulateur gratuit. On en parle ensuite ensemble.",
         "",
-        "→ Demandez le vôtre : {lien}, ou écrivez-nous en message privé."
+        "→ Estimez vos revenus : {lien}, ou écrivez-nous en message privé."
       ],
       "hashtags": [
         "conciergerieparis",
@@ -372,7 +371,7 @@
         "airbnbparis",
         "iledefrance"
       ],
-      "alt": "Visuel corail Haveo. Titre : Vous louez. Haveo s'occupe du reste. Conciergerie pour la location courte durée à Paris et en Île-de-France : accueil, ménage, linge, annonce, voyageurs et suivi. Bouton : demander un audit gratuit.",
+      "alt": "Visuel corail Haveo. Titre : Vous louez. Haveo s'occupe du reste. Conciergerie pour la location courte durée à Paris et en Île-de-France : accueil, ménage, linge, annonce, voyageurs et suivi. Bouton : estimer mes revenus.",
       "contrat": "préambule, art. 3, art. 4"
     },
     {
@@ -557,8 +556,8 @@
             "texte": "Sans pénalité, avec un simple préavis de 7 jours."
           },
           {
-            "titre": "Audit gratuit avant de démarrer",
-            "texte": "On visite et on étudie votre logement avec vous."
+            "titre": "Visite et audit offerts",
+            "texte": "Sur rendez-vous, avant de démarrer."
           }
         ],
         "bouton": "Profiter du mois offert",
@@ -570,7 +569,7 @@
         "Pour essayer Haveo sans risque :",
         "— aucun honoraire de conciergerie le premier mois de location",
         "— résiliable à tout moment, sans pénalité, avec un préavis de 7 jours",
-        "— un audit gratuit de votre logement avant de démarrer",
+        "— la visite et l'audit de votre logement offerts, sur rendez-vous",
         "",
         "Conditions : offre valable sur le premier logement que vous nous confiez{finOffre}. Ensuite, nos honoraires sont de 20 % du montant des nuitées. Le ménage, le linge et les consommables sont facturés à part, selon une grille communiquée à l'avance.",
         "",
@@ -583,7 +582,7 @@
         "airbnbparis",
         "offredelancement"
       ],
-      "alt": "Visuel beige Haveo. 1er mois offert sur nos honoraires de conciergerie. Vous testez sans risque, résiliable à tout moment avec 7 jours de préavis, audit gratuit avant de démarrer. Offre valable jusqu'au 1er mars 2027, sur le premier logement confié. Ensuite 20 % du montant des nuitées.",
+      "alt": "Visuel beige Haveo. 1er mois offert sur nos honoraires de conciergerie. Vous testez sans risque, résiliable à tout moment avec 7 jours de préavis, visite et audit offerts sur rendez-vous. Offre valable jusqu'au 1er mars 2027, sur le premier logement confié. Ensuite 20 % du montant des nuitées.",
       "contrat": "art. 8.2, 8.3, 9, 10, art. 3 (audit)"
     },
     {
@@ -651,19 +650,19 @@
         "titre": "**Démarrer avec Haveo,**\nen 4 étapes.",
         "etapes": [
           {
+            "icone": "message",
+            "titre": "Premier échange",
+            "texte": "Sur WhatsApp ou par téléphone : votre logement et vos attentes."
+          },
+          {
             "icone": "search",
-            "titre": "Audit gratuit",
-            "texte": "Visite du logement, potentiel de location et premières recommandations."
+            "titre": "Visite et audit",
+            "texte": "Offerts, sur rendez-vous : potentiel de location et premières recommandations."
           },
           {
             "icone": "filetext",
-            "titre": "Offre et contrat",
-            "texte": "Les services dont vous avez besoin, un contrat clair, résiliable à tout moment."
-          },
-          {
-            "icone": "camera",
-            "titre": "Mise en valeur",
-            "texte": "Photos, annonce, livret d'accueil et inventaire, validés par vous."
+            "titre": "Contrat et mise en valeur",
+            "texte": "Un contrat clair, puis photos, annonce et livret d'accueil, validés par vous."
           },
           {
             "icone": "house",
@@ -671,20 +670,20 @@
             "texte": "Accueil, ménage et suivi. Une facture claire chaque mois."
           }
         ],
-        "bouton": "Demander un audit gratuit",
-        "note": "Gratuit, sans engagement"
+        "bouton": "Nous écrire",
+        "note": "Sur WhatsApp, en un clic"
       },
       "legende": [
-        "De la première visite aux premiers voyageurs : démarrer avec Haveo, en 4 étapes.",
+        "Du premier message aux premiers voyageurs : démarrer avec Haveo, en 4 étapes.",
         "",
-        "01 — Audit gratuit : visite du logement, potentiel de location, premières recommandations",
-        "02 — Offre et contrat : les services dont vous avez besoin, un contrat clair, résiliable à tout moment",
-        "03 — Mise en valeur : photos, annonce, livret d'accueil et inventaire, validés par vous",
+        "01 — Premier échange : sur WhatsApp ou par téléphone, votre logement et vos attentes",
+        "02 — Visite et audit : offerts, sur rendez-vous, avec le potentiel de location et nos premières recommandations",
+        "03 — Contrat et mise en valeur : un contrat clair, résiliable à tout moment, puis photos, annonce et livret d'accueil, validés par vous",
         "04 — Premiers voyageurs : accueil, ménage, suivi, et une facture claire chaque mois",
         "",
-        "La première étape est gratuite et ne vous engage à rien.",
+        "Le premier échange ne vous engage à rien.",
         "",
-        "→ Demandez votre audit gratuit : {lien}, ou écrivez « AUDIT » en message privé."
+        "→ Écrivez-nous en message privé, ou sur WhatsApp : {lien}."
       ],
       "hashtags": [
         "conciergerieparis",
@@ -693,7 +692,7 @@
         "locationsaisonniere",
         "proprietaire"
       ],
-      "alt": "Visuel corail Haveo. Titre : Démarrer avec Haveo, en 4 étapes. 01 audit gratuit, 02 offre et contrat, 03 mise en valeur, 04 premiers voyageurs. Bouton : demander un audit gratuit.",
+      "alt": "Visuel corail Haveo. Titre : Démarrer avec Haveo, en 4 étapes. 01 premier échange, 02 visite et audit offerts sur rendez-vous, 03 contrat et mise en valeur, 04 premiers voyageurs. Bouton : nous écrire.",
       "contrat": "art. 3, art. 8.3, art. 11"
     },
     {
@@ -749,8 +748,8 @@
           },
           {
             "icone": "search",
-            "titre": "Audit gratuit",
-            "texte": "Potentiel, prix, décoration et annonce : on regarde tout."
+            "titre": "Visite et audit",
+            "texte": "Offerts, sur rendez-vous : potentiel, prix, décoration et annonce."
           }
         ],
         "bouton": "Estimer mes revenus",
@@ -759,9 +758,9 @@
       "legende": [
         "Combien pourrait rapporter votre logement en location courte durée ?",
         "",
-        "Deux façons de le savoir, gratuitement :",
-        "— le simulateur en ligne : quelques informations sur votre logement, une estimation mensuelle",
-        "— l'audit gratuit : nous regardons avec vous le potentiel, les prix, la décoration et l'annonce",
+        "Pour le savoir :",
+        "— le simulateur en ligne, gratuit : quelques informations sur votre logement, une estimation mensuelle",
+        "— puis, si vous souhaitez aller plus loin, la visite et l'audit, offerts sur rendez-vous : potentiel, prix, décoration et annonce",
         "",
         "→ Estimez vos revenus : {lien}.",
         "",
@@ -774,7 +773,7 @@
         "proprietaire",
         "investissementlocatif"
       ],
-      "alt": "Visuel beige Haveo. Titre : Combien pourrait rapporter votre logement ? Exemple de semaine type avec des prix de 95 à 180 euros la nuit selon le jour. Simulateur en ligne et audit gratuit. Bouton : estimer mes revenus.",
+      "alt": "Visuel beige Haveo. Titre : Combien pourrait rapporter votre logement ? Exemple de semaine type avec des prix de 95 à 180 euros la nuit selon le jour. Simulateur en ligne, puis visite et audit offerts sur rendez-vous. Bouton : estimer mes revenus.",
       "contrat": "art. 3 (audit), art. 13 (pas de garantie de revenus)"
     },
     {
@@ -825,7 +824,7 @@
         "",
         "Paris (75), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94), Yvelines (78), Essonne (91), Val-d'Oise (95) et Seine-et-Marne (77).",
         "",
-        "Votre logement est dans l'un de ces départements ? Nous venons le visiter pour l'audit gratuit.",
+        "Votre logement est dans l'un de ces départements ? Écrivez-nous : on en parle, puis on vient le visiter sur rendez-vous.",
         "",
         "→ Écrivez-nous en message privé avec le nom de votre ville."
       ],
@@ -866,9 +865,9 @@
         "fin": {
           "label": "Propriétaires",
           "titre": "Et si c'était\n**votre logement ?**",
-          "texte": "On commence par un audit gratuit de votre logement, avec vous.",
-          "bouton": "Demander un audit gratuit",
-          "note": "Gratuit, sans engagement"
+          "texte": "Estimez ce que pourrait rapporter le vôtre, puis on en parle.",
+          "bouton": "Estimer mes revenus",
+          "note": "Simulateur gratuit"
         }
       },
       "legende": [
