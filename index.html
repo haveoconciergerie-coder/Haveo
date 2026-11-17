@@ -629,28 +629,8 @@
       .why-sticky { min-height: 480px; }
       .why-progress { max-width: 240px; }
     }
-    @media (min-width: 640px) {
-      .why-section { padding-block: 80px 96px; }
-      .why-scroll-spacer { height: auto; }
-      .why-sticky {
-        position: relative;
-        height: auto;
-        min-height: auto;
-      }
-      .why-track-wrapper { overflow: visible; }
-      .why-track {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        width: auto;
-        will-change: auto;
-        transform: none !important;
-      }
-      .why-card {
-        flex: none;
-        border-right: none;
-      }
-      .why-progress { display: none; }
+    @media (min-width: 960px) {
+      .why-card { flex: 0 0 380px; }
     }
     .why-section.why-reduced { padding-block: 80px; }
     .why-section.why-reduced .why-scroll-spacer { height: auto; }
@@ -2893,7 +2873,6 @@
     }
 
     function initWhyCards() {
-      if (window.innerWidth >= 640) return;
       var section = document.querySelector('.why-section');
       if (!section) return;
       var spacer = section.querySelector('.why-scroll-spacer');
