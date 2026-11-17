@@ -579,15 +579,27 @@
       line-height: 1.6;
     }
     @media (max-width: 639px) {
+      .why-section { padding-block: 56px 64px; }
       .why-bento {
-        grid-template-columns: 1fr;
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
         gap: 16px;
         margin-top: 32px;
+        padding-bottom: 8px;
+        scrollbar-width: thin;
+        scrollbar-color: var(--sand-dark) transparent;
       }
-      .why-card { padding: 28px 24px 24px; }
+      .why-card {
+        flex: 0 0 280px;
+        scroll-snap-align: center;
+        padding: 28px 24px 24px;
+      }
       .why-card--wide {
-        grid-column: span 1;
+        grid-column: auto;
         flex-direction: column;
+        flex: 0 0 280px;
       }
       .why-card--wide .why-card-icon { margin-bottom: 16px; }
     }
