@@ -523,38 +523,50 @@
        POURQUOI HAVEO — Scroll-driven horizontal strip
        ============================================ */
     .why-section {
-      padding-block: 80px 96px;
+      padding: 0;
       background: var(--sand);
       position: relative;
     }
-    .why-bento {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 20px;
-      margin-top: 48px;
+    .why-scroll-spacer {
+      height: 300vh;
+      position: relative;
     }
-    .why-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 36px 32px 32px;
-      box-shadow: 0 2px 12px rgba(15, 76, 76, 0.05);
-      border: 1px solid rgba(15, 76, 76, 0.04);
+    .why-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      min-height: 580px;
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
     }
-    .why-card--wide {
-      grid-column: span 2;
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 28px;
+    .why-track-wrapper {
+      overflow: hidden;
+      margin-top: 40px;
+      padding-bottom: 16px;
     }
-    .why-card--wide .why-card-content { flex: 1; }
+    .why-track {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+    }
+    .why-card {
+      flex: 0 0 360px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 28px 32px;
+      border-right: 2px solid var(--sand);
+      box-shadow: 0 2px 12px rgba(15, 76, 76, 0.05);
+      border-top: 1px solid rgba(15, 76, 76, 0.04);
+      border-bottom: 1px solid rgba(15, 76, 76, 0.04);
+      border-left: 1px solid rgba(15, 76, 76, 0.04);
+    }
+    .why-card:last-child { border-right: none; }
     .why-card-icon {
-      width: 52px;
-      height: 52px;
-      min-width: 52px;
-      border-radius: 14px;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
       background: linear-gradient(135deg, var(--sand) 0%, rgba(15, 76, 76, 0.06) 100%);
       display: flex;
       align-items: center;
@@ -562,7 +574,6 @@
       margin-bottom: 16px;
       color: var(--green);
     }
-    .why-card--wide .why-card-icon { margin-bottom: 0; }
     .why-card-icon .icon {
       width: 24px;
       height: 24px;
@@ -578,31 +589,58 @@
       color: var(--text-muted);
       line-height: 1.6;
     }
-    @media (max-width: 639px) {
-      .why-section { padding-block: 56px 64px; }
-      .why-bento {
-        display: flex;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x mandatory;
-        gap: 16px;
-        margin-top: 32px;
-        padding-bottom: 8px;
-        scrollbar-width: thin;
-        scrollbar-color: var(--sand-dark) transparent;
-      }
-      .why-card {
-        flex: 0 0 280px;
-        scroll-snap-align: center;
-        padding: 28px 24px 24px;
-      }
-      .why-card--wide {
-        grid-column: auto;
-        flex-direction: column;
-        flex: 0 0 280px;
-      }
-      .why-card--wide .why-card-icon { margin-bottom: 16px; }
+    .why-progress {
+      position: relative;
+      max-width: 320px;
+      margin: 24px auto 0;
     }
+    .why-progress-track {
+      height: 2px;
+      background: var(--sand-dark);
+      border-radius: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-progress-fill {
+      position: absolute;
+      left: 0; top: 0;
+      height: 100%;
+      background: var(--coral);
+      border-radius: 1px;
+      width: 0%;
+      will-change: width;
+    }
+    .why-progress-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+    }
+    .why-progress-step {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--sand-dark);
+      letter-spacing: 0.02em;
+    }
+    .why-progress-step.why-step-active { color: var(--coral); }
+    .why-progress-step.why-step-past { color: var(--green); }
+    @media (max-width: 639px) {
+      .why-card { flex: 0 0 280px; padding: 28px 22px 24px; }
+      .why-scroll-spacer { height: 250vh; }
+      .why-sticky { min-height: 480px; }
+      .why-progress { max-width: 240px; }
+    }
+    @media (min-width: 960px) {
+      .why-card { flex: 0 0 380px; }
+    }
+    .why-section.why-reduced { padding-block: 80px; }
+    .why-section.why-reduced .why-scroll-spacer { height: auto; }
+    .why-section.why-reduced .why-sticky {
+      position: relative;
+      height: auto;
+      min-height: auto;
+    }
+    .why-section.why-reduced .why-track-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--sand-dark) transparent; }
+    .why-section.why-reduced .why-track { will-change: auto; }
 
 
     /* ============================================
@@ -1805,13 +1843,18 @@
        POURQUOI HAVEO
        ============================================ -->
   <section class="why-section" id="pourquoi">
+    <div class="why-scroll-spacer">
+    <div class="why-sticky">
     <div class="container">
       <span class="section-label reveal">Conciergerie</span>
       <h2 class="reveal">Pourquoi confier votre logement à Haveo ?</h2>
       <p class="section-intro reveal">Louer sur Airbnb est un véritable métier. De l'accueil des voyageurs à l'entretien du logement, nous optimisons chaque détail pour valoriser votre bien, améliorer son potentiel locatif et vous libérer des contraintes du quotidien.</p>
+    </div>
 
-      <div class="why-bento">
-        <div class="why-card reveal">
+    <div class="why-track-wrapper" id="whyTrack">
+      <div class="why-track">
+
+        <div class="why-card">
           <div class="why-card-icon">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 5a7.5 7.5 0 10 0 14"/><line x1="4" y1="10" x2="16" y2="10"/><line x1="4" y1="14" x2="14" y2="14"/></svg>
           </div>
@@ -1819,7 +1862,7 @@
           <p>Grâce à une stratégie tarifaire adaptée, à l'optimisation de votre annonce, à l'amélioration de votre logement et au suivi régulier des performances, nous cherchons à maximiser le potentiel de revenus de votre bien tout au long de l'année.</p>
         </div>
 
-        <div class="why-card reveal">
+        <div class="why-card">
           <div class="why-card-icon">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
           </div>
@@ -1827,26 +1870,37 @@
           <p>De la création de votre annonce aux réservations, en passant par l'accueil des voyageurs et la coordination des départs, nous prenons en charge chaque étape de votre location pour vous simplifier la vie.</p>
         </div>
 
-        <div class="why-card why-card--wide reveal">
+        <div class="why-card">
           <div class="why-card-icon">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           </div>
-          <div class="why-card-content">
-            <h3>Logement entretenu</h3>
-            <p>Ménage professionnel, linge de qualité hôtelière et suivi des petites interventions. Nous sélectionnons aussi les voyageurs pour garantir des séjours respectueux de votre bien.</p>
-          </div>
+          <h3>Logement entretenu</h3>
+          <p>Ménage professionnel, linge de qualité hôtelière et suivi des petites interventions. Nous sélectionnons aussi les voyageurs pour garantir des séjours respectueux de votre bien.</p>
         </div>
 
-        <div class="why-card why-card--wide reveal">
+        <div class="why-card">
           <div class="why-card-icon">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
           </div>
-          <div class="why-card-content">
-            <h3>Transparence totale</h3>
-            <p>Bénéficiez d'un suivi clair de votre activité locative, d'une connaissance pointue du marché et d'un interlocuteur 100 % humain, disponible à chaque étape.</p>
-          </div>
+          <h3>Transparence totale</h3>
+          <p>Bénéficiez d'un suivi clair de votre activité locative, d'une connaissance pointue du marché et d'un interlocuteur 100 % humain, disponible à chaque étape.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="why-progress">
+        <div class="why-progress-track"><div class="why-progress-fill"></div></div>
+        <div class="why-progress-steps">
+          <span class="why-progress-step">01</span>
+          <span class="why-progress-step">02</span>
+          <span class="why-progress-step">03</span>
+          <span class="why-progress-step">04</span>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   </section>
 
@@ -2639,6 +2693,7 @@
       initMarquee();
       initCitySelect();
       initServices();
+      initWhyCards();
       initMethodTapToCenter();
       initMobileConnectLine();
       initFooterCities();
@@ -2814,6 +2869,69 @@
         `;
         grid.appendChild(card);
       });
+    }
+
+    function initWhyCards() {
+      var section = document.querySelector('.why-section');
+      if (!section) return;
+      var spacer = section.querySelector('.why-scroll-spacer');
+      var wrapper = document.getElementById('whyTrack');
+      var track = wrapper ? wrapper.querySelector('.why-track') : null;
+      if (!spacer || !wrapper || !track) return;
+      var progressFill = section.querySelector('.why-progress-fill');
+      var stepLabels = Array.from(section.querySelectorAll('.why-progress-step'));
+
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        section.classList.add('why-reduced');
+        return;
+      }
+
+      var currentProgress = 0;
+      var targetProgress = 0;
+      var rafId = null;
+
+      function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+
+      function applyTransform(progress) {
+        var maxShift = track.scrollWidth - wrapper.clientWidth;
+        if (maxShift <= 0) maxShift = 0;
+        var tx = -progress * maxShift;
+        track.style.transform = 'translateX(' + tx.toFixed(1) + 'px)';
+
+        if (progressFill) progressFill.style.width = (progress * 100).toFixed(1) + '%';
+        var activeIdx = Math.round(progress * 3);
+        stepLabels.forEach(function(label, i) {
+          label.classList.toggle('why-step-active', i === activeIdx);
+          label.classList.toggle('why-step-past', i < activeIdx);
+        });
+      }
+
+      function tick() {
+        var diff = targetProgress - currentProgress;
+        if (Math.abs(diff) < 0.0003) {
+          currentProgress = targetProgress;
+          applyTransform(currentProgress);
+          rafId = null;
+          return;
+        }
+        currentProgress += diff * 0.12;
+        applyTransform(currentProgress);
+        rafId = requestAnimationFrame(tick);
+      }
+
+      function onScroll() {
+        var rect = spacer.getBoundingClientRect();
+        var viewH = window.innerHeight;
+        var scrolled = -rect.top;
+        var range = spacer.offsetHeight - viewH;
+        targetProgress = clamp(scrolled / range, 0, 1);
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function() { applyTransform(currentProgress); }, { passive: true });
+      onScroll();
     }
 
     /* ---- Méthode : tap-to-center on mobile ---- */
