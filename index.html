@@ -1066,8 +1066,6 @@
       object-fit: cover;
       object-position: center;
     }
-    .method-deco-photo:nth-child(4) img { object-position: center 75%; }
-    .method-deco-photo:nth-child(5) img { object-position: center 65%; }
     @media (min-width: 1200px) {
       .method-photos { display: block; }
       .method-deco-photo.mdp-visible {
@@ -2307,15 +2305,15 @@
       </picture>
       <picture class="method-deco-photo">
         <source srcset="images/methode/methode-4.webp" type="image/webp">
-        <img src="images/methode/methode-4.jpg" alt="" loading="lazy" decoding="async">
+        <img src="images/methode/methode-4.jpg" width="640" height="800" alt="" loading="lazy" decoding="async">
       </picture>
       <picture class="method-deco-photo">
         <source srcset="images/methode/methode-5.webp" type="image/webp">
-        <img src="images/methode/methode-5.jpg" alt="" loading="lazy" decoding="async">
+        <img src="images/methode/methode-5.jpg" width="537" height="800" alt="" loading="lazy" decoding="async">
       </picture>
       <picture class="method-deco-photo">
         <source srcset="images/methode/methode-6.webp" type="image/webp">
-        <img src="images/methode/methode-6.jpg" alt="" loading="lazy" decoding="async">
+        <img src="images/methode/methode-6.jpg" width="800" height="538" alt="" loading="lazy" decoding="async">
       </picture>
     </div>
   </section>
@@ -3373,9 +3371,10 @@
         { side:'r', type:'v', ar:[3,4], rot:2,   oy:40,  px:-0.06 },
         { side:'l', type:'v', ar:[3,4], rot:-2.5, oy:-30, px:0.08  },
         { side:'r', type:'h', ar:[4,3], rot:1.5,  oy:50,  px:-0.10 },
-        { side:'l', type:'h', ar:[4,3], rot:-1,   oy:-40, px:0.06  },
-        { side:'r', type:'s', ar:[1,1], rot:2.5,  oy:20,  px:-0.08 },
-        { side:'l', type:'s', ar:[1,1], rot:-3,   oy:-50, px:0.10  }
+        // 4 à 6 : proportions naturelles des fichiers (photo entière, sans recadrage)
+        { side:'l', type:'v', ar:[640,800], rot:-1,   oy:-40, px:0.06  },
+        { side:'r', type:'v', ar:[537,800], rot:2.5,  oy:20,  px:-0.08 },
+        { side:'l', type:'h', ar:[800,538], rot:-3,   oy:-50, px:0.10  }
       ];
 
       var state = [];
@@ -3420,6 +3419,11 @@
             }
           }
 
+          var maxH = 520;
+          if (i >= 3 && w * c.ar[1] / c.ar[0] > maxH) {
+            w = maxH * c.ar[0] / c.ar[1];
+            if (c.side === 'r') x = vw - w + bleed;
+          }
           var h = w * c.ar[1] / c.ar[0];
           var top = cT + (cH - h) / 2 + c.oy;
           if (top < titleEnd + 16) top = titleEnd + 16;
