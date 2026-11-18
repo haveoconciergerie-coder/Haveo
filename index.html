@@ -854,7 +854,7 @@
       padding-block: 80px 100px;
       background: var(--white);
       position: relative;
-      overflow: hidden;
+      overflow: clip;
     }
     .method-lines-bg {
       position: absolute;
@@ -1051,10 +1051,19 @@
     }
 
     /* ---- Photos décoratives méthode (desktop ≥ 1200 px) ---- */
-    .method-deco-photo {
+    .method-photos {
       display: none;
       position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 100vw;
+      transform: translateX(-50%);
+      pointer-events: none;
       z-index: 1;
+    }
+    .method-deco-photo {
+      position: absolute;
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 24px 48px -28px rgba(15,76,76,.35);
@@ -1068,15 +1077,14 @@
       object-fit: cover;
       object-position: center;
     }
+    .method-deco-photo:nth-child(4) img { object-position: center 75%; }
+    .method-deco-photo:nth-child(5) img { object-position: center 65%; }
     @media (min-width: 1200px) {
-      .method-deco-photo { display: block; }
+      .method-photos { display: block; }
       .method-deco-photo.mdp-visible {
         opacity: 1;
         transition: opacity .9s cubic-bezier(.16,1,.3,1);
       }
-    }
-    @media (min-width: 1200px) and (max-width: 1439px) {
-      .method-deco-photo { max-width: 200px !important; }
     }
     @media (prefers-reduced-motion: reduce) {
       .method-deco-photo { opacity: 1 !important; transition: none !important; }
@@ -2295,30 +2303,32 @@
     </div>
 
     <!-- Photos décoratives (desktop uniquement) -->
-    <picture class="method-deco-photo" aria-hidden="true">
-      <source srcset="images/methode/methode-1.webp" type="image/webp">
-      <img src="images/methode/methode-1.jpg" alt="" loading="lazy" decoding="async">
-    </picture>
-    <picture class="method-deco-photo" aria-hidden="true">
-      <source srcset="images/methode/methode-2.webp" type="image/webp">
-      <img src="images/methode/methode-2.jpg" alt="" loading="lazy" decoding="async">
-    </picture>
-    <picture class="method-deco-photo" aria-hidden="true">
-      <source srcset="images/methode/methode-3.webp" type="image/webp">
-      <img src="images/methode/methode-3.jpg" alt="" loading="lazy" decoding="async">
-    </picture>
-    <picture class="method-deco-photo" aria-hidden="true">
-      <source srcset="images/methode/methode-4.webp" type="image/webp">
-      <img src="images/methode/methode-4.jpg" alt="" loading="lazy" decoding="async">
-    </picture>
-    <picture class="method-deco-photo" aria-hidden="true">
-      <source srcset="images/methode/methode-5.webp" type="image/webp">
-      <img src="images/methode/methode-5.jpg" alt="" loading="lazy" decoding="async">
-    </picture>
-    <picture class="method-deco-photo" aria-hidden="true">
-      <source srcset="images/methode/methode-6.webp" type="image/webp">
-      <img src="images/methode/methode-6.jpg" alt="" loading="lazy" decoding="async">
-    </picture>
+    <div class="method-photos" aria-hidden="true">
+      <picture class="method-deco-photo">
+        <source srcset="images/methode/methode-1.webp" type="image/webp">
+        <img src="images/methode/methode-1.jpg" alt="" loading="lazy" decoding="async">
+      </picture>
+      <picture class="method-deco-photo">
+        <source srcset="images/methode/methode-2.webp" type="image/webp">
+        <img src="images/methode/methode-2.jpg" alt="" loading="lazy" decoding="async">
+      </picture>
+      <picture class="method-deco-photo">
+        <source srcset="images/methode/methode-3.webp" type="image/webp">
+        <img src="images/methode/methode-3.jpg" alt="" loading="lazy" decoding="async">
+      </picture>
+      <picture class="method-deco-photo">
+        <source srcset="images/methode/methode-4.webp" type="image/webp">
+        <img src="images/methode/methode-4.jpg" alt="" loading="lazy" decoding="async">
+      </picture>
+      <picture class="method-deco-photo">
+        <source srcset="images/methode/methode-5.webp" type="image/webp">
+        <img src="images/methode/methode-5.jpg" alt="" loading="lazy" decoding="async">
+      </picture>
+      <picture class="method-deco-photo">
+        <source srcset="images/methode/methode-6.webp" type="image/webp">
+        <img src="images/methode/methode-6.jpg" alt="" loading="lazy" decoding="async">
+      </picture>
+    </div>
   </section>
 
   <!-- ============================================
@@ -3356,51 +3366,74 @@
       var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var section = document.getElementById('methode');
       if (!section) return;
-      var container = section.querySelector('.method-cards-container');
+      var photosLayer = section.querySelector('.method-photos');
+      var cardsWrap = section.querySelector('.method-cards-container');
       var cards = section.querySelectorAll('.method-pin-card');
-      var photos = section.querySelectorAll('.method-deco-photo');
-      if (!photos.length || !cards.length) return;
+      var photos = photosLayer ? photosLayer.querySelectorAll('.method-deco-photo') : [];
+      if (!photosLayer || photos.length !== 6 || cards.length !== 6) return;
+      var titleDiv = section.querySelector('.container');
 
       var CFG = [
-        { side:'r', w:220, ar:[4,3], rot:2,   oy:20,  px:-0.08 },
-        { side:'l', w:180, ar:[3,4], rot:-2.5, oy:-15, px:0.10  },
-        { side:'r', w:200, ar:[4,3], rot:1.5,  oy:25,  px:-0.12 },
-        { side:'l', w:240, ar:[3,4], rot:-1,   oy:-20, px:0.08  },
-        { side:'r', w:190, ar:[1,1], rot:2.5,  oy:10,  px:-0.10 },
-        { side:'l', w:210, ar:[1,1], rot:-3,   oy:-25, px:0.12  }
+        { side:'r', type:'v', ar:[3,4], rot:2,   oy:40,  px:-0.06 },
+        { side:'l', type:'v', ar:[3,4], rot:-2.5, oy:-30, px:0.08  },
+        { side:'r', type:'h', ar:[4,3], rot:1.5,  oy:50,  px:-0.10 },
+        { side:'l', type:'h', ar:[4,3], rot:-1,   oy:-40, px:0.06  },
+        { side:'r', type:'s', ar:[1,1], rot:2.5,  oy:20,  px:-0.08 },
+        { side:'l', type:'s', ar:[1,1], rot:-3,   oy:-50, px:0.10  }
       ];
 
       var state = [];
-      for (var i = 0; i < photos.length; i++) {
-        state.push({ revealed: false, t0: 0, scale: reduced ? 1 : 0.94 });
+      for (var i = 0; i < 6; i++) state.push({ revealed: false, t0: 0, scale: reduced ? 1 : 0.94 });
+
+      function targetW(type, vw) {
+        if (type === 'v') return Math.max(260, Math.min(400, vw * 0.21));
+        if (type === 'h') return Math.max(320, Math.min(520, vw * 0.27));
+        return Math.max(280, Math.min(440, vw * 0.23));
       }
 
       function layout() {
         if (!mql.matches) return;
-        var sRect = section.getBoundingClientRect();
-        var sw = section.offsetWidth;
-        var narrow = window.innerWidth < 1440;
+        var vw = window.innerWidth;
+        var narrow = vw < 1440;
+        var bleed = narrow ? 0.02 * vw : 0.04 * vw;
+        var sH = section.offsetHeight;
+        var titleEnd = titleDiv ? titleDiv.offsetTop + titleDiv.offsetHeight : 0;
+        var ccL = cardsWrap.offsetLeft;
+        var ccT = cardsWrap.offsetTop;
+        var lastB = { l: 0, r: 0 };
 
-        for (var i = 0; i < photos.length; i++) {
+        for (var i = 0; i < 6; i++) {
           var c = CFG[i];
           var card = cards[i];
-          if (!card) continue;
-          var w = narrow ? Math.min(c.w, 200) : c.w;
-          var cRect = card.getBoundingClientRect();
-          var cardL = cRect.left - sRect.left;
-          var cardR = cardL + cRect.width;
-          var cardT = cRect.top - sRect.top;
-          var cardH = cRect.height;
-          var h = w * c.ar[1] / c.ar[0];
-          var top = cardT + (cardH - h) / 2 + c.oy;
-          var x;
-          if (c.side === 'r') {
-            x = cardR + 32;
-            if (x + w > sw - 24) x = sw - w - 24;
+          var w = targetW(c.type, vw);
+          var cL = ccL + card.offsetLeft;
+          var cR = cL + card.offsetWidth;
+          var cT = ccT + card.offsetTop;
+          var cH = card.offsetHeight;
+          var x, gap = 32;
+
+          if (c.side === 'l') {
+            x = -bleed;
+            var avail = cL - gap + bleed;
+            if (w > avail) w = Math.max(240, avail);
           } else {
-            x = cardL - 32 - w;
-            if (x < 24) x = 24;
+            x = vw - w + bleed;
+            if (x < cR + gap) {
+              w = Math.max(240, vw + bleed - cR - gap);
+              x = vw - w + bleed;
+            }
           }
+
+          var h = w * c.ar[1] / c.ar[0];
+          var top = cT + (cH - h) / 2 + c.oy;
+          if (top < titleEnd + 16) top = titleEnd + 16;
+          if (top + h > sH - 16) top = sH - h - 16;
+          if (top < 0) top = 0;
+
+          var sk = c.side;
+          if (top < lastB[sk] + 48) top = lastB[sk] + 48;
+          lastB[sk] = top + h;
+
           photos[i].style.width = w + 'px';
           photos[i].style.aspectRatio = c.ar[0] + '/' + c.ar[1];
           photos[i].style.top = top + 'px';
@@ -3413,7 +3446,7 @@
       window.addEventListener('resize', function() { clearTimeout(rid); rid = setTimeout(layout, 150); });
 
       if (reduced) {
-        for (var i = 0; i < photos.length; i++) {
+        for (var i = 0; i < 6; i++) {
           photos[i].style.opacity = '1';
           photos[i].style.transform = 'rotate(' + CFG[i].rot + 'deg)';
           state[i].revealed = true;
@@ -3424,7 +3457,7 @@
       var obs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
           if (!e.isIntersecting) return;
-          for (var i = 0; i < photos.length; i++) {
+          for (var i = 0; i < 6; i++) {
             if (photos[i] === e.target && !state[i].revealed) {
               state[i].revealed = true;
               state[i].t0 = performance.now();
@@ -3436,14 +3469,14 @@
           obs.unobserve(e.target);
         });
       }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-      for (var i = 0; i < photos.length; i++) obs.observe(photos[i]);
+      for (var i = 0; i < 6; i++) obs.observe(photos[i]);
 
       var rafId = null;
       function tick() {
         var now = performance.now();
         var vc = window.innerHeight / 2;
         var animating = false;
-        for (var i = 0; i < photos.length; i++) {
+        for (var i = 0; i < 6; i++) {
           var c = CFG[i]; var s = state[i];
           if (s.revealed && s.scale < 1) {
             var t = Math.min((now - s.t0) / 900, 1);
