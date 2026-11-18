@@ -1225,6 +1225,21 @@
       color: var(--text-muted);
       line-height: 1.5;
     }
+    .service-card--featured {
+      background: var(--green);
+      color: var(--white);
+      position: relative;
+    }
+    .service-card--featured .service-icon {
+      background: rgba(244, 235, 221, 0.15);
+      color: var(--gold);
+    }
+    .service-card--featured h3 { color: var(--white); }
+    .service-card--featured p { color: rgba(244, 235, 221, 0.8); }
+    .service-card--featured .service-arrow { color: var(--gold); }
+    @media (min-width: 640px) {
+      .service-card--featured { grid-column: span 2; }
+    }
 
     /* ============================================
        PLATEFORMES (Airbnb & Booking)
@@ -2790,7 +2805,7 @@
       SERVICES.forEach((s, i) => {
         const card = document.createElement('a');
         card.href = s.href;
-        card.className = 'service-card reveal' + (i % 3 === 1 ? ' reveal-delay-1' : i % 3 === 2 ? ' reveal-delay-2' : '');
+        card.className = 'service-card reveal' + (s.featured ? ' service-card--featured' : '') + (i % 3 === 1 ? ' reveal-delay-1' : i % 3 === 2 ? ' reveal-delay-2' : '');
         card.innerHTML = `
           <div class="service-icon">${ICONS[s.icon]}</div>
           <div>
