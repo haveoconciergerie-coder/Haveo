@@ -455,7 +455,7 @@
        BANDE DÉFILANTE DES VILLES
        ============================================ */
     .marquee-section {
-      padding-block: 48px 52px;
+      padding-block: 48px 32px;
     }
     .marquee-title {
       text-align: center;
@@ -523,7 +523,7 @@
        POURQUOI HAVEO — Scroll-driven horizontal strip
        ============================================ */
     .why-section {
-      padding-block: 100px 80px;
+      padding-block: 48px 32px;
       position: relative;
     }
     .why-layout {
@@ -534,25 +534,14 @@
     }
     .why-left {
       position: sticky;
-      top: var(--nav-h, 80px);
-      height: calc(100svh - var(--nav-h, 80px));
-      height: calc(100vh - var(--nav-h, 80px));
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      top: calc(var(--nav-h, 80px) + 48px);
       align-self: start;
-    }
-    @media (max-height: 640px) {
-      .why-left {
-        height: auto;
-        top: calc(var(--nav-h, 80px) + 24px);
-      }
     }
     .why-right {
       display: flex;
       flex-direction: column;
       gap: 18vh;
-      padding-bottom: 10vh;
+      padding-bottom: clamp(140px, 16vh, 240px);
     }
     .why-arg {
       border-top: 1px solid rgba(15, 76, 76, 0.12);
@@ -598,9 +587,9 @@
     .why-js .why-word { opacity: 0; transform: translateY(0.85em) rotate(2.5deg); filter: blur(8px); }
     .why-js .in .why-word { opacity: 1; transform: translateY(0) rotate(0); filter: blur(0); }
     @media (max-width: 860px) {
-      .why-section { padding-block: 80px 60px; }
+      .why-section { padding-block: 24px 40px; }
       .why-layout { grid-template-columns: 1fr; gap: 0; }
-      .why-left { position: static; height: auto; display: block; }
+      .why-left { position: static; }
       .why-right { gap: 40px; padding-top: 40px; padding-bottom: 0; }
       .why-arg h3 { font-size: clamp(1.6rem, 5vw, 2.2rem); }
     }
@@ -3006,17 +2995,20 @@
     /* ---- Align why columns ---- */
     function alignWhyColumns() {
       var grid = document.querySelector('.why-layout');
+      var whyLeft = document.querySelector('.why-left');
       var leftTitle = document.querySelector('.why-title');
       var rightCol = document.querySelector('.why-right');
       var firstArg = rightCol && rightCol.querySelector('.why-arg h3');
-      if (!grid || !leftTitle || !rightCol || !firstArg) return;
+      if (!grid || !whyLeft || !leftTitle || !rightCol || !firstArg) return;
 
       if (window.innerWidth <= 860) {
         rightCol.style.paddingTop = '';
+        whyLeft.style.marginTop = '';
         return;
       }
 
       rightCol.style.paddingTop = '0px';
+      whyLeft.style.marginTop = '0px';
 
       function offsetTo(el, ancestor) {
         var top = 0;
@@ -3030,8 +3022,12 @@
 
       var leftY = offsetTo(leftTitle, grid);
       var rightY = offsetTo(firstArg, grid);
-      var diff = Math.max(0, leftY - rightY);
-      rightCol.style.paddingTop = diff + 'px';
+      var diff = leftY - rightY;
+      if (diff >= 0) {
+        rightCol.style.paddingTop = diff + 'px';
+      } else {
+        whyLeft.style.marginTop = (-diff) + 'px';
+      }
     }
 
     /* ---- Méthode : tap-to-center on mobile ---- */
