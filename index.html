@@ -1062,9 +1062,7 @@
     .method-deco-photo img {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
+      height: auto;
     }
     @media (min-width: 1200px) {
       .method-photos { display: block; }
@@ -2292,28 +2290,32 @@
     <!-- Photos décoratives (desktop uniquement) -->
     <div class="method-photos" aria-hidden="true">
       <picture class="method-deco-photo">
-        <source srcset="images/methode/methode-1.webp" type="image/webp">
-        <img src="images/methode/methode-1.jpg" alt="" loading="lazy" decoding="async">
+        <source srcset="images/methode/salon.webp" type="image/webp">
+        <img src="images/methode/salon.jpg" width="1000" height="750" alt="" loading="lazy" decoding="async">
       </picture>
       <picture class="method-deco-photo">
-        <source srcset="images/methode/methode-2.webp" type="image/webp">
-        <img src="images/methode/methode-2.jpg" alt="" loading="lazy" decoding="async">
+        <source srcset="images/methode/couloir.webp" type="image/webp">
+        <img src="images/methode/couloir.jpg" width="667" height="1000" alt="" loading="lazy" decoding="async">
       </picture>
       <picture class="method-deco-photo">
-        <source srcset="images/methode/methode-3.webp" type="image/webp">
-        <img src="images/methode/methode-3.jpg" alt="" loading="lazy" decoding="async">
+        <source srcset="images/methode/pothos.webp" type="image/webp">
+        <img src="images/methode/pothos.jpg" width="334" height="500" alt="" loading="lazy" decoding="async">
       </picture>
       <picture class="method-deco-photo">
-        <source srcset="images/methode/methode-4.webp" type="image/webp">
-        <img src="images/methode/methode-4.jpg" width="640" height="800" alt="" loading="lazy" decoding="async">
+        <source srcset="images/methode/etageres-terracotta.webp" type="image/webp">
+        <img src="images/methode/etageres-terracotta.jpg" width="333" height="500" alt="" loading="lazy" decoding="async">
       </picture>
       <picture class="method-deco-photo">
-        <source srcset="images/methode/methode-5.webp" type="image/webp">
-        <img src="images/methode/methode-5.jpg" width="537" height="800" alt="" loading="lazy" decoding="async">
+        <source srcset="images/methode/chambre.webp" type="image/webp">
+        <img src="images/methode/chambre.jpg" width="1000" height="667" alt="" loading="lazy" decoding="async">
       </picture>
       <picture class="method-deco-photo">
-        <source srcset="images/methode/methode-6.webp" type="image/webp">
-        <img src="images/methode/methode-6.jpg" width="800" height="538" alt="" loading="lazy" decoding="async">
+        <source srcset="images/methode/lit-serviettes.webp" type="image/webp">
+        <img src="images/methode/lit-serviettes.jpg" width="667" height="1000" alt="" loading="lazy" decoding="async">
+      </picture>
+      <picture class="method-deco-photo">
+        <source srcset="images/methode/etagere-gris.webp" type="image/webp">
+        <img src="images/methode/etagere-gris.jpg" width="400" height="500" alt="" loading="lazy" decoding="async">
       </picture>
     </div>
   </section>
@@ -3364,43 +3366,40 @@
       var cardsWrap = section.querySelector('.method-cards-container');
       var cards = section.querySelectorAll('.method-pin-card');
       var photos = photosLayer ? photosLayer.querySelectorAll('.method-deco-photo') : [];
-      if (!photosLayer || photos.length !== 6 || cards.length !== 6) return;
+      var N = 7;
+      if (!photosLayer || photos.length !== N || cards.length !== 6) return;
       var titleDiv = section.querySelector('.container');
 
       var CFG = [
-        { side:'r', type:'v', ar:[3,4], rot:2,   oy:40,  px:-0.06 },
-        { side:'l', type:'v', ar:[3,4], rot:-2.5, oy:-30, px:0.08  },
-        { side:'r', type:'h', ar:[4,3], rot:1.5,  oy:50,  px:-0.10 },
-        // 4 à 6 : proportions naturelles des fichiers (photo entière, sans recadrage)
-        { side:'l', type:'v', ar:[640,800], rot:-1,   oy:-40, px:0.06  },
-        { side:'r', type:'v', ar:[537,800], rot:2.5,  oy:20,  px:-0.08 },
-        { side:'l', type:'h', ar:[800,538], rot:-3,   oy:-50, px:0.10  }
+        { step:0, side:'r', ar:[1000,750],  wMin:340, wVw:0.28, wMax:540, oy:0,   px:-0.06 },
+        { step:1, side:'l', ar:[667,1000],   wMin:240, wVw:0.18, wMax:340, oy:30,  px:0.07  },
+        { step:1, side:'l', ar:[334,500],    wMin:140, wVw:0.10, wMax:200, oy:-60, px:0.10, inward:true },
+        { step:2, side:'r', ar:[333,500],    wMin:150, wVw:0.11, wMax:220, oy:0,   px:-0.08 },
+        { step:3, side:'l', ar:[1000,667],   wMin:300, wVw:0.24, wMax:460, oy:-20, px:0.05  },
+        { step:4, side:'r', ar:[667,1000],   wMin:240, wVw:0.18, wMax:340, oy:10,  px:-0.07 },
+        { step:5, side:'l', ar:[400,500],    wMin:150, wVw:0.11, wMax:220, oy:0,   px:0.09  }
       ];
 
       var state = [];
-      for (var i = 0; i < 6; i++) state.push({ revealed: false, t0: 0, scale: reduced ? 1 : 0.94 });
-
-      function targetW(type, vw) {
-        if (type === 'v') return Math.max(260, Math.min(400, vw * 0.21));
-        if (type === 'h') return Math.max(320, Math.min(520, vw * 0.27));
-        return Math.max(280, Math.min(440, vw * 0.23));
-      }
+      for (var i = 0; i < N; i++) state.push({ revealed: false, t0: 0, scale: reduced ? 1 : 0.94 });
 
       function layout() {
         if (!mql.matches) return;
         var vw = window.innerWidth;
-        var narrow = vw < 1440;
-        var bleed = narrow ? 0.02 * vw : 0.04 * vw;
+        var edgeGap = Math.max(16, Math.min(0.025 * vw, 48));
         var sH = section.offsetHeight;
         var titleEnd = titleDiv ? titleDiv.offsetTop + titleDiv.offsetHeight : 0;
         var ccL = cardsWrap.offsetLeft;
         var ccT = cardsWrap.offsetTop;
         var lastB = { l: 0, r: 0 };
 
-        for (var i = 0; i < 6; i++) {
+        for (var i = 0; i < N; i++) {
           var c = CFG[i];
-          var card = cards[i];
-          var w = targetW(c.type, vw);
+          var card = cards[c.step];
+          var w = Math.max(c.wMin, Math.min(c.wMax, vw * c.wVw));
+          var h = w * c.ar[1] / c.ar[0];
+          if (h > 520) { h = 520; w = h * c.ar[0] / c.ar[1]; }
+
           var cL = ccL + card.offsetLeft;
           var cR = cL + card.offsetWidth;
           var cT = ccT + card.offsetTop;
@@ -3408,34 +3407,38 @@
           var x, gap = 32;
 
           if (c.side === 'l') {
-            x = -bleed;
-            var avail = cL - gap + bleed;
-            if (w > avail) w = Math.max(240, avail);
+            if (c.inward) {
+              x = Math.max(60, Math.min(0.08 * vw, 160));
+            } else {
+              x = edgeGap;
+            }
+            var avail = cL - gap - x;
+            if (w > avail) {
+              w = Math.max(c.inward ? 140 : 220, avail);
+              h = w * c.ar[1] / c.ar[0];
+              if (h > 520) { h = 520; w = h * c.ar[0] / c.ar[1]; }
+            }
           } else {
-            x = vw - w + bleed;
+            x = vw - w - edgeGap;
             if (x < cR + gap) {
-              w = Math.max(240, vw + bleed - cR - gap);
-              x = vw - w + bleed;
+              w = Math.max(c.wMin, vw - edgeGap - cR - gap);
+              h = w * c.ar[1] / c.ar[0];
+              if (h > 520) { h = 520; w = h * c.ar[0] / c.ar[1]; }
+              x = vw - w - edgeGap;
             }
           }
 
-          var maxH = 520;
-          if (i >= 3 && w * c.ar[1] / c.ar[0] > maxH) {
-            w = maxH * c.ar[0] / c.ar[1];
-            if (c.side === 'r') x = vw - w + bleed;
-          }
-          var h = w * c.ar[1] / c.ar[0];
           var top = cT + (cH - h) / 2 + c.oy;
           if (top < titleEnd + 16) top = titleEnd + 16;
           if (top + h > sH - 16) top = sH - h - 16;
           if (top < 0) top = 0;
 
           var sk = c.side;
-          if (top < lastB[sk] + 48) top = lastB[sk] + 48;
+          if (top < lastB[sk] + 40) top = lastB[sk] + 40;
           lastB[sk] = top + h;
 
           photos[i].style.width = w + 'px';
-          photos[i].style.aspectRatio = c.ar[0] + '/' + c.ar[1];
+          photos[i].style.height = h + 'px';
           photos[i].style.top = top + 'px';
           photos[i].style.left = x + 'px';
         }
@@ -3446,9 +3449,8 @@
       window.addEventListener('resize', function() { clearTimeout(rid); rid = setTimeout(layout, 150); });
 
       if (reduced) {
-        for (var i = 0; i < 6; i++) {
+        for (var i = 0; i < N; i++) {
           photos[i].style.opacity = '1';
-          photos[i].style.transform = 'rotate(' + CFG[i].rot + 'deg)';
           state[i].revealed = true;
         }
         return;
@@ -3457,7 +3459,7 @@
       var obs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
           if (!e.isIntersecting) return;
-          for (var i = 0; i < 6; i++) {
+          for (var i = 0; i < N; i++) {
             if (photos[i] === e.target && !state[i].revealed) {
               state[i].revealed = true;
               state[i].t0 = performance.now();
@@ -3469,14 +3471,14 @@
           obs.unobserve(e.target);
         });
       }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-      for (var i = 0; i < 6; i++) obs.observe(photos[i]);
+      for (var i = 0; i < N; i++) obs.observe(photos[i]);
 
       var rafId = null;
       function tick() {
         var now = performance.now();
         var vc = window.innerHeight / 2;
         var animating = false;
-        for (var i = 0; i < 6; i++) {
+        for (var i = 0; i < N; i++) {
           var c = CFG[i]; var s = state[i];
           if (s.revealed && s.scale < 1) {
             var t = Math.min((now - s.t0) / 900, 1);
@@ -3485,7 +3487,7 @@
           }
           var rect = photos[i].getBoundingClientRect();
           var ty = (rect.top + rect.height / 2 - vc) * c.px;
-          photos[i].style.transform = 'rotate(' + c.rot + 'deg) translateY(' + ty.toFixed(1) + 'px) scale(' + s.scale.toFixed(4) + ')';
+          photos[i].style.transform = 'translateY(' + ty.toFixed(1) + 'px) scale(' + s.scale.toFixed(4) + ')';
         }
         rafId = animating ? requestAnimationFrame(tick) : null;
       }
