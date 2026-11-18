@@ -523,124 +523,111 @@
        POURQUOI HAVEO — Scroll-driven horizontal strip
        ============================================ */
     .why-section {
-      padding: 0;
-      background: var(--sand);
+      padding-block: 100px 80px;
       position: relative;
     }
-    .why-scroll-spacer {
-      height: 300vh;
-      position: relative;
+    .why-layout {
+      display: grid;
+      grid-template-columns: 5fr 6fr;
+      gap: clamp(32px, 6vw, 96px);
+      align-items: start;
     }
-    .why-sticky {
+    .why-left {
       position: sticky;
-      top: 0;
-      height: 100vh;
-      min-height: 580px;
+      top: 14vh;
+      align-self: start;
+    }
+    .why-nav {
+      margin-top: 36px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      overflow: hidden;
+      gap: 14px;
     }
-    .why-track-wrapper {
-      overflow: hidden;
-      margin-top: 40px;
-      padding-bottom: 16px;
-    }
-    .why-track {
-      display: flex;
-      width: max-content;
-      will-change: transform;
-    }
-    .why-card {
-      flex: 0 0 360px;
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 36px 28px 32px;
-      border-right: 2px solid var(--sand);
-      box-shadow: 0 2px 12px rgba(15, 76, 76, 0.05);
-      border-top: 1px solid rgba(15, 76, 76, 0.04);
-      border-bottom: 1px solid rgba(15, 76, 76, 0.04);
-      border-left: 1px solid rgba(15, 76, 76, 0.04);
-    }
-    .why-card:last-child { border-right: none; }
-    .why-card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--sand) 0%, rgba(15, 76, 76, 0.06) 100%);
+    .why-nav-item {
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
+      gap: 12px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: rgba(15, 76, 76, 0.35);
+      transition: color 0.4s ease;
+      cursor: default;
+    }
+    .why-nav-item::before {
+      content: '';
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 1px;
+      transition: width 0.4s ease, background 0.4s ease;
+      flex-shrink: 0;
+    }
+    .why-nav-item.active {
       color: var(--green);
     }
-    .why-card-icon .icon {
+    .why-nav-item.active::before {
+      width: 40px;
+      background: var(--coral);
+    }
+    .why-right {
+      display: flex;
+      flex-direction: column;
+      gap: 18vh;
+      padding-top: 6vh;
+      padding-bottom: 18vh;
+    }
+    .why-arg {
+      border-top: 1px solid rgba(15, 76, 76, 0.12);
+      padding-top: 26px;
+    }
+    .why-arg-icon {
+      color: var(--coral);
+      margin-bottom: 20px;
+    }
+    .why-arg-icon .icon {
       width: 24px;
       height: 24px;
     }
-    .why-card h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
+    .why-arg h3 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
     }
-    .why-card p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.6;
+    .why-arg p {
+      font-size: 1.05rem;
+      color: rgba(15, 76, 76, 0.65);
+      line-height: 1.65;
+      max-width: 46ch;
     }
-    .why-progress {
-      position: relative;
-      max-width: 320px;
-      margin: 24px auto 0;
+    .why-arg-icon,
+    .why-arg p { transition: opacity 0.7s ease, transform 0.9s cubic-bezier(.16,1,.3,1), filter 0.8s ease; }
+    .why-js .why-arg-icon,
+    .why-js .why-arg p { opacity: 0; transform: translateY(36px); filter: blur(4px); }
+    .why-js .why-arg.in .why-arg-icon { opacity: 1; transform: translateY(0); filter: blur(0); }
+    .why-js .why-arg.in p { opacity: 1; transform: translateY(0); filter: blur(0); transition-delay: 0.25s; }
+    .why-js .why-left .section-intro {
+      opacity: 0; transform: translateY(28px); filter: blur(4px);
+      transition: opacity 0.7s ease 0.35s, transform 0.9s cubic-bezier(.16,1,.3,1) 0.35s, filter 0.8s ease 0.35s;
     }
-    .why-progress-track {
-      height: 2px;
-      background: var(--sand-dark);
-      border-radius: 1px;
-      position: relative;
-      overflow: hidden;
+    .why-js .why-left.in .section-intro { opacity: 1; transform: translateY(0); filter: blur(0); }
+    .why-word {
+      display: inline-block;
+      transition: opacity 0.7s ease, transform 1.1s cubic-bezier(.16,1,.3,1), filter 0.8s ease;
+      transition-delay: calc(var(--i) * 55ms);
     }
-    .why-progress-fill {
-      position: absolute;
-      left: 0; top: 0;
-      height: 100%;
-      background: var(--coral);
-      border-radius: 1px;
-      width: 0%;
-      will-change: width;
+    .why-js .why-word { opacity: 0; transform: translateY(0.85em) rotate(2.5deg); filter: blur(8px); }
+    .why-js .in .why-word { opacity: 1; transform: translateY(0) rotate(0); filter: blur(0); }
+    @media (max-width: 860px) {
+      .why-section { padding-block: 80px 60px; }
+      .why-layout { grid-template-columns: 1fr; gap: 0; }
+      .why-left { position: static; }
+      .why-nav { display: none; }
+      .why-right { gap: 40px; padding-top: 40px; padding-bottom: 0; }
+      .why-arg h3 { font-size: clamp(1.6rem, 5vw, 2.2rem); }
     }
-    .why-progress-steps {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 12px;
-    }
-    .why-progress-step {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--sand-dark);
-      letter-spacing: 0.02em;
-    }
-    .why-progress-step.why-step-active { color: var(--coral); }
-    .why-progress-step.why-step-past { color: var(--green); }
-    @media (max-width: 639px) {
-      .why-card { flex: 0 0 280px; padding: 28px 22px 24px; }
-      .why-scroll-spacer { height: 250vh; }
-      .why-sticky { min-height: 480px; }
-      .why-progress { max-width: 240px; }
-    }
-    @media (min-width: 960px) {
-      .why-card { flex: 0 0 380px; }
-    }
-    .why-section.why-reduced { padding-block: 80px; }
-    .why-section.why-reduced .why-scroll-spacer { height: auto; }
-    .why-section.why-reduced .why-sticky {
-      position: relative;
-      height: auto;
-      min-height: auto;
-    }
-    .why-section.why-reduced .why-track-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--sand-dark) transparent; }
-    .why-section.why-reduced .why-track { will-change: auto; }
 
 
     /* ============================================
@@ -1836,64 +1823,55 @@
        POURQUOI HAVEO
        ============================================ -->
   <section class="why-section" id="pourquoi">
-    <div class="why-scroll-spacer">
-    <div class="why-sticky">
     <div class="container">
-      <span class="section-label reveal">Conciergerie</span>
-      <h2 class="reveal">Pourquoi confier votre logement à Haveo ?</h2>
-      <p class="section-intro reveal">Louer sur Airbnb est un véritable métier. De l'accueil des voyageurs à l'entretien du logement, nous optimisons chaque détail pour valoriser votre bien, améliorer son potentiel locatif et vous libérer des contraintes du quotidien.</p>
-    </div>
-
-    <div class="why-track-wrapper" id="whyTrack">
-      <div class="why-track">
-
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 5a7.5 7.5 0 10 0 14"/><line x1="4" y1="10" x2="16" y2="10"/><line x1="4" y1="14" x2="14" y2="14"/></svg>
-          </div>
-          <h3>Plus de revenus</h3>
-          <p>Grâce à une stratégie tarifaire adaptée, à l'optimisation de votre annonce, à l'amélioration de votre logement et au suivi régulier des performances, nous cherchons à maximiser le potentiel de revenus de votre bien tout au long de l'année.</p>
+      <div class="why-layout">
+        <div class="why-left">
+          <span class="section-label">Conciergerie</span>
+          <h2 class="why-title">Pourquoi confier votre logement à Haveo ?</h2>
+          <p class="section-intro">Louer sur Airbnb est un véritable métier. De l'accueil des voyageurs à l'entretien du logement, nous optimisons chaque détail pour valoriser votre bien, améliorer son potentiel locatif et vous libérer des contraintes du quotidien.</p>
+          <nav class="why-nav" aria-label="Arguments">
+            <div class="why-nav-item active" data-why="0">Plus de revenus</div>
+            <div class="why-nav-item" data-why="1">Zéro contrainte</div>
+            <div class="why-nav-item" data-why="2">Logement entretenu</div>
+            <div class="why-nav-item" data-why="3">Transparence totale</div>
+          </nav>
         </div>
+        <div class="why-right">
 
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          <div class="why-arg" data-why-arg="0">
+            <div class="why-arg-icon">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 5a7.5 7.5 0 10 0 14"/><line x1="4" y1="10" x2="16" y2="10"/><line x1="4" y1="14" x2="14" y2="14"/></svg>
+            </div>
+            <h3>Plus de revenus</h3>
+            <p>Grâce à une stratégie tarifaire adaptée, à l'optimisation de votre annonce, à l'amélioration de votre logement et au suivi régulier des performances, nous cherchons à maximiser le potentiel de revenus de votre bien tout au long de l'année.</p>
           </div>
-          <h3>Zéro contrainte</h3>
-          <p>De la création de votre annonce aux réservations, en passant par l'accueil des voyageurs et la coordination des départs, nous prenons en charge chaque étape de votre location pour vous simplifier la vie.</p>
-        </div>
 
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <div class="why-arg" data-why-arg="1">
+            <div class="why-arg-icon">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            </div>
+            <h3>Zéro contrainte</h3>
+            <p>De la création de votre annonce aux réservations, en passant par l'accueil des voyageurs et la coordination des départs, nous prenons en charge chaque étape de votre location pour vous simplifier la vie.</p>
           </div>
-          <h3>Logement entretenu</h3>
-          <p>Ménage professionnel, linge de qualité hôtelière et suivi des petites interventions. Nous sélectionnons aussi les voyageurs pour garantir des séjours respectueux de votre bien.</p>
-        </div>
 
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          <div class="why-arg" data-why-arg="2">
+            <div class="why-arg-icon">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3>Logement entretenu</h3>
+            <p>Ménage professionnel, linge de qualité hôtelière et suivi des petites interventions. Nous sélectionnons aussi les voyageurs pour garantir des séjours respectueux de votre bien.</p>
           </div>
-          <h3>Transparence totale</h3>
-          <p>Bénéficiez d'un suivi clair de votre activité locative, d'une connaissance pointue du marché et d'un interlocuteur 100 % humain, disponible à chaque étape.</p>
-        </div>
 
-      </div>
-    </div>
+          <div class="why-arg" data-why-arg="3">
+            <div class="why-arg-icon">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <h3>Transparence totale</h3>
+            <p>Bénéficiez d'un suivi clair de votre activité locative, d'une connaissance pointue du marché et d'un interlocuteur 100 % humain, disponible à chaque étape.</p>
+          </div>
 
-    <div class="container">
-      <div class="why-progress">
-        <div class="why-progress-track"><div class="why-progress-fill"></div></div>
-        <div class="why-progress-steps">
-          <span class="why-progress-step">01</span>
-          <span class="why-progress-step">02</span>
-          <span class="why-progress-step">03</span>
-          <span class="why-progress-step">04</span>
         </div>
       </div>
-    </div>
-    </div>
     </div>
   </section>
 
@@ -2683,7 +2661,7 @@
       initMarquee();
       initCitySelect();
       initServices();
-      initWhyCards();
+      initWhy();
       initMethodTapToCenter();
       initMobileConnectLine();
       initFooterCities();
@@ -2860,67 +2838,59 @@
       });
     }
 
-    function initWhyCards() {
+    function initWhy() {
       var section = document.querySelector('.why-section');
       if (!section) return;
-      var spacer = section.querySelector('.why-scroll-spacer');
-      var wrapper = document.getElementById('whyTrack');
-      var track = wrapper ? wrapper.querySelector('.why-track') : null;
-      if (!spacer || !wrapper || !track) return;
-      var progressFill = section.querySelector('.why-progress-fill');
-      var stepLabels = Array.from(section.querySelectorAll('.why-progress-step'));
-
       var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReduced) {
-        section.classList.add('why-reduced');
-        return;
-      }
 
-      var currentProgress = 0;
-      var targetProgress = 0;
-      var rafId = null;
+      /* Split titles into word spans */
+      section.querySelectorAll('.why-title, .why-arg h3').forEach(function(el) {
+        var words = el.textContent.trim().split(/\s+/);
+        el.innerHTML = words.map(function(w, i) {
+          return '<span class="why-word" style="--i:' + i + '">' + w + '</span>';
+        }).join(' ');
+      });
 
-      function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+      if (prefersReduced) return;
+      section.classList.add('why-js');
 
-      function applyTransform(progress) {
-        var maxShift = track.scrollWidth - wrapper.clientWidth;
-        if (maxShift <= 0) maxShift = 0;
-        var tx = -progress * maxShift;
-        track.style.transform = 'translateX(' + tx.toFixed(1) + 'px)';
+      var args = Array.from(section.querySelectorAll('.why-arg'));
+      var navItems = Array.from(section.querySelectorAll('.why-nav-item'));
 
-        if (progressFill) progressFill.style.width = (progress * 100).toFixed(1) + '%';
-        var activeIdx = Math.round(progress * 3);
-        stepLabels.forEach(function(label, i) {
-          label.classList.toggle('why-step-active', i === activeIdx);
-          label.classList.toggle('why-step-past', i < activeIdx);
+      /* Reveal animation — once per element */
+      var leftCol = section.querySelector('.why-left');
+      var headerObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            headerObserver.unobserve(e.target);
+          }
         });
-      }
+      }, { threshold: 0.15 });
+      if (leftCol) headerObserver.observe(leftCol);
 
-      function tick() {
-        var diff = targetProgress - currentProgress;
-        if (Math.abs(diff) < 0.0003) {
-          currentProgress = targetProgress;
-          applyTransform(currentProgress);
-          rafId = null;
-          return;
-        }
-        currentProgress += diff * 0.12;
-        applyTransform(currentProgress);
-        rafId = requestAnimationFrame(tick);
-      }
+      var argObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            argObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      args.forEach(function(a) { argObserver.observe(a); });
 
-      function onScroll() {
-        var rect = spacer.getBoundingClientRect();
-        var viewH = window.innerHeight;
-        var scrolled = -rect.top;
-        var range = spacer.offsetHeight - viewH;
-        targetProgress = clamp(scrolled / range, 0, 1);
-        if (!rafId) rafId = requestAnimationFrame(tick);
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', function() { applyTransform(currentProgress); }, { passive: true });
-      onScroll();
+      /* Active tracking for left nav */
+      var activeObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            var idx = e.target.getAttribute('data-why-arg');
+            navItems.forEach(function(n) {
+              n.classList.toggle('active', n.getAttribute('data-why') === idx);
+            });
+          }
+        });
+      }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+      args.forEach(function(a) { activeObserver.observe(a); });
     }
 
     /* ---- Méthode : tap-to-center on mobile ---- */
