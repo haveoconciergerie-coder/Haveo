@@ -534,15 +534,26 @@
     }
     .why-left {
       position: sticky;
-      top: 14vh;
+      top: var(--nav-h, 80px);
+      height: calc(100svh - var(--nav-h, 80px));
+      height: calc(100vh - var(--nav-h, 80px));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-self: start;
+    }
+    @media (max-height: 640px) {
+      .why-left {
+        height: auto;
+        top: calc(var(--nav-h, 80px) + 24px);
+      }
     }
     .why-right {
       display: flex;
       flex-direction: column;
       gap: 18vh;
-      padding-top: 6vh;
-      padding-bottom: 18vh;
+      padding-top: 2vh;
+      padding-bottom: 10vh;
     }
     .why-arg {
       border-top: 1px solid rgba(15, 76, 76, 0.12);
@@ -590,7 +601,7 @@
     @media (max-width: 860px) {
       .why-section { padding-block: 80px 60px; }
       .why-layout { grid-template-columns: 1fr; gap: 0; }
-      .why-left { position: static; }
+      .why-left { position: static; height: auto; display: block; }
       .why-right { gap: 40px; padding-top: 40px; padding-bottom: 0; }
       .why-arg h3 { font-size: clamp(1.6rem, 5vw, 2.2rem); }
     }
@@ -2708,8 +2719,14 @@
       const toggle = document.getElementById('navToggle');
       const menu = document.getElementById('mobileMenu');
 
+      function syncNavH() {
+        document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+      }
+      syncNavH();
+
       window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 60);
+        syncNavH();
       }, { passive: true });
 
       toggle.addEventListener('click', () => {
