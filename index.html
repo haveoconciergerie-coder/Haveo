@@ -22,7 +22,7 @@
   <style>
     /* ============================================
        HAVEO CONCIERGERIE — Landing Page
-       Couleurs : vert #0F4C4C · corail #F26B5B · sable #F4EBDD · doré #E8B04A
+       Couleurs : vert #0F4C4C · corail #F26B5B · surface #F6F8F7 · doré #E8B04A
        Typographie : Plus Jakarta Sans
        ============================================ */
 
@@ -31,8 +31,8 @@
       --green-light: #14605f;
       --coral: #F26B5B;
       --coral-hover: #e05545;
-      --sand: #F4EBDD;
-      --sand-dark: #e9dece;
+      --surface: #F6F8F7;
+      --border: #E8ECEA;
       --gold: #E8B04A;
       --white: #FFFFFF;
       --text: #0F4C4C;
@@ -52,7 +52,7 @@
 
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--sand);
+      background: var(--white);
       color: var(--text);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
@@ -134,7 +134,7 @@
     }
     .btn-outline-green:hover {
       background: var(--green);
-      color: var(--sand);
+      color: var(--white);
       box-shadow: 0 8px 24px rgba(15, 76, 76, 0.2);
     }
     .btn-white {
@@ -200,7 +200,7 @@
       transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
     }
     .nav.scrolled {
-      background: rgba(244, 235, 221, 0.92);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 2px 24px rgba(15, 76, 76, 0.07);
@@ -275,7 +275,7 @@
       top: 100%;
       left: 0;
       right: 0;
-      background: var(--sand);
+      background: var(--white);
       padding: 20px;
       box-shadow: 0 12px 32px rgba(15, 76, 76, 0.1);
       flex-direction: column;
@@ -292,7 +292,7 @@
       border-radius: var(--radius-sm);
       transition: background 0.2s;
     }
-    .mobile-menu a:hover { background: var(--sand-dark); }
+    .mobile-menu a:hover { background: var(--surface); }
     .mobile-menu .btn { margin-top: 8px; text-align: center; }
 
     @media (min-width: 900px) {
@@ -491,7 +491,7 @@
       gap: 16px;
       padding-right: 16px;
       white-space: nowrap;
-      color: var(--sand);
+      color: var(--white);
       font-size: 1rem;
       font-weight: 600;
     }
@@ -612,10 +612,10 @@
     .sim-section {
       padding-block: 80px;
       background: var(--green);
-      color: var(--sand);
+      color: var(--white);
     }
     .sim-section h2 { color: var(--white); }
-    .sim-section .section-intro { color: rgba(244, 235, 221, 0.7); }
+    .sim-section .section-intro { color: rgba(255, 255, 255, 0.7); }
 
     .sim-card {
       background: var(--white);
@@ -639,7 +639,7 @@
       flex: 1;
       height: 4px;
       border-radius: 4px;
-      background: var(--sand);
+      background: var(--surface);
       transition: background 0.3s;
     }
     .sim-progress-bar.active { background: var(--coral); }
@@ -671,7 +671,7 @@
     .form-group input[type="number"] {
       width: 100%;
       padding: 13px 16px;
-      border: 2px solid var(--sand-dark);
+      border: 2px solid var(--border);
       border-radius: var(--radius-sm);
       font-family: inherit;
       font-size: 1rem;
@@ -714,7 +714,7 @@
       align-items: center;
       gap: 6px;
       padding: 10px 18px;
-      border: 2px solid var(--sand-dark);
+      border: 2px solid var(--border);
       border-radius: 100px;
       font-size: 0.9rem;
       font-weight: 600;
@@ -755,7 +755,7 @@
       align-items: center;
       gap: 4px;
       padding: 18px 12px;
-      border: 2px solid var(--sand-dark);
+      border: 2px solid var(--border);
       border-radius: var(--radius);
       text-align: center;
       cursor: pointer;
@@ -772,7 +772,7 @@
     .deco-card label .deco-label { font-size: 0.85rem; }
     .deco-card input:checked + label {
       border-color: var(--green);
-      background: var(--sand);
+      background: var(--surface);
       color: var(--text);
       box-shadow: 0 4px 12px rgba(15, 76, 76, 0.08);
     }
@@ -814,9 +814,9 @@
     .btn-prev {
       background: transparent;
       color: var(--text-muted);
-      border-color: var(--sand-dark);
+      border-color: var(--border);
     }
-    .btn-prev:hover { background: var(--sand); color: var(--text); }
+    .btn-prev:hover { background: var(--surface); color: var(--text); }
 
     /* Résultat */
     .sim-result {
@@ -982,7 +982,7 @@
     }
     .mpc-theme-coral .mpc-number { color: var(--coral); }
     .mpc-theme-coral .mpc-pin { background: var(--coral); }
-    .mpc-theme-coral .mpc-body { background: rgba(244, 235, 221, 0.5); border: 1px solid rgba(242, 107, 91, 0.15); }
+    .mpc-theme-coral .mpc-body { background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(242, 107, 91, 0.15); }
     .mpc-theme-coral .mpc-body ul li::before { background: var(--coral); }
     .mpc-theme-green .mpc-number { color: var(--green); }
     .mpc-theme-green .mpc-pin { background: var(--green); }
@@ -1126,14 +1126,14 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      border-bottom: 1px solid var(--sand);
+      border-bottom: 1px solid var(--border);
     }
     .pricing-features li:last-child { border-bottom: none; }
     .pricing-check {
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: var(--sand);
+      background: var(--surface);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1358,7 +1358,7 @@
       gap: 12px;
     }
     .faq-item {
-      background: var(--sand);
+      background: var(--surface);
       border-radius: var(--radius);
       overflow: hidden;
       transition: box-shadow 0.3s ease;
@@ -1442,7 +1442,7 @@
        ============================================ */
     .footer {
       background: var(--green);
-      color: var(--sand);
+      color: var(--white);
       padding-block: 64px 32px;
     }
     .footer-grid {
@@ -1461,7 +1461,7 @@
     .footer-logo span { color: var(--coral); }
     .footer-desc {
       font-size: 0.9rem;
-      color: rgba(244, 235, 221, 0.65);
+      color: rgba(255, 255, 255, 0.65);
       max-width: 300px;
       line-height: 1.6;
       margin-bottom: 16px;
@@ -1473,7 +1473,7 @@
       font-size: 0.9rem;
     }
     .footer-contact-info a {
-      color: var(--sand);
+      color: var(--white);
       text-decoration: none;
     }
     .footer-contact-info a:hover { color: var(--coral); }
@@ -1494,11 +1494,11 @@
     }
     .footer-links a {
       font-size: 0.9rem;
-      color: rgba(244, 235, 221, 0.65);
+      color: rgba(255, 255, 255, 0.65);
       text-decoration: none;
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--sand); }
+    .footer-links a:hover { color: var(--white); }
 
     .footer-social {
       display: flex;
@@ -1509,33 +1509,33 @@
       width: 40px;
       height: 40px;
       border-radius: 10px;
-      background: rgba(244, 235, 221, 0.1);
+      background: rgba(255, 255, 255, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--sand);
+      color: var(--white);
       text-decoration: none;
       transition: background 0.2s;
     }
-    .footer-social a:hover { background: rgba(244, 235, 221, 0.2); }
+    .footer-social a:hover { background: rgba(255, 255, 255, 0.2); }
     .footer-social svg { width: 18px; height: 18px; }
 
     .footer-bottom {
       margin-top: 48px;
       padding-top: 24px;
-      border-top: 1px solid rgba(244, 235, 221, 0.12);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 12px;
       font-size: 0.82rem;
-      color: rgba(244, 235, 221, 0.45);
+      color: rgba(255, 255, 255, 0.45);
     }
     .footer-bottom a {
-      color: rgba(244, 235, 221, 0.45);
+      color: rgba(255, 255, 255, 0.45);
       text-decoration: none;
     }
-    .footer-bottom a:hover { color: var(--sand); }
+    .footer-bottom a:hover { color: var(--white); }
     .footer-legal {
       display: flex;
       gap: 20px;
@@ -1551,7 +1551,7 @@
       right: 0;
       z-index: 9999;
       background: var(--white);
-      border-top: 1px solid var(--sand-dark);
+      border-top: 1px solid var(--border);
       box-shadow: 0 -4px 24px rgba(15, 76, 76, 0.08);
       padding: 20px 24px;
       display: none;
@@ -1594,10 +1594,10 @@
     }
     .cookie-btn-accept:hover { background: var(--green-light); }
     .cookie-btn-refuse {
-      background: var(--sand);
+      background: var(--surface);
       color: var(--text);
     }
-    .cookie-btn-refuse:hover { background: var(--sand-dark); }
+    .cookie-btn-refuse:hover { background: #EEF2F0; }
     @media (max-width: 639px) {
       .cookie-inner { flex-direction: column; align-items: stretch; }
       .cookie-buttons { justify-content: stretch; }
@@ -1616,7 +1616,7 @@
       height: 44px;
       border-radius: 50%;
       background: var(--green);
-      color: var(--sand);
+      color: var(--white);
       border: none;
       cursor: pointer;
       display: flex;
@@ -1698,7 +1698,7 @@
       align-items: center;
       gap: 8px;
       padding: 8px 0;
-      border-top: 1px solid var(--sand);
+      border-top: 1px solid var(--border);
     }
     .contact-popup-row svg { flex-shrink: 0; color: var(--text-muted); }
     .contact-popup-value {
@@ -1708,7 +1708,7 @@
       user-select: all;
     }
     .contact-popup-copy {
-      background: var(--sand);
+      background: var(--surface);
       border: none;
       border-radius: 6px;
       padding: 4px 10px;
@@ -1718,7 +1718,7 @@
       cursor: pointer;
       white-space: nowrap;
     }
-    .contact-popup-copy:hover { background: var(--sand-dark); }
+    .contact-popup-copy:hover { background: #EEF2F0; }
     @media (max-width: 639px) {
       .contact-popup { right: 16px; left: 16px; width: auto; }
     }
@@ -2077,7 +2077,7 @@
         <!-- Résultat -->
         <div class="sim-result" id="simResult">
           <svg width="56" height="56" viewBox="0 0 56 56" fill="none" style="margin:0 auto 12px;">
-            <circle cx="28" cy="28" r="28" fill="#F4EBDD"/>
+            <circle cx="28" cy="28" r="28" fill="#F6F8F7"/>
             <path d="M17 28l6 6 16-16" stroke="#0F4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <h3 style="font-size:1.3rem;">Estimation de vos revenus</h3>
@@ -2158,10 +2158,10 @@
 
     <div class="method-cards-container">
       <svg class="method-connect-line" viewBox="0 0 1000 1800" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M 290 150 C 500 150, 550 450, 720 450 C 880 450, 500 750, 280 750 C 100 750, 500 1050, 720 1050 C 900 1050, 500 1350, 280 1350 C 100 1350, 500 1650, 720 1650" stroke="var(--sand-dark)" stroke-width="2" stroke-dasharray="8 6" fill="none" stroke-linecap="round"/>
+        <path d="M 290 150 C 500 150, 550 450, 720 450 C 880 450, 500 750, 280 750 C 100 750, 500 1050, 720 1050 C 900 1050, 500 1350, 280 1350 C 100 1350, 500 1650, 720 1650" stroke="var(--border)" stroke-width="2" stroke-dasharray="8 6" fill="none" stroke-linecap="round"/>
       </svg>
       <svg class="method-connect-line--mobile" aria-hidden="true">
-        <path id="mobileConnectPath" stroke="var(--sand-dark)" stroke-width="2" stroke-dasharray="8 6" fill="none" stroke-linecap="round"/>
+        <path id="mobileConnectPath" stroke="var(--border)" stroke-width="2" stroke-dasharray="8 6" fill="none" stroke-linecap="round"/>
       </svg>
 
       <div class="method-pin-card mpc-card-left mpc-rotate-pos mpc-theme-coral reveal" role="group" aria-label="Étape 1 sur 6">
@@ -2336,7 +2336,7 @@
 
         <div class="audit-success" id="auditSuccess">
           <svg width="56" height="56" viewBox="0 0 56 56" fill="none" style="margin:0 auto 12px;">
-            <circle cx="28" cy="28" r="28" fill="#F4EBDD"/>
+            <circle cx="28" cy="28" r="28" fill="#F6F8F7"/>
             <path d="M17 28l6 6 16-16" stroke="#0F4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <h3>Merci !</h3>

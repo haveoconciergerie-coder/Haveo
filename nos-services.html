@@ -24,8 +24,8 @@
       --green-light: #14605f;
       --coral: #F26B5B;
       --coral-hover: #e05545;
-      --sand: #F4EBDD;
-      --sand-dark: #e9dece;
+      --surface: #F6F8F7;
+      --border: #E8ECEA;
       --gold: #E8B04A;
       --white: #FFFFFF;
       --text: #0F4C4C;
@@ -45,7 +45,7 @@
 
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--sand);
+      background: var(--white);
       color: var(--text);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
@@ -124,7 +124,7 @@
     }
     .btn-outline-green:hover {
       background: var(--green);
-      color: var(--sand);
+      color: var(--white);
       box-shadow: 0 8px 24px rgba(15, 76, 76, 0.2);
     }
     .btn-white {
@@ -174,7 +174,7 @@
       transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
     }
     .nav.scrolled {
-      background: rgba(244, 235, 221, 0.92);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 2px 24px rgba(15, 76, 76, 0.07);
@@ -246,7 +246,7 @@
       top: 100%;
       left: 0;
       right: 0;
-      background: var(--sand);
+      background: var(--white);
       padding: 20px;
       box-shadow: 0 12px 32px rgba(15, 76, 76, 0.1);
       flex-direction: column;
@@ -263,7 +263,7 @@
       border-radius: var(--radius-sm);
       transition: background 0.2s;
     }
-    .mobile-menu a:hover { background: var(--sand-dark); }
+    .mobile-menu a:hover { background: var(--surface); }
     .mobile-menu .btn { margin-top: 8px; text-align: center; }
     @media (min-width: 900px) {
       .nav-links { display: flex; }
@@ -324,7 +324,7 @@
     }
     .page-hero p {
       font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(244, 235, 221, 0.8);
+      color: rgba(255, 255, 255, 0.8);
       line-height: 1.7;
       margin-bottom: 32px;
       max-width: 600px;
@@ -344,12 +344,12 @@
     .svc-section--white { background: var(--white); }
     .svc-section--green {
       background: var(--green);
-      color: var(--sand);
+      color: var(--white);
     }
     .svc-section--green h2 { color: var(--white); }
     .svc-section--green .section-label { color: var(--gold); }
-    .svc-section--green .section-intro { color: rgba(244, 235, 221, 0.7); }
-    .svc-section--green .svc-feature-item { color: rgba(244, 235, 221, 0.85); }
+    .svc-section--green .section-intro { color: rgba(255, 255, 255, 0.7); }
+    .svc-section--green .svc-feature-item { color: rgba(255, 255, 255, 0.85); }
     .svc-section--green .svc-feature-item::before { color: var(--gold); }
 
     .svc-layout {
@@ -389,7 +389,7 @@
     .svc-note {
       margin-top: 20px;
       padding: 16px 20px;
-      background: var(--sand);
+      background: var(--surface);
       border-left: 3px solid var(--gold);
       border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
       font-size: 0.88rem;
@@ -397,14 +397,14 @@
       line-height: 1.6;
     }
     .svc-section--green .svc-note {
-      background: rgba(244, 235, 221, 0.08);
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .svc-highlight {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--sand);
+      background: var(--surface);
       color: var(--green);
       padding: 10px 20px;
       border-radius: 100px;
@@ -431,16 +431,16 @@
       position: relative;
       overflow: hidden;
     }
-    .svc-illus--sand {
-      background: linear-gradient(135deg, var(--white) 0%, var(--sand-dark) 100%);
-      border: 2px solid var(--sand-dark);
+    .svc-illus--neutral {
+      background: linear-gradient(135deg, var(--white) 0%, var(--border) 100%);
+      border: 2px solid var(--border);
     }
     .svc-illus--white {
-      background: linear-gradient(135deg, var(--sand) 0%, var(--sand-dark) 100%);
+      background: linear-gradient(135deg, var(--surface) 0%, var(--border) 100%);
     }
     .svc-illus--green {
       background: linear-gradient(135deg, rgba(20,96,95,0.5) 0%, rgba(15,76,76,0.8) 100%);
-      border: 2px solid rgba(244, 235, 221, 0.12);
+      border: 2px solid rgba(255, 255, 255, 0.12);
     }
     .svc-illus svg.illus-icon {
       width: 80px;
@@ -499,7 +499,7 @@
     .mock-amenity {
       padding: 5px 12px;
       border-radius: 100px;
-      background: var(--sand);
+      background: var(--surface);
       font-size: 0.8rem;
       font-weight: 600;
       color: var(--text-muted);
@@ -666,7 +666,7 @@
        ============================================ */
     .footer {
       background: var(--green);
-      color: var(--sand);
+      color: var(--white);
       padding-block: 64px 32px;
     }
     .footer-grid {
@@ -685,7 +685,7 @@
     .footer-logo span { color: var(--coral); }
     .footer-desc {
       font-size: 0.9rem;
-      color: rgba(244, 235, 221, 0.65);
+      color: rgba(255, 255, 255, 0.65);
       max-width: 300px;
       line-height: 1.6;
       margin-bottom: 16px;
@@ -697,7 +697,7 @@
       font-size: 0.9rem;
     }
     .footer-contact-info a {
-      color: var(--sand);
+      color: var(--white);
       text-decoration: none;
     }
     .footer-contact-info a:hover { color: var(--coral); }
@@ -717,11 +717,11 @@
     }
     .footer-links a {
       font-size: 0.9rem;
-      color: rgba(244, 235, 221, 0.65);
+      color: rgba(255, 255, 255, 0.65);
       text-decoration: none;
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--sand); }
+    .footer-links a:hover { color: var(--white); }
     .footer-social {
       display: flex;
       gap: 12px;
@@ -731,32 +731,32 @@
       width: 40px;
       height: 40px;
       border-radius: 10px;
-      background: rgba(244, 235, 221, 0.1);
+      background: rgba(255, 255, 255, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--sand);
+      color: var(--white);
       text-decoration: none;
       transition: background 0.2s;
     }
-    .footer-social a:hover { background: rgba(244, 235, 221, 0.2); }
+    .footer-social a:hover { background: rgba(255, 255, 255, 0.2); }
     .footer-social svg { width: 18px; height: 18px; }
     .footer-bottom {
       margin-top: 48px;
       padding-top: 24px;
-      border-top: 1px solid rgba(244, 235, 221, 0.12);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 12px;
       font-size: 0.82rem;
-      color: rgba(244, 235, 221, 0.45);
+      color: rgba(255, 255, 255, 0.45);
     }
     .footer-bottom a {
-      color: rgba(244, 235, 221, 0.45);
+      color: rgba(255, 255, 255, 0.45);
       text-decoration: none;
     }
-    .footer-bottom a:hover { color: var(--sand); }
+    .footer-bottom a:hover { color: var(--white); }
     .footer-legal {
       display: flex;
       gap: 20px;
@@ -770,7 +770,7 @@
       right: 0;
       z-index: 9999;
       background: var(--white);
-      border-top: 1px solid var(--sand-dark);
+      border-top: 1px solid var(--border);
       box-shadow: 0 -4px 24px rgba(15, 76, 76, 0.08);
       padding: 20px 24px;
       display: none;
@@ -813,10 +813,10 @@
     }
     .cookie-btn-accept:hover { background: var(--green-light); }
     .cookie-btn-refuse {
-      background: var(--sand);
+      background: var(--surface);
       color: var(--text);
     }
-    .cookie-btn-refuse:hover { background: var(--sand-dark); }
+    .cookie-btn-refuse:hover { background: #EEF2F0; }
     @media (max-width: 639px) {
       .cookie-inner { flex-direction: column; align-items: stretch; }
       .cookie-buttons { justify-content: stretch; }
@@ -832,7 +832,7 @@
       height: 44px;
       border-radius: 50%;
       background: var(--green);
-      color: var(--sand);
+      color: var(--white);
       border: none;
       cursor: pointer;
       display: flex;
@@ -910,7 +910,7 @@
       align-items: center;
       gap: 8px;
       padding: 8px 0;
-      border-top: 1px solid var(--sand);
+      border-top: 1px solid var(--border);
     }
     .contact-popup-row svg { flex-shrink: 0; color: var(--text-muted); }
     .contact-popup-value {
@@ -920,7 +920,7 @@
       user-select: all;
     }
     .contact-popup-copy {
-      background: var(--sand);
+      background: var(--surface);
       border: none;
       border-radius: 6px;
       padding: 4px 10px;
@@ -930,7 +930,7 @@
       cursor: pointer;
       white-space: nowrap;
     }
-    .contact-popup-copy:hover { background: var(--sand-dark); }
+    .contact-popup-copy:hover { background: #EEF2F0; }
     @media (max-width: 639px) {
       .contact-popup { right: 16px; left: 16px; width: auto; }
     }
@@ -1041,7 +1041,7 @@
       top: 12px;
       z-index: 2;
       background: rgba(15, 76, 76, 0.75);
-      color: var(--sand);
+      color: var(--white);
       font-size: 0.75rem;
       font-weight: 700;
       padding: 4px 12px;
@@ -1139,7 +1139,7 @@
           </div>
         </div>
         <div class="svc-visual reveal reveal-delay-1">
-          <div class="svc-illus svc-illus--sand">
+          <div class="svc-illus svc-illus--neutral">
             <img src="images/communication-voyageurs.jpg" alt="Communication voyageurs — messagerie sur smartphone" loading="lazy" onerror="this.style.display='none'">
           </div>
         </div>
@@ -1199,7 +1199,7 @@
           </ul>
         </div>
         <div class="svc-visual reveal reveal-delay-1">
-          <div class="svc-illus svc-illus--sand">
+          <div class="svc-illus svc-illus--neutral">
             <img src="images/menage-linge.jpg" alt="Ménage et linge — préparation du linge de maison" loading="lazy" onerror="this.style.display='none'">
           </div>
         </div>
@@ -1303,7 +1303,7 @@
           </ul>
         </div>
         <div class="svc-visual reveal reveal-delay-1">
-          <div class="svc-illus svc-illus--sand">
+          <div class="svc-illus svc-illus--neutral">
             <img src="images/photographie-decoration.jpg" alt="Photographie professionnelle — prise de vue immobilière sur smartphone" loading="lazy" onerror="this.style.display='none'">
           </div>
         </div>
