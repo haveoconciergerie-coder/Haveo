@@ -552,7 +552,6 @@
       display: flex;
       flex-direction: column;
       gap: 18vh;
-      padding-top: 2vh;
       padding-bottom: 10vh;
     }
     .why-arg {
@@ -2665,6 +2664,20 @@
       initOutdoorCheckboxes();
       initHeroParallax();
       initFaq();
+
+      /* Align why columns after fonts load */
+      document.fonts.ready.then(function() {
+        alignWhyColumns();
+        var whyLeft = document.querySelector('.why-left');
+        if (whyLeft && typeof ResizeObserver !== 'undefined') {
+          new ResizeObserver(alignWhyColumns).observe(whyLeft);
+        }
+      });
+      var whyResizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(whyResizeTimer);
+        whyResizeTimer = setTimeout(alignWhyColumns, 80);
+      });
     });
 
     /* ---- Hero Parallax (JS fallback) ---- */
@@ -2920,6 +2933,37 @@
       }, { threshold: 0.15 });
       args.forEach(function(a) { argObserver.observe(a); });
 
+    }
+
+    /* ---- Align why columns ---- */
+    function alignWhyColumns() {
+      var grid = document.querySelector('.why-layout');
+      var leftTitle = document.querySelector('.why-title');
+      var rightCol = document.querySelector('.why-right');
+      var firstArg = rightCol && rightCol.querySelector('.why-arg h3');
+      if (!grid || !leftTitle || !rightCol || !firstArg) return;
+
+      if (window.innerWidth <= 860) {
+        rightCol.style.paddingTop = '';
+        return;
+      }
+
+      rightCol.style.paddingTop = '0px';
+
+      function offsetTo(el, ancestor) {
+        var top = 0;
+        var cur = el;
+        while (cur && cur !== ancestor) {
+          top += cur.offsetTop;
+          cur = cur.offsetParent;
+        }
+        return top;
+      }
+
+      var leftY = offsetTo(leftTitle, grid);
+      var rightY = offsetTo(firstArg, grid);
+      var diff = Math.max(0, leftY - rightY);
+      rightCol.style.paddingTop = diff + 'px';
     }
 
     /* ---- Méthode : tap-to-center on mobile ---- */
