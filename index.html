@@ -537,39 +537,6 @@
       top: 14vh;
       align-self: start;
     }
-    .why-nav {
-      margin-top: 36px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .why-nav-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: rgba(15, 76, 76, 0.35);
-      transition: color 0.4s ease;
-      cursor: default;
-    }
-    .why-nav-item::before {
-      content: '';
-      display: block;
-      width: 18px;
-      height: 2px;
-      background: currentColor;
-      border-radius: 1px;
-      transition: width 0.4s ease, background 0.4s ease;
-      flex-shrink: 0;
-    }
-    .why-nav-item.active {
-      color: var(--green);
-    }
-    .why-nav-item.active::before {
-      width: 40px;
-      background: var(--coral);
-    }
     .why-right {
       display: flex;
       flex-direction: column;
@@ -624,7 +591,6 @@
       .why-section { padding-block: 80px 60px; }
       .why-layout { grid-template-columns: 1fr; gap: 0; }
       .why-left { position: static; }
-      .why-nav { display: none; }
       .why-right { gap: 40px; padding-top: 40px; padding-bottom: 0; }
       .why-arg h3 { font-size: clamp(1.6rem, 5vw, 2.2rem); }
     }
@@ -1829,12 +1795,6 @@
           <span class="section-label">Conciergerie</span>
           <h2 class="why-title">Pourquoi confier votre logement à Haveo ?</h2>
           <p class="section-intro">Louer sur Airbnb est un véritable métier. De l'accueil des voyageurs à l'entretien du logement, nous optimisons chaque détail pour valoriser votre bien, améliorer son potentiel locatif et vous libérer des contraintes du quotidien.</p>
-          <nav class="why-nav" aria-label="Arguments">
-            <div class="why-nav-item active" data-why="0">Plus de revenus</div>
-            <div class="why-nav-item" data-why="1">Zéro contrainte</div>
-            <div class="why-nav-item" data-why="2">Logement entretenu</div>
-            <div class="why-nav-item" data-why="3">Transparence totale</div>
-          </nav>
         </div>
         <div class="why-right">
 
@@ -2855,8 +2815,6 @@
       section.classList.add('why-js');
 
       var args = Array.from(section.querySelectorAll('.why-arg'));
-      var navItems = Array.from(section.querySelectorAll('.why-nav-item'));
-
       /* Reveal animation — once per element */
       var leftCol = section.querySelector('.why-left');
       var headerObserver = new IntersectionObserver(function(entries) {
@@ -2879,18 +2837,6 @@
       }, { threshold: 0.15 });
       args.forEach(function(a) { argObserver.observe(a); });
 
-      /* Active tracking for left nav */
-      var activeObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-          if (e.isIntersecting) {
-            var idx = e.target.getAttribute('data-why-arg');
-            navItems.forEach(function(n) {
-              n.classList.toggle('active', n.getAttribute('data-why') === idx);
-            });
-          }
-        });
-      }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-      args.forEach(function(a) { activeObserver.observe(a); });
     }
 
     /* ---- Méthode : tap-to-center on mobile ---- */
