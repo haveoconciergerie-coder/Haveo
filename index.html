@@ -1050,6 +1050,38 @@
       .mpc-number { font-size: 1.8rem; }
     }
 
+    /* ---- Photos décoratives méthode (desktop ≥ 1200 px) ---- */
+    .method-deco-photo {
+      display: none;
+      position: absolute;
+      z-index: 1;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 48px -28px rgba(15,76,76,.35);
+      pointer-events: none;
+      opacity: 0;
+    }
+    .method-deco-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    @media (min-width: 1200px) {
+      .method-deco-photo { display: block; }
+      .method-deco-photo.mdp-visible {
+        opacity: 1;
+        transition: opacity .9s cubic-bezier(.16,1,.3,1);
+      }
+    }
+    @media (min-width: 1200px) and (max-width: 1439px) {
+      .method-deco-photo { max-width: 200px !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .method-deco-photo { opacity: 1 !important; transition: none !important; }
+    }
+
     /* ============================================
        TARIFS
        ============================================ */
@@ -2261,6 +2293,32 @@
       </div>
 
     </div>
+
+    <!-- Photos décoratives (desktop uniquement) -->
+    <picture class="method-deco-photo" aria-hidden="true">
+      <source srcset="images/methode/methode-1.webp" type="image/webp">
+      <img src="images/methode/methode-1.jpg" alt="" loading="lazy" decoding="async">
+    </picture>
+    <picture class="method-deco-photo" aria-hidden="true">
+      <source srcset="images/methode/methode-2.webp" type="image/webp">
+      <img src="images/methode/methode-2.jpg" alt="" loading="lazy" decoding="async">
+    </picture>
+    <picture class="method-deco-photo" aria-hidden="true">
+      <source srcset="images/methode/methode-3.webp" type="image/webp">
+      <img src="images/methode/methode-3.jpg" alt="" loading="lazy" decoding="async">
+    </picture>
+    <picture class="method-deco-photo" aria-hidden="true">
+      <source srcset="images/methode/methode-4.webp" type="image/webp">
+      <img src="images/methode/methode-4.jpg" alt="" loading="lazy" decoding="async">
+    </picture>
+    <picture class="method-deco-photo" aria-hidden="true">
+      <source srcset="images/methode/methode-5.webp" type="image/webp">
+      <img src="images/methode/methode-5.jpg" alt="" loading="lazy" decoding="async">
+    </picture>
+    <picture class="method-deco-photo" aria-hidden="true">
+      <source srcset="images/methode/methode-6.webp" type="image/webp">
+      <img src="images/methode/methode-6.jpg" alt="" loading="lazy" decoding="async">
+    </picture>
   </section>
 
   <!-- ============================================
@@ -3291,6 +3349,118 @@
         if (!el.classList.contains('visible')) observer.observe(el);
       });
     }
+
+    /* ---- Photos décoratives méthode : positionnement, reveal, parallax ---- */
+    (function() {
+      var mql = window.matchMedia('(min-width: 1200px)');
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var section = document.getElementById('methode');
+      if (!section) return;
+      var container = section.querySelector('.method-cards-container');
+      var cards = section.querySelectorAll('.method-pin-card');
+      var photos = section.querySelectorAll('.method-deco-photo');
+      if (!photos.length || !cards.length) return;
+
+      var CFG = [
+        { side:'r', w:220, ar:[4,3], rot:2,   oy:20,  px:-0.08 },
+        { side:'l', w:180, ar:[3,4], rot:-2.5, oy:-15, px:0.10  },
+        { side:'r', w:200, ar:[4,3], rot:1.5,  oy:25,  px:-0.12 },
+        { side:'l', w:240, ar:[3,4], rot:-1,   oy:-20, px:0.08  },
+        { side:'r', w:190, ar:[1,1], rot:2.5,  oy:10,  px:-0.10 },
+        { side:'l', w:210, ar:[1,1], rot:-3,   oy:-25, px:0.12  }
+      ];
+
+      var state = [];
+      for (var i = 0; i < photos.length; i++) {
+        state.push({ revealed: false, t0: 0, scale: reduced ? 1 : 0.94 });
+      }
+
+      function layout() {
+        if (!mql.matches) return;
+        var sRect = section.getBoundingClientRect();
+        var sw = section.offsetWidth;
+        var narrow = window.innerWidth < 1440;
+
+        for (var i = 0; i < photos.length; i++) {
+          var c = CFG[i];
+          var card = cards[i];
+          if (!card) continue;
+          var w = narrow ? Math.min(c.w, 200) : c.w;
+          var cRect = card.getBoundingClientRect();
+          var cardL = cRect.left - sRect.left;
+          var cardR = cardL + cRect.width;
+          var cardT = cRect.top - sRect.top;
+          var cardH = cRect.height;
+          var h = w * c.ar[1] / c.ar[0];
+          var top = cardT + (cardH - h) / 2 + c.oy;
+          var x;
+          if (c.side === 'r') {
+            x = cardR + 32;
+            if (x + w > sw - 24) x = sw - w - 24;
+          } else {
+            x = cardL - 32 - w;
+            if (x < 24) x = 24;
+          }
+          photos[i].style.width = w + 'px';
+          photos[i].style.aspectRatio = c.ar[0] + '/' + c.ar[1];
+          photos[i].style.top = top + 'px';
+          photos[i].style.left = x + 'px';
+        }
+      }
+
+      layout();
+      var rid;
+      window.addEventListener('resize', function() { clearTimeout(rid); rid = setTimeout(layout, 150); });
+
+      if (reduced) {
+        for (var i = 0; i < photos.length; i++) {
+          photos[i].style.opacity = '1';
+          photos[i].style.transform = 'rotate(' + CFG[i].rot + 'deg)';
+          state[i].revealed = true;
+        }
+        return;
+      }
+
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (!e.isIntersecting) return;
+          for (var i = 0; i < photos.length; i++) {
+            if (photos[i] === e.target && !state[i].revealed) {
+              state[i].revealed = true;
+              state[i].t0 = performance.now();
+              e.target.classList.add('mdp-visible');
+              startLoop();
+              break;
+            }
+          }
+          obs.unobserve(e.target);
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+      for (var i = 0; i < photos.length; i++) obs.observe(photos[i]);
+
+      var rafId = null;
+      function tick() {
+        var now = performance.now();
+        var vc = window.innerHeight / 2;
+        var animating = false;
+        for (var i = 0; i < photos.length; i++) {
+          var c = CFG[i]; var s = state[i];
+          if (s.revealed && s.scale < 1) {
+            var t = Math.min((now - s.t0) / 900, 1);
+            s.scale = 0.94 + 0.06 * (1 - Math.pow(1 - t, 3));
+            if (t < 1) animating = true;
+          }
+          var rect = photos[i].getBoundingClientRect();
+          var ty = (rect.top + rect.height / 2 - vc) * c.px;
+          photos[i].style.transform = 'rotate(' + c.rot + 'deg) translateY(' + ty.toFixed(1) + 'px) scale(' + s.scale.toFixed(4) + ')';
+        }
+        rafId = animating ? requestAnimationFrame(tick) : null;
+      }
+      function startLoop() { if (!rafId) rafId = requestAnimationFrame(tick); }
+
+      window.addEventListener('scroll', function() { startLoop(); }, { passive: true });
+      startLoop();
+    })();
   </script>
 
   <!-- ============================================
