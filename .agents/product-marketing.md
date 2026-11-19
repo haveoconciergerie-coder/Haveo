@@ -1,6 +1,6 @@
 # Product Marketing Context – Haveo Conciergerie
 
-**Document version:** v1
+**Document version:** v2
 **Last updated:** 2026-11-19
 
 > Fiche lue par toutes les skills marketing avant d'écrire quoi que ce soit pour Haveo (posts, site, e-mails, annonces). Les règles de la section « Règles à respecter » priment sur toute bonne pratique générale. Charte graphique : `.agents/brand.md`.
@@ -105,6 +105,7 @@
 *Decisions and tested lessons. Newest first. Keep it to about 20 active entries.*
 | Date | Learning | Evidence | Applies to | Status |
 |------|----------|----------|------------|--------|
+| 2026-11-19 | Les Reels se publient sans « Afficher dans la grille du profil », pour garder l'ordre des couleurs. Les posts trop chargés passent en carrousel (couverture inchangée). | Skill social + règle de la grille | social | active |
 | 2026-11-15 | L'audit gratuit passe après un premier échange (« visite et audit offerts, sur rendez-vous ») ; l'entrée est le simulateur ou WhatsApp. | Décision du fondateur : peur des abus | site, posts, stories, e-mails | active |
 | 2026-11-15 | Les posts de logements se publient en carrousel, couverture aux couleurs du tour. | Décision du fondateur | social | active |
 | 2026-11-14 | Aucun numéro de téléphone sur les posts et stories ; WhatsApp via bouton ou sticker. | Décision du fondateur : numéro personnel, appelé à changer | social | active |
@@ -113,4 +114,5 @@
 
 ## Changelog
 *Newest first. One line per revision: what changed and why.*
+- v2 (2026-11-19) — Learnings : Reels hors grille et carrousels pour les posts chargés.
 - v1 (2026-11-19) — Initial context, rédigé à partir des décisions prises pendant la création des posts Instagram et Facebook.

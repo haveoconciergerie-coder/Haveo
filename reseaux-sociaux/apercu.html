@@ -131,6 +131,25 @@ h2{font-size:22px;letter-spacing:-.02em;margin:0 0 6px;text-wrap:balance}
 .une img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
 
 .posts{display:grid;gap:18px}
+.piliers{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:18px}
+.pilier{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;gap:6px;align-content:start}
+.pilier b{font-size:14px}
+.pilier .pct{font-size:22px;font-weight:700;color:var(--coral-ink);font-variant-numeric:tabular-nums}
+.pilier p{margin:0;font-size:13px;color:var(--muted)}
+.cal{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.cal li{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 16px;display:grid;grid-template-columns:150px minmax(0,1fr);gap:6px 16px}
+@media (max-width:560px){.cal li{grid-template-columns:minmax(0,1fr)}}
+.cal .quand{display:grid;gap:6px;align-content:start;font-size:13px;font-weight:600}
+.cal .tags{display:flex;flex-wrap:wrap;gap:6px}
+.cal .tag{font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--sunk);color:var(--muted)}
+.cal h3{margin:0 0 4px;font-size:15px;letter-spacing:-.01em}
+.cal .acc{margin:0 0 6px;font-size:14px}
+.cal .acc span{color:var(--muted)}
+.cal .prep{margin:0;font-size:13px;color:var(--muted)}
+.reel-note{margin:14px 0 18px;padding:12px 14px;border-radius:12px;background:var(--sunk);font-size:13.5px}
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.trio h3{margin:0 0 8px;font-size:14px}
+.trio ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:13.5px;color:var(--muted)}
 .post{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:18px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:20px;scroll-margin-top:20px}
 @media (max-width:560px){.post{grid-template-columns:minmax(0,1fr)}.post .vis{max-width:260px}}
 .post.flash{box-shadow:0 0 0 3px var(--gold)}
@@ -226,6 +245,19 @@ h2{font-size:22px;letter-spacing:-.02em;margin:0 0 6px;text-wrap:balance}
         <h2>Les posts</h2>
         <p class="lede">Dans l'ordre de publication. Sur Instagram, la première ligne est la seule visible avant « … plus » : c'est l'accroche. Sur Facebook, « lien en bio » est remplacé par le lien du site et on garde deux hashtags.</p>
         <div class="posts" id="posts"></div>
+      </section>
+
+      <section class="block" id="suite" hidden>
+        <h2 id="suite-titre"></h2>
+        <p class="lede">Deux publications par semaine, organisées en quatre thèmes. Les numéros et les couleurs suivent la grille : les Reels n'y prennent pas de case.</p>
+        <div class="piliers" id="piliers"></div>
+        <ol class="cal" id="cal"></ol>
+        <p class="reel-note" id="reel-note"></p>
+        <div class="trio">
+          <div class="panel"><h3>Stories, 3 à 5 par semaine</h3><ul id="s-stories"></ul></div>
+          <div class="panel"><h3>15 minutes par jour</h3><ul id="s-routine"></ul></div>
+          <div class="panel"><h3>À regarder chaque semaine</h3><ul id="s-mesure"></ul></div>
+        </div>
       </section>
     </main>
   </div>
@@ -432,6 +464,27 @@ for (const p of D.posts) {
         boutonImage('visuels/' + f, f, 'Enregistrer')))) : null,
       p.contrat ? el('div', { class: 'ref' }, 'Contrat : ' + p.contrat + ' (ne pas publier)') : null)));
   montrer('instagram');
+}
+
+// ---------- La suite après le lancement ----------
+if (D.suite) {
+  const S = D.suite;
+  $('#suite').hidden = false;
+  $('#suite-titre').textContent = S.titre;
+  $('#piliers').append(...S.piliers.map((p) => el('div', { class: 'pilier' }, el('span', { class: 'pct' }, p.part + ' %'), el('b', {}, p.nom), el('p', {}, p.texte))));
+  $('#cal').append(...S.calendrier.map((e) => el('li', {},
+    el('div', { class: 'quand' }, e.date,
+      el('div', { class: 'tags' },
+        e.numero ? el('span', { class: 'chip' }, el('i', { style: 'background:' + e.hex }), `Post ${e.numero} · ${e.couleurNom}`) : el('span', { class: 'tag' }, 'Hors grille'),
+        el('span', { class: 'tag' }, e.format))),
+    el('div', { style: 'min-width:0' },
+      el('span', { class: 'tag' }, e.pilier),
+      el('h3', { style: 'margin-top:6px' }, e.sujet),
+      el('p', { class: 'acc' }, el('span', {}, 'Première ligne : '), e.accroche),
+      el('p', { class: 'prep' }, e.preparer)))));
+  $('#reel-note').textContent = S.reels;
+  const liste = (id, items) => $(id).append(...items.map((t) => el('li', {}, t)));
+  liste('#s-stories', S.stories); liste('#s-routine', S.routine); liste('#s-mesure', S.mesure);
 }
 
 grille(nbPublies);

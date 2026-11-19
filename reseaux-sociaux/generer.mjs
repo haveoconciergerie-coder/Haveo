@@ -270,27 +270,47 @@ ${c.encadre ? `<p class="note">${ic('mappin', 28)}<span>${texte(c.encadre)}</spa
 ${c.texte ? `<p class="lead sm">${texte(c.texte)}</p>` : ''}
 ${c.photos?.length ? `<p class="swipe">Faites défiler ${ic('arrow', 24)}</p>` : ''}` }];
     for (const ph of c.photos || []) slides.push({ plein: true, html: `<img class="plein-img" src="${img(ph.fichier)}" alt="">${ph.piece ? `<span class="piece">${texte(ph.piece)}</span>` : ''}` });
-    if (c.fin) slides.push({ wm: true, centre: true, html: `
-${c.fin.label ? `<p class="label">${texte(c.fin.label)}</p>` : ''}
-<h1>${titre(c.fin.titre)}</h1>
-${c.fin.texte ? `<p class="lead">${texte(c.fin.texte)}</p>` : ''}
-${c.fin.bouton ? bouton(c.fin, t).replace('class="cta"', 'class="cta fin-cta"') : ''}` });
+    if (c.fin) slides.push(imageFin(c.fin, t));
     if (slides.length > 20) err(`Post ${p.numero} (${p.id}) : ${slides.length} images, Instagram en accepte 20 par carrousel`);
     return { slides };
   },
 };
 
+// Image de fin d'un carrousel : un seul appel à l'action
+function imageFin(f, t) {
+  return { wm: true, centre: true, html: `
+${f.label ? `<p class="label">${texte(f.label)}</p>` : ''}
+<h1>${titre(f.titre)}</h1>
+${f.texte ? `<p class="lead">${texte(f.texte)}</p>` : ''}
+${f.bouton ? bouton(f, t).replace('class="cta"', 'class="cta fin-cta"') : ''}` };
+}
+
+// Images de détail d'un carrousel (n'importe quel post, champ « carrousel ») :
+// même gabarit sur chaque image, une idée par image, texte lisible sur téléphone.
+function imagesDetail(car, t) {
+  const n = car.images.length;
+  const out = car.images.map((s, k) => ({ cls: 'detail', html: `
+<div class="detail-top">${s.icone ? `<span class="tile">${ic(s.icone, 52)}</span>` : '<span></span>'}<span class="compteur">${pad2(k + 1)} / ${pad2(n)}</span></div>
+${s.label || car.label ? `<p class="label">${texte(s.label || car.label)}</p>` : ''}
+<h1>${titre(s.titre)}</h1>
+${s.texte ? `<p class="lead">${texte(s.texte)}</p>` : ''}
+${s.points ? `<div class="points">${s.points.map((x) => `<div class="card"><span class="ck">${ic('check', 24, 2.25)}</span><span>${texte(x)}</span></div>`).join('')}</div>` : ''}` }));
+  if (car.fin) out.push(imageFin(car.fin, t));
+  return out;
+}
+
 function visuel(p) {
   const m = MODELES[p.modele];
   if (!m) { err(`Post ${p.numero} (${p.id}) : modèle « ${p.modele} » inconnu (${Object.keys(MODELES).join(', ')})`); return ''; }
   const r = m(p.contenu, p.theme, p);
-  const slides = r.slides || [r];
+  const slides = [...(r.slides || [r]), ...(p.carrousel ? imagesDetail(p.carrousel, p.theme) : [])];
+  if (slides.length > 20) err(`Post ${p.numero} (${p.id}) : ${slides.length} images, Instagram en accepte 20 par carrousel`);
   p.fichiers = slides.length === 1 ? [p.fichier] : slides.map((_, k) => p.fichier.replace(/\.png$/, `-${pad2(k + 1)}.png`));
   p.fichier = p.fichiers[0];
   p.ids = slides.map((_, k) => (k ? `p${p.numero}-${k + 1}` : `p${p.numero}`));
   return slides.map((sl, k) => sl.plein
     ? `<section class="post ${p.theme} plein" id="${p.ids[k]}">${sl.html}</section>`
-    : `<section class="post ${p.theme} m-${p.modele}${sl.centre ? ' centre' : ''}" id="${p.ids[k]}">${sl.wm ? WM : ''}<div class="inner">${sl.html}</div>`
+    : `<section class="post ${p.theme} m-${p.modele}${sl.centre ? ' centre' : ''}${sl.cls ? ' ' + sl.cls : ''}" id="${p.ids[k]}">${sl.wm ? WM : ''}<div class="inner">${sl.html}</div>`
       + `<footer><div class="logo">${logo(LOGO_PIED[p.theme])}</div><span class="zone">${esc(ZONE)}</span></footer></section>`).join('\n');
 }
 
@@ -410,6 +430,14 @@ i.basse{background:${C.vert}} i.moyenne{background:${C.or}} i.forte{background:$
 .piece{position:absolute;left:64px;bottom:64px;background:${C.papier};color:${C.vert};font-size:28px;font-weight:600;padding:14px 28px;border-radius:32px}
 .post.centre .inner{justify-content:center}
 .fin-cta{margin-top:16px}
+.detail-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:56px}
+.detail-top .tile{width:112px;height:112px;border-radius:28px}
+.sand .detail-top .tile{background:${C.papier}}
+.compteur{font-size:30px;font-weight:600;color:var(--label);font-variant-numeric:tabular-nums}
+.post.detail h1{font-size:104px;margin-bottom:40px}
+.post.detail .lead{font-size:38px;line-height:1.4;margin-bottom:56px;max-width:none}
+.points{display:flex;flex-direction:column;gap:20px}
+.points .card{display:flex;align-items:center;gap:26px;padding:30px 36px;font-size:34px;font-weight:500;line-height:1.3}
 footer{position:relative;height:132px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex:none}
 footer .logo svg{height:42px;width:auto;display:block}
 .zone{font-size:22px;font-weight:500;color:var(--ink)}
@@ -562,18 +590,42 @@ function ecrireLegendes() {
     L.push(`**Texte alternatif** : ${p.alt}`, '');
     if (p.contrat) L.push(`*Contrat : ${p.contrat} (ne pas publier)*`, '');
   }
+  if (SUITE) {
+    L.push('---', `## ${SUITE.titre}`, '', '| Date | N° | Fond | Format | Thème | Sujet |', '|---|---|---|---|---|---|');
+    for (const e of SUITE.calendrier) L.push(`| ${e.date} | ${e.numero ?? 'hors grille'} | ${e.couleur ? NOM_COULEUR[e.couleur] : '–'} | ${e.format} | ${e.pilier} | ${e.sujet} |`);
+    L.push('', SUITE.reels, '');
+  }
   fs.writeFileSync(path.join(SORTIE, 'legendes.md'), L.join('\n'));
 }
 
 // ============================================================
 // 6. APERÇU (profil, grille qui défile, légendes à copier)
 // ============================================================
+// Suite après le lancement : date, numéro et couleur calculés (les Reels hors grille n'en prennent pas)
+function calculerSuite() {
+  if (!d.suite) return null;
+  let n = posts.filter((p) => p.statut !== 'exemple').length;
+  const cal = d.suite.calendrier.map((e) => {
+    const dansGrille = e.grille !== false;
+    if (dansGrille) n++;
+    const couleur = dansGrille ? R.couleurs[(n - 1) % R.couleurs.length] : null;
+    return { ...e, date: datePost(e.jour).texte, numero: dansGrille ? n : null, couleur };
+  });
+  for (const e of cal) {
+    const tout = e.sujet + ' ' + e.accroche + ' ' + e.preparer;
+    for (const mot of R.motsInterdits) if (new RegExp(`(^|[^\\p{L}])${mot}($|[^\\p{L}])`, 'iu').test(tout)) warn(`Suite (${e.date}) : « ${mot} » est dans la liste des mots à ne pas utiliser`);
+  }
+  return { ...d.suite, calendrier: cal };
+}
+const SUITE = calculerSuite();
+
 function ecrireApercu() {
   fs.copyFileSync(path.resolve(path.dirname(fichierFiche), d.profil.avatar), path.join(SORTIE, 'avatar.png'));
   const donnees = {
     profil: { pseudo: d.profil.pseudo, nom: d.profil.nom, bio, lien: d.profil.lien, email: d.profil.email, whatsapp: d.profil.whatsapp, whatsappLien: d.profil.whatsappLien },
     couleurs: R.couleurs.map((c) => ({ id: c, nom: NOM_COULEUR[c], hex: HEX_COULEUR[c] })),
     heure: R.heure,
+    suite: SUITE ? { ...SUITE, calendrier: SUITE.calendrier.map((e) => ({ ...e, couleurNom: e.couleur ? NOM_COULEUR[e.couleur] : null, hex: e.couleur ? HEX_COULEUR[e.couleur] : null })) } : null,
     unes: unes.map((u) => ({ titre: u.titre, couleur: u.couleur, fichier: u.fichier, stories: u.stories.map((s) => ({ fichier: s.fichier, conseil: s.conseil || '' })) })),
     posts: posts.map((p) => ({
       numero: p.numero, id: p.id, couleur: p.couleur, statut: p.statut, fichier: p.fichier, fichiers: p.fichiers,

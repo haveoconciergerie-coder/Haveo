@@ -33,6 +33,24 @@ Modèle `logement`, plusieurs images dans un seul post (20 au maximum) :
 
 Les fichiers sortent numérotés dans l'ordre de publication : `haveo-10-<id>-01.png`, `-02.png`… Publie-les dans cet ordre, dans un seul post. Sur Facebook, même chose : un post avec plusieurs photos. Mets les photos dans `photos/` à côté de `posts.json` (format portrait de préférence : elles sont recadrées en 4:5).
 
+## Carrousel sur n'importe quel post
+
+Ajoute un champ `carrousel` à un post : la première image reste le visuel du modèle (donc la grille ne change pas), puis viennent les images de détail, une idée par image, avec le même gabarit :
+
+```json
+"carrousel": {
+  "label": "Nos services",
+  "images": [ { "icone": "camera", "titre": "Annonce\n**et photos.**", "texte": "…", "points": ["…", "…"] } ],
+  "fin": { "titre": "…", "texte": "…", "bouton": "Nous écrire", "note": "…" }
+}
+```
+
+Exemple : le post 2 (services). À réserver aux posts trop chargés pour être lus sur une seule image.
+
+## La suite après le lancement
+
+Le bloc `suite` de `posts.json` contient les thèmes (piliers), le calendrier des 4 semaines suivantes, la routine stories et ce qu'il faut regarder chaque semaine. Le générateur calcule la date, le numéro et la couleur de chaque post. Un Reel (`"grille": false`) ne prend pas de case : décoche « Afficher dans la grille du profil » en le publiant.
+
 ## Stories à la une
 
 Dans `aLaUne` : une entrée par rond du profil (`titre`, `icone` de la couverture, `couleur`), avec ses `stories`. Aujourd'hui : Services (6), Offre (5), Zone (2), Contact (1). Quand tu auras de belles photos de logements, ajoute une à la une « Logements ».

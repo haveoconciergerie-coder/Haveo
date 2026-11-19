@@ -411,8 +411,83 @@
           }
         ]
       },
+      "carrousel": {
+        "label": "Nos services",
+        "images": [
+          {
+            "icone": "camera",
+            "titre": "Annonce\n**et photos.**",
+            "texte": "Préparées par nos soins, publiées après votre accord.",
+            "points": [
+              "Photos du logement",
+              "Titre et description rédigés",
+              "Livret d'accueil et inventaire",
+              "L'annonce reste sur votre compte"
+            ]
+          },
+          {
+            "icone": "key",
+            "titre": "Accueil\n**et clés.**",
+            "texte": "En personne ou arrivée autonome : le mode d'accès est choisi avec vous.",
+            "points": [
+              "Instructions d'accès envoyées avant l'arrivée",
+              "Boîte à clés ou serrure connectée",
+              "Clés récupérées au départ"
+            ]
+          },
+          {
+            "icone": "bed",
+            "titre": "Ménage\n**et linge.**",
+            "texte": "Ménage contrôlé et linge changé à chaque départ.",
+            "points": [
+              "10 points contrôlés avant chaque arrivée",
+              "Draps et serviettes propres",
+              "Produits d'accueil en place"
+            ]
+          },
+          {
+            "icone": "message",
+            "titre": "Relation\n**voyageurs.**",
+            "texte": "Questions et imprévus, avant et pendant le séjour.",
+            "points": [
+              "Réponses par téléphone ou message",
+              "Petits imprévus réglés",
+              "Tout incident vous est signalé sous 24 h"
+            ]
+          },
+          {
+            "icone": "chart",
+            "titre": "Prix\n**conseillés.**",
+            "texte": "Selon la saison, les week-ends et les événements.",
+            "points": [
+              "Vous fixez la grille de prix",
+              "Nos ajustements restent dans ces limites",
+              "Vous gardez la main sur votre calendrier"
+            ]
+          },
+          {
+            "icone": "filecheck",
+            "titre": "Suivi\n**et incidents.**",
+            "texte": "Relevé mensuel et coordination des interventions.",
+            "points": [
+              "Une facture détaillée chaque mois, séjour par séjour",
+              "Tout incident vous est signalé sous 24 h",
+              "Les interventions sont coordonnées avec vous"
+            ]
+          }
+        ],
+        "fin": {
+          "label": "Nos services",
+          "titre": "Un seul interlocuteur,\n**pour tout.**",
+          "texte": "Vous choisissez les services dont votre logement a besoin.",
+          "bouton": "Nous écrire",
+          "note": "En message privé ou sur WhatsApp"
+        }
+      },
       "legende": [
         "Six services, un seul interlocuteur pour votre location courte durée.",
+        "",
+        "Faites défiler : une image par service, avec le détail.",
         "",
         "1. Annonce et photos : préparées par nos soins, publiées après votre accord",
         "2. Accueil et clés : en personne ou arrivée autonome",
@@ -883,5 +958,116 @@
       "contrat": "",
       "statut": "exemple"
     }
-  ]
+  ],
+  "suite": {
+    "titre": "Les 4 semaines après le lancement",
+    "piliers": [
+      {
+        "nom": "Logements et coulisses",
+        "part": 35,
+        "texte": "Vos logements en carrousel, la préparation d'un logement, la remise des clés. Ce qui montre le travail réel."
+      },
+      {
+        "nom": "Conseils aux propriétaires",
+        "part": 35,
+        "texte": "Démarches, annonce, saisons, plateformes. Des posts que l'on enregistre pour plus tard."
+      },
+      {
+        "nom": "Questions fréquentes",
+        "part": 20,
+        "texte": "Une question de propriétaire, une réponse claire et conforme au contrat."
+      },
+      {
+        "nom": "Offre et contact",
+        "part": 10,
+        "texte": "Le mois offert, l'estimation, WhatsApp. Jamais deux fois de suite."
+      }
+    ],
+    "calendrier": [
+      {
+        "jour": 16,
+        "pilier": "Conseils aux propriétaires",
+        "format": "Carrousel",
+        "sujet": "Louer en courte durée en Île-de-France : ce qu'il faut vérifier avant de se lancer",
+        "accroche": "Avant de mettre votre logement sur Airbnb, trois choses à vérifier.",
+        "preparer": "Enregistrement en mairie, règlement de copropriété, durée de location autorisée pour une résidence principale. Vérifier les règles de la commune avant de publier."
+      },
+      {
+        "jour": 19,
+        "pilier": "Logements et coulisses",
+        "format": "Reel",
+        "grille": false,
+        "sujet": "Un logement prêt pour les voyageurs suivants, en accéléré",
+        "accroche": "Entre deux voyageurs, voici ce que nous faisons.",
+        "preparer": "Filmer au téléphone, à la verticale : ménage, lit, serviettes, produits d'accueil. 20 à 30 secondes, avec du texte à l'écran."
+      },
+      {
+        "jour": 21,
+        "pilier": "Questions fréquentes",
+        "format": "Carrousel",
+        "sujet": "Faut-il être là pour l'arrivée des voyageurs ?",
+        "accroche": "Faut-il être là quand vos voyageurs arrivent ? Non, et voici comment ça se passe.",
+        "preparer": "Accueil en personne ou arrivée autonome (boîte à clés, serrure connectée), choisi avec le propriétaire."
+      },
+      {
+        "jour": 23,
+        "pilier": "Logements et coulisses",
+        "format": "Carrousel logement",
+        "sujet": "Votre premier logement Haveo",
+        "accroche": "[Quartier] : [type de logement], prêt à accueillir.",
+        "preparer": "Modèle « logement » de l'outil, avec les vraies photos. Pas encore de logement ? Remplacer par le livret d'accueil, page par page."
+      },
+      {
+        "jour": 28,
+        "pilier": "Conseils aux propriétaires",
+        "format": "Carrousel",
+        "sujet": "Airbnb ou Booking : ce qui change pour un propriétaire",
+        "accroche": "Airbnb ou Booking ? Les différences qui comptent pour un propriétaire.",
+        "preparer": "Paiement, annulations, voyageurs, frais. Vérifier les conditions actuelles des deux plateformes avant de publier."
+      },
+      {
+        "jour": 30,
+        "pilier": "Logements et coulisses",
+        "format": "Reel",
+        "grille": false,
+        "sujet": "La remise des clés, en vrai",
+        "accroche": "Comment vos voyageurs entrent dans le logement.",
+        "preparer": "Filmer une boîte à clés ou une serrure connectée, sans montrer de code ni d'adresse."
+      },
+      {
+        "jour": 35,
+        "pilier": "Conseils aux propriétaires",
+        "format": "Carrousel",
+        "sujet": "Fêtes et grands événements à Paris : préparer son calendrier et ses prix",
+        "accroche": "Les dates où Paris se remplit se préparent des semaines à l'avance.",
+        "preparer": "Prix conseillés selon la saison et les événements, validés par le propriétaire. Aucun chiffre inventé."
+      },
+      {
+        "jour": 40,
+        "pilier": "Offre et contact",
+        "format": "Post",
+        "sujet": "Rappel : le mois offert, jusqu'au 1er mars 2027",
+        "accroche": "Votre premier mois d'honoraires offert, jusqu'au 1er mars.",
+        "preparer": "Reprendre le visuel du post 5, avec la date mise en avant."
+      }
+    ],
+    "reels": "Pour chaque Reel, décoche « Afficher dans la grille du profil » au moment de publier : il reste visible dans l'onglet Reels sans prendre de case, et l'ordre des couleurs de la grille ne bouge pas.",
+    "stories": [
+      "Sondage : « Vous louez déjà en courte durée ? Oui / Pas encore »",
+      "Boîte à questions : « Votre question sur la location courte durée »",
+      "Coulisses : un logement prêt, un lit fait, un trousseau de clés",
+      "Chaque nouveau post repartagé en story, avec un sticker « Lien » vers l'estimation"
+    ],
+    "routine": [
+      "Répondre à tous les commentaires et messages, surtout dans l'heure qui suit une publication",
+      "Commenter 5 posts de comptes du quartier (commerces, associations, vie locale) avec une vraie remarque",
+      "Une fois par semaine : noter les 3 posts les plus enregistrés et partagés, et les messages reçus"
+    ],
+    "mesure": [
+      "Enregistrements et partages, plus parlants que les « j'aime »",
+      "Messages reçus et clics sur le lien",
+      "Visites du profil",
+      "Demandes d'estimation et de visite venues d'Instagram ou de Facebook"
+    ]
+  }
 }
