@@ -1033,6 +1033,7 @@
         width: 56%;
         margin-bottom: 0;
         flex: none;
+        transition: width 0.4s cubic-bezier(.16,1,.3,1);
       }
       .method-pin-card:last-child { margin-bottom: 0; }
       .mpc-card-left {
@@ -1046,39 +1047,38 @@
         align-self: flex-end;
       }
       .method-pin-card .mpc-inner {
-        transform: rotate(2deg) !important;
-        transition: transform 0.4s cubic-bezier(.16,1,.3,1), box-shadow 0.4s ease;
+        transform: rotate(2deg);
+        transition: transform 0.4s cubic-bezier(.16,1,.3,1);
       }
       .mpc-card-right .mpc-inner {
-        transform: rotate(-2deg) !important;
+        transform: rotate(-2deg);
+      }
+      .method-pin-card.mob-open {
+        width: 100%;
       }
       .method-pin-card.mob-open .mpc-inner {
-        transform: rotate(0deg) !important;
-        width: calc(92vw - 32px);
+        transform: rotate(0deg);
         box-shadow: 0 16px 32px rgba(0,0,0,0.12);
       }
-      .method-pin-card:hover .mpc-inner { transform: rotate(2deg) !important; }
-      .mpc-card-right:hover .mpc-inner { transform: rotate(-2deg) !important; }
-      .method-pin-card.mob-open:hover .mpc-inner { transform: rotate(0deg) !important; }
+      .method-pin-card:hover .mpc-inner { transform: rotate(2deg); }
+      .mpc-card-right:hover .mpc-inner { transform: rotate(-2deg); }
+      .method-pin-card.mob-open:hover .mpc-inner { transform: rotate(0deg); }
 
       .mpc-pin { display: none; }
       .mpc-number { font-size: 1.6rem; }
 
-      /* Collapsible content */
-      .mpc-body p, .mpc-body ul {
-        max-height: 0;
-        overflow: hidden;
+      /* Collapsible content via grid */
+      .mpc-body .mob-collapsible {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.4s cubic-bezier(.16,1,.3,1), opacity 0.3s ease;
         opacity: 0;
-        margin: 0;
-        transition: max-height 0.4s cubic-bezier(.16,1,.3,1), opacity 0.3s ease, margin 0.3s ease;
       }
-      .mob-open .mpc-body p {
-        max-height: 200px;
-        opacity: 1;
-        margin-bottom: 12px;
+      .mpc-body .mob-collapsible > .mob-collapsible-inner {
+        overflow: hidden;
       }
-      .mob-open .mpc-body ul {
-        max-height: 300px;
+      .mob-open .mpc-body .mob-collapsible {
+        grid-template-rows: 1fr;
         opacity: 1;
       }
       .mpc-body h3 { margin-bottom: 2px; }
@@ -1116,7 +1116,7 @@
         overflow: hidden;
         box-shadow: 0 8px 24px -12px rgba(15,76,76,0.25);
         width: 30vw;
-        transition: opacity 0.4s cubic-bezier(.16,1,.3,1), transform 0.4s cubic-bezier(.16,1,.3,1);
+        transition: opacity 0.3s ease;
       }
       .mob-method-photo img {
         display: block;
@@ -1132,13 +1132,13 @@
         transform: rotate(2deg);
       }
       .mob-method-photo.mob-photo-hidden {
-        opacity: 0 !important;
-        transform: scale(0.9) !important;
+        opacity: 0;
       }
 
       @media (prefers-reduced-motion: reduce) {
+        .method-pin-card,
         .method-pin-card .mpc-inner,
-        .mpc-body p, .mpc-body ul,
+        .mpc-body .mob-collapsible,
         .mob-method-photo,
         .mob-expand-icon {
           transition: none !important;
@@ -2237,7 +2237,7 @@
 
       <div class="method-pin-card mpc-card-left mpc-rotate-pos mpc-theme-coral reveal" role="button" tabindex="0" aria-expanded="false" aria-controls="mob-content-1" aria-label="Étape 1 sur 6">
         <picture class="mob-method-photo mob-photo-right" aria-hidden="true">
-          <source srcset="images/methode/salon.webp" type="image/webp">
+          <source srcset="images/methode/mob/salon.webp 500w, images/methode/salon.webp 1000w" sizes="30vw" type="image/webp">
           <img src="images/methode/salon.jpg" alt="" loading="lazy" decoding="async">
         </picture>
         <div class="mpc-inner">
@@ -2245,12 +2245,14 @@
           <div class="mpc-body" id="mob-content-1">
             <div class="mpc-number">01</div>
             <h3>Premier échange</h3>
-            <p><span>On parle de votre logement et de vos attentes, sur WhatsApp, par téléphone ou via le formulaire.</span></p>
+            <div class="mob-collapsible"><div class="mob-collapsible-inner">
+            <p>On parle de votre logement et de vos attentes, sur WhatsApp, par téléphone ou via le formulaire.</p>
             <ul>
               <li>Discussion sur votre projet et vos objectifs</li>
               <li>Premières questions sur votre logement</li>
               <li>Présentation de notre accompagnement</li>
             </ul>
+            </div></div>
           </div>
           <span class="mob-expand-icon" aria-hidden="true">+</span>
         </div>
@@ -2258,7 +2260,7 @@
 
       <div class="method-pin-card mpc-card-right mpc-rotate-neg mpc-theme-green reveal reveal-delay-1" role="button" tabindex="0" aria-expanded="false" aria-controls="mob-content-2" aria-label="Étape 2 sur 6">
         <picture class="mob-method-photo mob-photo-left" aria-hidden="true">
-          <source srcset="images/methode/couloir.webp" type="image/webp">
+          <source srcset="images/methode/mob/couloir.webp 500w, images/methode/couloir.webp 667w" sizes="30vw" type="image/webp">
           <img src="images/methode/couloir.jpg" alt="" loading="lazy" decoding="async">
         </picture>
         <div class="mpc-inner">
@@ -2266,12 +2268,14 @@
           <div class="mpc-body" id="mob-content-2">
             <div class="mpc-number">02</div>
             <h3>Visite et audit</h3>
-            <p><span>Nous venons visiter votre logement et vous remettons un audit complet, offert, sur rendez-vous.</span></p>
+            <div class="mob-collapsible"><div class="mob-collapsible-inner">
+            <p>Nous venons visiter votre logement et vous remettons un audit complet, offert, sur rendez-vous.</p>
             <ul>
               <li>Analyse du logement et de son environnement</li>
               <li>Évaluation du potentiel locatif</li>
               <li>Premières recommandations personnalisées</li>
             </ul>
+            </div></div>
           </div>
           <span class="mob-expand-icon" aria-hidden="true">+</span>
         </div>
@@ -2279,7 +2283,7 @@
 
       <div class="method-pin-card mpc-card-left mpc-rotate-pos mpc-theme-gold reveal reveal-delay-2" role="button" tabindex="0" aria-expanded="false" aria-controls="mob-content-3" aria-label="Étape 3 sur 6">
         <picture class="mob-method-photo mob-photo-right" aria-hidden="true">
-          <source srcset="images/methode/etageres-terracotta.webp" type="image/webp">
+          <source srcset="images/methode/mob/etageres-terracotta.webp 333w, images/methode/etageres-terracotta.webp 333w" sizes="30vw" type="image/webp">
           <img src="images/methode/etageres-terracotta.jpg" alt="" loading="lazy" decoding="async">
         </picture>
         <div class="mpc-inner">
@@ -2287,12 +2291,14 @@
           <div class="mpc-body" id="mob-content-3">
             <div class="mpc-number">03</div>
             <h3>Offre personnalisée</h3>
-            <p><span>Nous construisons une stratégie sur mesure adaptée à votre bien, à vos objectifs et à vos attentes.</span></p>
+            <div class="mob-collapsible"><div class="mob-collapsible-inner">
+            <p>Nous construisons une stratégie sur mesure adaptée à votre bien, à vos objectifs et à vos attentes.</p>
             <ul>
               <li>Proposition d'accompagnement adaptée</li>
               <li>Définition des services nécessaires</li>
               <li>Stratégie de mise en location</li>
             </ul>
+            </div></div>
           </div>
           <span class="mob-expand-icon" aria-hidden="true">+</span>
         </div>
@@ -2300,7 +2306,7 @@
 
       <div class="method-pin-card mpc-card-right mpc-rotate-neg mpc-theme-coral reveal reveal-delay-1" role="button" tabindex="0" aria-expanded="false" aria-controls="mob-content-4" aria-label="Étape 4 sur 6">
         <picture class="mob-method-photo mob-photo-left" aria-hidden="true">
-          <source srcset="images/methode/chambre.webp" type="image/webp">
+          <source srcset="images/methode/mob/chambre.webp 500w, images/methode/chambre.webp 1000w" sizes="30vw" type="image/webp">
           <img src="images/methode/chambre.jpg" alt="" loading="lazy" decoding="async">
         </picture>
         <div class="mpc-inner">
@@ -2308,12 +2314,14 @@
           <div class="mpc-body" id="mob-content-4">
             <div class="mpc-number">04</div>
             <h3>Photos et annonce</h3>
-            <p><span>Nous valorisons votre logement grâce à des visuels professionnels et une annonce optimisée pour donner envie de réserver.</span></p>
+            <div class="mob-collapsible"><div class="mob-collapsible-inner">
+            <p>Nous valorisons votre logement grâce à des visuels professionnels et une annonce optimisée pour donner envie de réserver.</p>
             <ul>
               <li>Photographies de qualité professionnelle</li>
               <li>Rédaction persuasive de l'annonce</li>
               <li>Présentation attractive du logement</li>
             </ul>
+            </div></div>
           </div>
           <span class="mob-expand-icon" aria-hidden="true">+</span>
         </div>
@@ -2321,7 +2329,7 @@
 
       <div class="method-pin-card mpc-card-left mpc-rotate-pos mpc-theme-green reveal reveal-delay-2" role="button" tabindex="0" aria-expanded="false" aria-controls="mob-content-5" aria-label="Étape 5 sur 6">
         <picture class="mob-method-photo mob-photo-right" aria-hidden="true">
-          <source srcset="images/methode/lit-serviettes.webp" type="image/webp">
+          <source srcset="images/methode/mob/lit-serviettes.webp 500w, images/methode/lit-serviettes.webp 667w" sizes="30vw" type="image/webp">
           <img src="images/methode/lit-serviettes.jpg" alt="" loading="lazy" decoding="async">
         </picture>
         <div class="mpc-inner">
@@ -2329,12 +2337,14 @@
           <div class="mpc-body" id="mob-content-5">
             <div class="mpc-number">05</div>
             <h3>Tarification dynamique</h3>
-            <p><span>Nous adaptons les prix en fonction de la demande, de la saisonnalité et des événements locaux afin d'optimiser les revenus locatifs.</span></p>
+            <div class="mob-collapsible"><div class="mob-collapsible-inner">
+            <p>Nous adaptons les prix en fonction de la demande, de la saisonnalité et des événements locaux afin d'optimiser les revenus locatifs.</p>
             <ul>
               <li>Ajustement des tarifs</li>
               <li>Prise en compte de la saisonnalité</li>
               <li>Recherche du meilleur équilibre entre prix et occupation</li>
             </ul>
+            </div></div>
           </div>
           <span class="mob-expand-icon" aria-hidden="true">+</span>
         </div>
@@ -2342,7 +2352,7 @@
 
       <div class="method-pin-card mpc-card-right mpc-rotate-neg mpc-theme-gold reveal reveal-delay-1" role="button" tabindex="0" aria-expanded="false" aria-controls="mob-content-6" aria-label="Étape 6 sur 6">
         <picture class="mob-method-photo mob-photo-left" aria-hidden="true">
-          <source srcset="images/methode/etagere-gris.webp" type="image/webp">
+          <source srcset="images/methode/mob/etagere-gris.webp 500w, images/methode/etagere-gris.webp 800w" sizes="30vw" type="image/webp">
           <img src="images/methode/etagere-gris.jpg" alt="" loading="lazy" decoding="async">
         </picture>
         <div class="mpc-inner">
@@ -2350,12 +2360,14 @@
           <div class="mpc-body" id="mob-content-6">
             <div class="mpc-number">06</div>
             <h3>Accompagnement opérationnel</h3>
-            <p><span>Nous assurons le suivi opérationnel de votre location pour offrir une expérience fluide aux voyageurs et simplifier votre quotidien.</span></p>
+            <div class="mob-collapsible"><div class="mob-collapsible-inner">
+            <p>Nous assurons le suivi opérationnel de votre location pour offrir une expérience fluide aux voyageurs et simplifier votre quotidien.</p>
             <ul>
               <li>Coordination des arrivées et des départs</li>
               <li>Organisation du ménage et du linge</li>
               <li>Suivi du logement et assistance opérationnelle</li>
             </ul>
+            </div></div>
           </div>
           <span class="mob-expand-icon" aria-hidden="true">+</span>
         </div>
@@ -3120,6 +3132,8 @@
       var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       var openCard = null;
+      var resizeTimer = null;
+      var lineScheduled = false;
 
       function positionPhotos() {
         cards.forEach(function(card) {
@@ -3128,8 +3142,7 @@
           var inner = card.querySelector('.mpc-inner');
           var innerH = inner.offsetHeight;
           var photoH = photo.offsetHeight;
-          var top = Math.max(0, (innerH - photoH) / 2);
-          photo.style.top = top + 'px';
+          photo.style.top = Math.max(0, (innerH - photoH) / 2) + 'px';
         });
       }
 
@@ -3161,9 +3174,23 @@
           d += ' C ' + cpx1 + ' ' + cpy1 + ', ' + cpx2 + ' ' + cpy2 + ', ' + p1.x + ' ' + p1.y;
         }
         pathEl.setAttribute('d', d);
+        lineScheduled = false;
       }
 
-      function closeCard(card, skipScroll) {
+      function scheduleLineRedraw() {
+        if (lineScheduled) return;
+        lineScheduled = true;
+        requestAnimationFrame(drawMobileLine);
+      }
+
+      function onTransitionEnd(e) {
+        if (e.propertyName === 'width' || e.propertyName === 'grid-template-rows') {
+          drawMobileLine();
+          positionPhotos();
+        }
+      }
+
+      function closeCard(card) {
         if (!card) return;
         card.classList.remove('mob-open');
         card.setAttribute('aria-expanded', 'false');
@@ -3172,10 +3199,6 @@
         var photo = card.querySelector('.mob-method-photo');
         if (photo) photo.classList.remove('mob-photo-hidden');
         openCard = null;
-        requestAnimationFrame(function() {
-          drawMobileLine();
-          positionPhotos();
-        });
       }
 
       function openCardFn(card) {
@@ -3188,17 +3211,13 @@
         if (photo) photo.classList.add('mob-photo-hidden');
         openCard = card;
 
-        requestAnimationFrame(function() {
-          drawMobileLine();
-          positionPhotos();
-          var dur = reduced ? 0 : 420;
-          setTimeout(function() {
-            var rect = card.getBoundingClientRect();
-            if (rect.top < 80 || rect.bottom > window.innerHeight) {
-              card.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
-            }
-          }, dur);
-        });
+        var dur = reduced ? 0 : 420;
+        setTimeout(function() {
+          var rect = card.getBoundingClientRect();
+          if (rect.top < 80 || rect.bottom > window.innerHeight) {
+            card.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+          }
+        }, dur);
       }
 
       function toggleCard(card) {
@@ -3210,8 +3229,7 @@
       }
 
       function onCardClick(e) {
-        var card = e.currentTarget;
-        toggleCard(card);
+        toggleCard(e.currentTarget);
       }
 
       function onCardKeydown(e) {
@@ -3236,7 +3254,13 @@
         }
       }
 
-      var ro = null;
+      function onResize() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+          positionPhotos();
+          drawMobileLine();
+        }, 150);
+      }
 
       function activate() {
         if (openCard) closeCard(openCard);
@@ -3244,15 +3268,12 @@
           card.addEventListener('click', onCardClick);
           card.addEventListener('keydown', onCardKeydown);
         });
+        container.addEventListener('transitionend', onTransitionEnd);
         document.addEventListener('click', onDocClick);
         document.addEventListener('keydown', onDocKeydown);
+        window.addEventListener('resize', onResize);
         positionPhotos();
         drawMobileLine();
-        ro = new ResizeObserver(function() {
-          positionPhotos();
-          drawMobileLine();
-        });
-        ro.observe(container);
       }
 
       function deactivate() {
@@ -3267,9 +3288,11 @@
           var icon = card.querySelector('.mob-expand-icon');
           if (icon) icon.textContent = '+';
         });
+        container.removeEventListener('transitionend', onTransitionEnd);
         document.removeEventListener('click', onDocClick);
         document.removeEventListener('keydown', onDocKeydown);
-        if (ro) { ro.disconnect(); ro = null; }
+        window.removeEventListener('resize', onResize);
+        clearTimeout(resizeTimer);
         openCard = null;
       }
 
@@ -3676,6 +3699,7 @@
 
       var rafId = null;
       function tick() {
+        if (!mql.matches) { rafId = null; return; }
         var now = performance.now();
         var vc = window.innerHeight / 2;
         var animating = false;
@@ -3692,10 +3716,10 @@
         }
         rafId = animating ? requestAnimationFrame(tick) : null;
       }
-      function startLoop() { if (!rafId) rafId = requestAnimationFrame(tick); }
+      function startLoop() { if (mql.matches && !rafId) rafId = requestAnimationFrame(tick); }
 
       window.addEventListener('scroll', function() { startLoop(); }, { passive: true });
-      startLoop();
+      if (mql.matches) startLoop();
     })();
   </script>
 
