@@ -197,7 +197,7 @@
       right: 0;
       z-index: 100;
       padding-block: 16px;
-      transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
     .nav.scrolled {
       background: rgba(255, 255, 255, 0.92);
@@ -3606,6 +3606,9 @@
       ];
 
       var state = [];
+      var cachedTop = new Array(N);
+      var cachedH = new Array(N);
+      var sectionOff = 0;
       for (var i = 0; i < N; i++) state.push({ revealed: false, t0: 0, scale: reduced ? 1 : 0.94 });
 
       function layout() {
@@ -3613,6 +3616,7 @@
         var vw = window.innerWidth;
         var edgeGap = Math.max(16, Math.min(0.025 * vw, 48));
         var sH = section.offsetHeight;
+        sectionOff = section.getBoundingClientRect().top + window.scrollY;
         var titleEnd = titleDiv ? titleDiv.offsetTop + titleDiv.offsetHeight : 0;
         var ccL = cardsWrap.offsetLeft;
         var ccT = cardsWrap.offsetTop;
@@ -3666,6 +3670,8 @@
           photos[i].style.height = h + 'px';
           photos[i].style.top = top + 'px';
           photos[i].style.left = x + 'px';
+          cachedTop[i] = top;
+          cachedH[i] = h;
         }
       }
 
@@ -3703,6 +3709,7 @@
         if (!mql.matches) { rafId = null; return; }
         var now = performance.now();
         var vc = window.innerHeight / 2;
+        var sy = window.scrollY;
         var animating = false;
         for (var i = 0; i < N; i++) {
           var c = CFG[i]; var s = state[i];
@@ -3711,8 +3718,8 @@
             s.scale = 0.94 + 0.06 * (1 - Math.pow(1 - t, 3));
             if (t < 1) animating = true;
           }
-          var rect = photos[i].getBoundingClientRect();
-          var ty = (rect.top + rect.height / 2 - vc) * c.px;
+          var viewTop = sectionOff + cachedTop[i] - sy;
+          var ty = (viewTop + cachedH[i] / 2 - vc) * c.px;
           photos[i].style.transform = 'translateY(' + ty.toFixed(1) + 'px) scale(' + s.scale.toFixed(4) + ')';
         }
         rafId = animating ? requestAnimationFrame(tick) : null;
