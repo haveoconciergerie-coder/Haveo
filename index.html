@@ -205,6 +205,8 @@
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 2px 24px rgba(15, 76, 76, 0.07);
       padding-block: 10px;
+      will-change: backdrop-filter;
+      contain: layout style;
     }
     .nav-inner {
       display: flex;
@@ -1033,7 +1035,7 @@
         width: 56%;
         margin-bottom: 0;
         flex: none;
-        transition: width 0.4s cubic-bezier(.16,1,.3,1);
+        transition: none;
       }
       .method-pin-card:last-child { margin-bottom: 0; }
       .mpc-card-left {
@@ -2836,13 +2838,15 @@
       var content = document.querySelector('.hero-content');
       var hero = document.querySelector('.hero');
       if (!bg || !content || !hero) return;
+      var heroH = hero.offsetHeight;
+      window.addEventListener('resize', function() { heroH = hero.offsetHeight; });
       var ticking = false;
       function onScroll() {
         if (!ticking) { ticking = true; requestAnimationFrame(update); }
       }
       function update() {
         ticking = false;
-        var h = hero.offsetHeight;
+        var h = heroH;
         if (h <= 0) return;
         var scrollY = window.scrollY || window.pageYOffset;
         var p = Math.min(Math.max(scrollY / h, 0), 1);
@@ -2885,10 +2889,13 @@
       }
       syncNavH();
 
+      var wasScrolled = false;
       window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 60);
-        syncNavH();
+        var isScrolled = window.scrollY > 60;
+        nav.classList.toggle('scrolled', isScrolled);
+        if (isScrolled !== wasScrolled) { wasScrolled = isScrolled; syncNavH(); }
       }, { passive: true });
+      window.addEventListener('resize', syncNavH);
 
       toggle.addEventListener('click', () => {
         toggle.classList.toggle('open');
