@@ -23,11 +23,17 @@ A faire une fois le site en ligne sur un hebergeur (GitHub Pages, Netlify, etc.)
 - Mettre a jour l'URL dans Google Analytics (etape 1)
 - Mettre a jour l'URL dans le flux web GA4
 
-## 5. Mentions legales — Completer avec la micro-entreprise
-Une fois la micro-entreprise creee, mettre a jour le fichier `mentions-legales.html` :
-- Section "1. Editeur du site" : ajouter le nom complet du representant legal
-- Ajouter le nom de la micro-entreprise (raison sociale)
-- Ajouter le numero SIRET
-- Ajouter l'adresse du siege social
-- Section "2. Hebergement" : completer avec le nom et l'adresse de l'hebergeur (ex: GitHub Pages, Netlify, OVH...)
-- Mettre a jour la date de derniere mise a jour en haut de la page
+## 5. Mentions legales
+Fait (20 novembre 2026) :
+- [x] Editeur : James Withey, EI, Haveo Conciergerie, adresse, RCS Pontoise 132 816 141, TVA non applicable
+- [x] Directeur de la publication : James Withey
+- [x] Responsable du traitement (RGPD) : James Withey, EI, Haveo Conciergerie
+- [x] Nature de l'activite : conciergerie, pas d'activite loi Hoguet
+- [x] Mention Airbnb marque deposee
+- [x] Section mediation de la consommation (art. L. 612-1)
+- [x] Date de mise a jour
+
+Reste a faire :
+- [ ] Ajouter le SIRET quand il sera disponible (section 1)
+- [ ] Completer la section "Hebergement" avec le nom, l'adresse et le site de l'hebergeur (section 2)
+- [ ] Completer les coordonnees du mediateur de la consommation (section 9)
