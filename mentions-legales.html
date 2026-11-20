@@ -150,6 +150,62 @@
       text-decoration: none;
     }
     .footer-mini a:hover { text-decoration: underline; }
+
+    .cookie-banner {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 9999;
+      background: var(--white);
+      border-top: 1px solid rgba(15, 76, 76, 0.1);
+      box-shadow: 0 -2px 20px rgba(0,0,0,0.08);
+      padding: 16px 24px;
+    }
+    .cookie-banner.active { display: block; }
+    .cookie-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .cookie-text {
+      flex: 1;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .cookie-text a { color: var(--green); }
+    .cookie-buttons {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .cookie-btn {
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .cookie-btn-accept {
+      background: var(--green);
+      color: var(--white);
+    }
+    .cookie-btn-accept:hover { background: var(--green-light); }
+    .cookie-btn-refuse {
+      background: #F6F8F7;
+      color: var(--text);
+    }
+    .cookie-btn-refuse:hover { background: #EEF2F0; }
+    @media (max-width: 600px) {
+      .cookie-inner { flex-direction: column; align-items: stretch; }
+      .cookie-buttons { justify-content: stretch; }
+      .cookie-btn { flex: 1; text-align: center; }
+    }
   </style>
 </head>
 <body>
@@ -232,7 +288,7 @@
     <ul>
       <li>Répondre à vos demandes d'estimation ou d'audit</li>
       <li>Vous recontacter dans le cadre de nos prestations de conciergerie</li>
-      <li>Analyser la fréquentation du site (données anonymisées via Google Analytics 4)</li>
+      <li>Analyser la fréquentation du site (via Google Analytics 4)</li>
     </ul>
 
     <h3>4.3 Durée de conservation</h3>
@@ -249,12 +305,12 @@
     <p>Pour exercer ces droits, contactez-nous à : <strong style="user-select:all;">haveo.conciergerie@gmail.com</strong></p>
 
     <h3>4.5 Cookies</h3>
-    <p>Ce site utilise Google Analytics 4 (identifiant : G-SELVF2RX1X) pour analyser la fréquentation. Ce cookie n'est déposé qu'après votre consentement explicite via le bandeau de cookies. Vous pouvez retirer votre consentement à tout moment en supprimant les cookies de votre navigateur.</p>
+    <p>Ce site utilise Google Analytics 4, un service de mesure d'audience fourni par Google LLC. Ce cookie n'est déposé qu'après votre consentement explicite via le bandeau de cookies. Les données collectées peuvent être transférées et traitées par Google en dehors de l'Union européenne. Vous pouvez retirer votre consentement à tout moment en cliquant sur le lien « Gérer les cookies » dans le pied de page du site.</p>
 
     <h2>5. Sous-traitants</h2>
     <ul>
       <li><strong>FormSubmit.co :</strong> transmission des formulaires par email (les données transitent par leurs serveurs pour être envoyées à notre adresse email)</li>
-      <li><strong>Google Analytics 4 :</strong> mesure d'audience anonymisée (après consentement)</li>
+      <li><strong>Google Analytics 4 :</strong> mesure d'audience (après consentement). Les données peuvent être transférées par Google en dehors de l'Union européenne.</li>
     </ul>
 
     <h2>6. Limitation de responsabilité</h2>
@@ -276,9 +332,63 @@
   </main>
 
   <footer class="footer-mini">
-    <p>&copy; 2026 Haveo Conciergerie — <a href="index.html#hero">Retour à l'accueil</a></p>
+    <p>&copy; 2026 Haveo Conciergerie — <a href="index.html#hero">Retour à l'accueil</a> — <a href="#" id="manageCookies">Gérer les cookies</a></p>
   </footer>
 
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-inner">
+      <p class="cookie-text">
+        Ce site utilise des cookies pour mesurer l'audience et améliorer votre expérience.
+        <a href="#confidentialite">En savoir plus</a>
+      </p>
+      <div class="cookie-buttons">
+        <button class="cookie-btn cookie-btn-refuse" id="cookieRefuse">Refuser</button>
+        <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accepter</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var GA_ID = 'G-SELVF2RX1X';
+      var consent = localStorage.getItem('haveo_cookie_consent');
 
+      function loadGA() {
+        if (document.getElementById('ga-script')) return;
+        var s = document.createElement('script');
+        s.id = 'ga-script';
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', GA_ID, { anonymize_ip: true });
+      }
+
+      if (consent === 'accepted') {
+        loadGA();
+      } else if (consent !== 'refused') {
+        document.getElementById('cookieBanner').classList.add('active');
+      }
+
+      document.getElementById('cookieAccept').addEventListener('click', function() {
+        localStorage.setItem('haveo_cookie_consent', 'accepted');
+        document.getElementById('cookieBanner').classList.remove('active');
+        loadGA();
+      });
+
+      document.getElementById('cookieRefuse').addEventListener('click', function() {
+        localStorage.setItem('haveo_cookie_consent', 'refused');
+        document.getElementById('cookieBanner').classList.remove('active');
+      });
+
+      document.getElementById('manageCookies').addEventListener('click', function(e) {
+        e.preventDefault();
+        localStorage.removeItem('haveo_cookie_consent');
+        document.getElementById('cookieBanner').classList.add('active');
+      });
+    })();
+  </script>
 </body>
 </html>
