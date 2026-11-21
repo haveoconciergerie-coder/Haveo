@@ -34,6 +34,5 @@ Fait (20 novembre 2026) :
 - [x] Date de mise a jour
 
 Reste a faire :
-- [ ] Ajouter le SIRET quand il sera disponible (section 1)
 - [x] Section "Hebergement" completee : Cloudflare, Inc. (section 2)
 - [ ] Completer les coordonnees du mediateur de la consommation (section 9)
