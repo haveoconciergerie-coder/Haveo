@@ -1010,6 +1010,7 @@
         gap: 20px;
         padding: 0 16px;
         margin-top: 32px;
+        contain: layout paint;
       }
       .method-connect-line { display: none; }
       .method-connect-line--mobile {
@@ -1024,7 +1025,7 @@
         overflow: visible;
       }
       .method-connect-line--mobile path {
-        animation: dashFlow 3s linear infinite;
+        animation: none;
       }
 
       /* Zigzag row: card + photo side by side */
@@ -1050,7 +1051,7 @@
       }
       .method-pin-card .mpc-inner {
         transform: rotate(2deg);
-        transition: transform 0.4s cubic-bezier(.16,1,.3,1);
+        transition: transform 0.3s cubic-bezier(.16,1,.3,1);
       }
       .mpc-card-right .mpc-inner {
         transform: rotate(-2deg);
@@ -1061,6 +1062,7 @@
       .method-pin-card.mob-open .mpc-inner {
         transform: rotate(0deg);
         box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+        transition: transform 0.3s cubic-bezier(.16,1,.3,1);
       }
       .method-pin-card:hover .mpc-inner { transform: rotate(2deg); }
       .mpc-card-right:hover .mpc-inner { transform: rotate(-2deg); }
@@ -1073,7 +1075,7 @@
       .mpc-body .mob-collapsible {
         display: grid;
         grid-template-rows: 0fr;
-        transition: grid-template-rows 0.4s cubic-bezier(.16,1,.3,1), opacity 0.3s ease;
+        transition: grid-template-rows 0.3s cubic-bezier(.16,1,.3,1), opacity 0.3s ease;
         opacity: 0;
       }
       .mpc-body .mob-collapsible > .mob-collapsible-inner {
@@ -3142,6 +3144,7 @@
       var openCard = null;
       var resizeTimer = null;
       var lineScheduled = false;
+      var lastWidth = window.innerWidth;
 
       function positionPhotos() {
         cards.forEach(function(card) {
@@ -3263,6 +3266,9 @@
       }
 
       function onResize() {
+        var w = window.innerWidth;
+        if (w === lastWidth) return;
+        lastWidth = w;
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function() {
           positionPhotos();
