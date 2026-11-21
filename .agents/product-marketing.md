@@ -98,7 +98,7 @@
 - Instagram : @haveo.conciergerie · nom affiché « Haveo Conciergerie Airbnb Paris »
 - WhatsApp Business : https://wa.me/message/JHFOQS5NLTHTO1
 - E-mail : haveo.conciergerie@gmail.com
-- Site : haveo.fr [adresse indiquée dans le code du site, à confirmer]
+- Site : https://haveo-conciergerie.fr (lien en bio Instagram)
 - Outils : `reseaux-sociaux/` (posts et stories, fiche `posts.json`), `etude-de-marche/`, `audit/`, artifacts « Messages Haveo », « Contrats Haveo », « Guide d'accueil Haveo ».
 
 ## Learnings
