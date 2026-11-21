@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://haveo.fr/sitemap.xml
+Sitemap: https://haveo-conciergerie.fr/sitemap.xml

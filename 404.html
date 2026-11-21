@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Page introuvable — Haveo Conciergerie</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <style>
+    :root {
+      --green: #0F4C4C;
+      --coral: #F26B5B;
+      --coral-hover: #e05545;
+      --white: #FFFFFF;
+      --text: #0F4C4C;
+      --text-muted: #3d7272;
+      color-scheme: light;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--green);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      margin-bottom: 48px;
+    }
+    .logo span { color: var(--coral); }
+    h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--green);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--coral);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 12px;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: var(--coral-hover); }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="logo">haveo<span>.</span></a>
+  <h1>Page introuvable</h1>
+  <p>La page que vous cherchez n'existe pas ou a été déplacée.</p>
+  <a href="index.html" class="btn">Retour à l'accueil</a>
+</body>
+</html>

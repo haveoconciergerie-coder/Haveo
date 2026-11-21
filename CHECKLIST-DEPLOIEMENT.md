@@ -6,7 +6,7 @@ A faire une fois le site en ligne sur un hebergeur (GitHub Pages, Netlify, etc.)
 - Aller sur https://analytics.google.com
 - Se connecter avec haveo.conciergerie@gmail.com
 - Admin (en bas a gauche) → Flux de donnees → cliquer sur le flux web
-- Remplacer l'URL par la vraie URL du site (ex: https://haveo.fr)
+- Remplacer l'URL par la vraie URL du site (ex: https://haveo-conciergerie.fr)
 - L'ID de mesure est deja dans le code : G-SELVF2RX1X
 
 ## 2. FormSubmit — Confirmer l'email
@@ -19,7 +19,7 @@ A faire une fois le site en ligne sur un hebergeur (GitHub Pages, Netlify, etc.)
 - Si autre hebergeur, verifier que HTTPS est bien active
 
 ## 4. Nom de domaine (optionnel)
-- Si tu achetes un domaine (ex: haveo.fr), configurer le DNS pour pointer vers l'hebergeur
+- Si tu achetes un domaine (ex: haveo-conciergerie.fr), configurer le DNS pour pointer vers l'hebergeur
 - Mettre a jour l'URL dans Google Analytics (etape 1)
 - Mettre a jour l'URL dans le flux web GA4
 
@@ -35,5 +35,5 @@ Fait (20 novembre 2026) :
 
 Reste a faire :
 - [ ] Ajouter le SIRET quand il sera disponible (section 1)
-- [ ] Completer la section "Hebergement" avec le nom, l'adresse et le site de l'hebergeur (section 2)
+- [x] Section "Hebergement" completee : Cloudflare, Inc. (section 2)
 - [ ] Completer les coordonnees du mediateur de la consommation (section 9)
