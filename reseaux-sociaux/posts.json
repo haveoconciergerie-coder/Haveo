@@ -485,7 +485,7 @@
         "",
         "Faites défiler, chaque image détaille un service.",
         "",
-        "Concrètement, vous avez une seule personne en face de vous, qui connaît votre logement de la photo de l'annonce jusqu'au linge changé après chaque départ. Quand un voyageur a une question ou qu'un robinet fuit, c'est nous qui nous en occupons, et vous êtes prévenu.",
+        "Louer en courte durée, c'est souvent jongler entre un photographe, une équipe de ménage, une blanchisserie, un artisan quand quelque chose casse, et des voyageurs qui écrivent à toute heure. Avec Haveo, vous avez un seul contact pour tout ça. On coordonne le reste, et vous recevez chaque mois le relevé de ce qui s'est passé.",
         "",
         "→ Votre logement est à Paris ou en Île-de-France ? Écrivez-nous en message privé ou sur WhatsApp : {lien}."
       ],
@@ -509,11 +509,11 @@
         "etapes": [
           {
             "titre": "Avant l'arrivée",
-            "texte": "Instructions d'accès et livret d'accueil envoyés au voyageur."
+            "texte": "Codes, instructions et vidéo du trajet jusqu'à la porte, envoyés au voyageur."
           },
           {
             "titre": "Le jour J",
-            "texte": "Accueil en personne, ou arrivée autonome par boîte à clés ou serrure connectée."
+            "texte": "Arrivée autonome, à l'heure qui lui convient, par boîte à clés ou serrure connectée."
           },
           {
             "titre": "Pendant le séjour",
@@ -521,19 +521,21 @@
           },
           {
             "titre": "Au départ",
-            "texte": "Clés récupérées, ménage, logement contrôlé. Tout incident vous est signalé sous 24 h."
+            "texte": "Ménage et logement contrôlé. Tout incident vous est signalé sous 24 h."
           }
         ],
-        "encadre": "Chaque logement est différent : le mode d'accès est choisi avec vous."
+        "encadre": "Un accueil en personne reste possible si votre logement le demande."
       },
       "legende": [
         "Les premières minutes dans un logement décident souvent de l'avis que laissera le voyageur.",
         "",
-        "Un code qui ne marche pas, une boîte à clés introuvable sous la pluie, et le séjour commence mal. Alors nous préparons l'arrivée bien avant : le voyageur reçoit les instructions d'accès et le livret d'accueil, puis il est accueilli en personne ou entre seul, par boîte à clés ou serrure connectée, selon ce qui convient à votre logement.",
+        "Après des heures de train ou d'avion, personne n'a envie d'attendre quelqu'un sur le trottoir ou de faire le tour du propriétaire avec un inconnu. Chez Haveo, on privilégie l'arrivée autonome : le voyageur arrive à l'heure qui lui convient, pose ses affaires et souffle. C'est tout l'intérêt par rapport à un hôtel, il entre directement chez lui, sans passer par une réception.",
         "",
-        "Pendant le séjour, il peut nous joindre par téléphone ou par message. Au départ, nous récupérons les clés, faisons le ménage et contrôlons le logement. Si quelque chose ne va pas, vous le savez sous 24 h.",
+        "Pour que ce soit simple, il reçoit avant son arrivée les codes, les instructions et une courte vidéo du trajet, filmée de la rue jusqu'à la porte, en passant par la boîte à clés s'il y en a une. Il n'a plus qu'à suivre.",
         "",
-        "→ Parlez-nous de votre logement en message privé, on cherchera ensemble le mode d'arrivée qui lui convient."
+        "Pendant le séjour, il peut nous joindre par téléphone ou par message. Au départ, nous faisons le ménage et contrôlons le logement. Si quelque chose ne va pas, vous le savez sous 24 h.",
+        "",
+        "→ Parlez-nous de votre logement en message privé, on regardera ensemble comment organiser l'arrivée de vos voyageurs."
       ],
       "hashtags": [
         "conciergerieparis",
@@ -542,7 +544,7 @@
         "airbnbparis",
         "locationcourteduree"
       ],
-      "alt": "Visuel vert Haveo. Titre : L'arrivée de vos voyageurs, de A à Z. Quatre étapes : avant l'arrivée, le jour J, pendant le séjour, au départ. Tout incident est signalé sous 24 heures.",
+      "alt": "Visuel vert Haveo. Titre : L'arrivée de vos voyageurs, de A à Z. Quatre étapes : avant l'arrivée, codes, instructions et vidéo du trajet ; le jour J, arrivée autonome ; pendant le séjour ; au départ. Tout incident est signalé sous 24 heures.",
       "contrat": "art. 3, art. 5 (24 h), annexe 3"
     },
     {
