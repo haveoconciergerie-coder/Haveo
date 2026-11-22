@@ -351,15 +351,11 @@
         "note": "Simulateur gratuit, sans engagement"
       },
       "legende": [
-        "Vous louez votre logement en courte durée ? Haveo s'occupe du reste.",
+        "Louer son logement en courte durée, c'est souvent répondre aux messages des voyageurs le dimanche soir.",
         "",
-        "Haveo est une conciergerie Airbnb à Paris et dans toute l'Île-de-France. Accueil des voyageurs, ménage, linge, annonce, suivi : nous prenons en charge le quotidien de votre location.",
+        "Haveo se lance cette semaine pour vous rendre ces soirées. Nous sommes une conciergerie à Paris et dans toute l'Île-de-France, et nous prenons le relais sur le quotidien : l'accueil de vos voyageurs, le ménage et le linge entre deux séjours, l'annonce, les petits imprévus.",
         "",
-        "Et vous gardez la main : l'annonce reste sur votre compte, vous validez vos prix et vos revenus vous sont versés directement.",
-        "",
-        "Pour commencer, estimez ce que pourrait rapporter votre logement avec notre simulateur gratuit. On en parle ensuite ensemble.",
-        "",
-        "→ Estimez vos revenus : {lien}, ou écrivez-nous en message privé."
+        "→ Pour commencer, regardez ce que votre logement pourrait rapporter avec notre simulateur gratuit : {lien}. Ou écrivez-nous en message privé, on en parle."
       ],
       "hashtags": [
         "conciergerieparis",
@@ -487,14 +483,9 @@
       "legende": [
         "Six services, un seul interlocuteur pour votre location courte durée.",
         "",
-        "Faites défiler : une image par service, avec le détail.",
+        "Faites défiler, chaque image détaille un service.",
         "",
-        "1. Annonce et photos : préparées par nos soins, publiées après votre accord",
-        "2. Accueil et clés : en personne ou arrivée autonome",
-        "3. Ménage et linge : ménage contrôlé, linge changé à chaque départ",
-        "4. Relation voyageurs : questions et imprévus, avant et pendant le séjour",
-        "5. Prix conseillés : selon la saison et les événements, vous validez",
-        "6. Suivi et incidents : relevé mensuel et coordination des interventions",
+        "Concrètement, vous avez une seule personne en face de vous, qui connaît votre logement de la photo de l'annonce jusqu'au linge changé après chaque départ. Quand un voyageur a une question ou qu'un robinet fuit, c'est nous qui nous en occupons, et vous êtes prévenu.",
         "",
         "→ Votre logement est à Paris ou en Île-de-France ? Écrivez-nous en message privé ou sur WhatsApp : {lien}."
       ],
@@ -536,16 +527,13 @@
         "encadre": "Chaque logement est différent : le mode d'accès est choisi avec vous."
       },
       "legende": [
-        "L'arrivée donne le ton de tout le séjour. Voici comment nous la préparons pour vos voyageurs.",
+        "Les premières minutes dans un logement décident souvent de l'avis que laissera le voyageur.",
         "",
-        "1. Avant l'arrivée : instructions d'accès et livret d'accueil envoyés au voyageur",
-        "2. Le jour J : accueil en personne, ou arrivée autonome par boîte à clés ou serrure connectée",
-        "3. Pendant le séjour : réponses par téléphone ou message, petits imprévus réglés",
-        "4. Au départ : clés récupérées, ménage, logement contrôlé",
+        "Un code qui ne marche pas, une boîte à clés introuvable sous la pluie, et le séjour commence mal. Alors nous préparons l'arrivée bien avant : le voyageur reçoit les instructions d'accès et le livret d'accueil, puis il est accueilli en personne ou entre seul, par boîte à clés ou serrure connectée, selon ce qui convient à votre logement.",
         "",
-        "Tout incident vous est signalé sous 24 h. Le mode d'accès, lui, est choisi avec vous, selon votre logement.",
+        "Pendant le séjour, il peut nous joindre par téléphone ou par message. Au départ, nous récupérons les clés, faisons le ménage et contrôlons le logement. Si quelque chose ne va pas, vous le savez sous 24 h.",
         "",
-        "→ Parlons de votre logement en message privé."
+        "→ Parlez-nous de votre logement en message privé, on cherchera ensemble le mode d'arrivée qui lui convient."
       ],
       "hashtags": [
         "conciergerieparis",
@@ -582,22 +570,13 @@
         ]
       },
       "legende": [
-        "Avant chaque arrivée, 10 points contrôlés. Enregistrez la liste, elle vous servira aussi si vous accueillez vous-même.",
+        "Un cheveu sur l'oreiller, et c'est une étoile en moins dans l'avis.",
         "",
-        "1. Sols et surfaces nettoyés",
-        "2. Salle de bain impeccable",
-        "3. Cuisine et vaisselle propres",
-        "4. Lit fait, draps changés",
-        "5. Serviettes propres",
-        "6. Produits d'accueil en place",
-        "7. Poubelles vidées",
-        "8. Logement aéré",
-        "9. Wi-Fi et équipements testés",
-        "10. Clés et accès vérifiés",
+        "Avant chaque arrivée, nous contrôlons 10 points dans votre logement. Les évidents d'abord : les sols, la salle de bain, la cuisine et la vaisselle, le lit refait avec des draps propres, les serviettes. Et ceux qu'on oublie facilement quand on fait tout soi-même un dimanche soir : les poubelles vidées, le logement aéré, le Wi-Fi testé, les produits d'accueil en place, les clés vérifiées.",
         "",
-        "Une anomalie ? Vous êtes prévenu sous 24 h.",
+        "Si on remarque une anomalie, vous êtes prévenu sous 24 h. La liste complète est sur l'image.",
         "",
-        "Propriétaires : lequel de ces points vous prend le plus de temps ? Dites-le-nous en commentaire."
+        "Propriétaires, lequel de ces points vous prend le plus de temps ? Dites-le-nous en commentaire."
       ],
       "hashtags": [
         "menageairbnb",
@@ -634,16 +613,15 @@
         "note": "Pour les 5 premiers logements confiés (un par propriétaire), jusqu'au 1er mars 2027. Ensuite : 20 % des nuitées. Ménage, linge et consommables à part."
       },
       "legende": [
-        "Offre de lancement, pour les 5 premiers logements : votre premier mois d'honoraires de conciergerie est offert.",
+        "Confier son logement à quelqu'un, la première fois, ça demande de la confiance.",
         "",
-        "Pour essayer Haveo sans risque :",
-        "• aucun honoraire de conciergerie le premier mois de location",
-        "• résiliable à tout moment, sans pénalité, avec un préavis de 7 jours",
-        "• la visite et l'audit de votre logement offerts, sur rendez-vous",
+        "Alors pour nos 5 premiers logements, on vous laisse juger sur pièce : le premier mois de location, vous ne payez aucun honoraire de conciergerie. Si ça ne vous convient pas, vous arrêtez quand vous voulez, sans pénalité, avec un préavis de 7 jours.",
+        "",
+        "Et avant de commencer, on vient voir votre logement avec vous, sur rendez-vous. La visite et l'audit sont offerts.",
         "",
         "Conditions : offre réservée aux 5 premiers logements confiés, un par propriétaire{finOffre}. Ensuite, nos honoraires sont de 20 % du montant des nuitées. Le ménage, le linge et les consommables sont facturés à part, selon une grille communiquée à l'avance.",
         "",
-        "→ Profitez du mois offert : {lien}, ou écrivez « OFFRE » en message privé."
+        "→ Pour réserver l'une des 5 places, écrivez « OFFRE » en message privé ou sur WhatsApp : {lien}."
       ],
       "hashtags": [
         "conciergerieparis",
@@ -687,19 +665,13 @@
         "apres": "Chaque mois, une facture détaillée, séjour par séjour."
       },
       "legende": [
-        "Confier votre logement à une conciergerie, sans perdre la main.",
+        "Et si vous avez besoin de votre logement un week-end ? Prévenez-nous 7 jours avant, on bloque les dates.",
         "",
-        "Vos comptes : l'annonce reste sur votre compte Airbnb ou Booking. Haveo y intervient en co-hôte.",
+        "Beaucoup de propriétaires hésitent à confier leur location parce qu'ils ont peur de ne plus se sentir chez eux. Chez Haveo, c'est vous qui décidez. L'annonce est sur votre compte Airbnb ou Booking, où nous intervenons en co-hôte. Vos revenus vous sont versés directement, nous n'encaissons jamais l'argent de vos séjours. Et les prix suivent la grille que vous avez fixée.",
         "",
-        "Vos revenus : ils vous sont versés directement. Haveo n'encaisse jamais l'argent de vos séjours.",
+        "Chaque mois, une facture détaillée vous montre ce qui s'est passé, séjour par séjour.",
         "",
-        "Vos prix : vous fixez la grille de prix, nos ajustements restent dans ces limites.",
-        "",
-        "Votre calendrier : besoin du logement ? Prévenez-nous 7 jours avant, nous bloquons les dates.",
-        "",
-        "Et chaque mois, une facture détaillée, séjour par séjour.",
-        "",
-        "→ Une question sur le fonctionnement ? Posez-la en commentaire ou en message privé."
+        "→ Une question sur ce qui reste entre vos mains ? Posez-la en commentaire ou en message privé."
       ],
       "hashtags": [
         "conciergerieparis",
@@ -744,14 +716,13 @@
         "note": "Sur WhatsApp, en un clic"
       },
       "legende": [
-        "Du premier message aux premiers voyageurs : démarrer avec Haveo, en 4 étapes.",
+        "Vous hésitez à vous lancer ? Voici ce qui se passe entre votre premier message et vos premiers voyageurs.",
         "",
-        "1. Premier échange : sur WhatsApp ou par téléphone, votre logement et vos attentes",
-        "2. Visite et audit : offerts, sur rendez-vous, avec le potentiel de location et nos premières recommandations",
-        "3. Contrat et mise en valeur : un contrat clair, résiliable à tout moment, puis photos, annonce et livret d'accueil, validés par vous",
-        "4. Premiers voyageurs : accueil, ménage, suivi, et une facture claire chaque mois",
+        "Tout commence par un échange, sur WhatsApp ou par téléphone. Vous nous parlez de votre logement et de ce que vous attendez, et ça ne vous engage à rien.",
         "",
-        "Le premier échange ne vous engage à rien.",
+        "Si on sent que ça peut coller, on vient le visiter sur rendez-vous, et on vous remet un audit avec son potentiel de location et nos premières recommandations. C'est offert.",
+        "",
+        "Ensuite seulement vient le contrat, résiliable à tout moment. Puis les photos, l'annonce et le livret d'accueil, que vous validez avant toute publication. Il reste alors à accueillir vos premiers voyageurs, et à vous envoyer chaque mois une facture claire.",
         "",
         "→ Écrivez-nous en message privé, ou sur WhatsApp : {lien}."
       ],
@@ -828,9 +799,9 @@
       "legende": [
         "Combien pourrait rapporter votre logement en location courte durée ?",
         "",
-        "Commencez par le simulateur en ligne, gratuit : quelques informations sur votre logement, et vous avez une estimation mensuelle.",
+        "Avant de décider quoi que ce soit, vous avez le droit d'avoir un chiffre. Notre simulateur vous en donne un à partir de quelques informations sur votre logement : une estimation mensuelle, gratuite, sans avoir besoin de nous parler.",
         "",
-        "Pour aller plus loin, la visite et l'audit sont offerts, sur rendez-vous : potentiel, prix, décoration et annonce.",
+        "Si ce chiffre vous donne envie d'aller plus loin, on vient voir votre logement sur rendez-vous pour l'affiner avec vous : les prix, la décoration, l'annonce.",
         "",
         "→ Estimez vos revenus : {lien}.",
         "",
@@ -890,11 +861,9 @@
         "encadre": "Votre logement est en Île-de-France ? Écrivez-nous avec le nom de votre ville."
       },
       "legende": [
-        "Où intervient Haveo ? À Paris et dans toute l'Île-de-France.",
+        "Paris, mais aussi Versailles, Saint-Denis, Créteil ou Évry : Haveo intervient dans toute l'Île-de-France.",
         "",
-        "Paris (75), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94), Yvelines (78), Essonne (91), Val-d'Oise (95) et Seine-et-Marne (77).",
-        "",
-        "Votre logement est dans l'un de ces départements ? Écrivez-nous : on en parle, puis on vient le visiter sur rendez-vous.",
+        "Nous venons à Paris (75) comme dans les Hauts-de-Seine (92), la Seine-Saint-Denis (93), le Val-de-Marne (94), les Yvelines (78), l'Essonne (91), le Val-d'Oise (95) et la Seine-et-Marne (77). Votre logement est dans l'un de ces départements ? On en parle d'abord, puis on vient le visiter sur rendez-vous.",
         "",
         "→ Écrivez-nous en message privé avec le nom de votre ville."
       ],
