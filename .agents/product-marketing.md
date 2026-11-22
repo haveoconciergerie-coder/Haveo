@@ -1,7 +1,7 @@
 # Product Marketing Context – Haveo Conciergerie
 
-**Document version:** v2
-**Last updated:** 2026-11-19
+**Document version:** v3
+**Last updated:** 2026-11-22
 
 > Fiche lue par toutes les skills marketing avant d'écrire quoi que ce soit pour Haveo (posts, site, e-mails, annonces). Les règles de la section « Règles à respecter » priment sur toute bonne pratique générale. Charte graphique : `.agents/brand.md`.
 
@@ -14,7 +14,7 @@
 5. **L'audit gratuit n'est pas l'appel à l'action principal** (risque d'abus : visites gratuites pour des gens qui ne confieront jamais leur logement). Porte d'entrée : le simulateur (« Estimer mes revenus ») ou un premier échange. Ensuite : « visite et audit offerts, sur rendez-vous ».
 6. **Pas de faux avis, pas de faux chiffres, pas de photos présentées comme des logements Haveo si elles n'en sont pas.**
 7. **Grille Instagram :** chaque post prend la couleur suivante dans l'ordre corail → sable → vert. Ne jamais supprimer, archiver ni épingler un post. Un logement se publie en carrousel : seule la couverture (aux couleurs du tour) apparaît dans la grille.
-8. **Offre de lancement :** 1er mois d'honoraires offert, sur le premier logement confié, jusqu'au 1er mars 2027. À retirer partout après cette date.
+8. **Offre de lancement :** 1er mois d'honoraires offert, réservée aux 5 premiers logements confiés (un par propriétaire), jusqu'au 1er mars 2027. À retirer partout après cette date ou dès que les 5 logements sont confiés. N'afficher un nombre de places restantes que s'il est exact.
 
 ## Product Overview
 **One-liner:** Vous louez, Haveo s'occupe du reste.
@@ -105,6 +105,7 @@
 *Decisions and tested lessons. Newest first. Keep it to about 20 active entries.*
 | Date | Learning | Evidence | Applies to | Status |
 |------|----------|----------|------------|--------|
+| 2026-11-22 | L'offre de lancement est limitée aux 5 premiers logements, en plus de la date du 1er mars 2027. À 20 %, Haveo coûte déjà moins cher qu'un concurrent à 25 % remisé à 15 % pendant 3 mois : la rareté rend l'offre visible sans baisser les prix. | Comparaison avec une offre concurrente (logement exemple à 3 000 €/mois : 6 600 € d'honoraires la 1re année contre 8 100 €) | offre, social, site, e-mails | active |
 | 2026-11-19 | Les Reels se publient sans « Afficher dans la grille du profil », pour garder l'ordre des couleurs. Les posts trop chargés passent en carrousel (couverture inchangée). | Skill social + règle de la grille | social | active |
 | 2026-11-15 | L'audit gratuit passe après un premier échange (« visite et audit offerts, sur rendez-vous ») ; l'entrée est le simulateur ou WhatsApp. | Décision du fondateur : peur des abus | site, posts, stories, e-mails | active |
 | 2026-11-15 | Les posts de logements se publient en carrousel, couverture aux couleurs du tour. | Décision du fondateur | social | active |
@@ -114,5 +115,6 @@
 
 ## Changelog
 *Newest first. One line per revision: what changed and why.*
+- v3 (2026-11-22) — Offre limitée aux 5 premiers logements (règle 8, Learnings), adresse du site renseignée.
 - v2 (2026-11-19) — Learnings : Reels hors grille et carrousels pour les posts chargés.
 - v1 (2026-11-19) — Initial context, rédigé à partir des décisions prises pendant la création des posts Instagram et Facebook.

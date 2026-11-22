@@ -187,8 +187,8 @@
           "centre": true,
           "badge": "Offre de lancement",
           "offre": true,
-          "texte": "sur nos honoraires de conciergerie,\njusqu'au 1er mars 2027.",
-          "conseil": "À retirer ou à mettre à jour le 1er mars 2027."
+          "texte": "sur nos honoraires de conciergerie,\npour les 5 premiers logements,\njusqu'au 1er mars 2027.",
+          "conseil": "À mettre à jour quand des places sont prises, et à retirer le 1er mars 2027 ou dès que les 5 logements sont confiés."
         },
         {
           "label": "Les conditions",
@@ -210,7 +210,7 @@
               "texte": "Sans pénalité, avec un simple préavis de 7 jours."
             }
           ],
-          "note": "Offre valable sur le premier logement que vous nous confiez, jusqu'au 1er mars 2027."
+          "note": "Offre réservée aux 5 premiers logements confiés, un par propriétaire, jusqu'au 1er mars 2027."
         },
         {
           "icone": "search",
@@ -236,7 +236,7 @@
         },
         {
           "centre": true,
-          "label": "Jusqu'au 1er mars 2027",
+          "label": "5 premiers logements · jusqu'au 1er mars 2027",
           "titre": "**Profitez du**\n**mois offert.**",
           "texte": "Écrivez « OFFRE » sur WhatsApp, on vous explique tout.",
           "bouton": "Profiter du mois offert",
@@ -616,7 +616,7 @@
       "modele": "offre",
       "jour": 5,
       "contenu": {
-        "badge": "Offre de lancement",
+        "badge": "Offre de lancement · 5 premiers logements",
         "sousTitre": "sur nos honoraires de conciergerie",
         "points": [
           {
@@ -633,17 +633,17 @@
           }
         ],
         "bouton": "Profiter du mois offert",
-        "note": "Valable jusqu'au 1er mars 2027, sur le premier logement confié. Ensuite : 20 % du montant des nuitées. Ménage, linge et consommables facturés à part."
+        "note": "Pour les 5 premiers logements confiés (un par propriétaire), jusqu'au 1er mars 2027. Ensuite : 20 % des nuitées. Ménage, linge et consommables à part."
       },
       "legende": [
-        "Offre de lancement : votre premier mois d'honoraires de conciergerie est offert.",
+        "Offre de lancement, pour les 5 premiers logements : votre premier mois d'honoraires de conciergerie est offert.",
         "",
         "Pour essayer Haveo sans risque :",
         "• aucun honoraire de conciergerie le premier mois de location",
         "• résiliable à tout moment, sans pénalité, avec un préavis de 7 jours",
         "• la visite et l'audit de votre logement offerts, sur rendez-vous",
         "",
-        "Conditions : offre valable sur le premier logement que vous nous confiez{finOffre}. Ensuite, nos honoraires sont de 20 % du montant des nuitées. Le ménage, le linge et les consommables sont facturés à part, selon une grille communiquée à l'avance.",
+        "Conditions : offre réservée aux 5 premiers logements confiés, un par propriétaire{finOffre}. Ensuite, nos honoraires sont de 20 % du montant des nuitées. Le ménage, le linge et les consommables sont facturés à part, selon une grille communiquée à l'avance.",
         "",
         "→ Profitez du mois offert : {lien}, ou écrivez « OFFRE » en message privé."
       ],
@@ -654,7 +654,7 @@
         "airbnbparis",
         "offredelancement"
       ],
-      "alt": "Visuel beige Haveo. 1er mois offert sur nos honoraires de conciergerie. Vous testez sans risque, résiliable à tout moment avec 7 jours de préavis, visite et audit offerts sur rendez-vous. Offre valable jusqu'au 1er mars 2027, sur le premier logement confié. Ensuite 20 % du montant des nuitées.",
+      "alt": "Visuel beige Haveo. 1er mois offert sur nos honoraires de conciergerie. Vous testez sans risque, résiliable à tout moment avec 7 jours de préavis, visite et audit offerts sur rendez-vous. Offre réservée aux 5 premiers logements confiés, un par propriétaire, jusqu'au 1er mars 2027. Ensuite 20 % du montant des nuitées.",
       "contrat": "art. 8.2, 8.3, 9, 10, art. 3 (audit)"
     },
     {
@@ -1046,9 +1046,9 @@
         "jour": 40,
         "pilier": "Offre et contact",
         "format": "Post",
-        "sujet": "Rappel : le mois offert, jusqu'au 1er mars 2027",
-        "accroche": "Votre premier mois d'honoraires offert, jusqu'au 1er mars.",
-        "preparer": "Reprendre le visuel du post 5, avec la date mise en avant."
+        "sujet": "Rappel : le mois offert, pour les 5 premiers logements, jusqu'au 1er mars 2027",
+        "accroche": "Plus que [X] places sur 5 pour le mois offert, jusqu'au 1er mars.",
+        "preparer": "Reprendre le visuel du post 5. Indiquer le nombre exact de places restantes, seulement s'il est vrai."
       }
     ],
     "reels": "Pour chaque Reel, décoche « Afficher dans la grille du profil » au moment de publier : il reste visible dans l'onglet Reels sans prendre de case, et l'ordre des couleurs de la grille ne bouge pas.",
